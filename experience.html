@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title id="page-title">LisbonDeals – Modalidade</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎫</text></svg>">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Navegação reutilizada -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <i class="fas fa-ticket-alt"></i>
+        <span>LisbonDeals</span>
+      </a>
+      <div class="nav-badge">
+        <i class="fas fa-fire"></i>
+        <span>Promoções Atuais</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Cabeçalho da página -->
+  <section class="hero" style="min-height:40vh;">
+    <div class="hero-background"></div>
+    <div class="hero-content">
+      <div class="hero-badge" id="mode-badge">
+        <i class="fas fa-star"></i>
+        <span>Modalidade</span>
+      </div>
+      <h1 id="mode-title">Modalidade</h1>
+      <p id="mode-description">Veja as escolas/parceiros com desconto exclusivo.</p>
+
+      <div class="breadcrumb" style="margin-top:1rem;">
+        <a href="index.html">Início</a>
+        <span>›</span>
+        <span id="crumb-current">Modalidade</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lista de escolas -->
+  <section class="experiences">
+    <div class="container">
+      <div class="section-header">
+        <h2>Escolas com <span class="highlight-orange">Desconto</span></h2>
+        <p id="results-count">Carregando ofertas…</p>
+      </div>
+
+      <div class="cards-grid" id="partners-grid"></div>
+    </div>
+  </section>
+
+  <!-- Toast -->
+  <div id="toast" class="toast">
+    <i class="fas fa-check-circle"></i>
+    <span>Código copiado com sucesso!</span>
+  </div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  <script src="experience.js"></script>
+</body>
+</html>

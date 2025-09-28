@@ -1,0 +1,142 @@
+{
+  "modes": [
+    {
+      "slug": "surf",
+      "title": "Aulas de Surf",
+      "badge": "Esportes Aquáticos",
+      "description": "Escolha uma escola de surf e use o código LisbonDeals no checkout.",
+      "partners": [
+        {
+          "name": "Carcavelos Surf School",
+          "location": "Carcavelos, Lisboa",
+          "price_original": "€60",
+          "price_discount": "€48",
+          "savings": "Economize €12",
+          "discount_label": "20% OFF",
+          "code": "SURF20",
+          "official_url": "https://site-oficial-de-surf.com",
+          "image": "https://images.pexels.com/photos/1761179/pexels-photo-1761179.jpeg",
+          "icon": "fas fa-water"
+        },
+        {
+          "name": "Surf LX Academy",
+          "location": "Costa da Caparica",
+          "price_original": "€70",
+          "price_discount": "€56",
+          "savings": "Economize €14",
+          "discount_label": "20% OFF",
+          "code": "SURF20",
+          "official_url": "https://exemplo-escola-surf.pt",
+          "image": "https://images.pexels.com/photos/1654495/pexels-photo-1654495.jpeg",
+          "icon": "fas fa-water"
+        }
+      ]
+    },
+    {
+      "slug": "kitesurf",
+      "title": "Aulas de Kitesurf",
+      "badge": "Esportes Radicais",
+      "description": "Escolas parceiras de kitesurf com desconto exclusivo.",
+      "partners": [
+        {
+          "name": "Caparica Kite Center",
+          "location": "Costa da Caparica",
+          "price_original": "€85",
+          "price_discount": "€68",
+          "savings": "Economize €17",
+          "discount_label": "20% OFF",
+          "code": "KITE15",
+          "official_url": "https://escola-de-kitesurf.pt",
+          "image": "https://images.pexels.com/photos/1705264/pexels-photo-1705264.jpeg",
+          "icon": "fas fa-wind"
+        },
+        {
+          "name": "Caparica Kite Center",
+          "location": "Costa da Caparica",
+          "price_original": "€85",
+          "price_discount": "€68",
+          "savings": "Economize €17",
+          "discount_label": "20% OFF",
+          "code": "KITE15",
+          "official_url": "https://escola-de-kitesurf.pt",
+          "image": "https://images.pexels.com/photos/1705264/pexels-photo-1705264.jpeg",
+          "icon": "fas fa-wind"
+        }
+      ]
+    },
+    {
+      "slug": "quad",
+      "title": "Passeio de Quadriciclo",
+      "badge": "Aventura",
+      "description": "Explore trilhas em Sintra com desconto.",
+      "partners": [
+        {
+          "name": "Sintra Quad Adventures",
+          "location": "Serra de Sintra",
+          "price_original": "€55",
+          "price_discount": "€44",
+          "savings": "Economize €11",
+          "discount_label": "20% OFF",
+          "code": "QUAD10",
+          "official_url": "https://quad-sintra.com",
+          "image": "https://images.pexels.com/photos/1135197/pexels-photo-1135197.jpeg",
+          "icon": "fas fa-mountain"
+        }
+      ]
+    },
+    {
+      "slug": "walking-tour",
+      "title": "Walking Tour por Lisboa",
+      "badge": "Cultura & História",
+      "description": "Tours a pé pelos bairros históricos com guia local.",
+      "partners": [
+        {
+          "name": "Lisboa Free Walkers",
+          "location": "Baixa & Alfama",
+          "price_original": "€30",
+          "price_discount": "€24",
+          "savings": "Economize €6",
+          "discount_label": "20% OFF",
+          "code": "LISBOA20",
+          "official_url": "https://lisbon-walking-tours.com",
+          "image": "https://images.pexels.com/photos/13512718/pexels-photo-13512718.jpeg",
+          "icon": "fas fa-walking"
+        }
+      ]
+    },
+    {
+      "slug": "yoga",
+      "title": "Studios de Yoga",
+      "badge": "Bem-Estar",
+      "description": "Aulas de yoga em Lisboa com desconto.",
+      "partners": [
+        {
+          "name": "Alfama Yoga Studio",
+          "location": "Alfama, Lisboa",
+          "price_original": "€30",
+          "price_discount": "€24",
+          "savings": "Economize €6",
+          "discount_label": "20% OFF",
+          "code": "YOGA20",
+          "qrcode_url": "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=YOGA20",
+          "official_url": "https://exemplo-alfama-yoga.com",
+          "image": "https://images.pexels.com/photos/3822621/pexels-photo-3822621.jpeg",
+          "icon": "fas fa-spa"
+        },
+        {
+          "name": "LX Flow Yoga",
+          "location": "Santos, Lisboa",
+          "price_original": "€35",
+          "price_discount": "€28",
+          "savings": "Economize €7",
+          "discount_label": "20% OFF",
+          "code": "YOGA20",
+          "qrcode_url": "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=YOGA20",
+          "official_url": "https://exemplo-lx-flow.com",
+          "image": "https://images.pexels.com/photos/843658/pexels-photo-843658.jpeg",
+          "icon": "fas fa-spa"
+        }
+      ]
+    }
+  ]
+}

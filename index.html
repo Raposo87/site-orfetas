@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LisbonDeals – Cupons Exclusivos para Experiências em Portugal</title>
+
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Google Fonts - Tipografia moderna -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎫</text></svg>">
+
+</head>
+
+<body>
+  <!-- Navegação -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <i class="fas fa-ticket-alt"></i>
+        <span>LisbonDeals</span>
+      </a>
+      <div class="nav-badge">
+        <i class="fas fa-fire"></i>
+        <span>Ofertas Limitadas</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-background"></div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i class="fas fa-star"></i>
+        <span>Cupons Exclusivos</span>
+      </div>
+      <h1>Descubra Portugal com <span class="highlight">Descontos Incríveis</span></h1>
+      <p>Experiências autênticas em Lisboa e arredores com códigos promocionais exclusivos. Escolha sua aventura e economize!</p>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-number">20%</span>
+          <span class="stat-label">Desconto Médio</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">1000+</span>
+          <span class="stat-label">Clientes Felizes</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção de Experiências -->
+  <section class="experiences" id="modalidades">
+    <div class="container">
+      <div class="section-header">
+        <h2>Experiências com <span class="highlight-orange">Descontos Exclusivos</span></h2>
+        <p>Clique numa modalidade para ver suas promoçôes</p>
+      </div>
+      
+      <div class="cards-grid">
+
+
+        <!-- Surf -->
+        <a class="experience-card" data-category="praia" href="experience.html?slug=surf" style="text-decoration:none;color:inherit">
+          <div class="featured-badge">
+            <i class="fas fa-crown"></i>
+            <span>Popular</span>
+          </div>
+          <div class="card-image">
+            <img src="https://images.pexels.com/photos/20840742/pexels-photo-20840742.jpeg" alt="Aulas de Surf">
+            <div class="card-badge">
+              <i class="fas fa-percentage"></i>
+              <span> 10% - 20% OFF</span>
+            </div>
+          </div>
+          <div class="card-content">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M80-40v-80h40q32 0 62-10t58-30q28 20 58 29.5t62 9.5q32 0 62.5-9.5T480-160q28 20 58 29.5t62 9.5q32 0 62.5-9.5T720-160q27 20 57.5 30t62.5 10h40v80h-40q-31 0-61-7.5T720-70q-29 15-59 22.5T600-40q-31 0-61-7.5T480-70q-29 15-59 22.5T360-40q-31 0-61-7.5T240-70q-29 15-59 22.5T120-40H80Zm260-760 222 41q14 2 27 11t22 25l35 62q26 45 72 73t102 28v80q-78 0-142-39T577-621l-90 61 153 120v154q16 11 31 23t29 23q-21 18-46 29t-54 11q-36 0-67-17t-53-43q-22 26-53 43t-67 17q-10 0-19.5-1.5T322-206q-86-59-144-119t-58-104q0-31 24-41t50-10q29 0 67 8.5t81 24.5l-21-124q-4-20 4.5-39.5T352-642l86-58q-3 0-14.5-2.5t-25.5-5-25.5-5Q361-715 358-715l-113 77-45-66 140-96Zm72 284 18 106q27 13 67 34.5t63 35.5v-60L412-516Zm268-224q-33 0-56.5-23.5T600-820q0-33 23.5-56.5T680-900q33 0 56.5 23.5T760-820q0 33-23.5 56.5T680-740Z"/></svg>
+            <h3>Escolas de Surf</h3>
+            <div class="price-section">
+              <div class="price-original">€60</div>
+              <div class="price-discount">€48</div>
+              <div class="savings">Economize €12</div>
+            </div>
+            <div class="card-actions">
+              <span class="btn btn-code" style="pointer-events:none">
+                <i class="fas fa-arrow-right"></i>
+                <span>Ver escolas em promoção</span>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Yoga -->
+        <a class="experience-card" data-category="yoga" href="experience.html?slug=yoga" style="text-decoration:none;color:inherit">
+          <div class="featured-badge">
+            <i class="fas fa-crown"></i>
+            <span>Popular</span>
+          </div>
+          <div class="card-image">
+            <img src="https://images.pexels.com/photos/317155/pexels-photo-317155.jpeg" alt="Lisboa">
+            <div class="card-badge">
+              <i class="fas fa-percentage"></i>
+              <span>15% - 20% OFF</span>
+            </div>
+          </div>
+          <div class="card-content">
+          <span class="material-symbols-outlined">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M272-160q-30 0-51-21t-21-51q0-21 12-39.5t32-26.5l156-62v-90q-54 63-125.5 96.5T120-320v-80q68 0 123.5-28T344-508l54-64q12-14 28-21t34-7h40q18 0 34 7t28 21l54 64q45 52 100.5 80T840-400v80q-83 0-154.5-33.5T560-450v90l156 62q20 8 32 26.5t12 39.5q0 30-21 51t-51 21H400v-20q0-26 17-43t43-17h120q9 0 14.5-5.5T600-260q0-9-5.5-14.5T580-280H460q-42 0-71 29t-29 71v20h-88Zm208-480q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"/></svg>
+            <h3>Studio de Yoga</h3>
+            <div class="price-section">
+              <div class="price-original">€30</div>
+              <div class="price-discount">€24</div>
+              <div class="savings">Economize €6</div>
+            </div>
+            <div class="card-actions">
+              <span class="btn btn-code" style="pointer-events:none">
+                <i class="fas fa-arrow-right"></i>
+                <span>Ver studios em promoção</span>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Kitesurf -->
+        <a class="experience-card featured" data-category="praia" href="experience.html?slug=kitesurf" style="text-decoration:none;color:inherit">
+        
+          <div class="card-image">
+            <img src="https://images.pexels.com/photos/1705264/pexels-photo-1705264.jpeg" alt="Kitesurf">
+            <div class="card-badge">
+              <i class="fas fa-percentage"></i>
+              <span>20% OFF</span>
+            </div>
+          </div>
+          <div class="card-content">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M80-40v-80h40q32 0 62.5-10t57.5-30q26 18 55 28t60 11q33 1 65-9t60-30q26 19 57 29t63 10q32 0 62-9.5t58-29.5q28 20 58.5 30t61.5 10h40v80h-40q-31 0-61-7.5T720-70q-29 15-58.5 22.5T600-40q-31 0-61-7.5T480-70q-29 16-61 23.5T355-40q-30-1-59-8.5T240-70q-29 15-58.5 22.5T120-40H80Zm280-160q-26 0-51.5-10T260-240q14-11 29-23t31-23l-62-119q-9-17-13.5-36t-4.5-39v-160q0-33 23.5-56.5T320-720h120q40 0 76.5-15t65.5-43l56 56q-41 40-92 61t-106 21h-56v140h112l68 75q65-27 115.5-41t86.5-14q35 0 54.5 13.5T840-429q0 39-54 98.5T638-206q-8 2-18.5 4t-19.5 2q-32 0-64-15.5T480-260q-24 29-55.5 44.5T360-200Zm33-136q16-10 46-27t49-26l-28-31-100 4 33 80Zm-73-424q-33 0-56.5-23.5T240-840q0-33 23.5-56.5T320-920q33 0 56.5 23.5T400-840q0 33-23.5 56.5T320-760Zm342-20-42-42 98-98h84L662-780Z"/></svg>
+            <h3>Escolas de Kitesurf</h3>
+            <div class="price-section">
+              <div class="price-original">€85</div>
+              <div class="price-discount">€68</div>
+              <div class="savings">Economize €17</div>
+            </div>
+            <div class="card-actions">
+              <span class="btn btn-code" style="pointer-events:none">
+                <i class="fas fa-arrow-right"></i>
+                <span>Ver escolas em promoção</span>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Quadriciclo -->
+        <a class="experience-card" data-category="aventura" href="experience.html?slug=quad" style="text-decoration:none;color:inherit">
+          <div class="card-image">
+            <img src="https://images.pexels.com/photos/1135197/pexels-photo-1135197.jpeg" alt="Quadriciclo Sintra">
+            <div class="card-badge">
+              <i class="fas fa-percentage"></i>
+              <span>20% OFF</span>
+            </div>
+          </div>
+          <div class="card-content">
+            <i class="fas fa-mountain"></i><h3>Passeio de Quadriciclo</h3>
+            <div class="price-section">
+              <div class="price-original">€55</div>
+              <div class="price-discount">€44</div>
+              <div class="savings">Economize €11</div>
+            </div>
+            <div class="card-actions">
+              <span class="btn btn-code" style="pointer-events:none">
+                <i class="fas fa-arrow-right"></i>
+                <span>Ver passeios em promoção</span>
+              </span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Como Funciona -->
+  <section class="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <h2>Como <span class="highlight-orange">Funciona?</span></h2>
+        <p>Simples e rápido em 3 passos</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-icon">
+            <i class="fas fa-search"></i>
+          </div>
+          <h3>Escolha sua Experiência</h3>
+          <p>Navegue pelas ofertas disponíveis e encontre a experiência perfeita para você.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-icon">
+            <i class="fas fa-ticket-alt"></i>
+          </div>
+          <h3>Revele o Código</h3>
+          <p>Clique no botão "Revelar Código" dentro da modalidade escolhida, ou leve o QRcode até a loja fizica para ser escaneado.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-icon">
+            <i class="fas fa-external-link-alt"></i>
+          </div>
+          <h3>Aproveite o Desconto</h3>
+          <p>Vá ao site oficial, insira o código ao finalizar sua compra e aproveite sua experiência com desconto!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <i class="fas fa-ticket-alt"></i>
+            <span>LisbonDeals</span>
+          </div>
+          <p>Cupons exclusivos para as melhores experiências em Portugal.</p>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+        <div class="footer-info">
+          <div class="footer-section">
+            <h4>Experiências</h4>
+            <ul>
+              <li><a href="#modalidades">Esportes Aquáticos</a></li>
+              <li><a href="#modalidades">Aventura</a></li>
+              <li><a href="#modalidades">Cultura & História</a></li>
+              <li><a href="#modalidades">Gastronomia</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Suporte</h4>
+            <ul>
+              <li><a href="#como-funciona">Como Funciona</a></li>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Contato</a></li>
+              <li><a href="#">Termos de Uso</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-text">
+          <p>&copy; 2025 LisbonDeals. Todos os direitos reservados.</p>
+          <p>Os códigos promocionais são válidos apenas nos sites oficiais dos parceiros indicados.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast para feedback -->
+  <div id="toast" class="toast">
+    <i class="fas fa-check-circle"></i>
+    <span>Código copiado com sucesso!</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
