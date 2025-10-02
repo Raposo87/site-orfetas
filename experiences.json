@@ -4,7 +4,7 @@
       "slug": "surf",
       "title": "Aulas de Surf",
       "badge": "Esportes Aquáticos",
-      "description": "Escolha uma escola de surf e use o código LisbonDeals no checkout.",
+      "description": "Escolha uma escola de surf e use o código Voucherhub no checkout.",
       "partners": [
         {
           "name": "Carcavelos Surf School",
@@ -15,7 +15,13 @@
           "discount_label": "20% OFF",
           "code": "SURF20",
           "official_url": "https://site-oficial-de-surf.com",
-          "image": "https://images.pexels.com/photos/1761179/pexels-photo-1761179.jpeg",
+          "images": [
+            "https://images.pexels.com/photos/1135197/pexels-photo-1135197.jpeg",
+            "https://images.pexels.com/photos/390051/surfer-wave-sunset-the-indian-ocean-390051.jpeg",
+            "https://images.pexels.com/photos/416676/pexels-photo-416676.jpeg",
+            "https://images.pexels.com/photos/2260938/pexels-photo-2260938.jpeg",
+            "https://images.pexels.com/photos/1654495/pexels-photo-1654495.jpeg"
+          ],
           "icon": "fas fa-water"
         },
         {
@@ -27,7 +33,13 @@
           "discount_label": "20% OFF",
           "code": "SURF20",
           "official_url": "https://exemplo-escola-surf.pt",
-          "image": "https://images.pexels.com/photos/1654495/pexels-photo-1654495.jpeg",
+          "images": [
+            "https://images.pexels.com/photos/1761179/pexels-photo-1761179.jpeg",
+            "https://images.pexels.com/photos/390051/surfer-wave-sunset-the-indian-ocean-390051.jpeg",
+            "https://images.pexels.com/photos/416676/pexels-photo-416676.jpeg",
+            "https://images.pexels.com/photos/2260938/pexels-photo-2260938.jpeg",
+            "https://images.pexels.com/photos/1654495/pexels-photo-1654495.jpeg"
+          ],
           "icon": "fas fa-water"
         }
       ]
@@ -47,7 +59,13 @@
           "discount_label": "20% OFF",
           "code": "KITE15",
           "official_url": "https://escola-de-kitesurf.pt",
-          "image": "https://images.pexels.com/photos/1705264/pexels-photo-1705264.jpeg",
+          "images": [
+            "https://images.pexels.com/photos/1761179/pexels-photo-1761179.jpeg",
+            "https://images.pexels.com/photos/390051/surfer-wave-sunset-the-indian-ocean-390051.jpeg",
+            "https://images.pexels.com/photos/416676/pexels-photo-416676.jpeg",
+            "https://images.pexels.com/photos/2260938/pexels-photo-2260938.jpeg",
+            "https://images.pexels.com/photos/1654495/pexels-photo-1654495.jpeg"
+          ],
           "icon": "fas fa-wind"
         },
         {
@@ -59,7 +77,13 @@
           "discount_label": "20% OFF",
           "code": "KITE15",
           "official_url": "https://escola-de-kitesurf.pt",
-          "image": "https://images.pexels.com/photos/1705264/pexels-photo-1705264.jpeg",
+          "images": [
+            "https://images.pexels.com/photos/1761179/pexels-photo-1761179.jpeg",
+            "https://images.pexels.com/photos/390051/surfer-wave-sunset-the-indian-ocean-390051.jpeg",
+            "https://images.pexels.com/photos/416676/pexels-photo-416676.jpeg",
+            "https://images.pexels.com/photos/2260938/pexels-photo-2260938.jpeg",
+            "https://images.pexels.com/photos/1654495/pexels-photo-1654495.jpeg"
+          ],
           "icon": "fas fa-wind"
         }
       ]
@@ -79,7 +103,13 @@
           "discount_label": "20% OFF",
           "code": "QUAD10",
           "official_url": "https://quad-sintra.com",
-          "image": "https://images.pexels.com/photos/1135197/pexels-photo-1135197.jpeg",
+          "images": [
+            "https://images.pexels.com/photos/1761179/pexels-photo-1761179.jpeg",
+            "https://images.pexels.com/photos/390051/surfer-wave-sunset-the-indian-ocean-390051.jpeg",
+            "https://images.pexels.com/photos/416676/pexels-photo-416676.jpeg",
+            "https://images.pexels.com/photos/2260938/pexels-photo-2260938.jpeg",
+            "https://images.pexels.com/photos/1654495/pexels-photo-1654495.jpeg"
+          ],
           "icon": "fas fa-mountain"
         }
       ]
@@ -99,7 +129,13 @@
           "discount_label": "20% OFF",
           "code": "LISBOA20",
           "official_url": "https://lisbon-walking-tours.com",
-          "image": "https://images.pexels.com/photos/13512718/pexels-photo-13512718.jpeg",
+          "images": [
+            "https://images.pexels.com/photos/1761179/pexels-photo-1761179.jpeg",
+            "https://images.pexels.com/photos/390051/surfer-wave-sunset-the-indian-ocean-390051.jpeg",
+            "https://images.pexels.com/photos/416676/pexels-photo-416676.jpeg",
+            "https://images.pexels.com/photos/2260938/pexels-photo-2260938.jpeg",
+            "https://images.pexels.com/photos/1654495/pexels-photo-1654495.jpeg"
+          ],
           "icon": "fas fa-walking"
         }
       ]
@@ -120,7 +156,13 @@
           "code": "YOGA20",
           "qrcode_url": "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=YOGA20",
           "official_url": "https://exemplo-alfama-yoga.com",
-          "image": "https://images.pexels.com/photos/3822621/pexels-photo-3822621.jpeg",
+          "images": [
+            "https://images.pexels.com/photos/1761179/pexels-photo-1761179.jpeg",
+            "https://images.pexels.com/photos/390051/surfer-wave-sunset-the-indian-ocean-390051.jpeg",
+            "https://images.pexels.com/photos/416676/pexels-photo-416676.jpeg",
+            "https://images.pexels.com/photos/2260938/pexels-photo-2260938.jpeg",
+            "https://images.pexels.com/photos/1654495/pexels-photo-1654495.jpeg"
+          ],
           "icon": "fas fa-spa"
         },
         {
@@ -133,7 +175,13 @@
           "code": "YOGA20",
           "qrcode_url": "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=YOGA20",
           "official_url": "https://exemplo-lx-flow.com",
-          "image": "https://images.pexels.com/photos/843658/pexels-photo-843658.jpeg",
+          "images": [
+            "https://images.pexels.com/photos/1761179/pexels-photo-1761179.jpeg",
+            "https://images.pexels.com/photos/390051/surfer-wave-sunset-the-indian-ocean-390051.jpeg",
+            "https://images.pexels.com/photos/416676/pexels-photo-416676.jpeg",
+            "https://images.pexels.com/photos/2260938/pexels-photo-2260938.jpeg",
+            "https://images.pexels.com/photos/1654495/pexels-photo-1654495.jpeg"
+          ],
           "icon": "fas fa-spa"
         }
       ]
