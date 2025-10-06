@@ -1009,20 +1009,31 @@ a:focus {
 @media (min-width: 1100px) {
   .cards-grid {
     grid-template-columns: repeat(4, 1fr) !important;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-md);
   }
   .experience-card .card-content {
-    padding: var(--spacing-lg);
+    padding: var(--spacing-md);
   }
   .card-image {
-    height: 180px;
+    height: 160px;
+  }
+  .experience-card .card-content h3 {
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-xs);
+  }
+  .price-section {
+    padding: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+  }
+  .price-discount {
+    font-size: 1.25rem;
   }
 }
 
 /* Slightly tighter spacing on very wide screens */
 @media (min-width: 1440px) {
   .cards-grid {
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm);
   }
 }
 
