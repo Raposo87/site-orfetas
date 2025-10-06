@@ -155,7 +155,7 @@
           "discount_label": "20% OFF",
           "code": "YOGA20",
           "qrcode_url": "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=YOGA20",
-          "official_url": "https://exemplo-alfama-yoga.com",
+          "official_url": "https://yogakulastudio.pt/",
           "images": [
             "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1742932207/logoSemFundo_mrfs2z.png",
             "https://i.pinimg.com/736x/6a/86/3e/6a863edd0e7355873024260ab9fc742c.jpg",
