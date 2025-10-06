@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title id="page-title">Voucherhub – Modalidade</title>
+    <title id="page-title">VoucherHub — Experience</title>
     <link rel="stylesheet" href="style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap"
@@ -17,7 +17,15 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-  </head>
+  
+  <!-- SEO: Base Meta; will be refined dynamically by experience.js -->
+<meta name="description" content="Find partner schools and tour operators in Portugal with exclusive coupon codes.">
+<link rel="canonical" href="https://yourdomain.com/experience">
+<link rel="alternate" hreflang="en" href="https://yourdomain.com/experience" />
+<link rel="alternate" hreflang="pt-br" href="https://yourdomain.com/br/experiencia" />
+<link rel="alternate" hreflang="x-default" href="https://yourdomain.com/experience" />
+
+</head>
   <body>
     <!-- Navegação reutilizada -->
     <nav class="navbar">
@@ -26,12 +34,11 @@
           <img
             src="logo.png"
             alt="VoucherHub Logo"
-            style="height: 40px; width: auto"
           />
         </a>
         <div class="nav-badge">
           <i class="fas fa-fire"></i>
-          <span>Promoções Atuais</span>
+          <span>Current Deals</span>
         </div>
       </div>
     </nav>
@@ -42,17 +49,17 @@
       <div class="hero-content">
         <div class="hero-badge" id="mode-badge">
           <i class="fas fa-star"></i>
-          <span>Modalidade</span>
+          <span>Category</span>
         </div>
-        <h1 id="mode-title">Modalidade</h1>
+        <h1 id="mode-title">Category</h1>
         <p id="mode-description">
-          Veja as escolas/parceiros com desconto exclusivo.
+          See partner schools with exclusive discounts.
         </p>
 
         <div class="breadcrumb" style="margin-top: 1rem">
-          <a href="index.html">Início</a>
+          <a href="index.html">Home</a>
           <span>›</span>
-          <span id="crumb-current">Modalidade</span>
+          <span id="crumb-current">Category</span>
         </div>
       </div>
     </section>
@@ -61,8 +68,8 @@
     <section class="experiences">
       <div class="container">
         <div class="section-header">
-          <h2>Escolas com <span class="highlight-orange">Desconto</span></h2>
-          <p id="results-count">Carregando ofertas…</p>
+          <h2>Schools with <span class="highlight-orange">Discount</span></h2>
+          <p id="results-count">Loading offers…</p>
         </div>
 
         <div class="cards-grid" id="partners-grid"></div>
@@ -72,7 +79,7 @@
     <!-- Toast -->
     <div id="toast" class="toast">
       <i class="fas fa-check-circle"></i>
-      <span>Código copiado com sucesso!</span>
+      <span>Code copied successfully!</span>
     </div>
 
     <!-- Scripts -->

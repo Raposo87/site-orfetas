@@ -31,7 +31,46 @@
   document.getElementById('mode-description').textContent = mode.description || 'Veja as escolas com desconto.';
   document.getElementById('crumb-current').textContent = mode.title;
   const badgeSpan = document.getElementById('mode-badge').querySelector('span');
-  badgeSpan.textContent = mode.badge || 'Modalidade';
+  badgeSpan.textContent = mode.badge || 'Category';
+
+// === Dynamic SEO meta for each mode (EN) ===
+const ensureMeta = (name, content) => {
+  let tag = document.querySelector(`meta[name="${name}"]`);
+  if (!tag) { tag = document.createElement('meta'); tag.setAttribute('name', name); document.head.appendChild(tag); }
+  tag.setAttribute('content', content);
+};
+ensureMeta('description', `${mode.title} in Portugal with exclusive discount codes. ${mode.description}`);
+ensureMeta('keywords', `${mode.title}, Portugal coupon codes, ${mode.badge} deals, Lisbon discounts, promo codes Portugal`);
+
+// Canonical (optional, replace with pretty URL if available)
+let linkCanonical = document.querySelector('link[rel="canonical"]');
+if (!linkCanonical) { linkCanonical = document.createElement('link'); linkCanonical.rel = 'canonical'; document.head.appendChild(linkCanonical); }
+linkCanonical.href = `https://yourdomain.com/experience/${mode.slug}`;
+
+// JSON-LD Offers for partners
+const offers = mode.partners.map(p => ({
+  "@context":"https://schema.org",
+  "@type":"Offer",
+  "name": `${p.name} — ${mode.title}`,
+  "priceCurrency": "EUR",
+  "price": (p.price_discount || "").replace(/[^0-9.]/g,''),
+  "url": p.official_url,
+  "category": mode.title,
+  "seller": {
+    "@type": "LocalBusiness",
+    "name": p.name,
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": p.location,
+      "addressCountry": "PT"
+    }
+  }
+}));
+const ld = document.createElement('script');
+ld.type = 'application/ld+json';
+ld.textContent = JSON.stringify(offers);
+document.head.appendChild(ld);
+
 
   // Render cards
   const grid = document.getElementById('partners-grid');
@@ -71,7 +110,7 @@
         <div class="card-actions">
           <button class="btn btn-code" data-code="${p.code || ''}">
             <i class="fas fa-code"></i>
-            <span>Revelar Código</span>
+            <span>Reveal Code</span>
           </button>
           <div class="promo-code">
             ${p.qrcode_url 
@@ -80,7 +119,7 @@
           </div>
           <a href="${p.official_url}" target="_blank" class="btn btn-official">
             <i class="fas fa-external-link-alt"></i>
-            <span>Ir para o Site Oficial</span>
+            <span>Go to Official Site</span>
           </a>
         </div>
       </div>

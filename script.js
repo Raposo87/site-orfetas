@@ -152,7 +152,7 @@ class PromoCodeManager {
 
     const buttonText = button.querySelector('span');
     const originalText = buttonText.textContent;
-    buttonText.textContent = 'Código Revelado!';
+    buttonText.textContent = 'Code Revealed!';
     const buttonIcon = button.querySelector('i');
     buttonIcon.className = 'fas fa-check-circle';
 
@@ -171,7 +171,7 @@ class PromoCodeManager {
   async copyCode(code) {
     try {
       await navigator.clipboard.writeText(code);
-      this.showToast('Código copiado com sucesso!', 'success');
+      this.showToast('Code copied successfully!', 'success');
       this.analytics.copied++;
       this.trackEvent('code_copied', { code });
       if (navigator.vibrate) navigator.vibrate(100);
@@ -189,9 +189,9 @@ class PromoCodeManager {
     textArea.select();
     try {
       document.execCommand('copy');
-      this.showToast('Código copiado com sucesso!', 'success');
+      this.showToast('Code copied successfully!', 'success');
     } catch (err) {
-      this.showToast('Erro ao copiar código', 'error');
+      this.showToast('Error copying code', 'error');
     }
     document.body.removeChild(textArea);
   }
@@ -258,7 +258,7 @@ class PromoCodeManager {
             if (codeText) codeText.textContent = code;
             if (promoDiv) promoDiv.classList.add('show');
             if (button) {
-              button.querySelector('span').textContent = 'Código Revelado!';
+              button.querySelector('span').textContent = 'Code Revealed!';
               button.querySelector('i').className = 'fas fa-check-circle';
             }
           }
