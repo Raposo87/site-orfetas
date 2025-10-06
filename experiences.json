@@ -142,16 +142,16 @@
     },
     {
       "slug": "yoga",
-      "title": "Yoga Studios",
+      "title": "Yoga Studio",
       "badge": "Wellness",
       "description": "Yoga classes in Lisbon at a discount.",
       "partners": [
         {
-          "name": "Alfama Yoga Studio",
-          "location": "Alfama, Lisboa",
+          "name": "Yoga Kula ",
+          "location": "Benfica, Lisboa",
           "price_original": "€30",
           "price_discount": "€24",
-          "savings": "Save €\\1",
+          "savings": "Save €1",
           "discount_label": "20% OFF",
           "code": "YOGA20",
           "qrcode_url": "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=YOGA20",
@@ -159,31 +159,13 @@
           "images": [
             "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1742932207/logoSemFundo_mrfs2z.png",
             "https://i.pinimg.com/736x/6a/86/3e/6a863edd0e7355873024260ab9fc742c.jpg",
-            "https://images.pexels.com/photos/416676/pexels-photo-416676.jpeg",
-            "https://images.pexels.com/photos/2260938/pexels-photo-2260938.jpeg",
-            "https://images.pexels.com/photos/1654495/pexels-photo-1654495.jpeg"
-          ],
-          "icon": "fas fa-spa"
-        },
-        {
-          "name": "LX Flow Yoga",
-          "location": "Santos, Lisboa",
-          "price_original": "€35",
-          "price_discount": "€28",
-          "savings": "Save €\\1",
-          "discount_label": "20% OFF",
-          "code": "YOGA20",
-          "qrcode_url": "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=YOGA20",
-          "official_url": "https://exemplo-lx-flow.com",
-          "images": [
-            "https://images.pexels.com/photos/1761179/pexels-photo-1761179.jpeg",
-            "https://images.pexels.com/photos/390051/surfer-wave-sunset-the-indian-ocean-390051.jpeg",
-            "https://images.pexels.com/photos/416676/pexels-photo-416676.jpeg",
-            "https://images.pexels.com/photos/2260938/pexels-photo-2260938.jpeg",
-            "https://images.pexels.com/photos/1654495/pexels-photo-1654495.jpeg"
+            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1759782464/IMG-20250929-WA0001_r45exm.jpg",
+            "https://i.pinimg.com/736x/14/fc/89/14fc8971e3bf1a626ae5322fbb247aec.jpg",
+            "https://i.pinimg.com/736x/b8/6c/66/b86c669e87669cfce3c09a25364d3272.jpg"
           ],
           "icon": "fas fa-spa"
         }
+        
       ]
     }
   ]
