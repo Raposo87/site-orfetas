@@ -7,38 +7,20 @@
       "description": "Choose a surf school and use the VoucherHub code at checkout.",
       "partners": [
         {
-          "name": "Carcavelos Surf School",
-          "location": "Carcavelos, Lisboa",
+          "name": "Surf Wave Lisbon",
+          "location": "Cabana do Pescador, Coata da Caparica",
           "price_original": "€60",
           "price_discount": "€48",
           "savings": "Save €\\1",
           "discount_label": "20% OFF",
           "code": "SURF20",
-          "official_url": "https://site-oficial-de-surf.com",
+          "official_url": "https://surfwavelisbon.com/",
           "images": [
-            "https://images.pexels.com/photos/1135197/pexels-photo-1135197.jpeg",
-            "https://images.pexels.com/photos/390051/surfer-wave-sunset-the-indian-ocean-390051.jpeg",
-            "https://images.pexels.com/photos/416676/pexels-photo-416676.jpeg",
-            "https://images.pexels.com/photos/2260938/pexels-photo-2260938.jpeg",
-            "https://images.pexels.com/photos/1654495/pexels-photo-1654495.jpeg"
-          ],
-          "icon": "fas fa-water"
-        },
-        {
-          "name": "Surf LX Academy",
-          "location": "Costa da Caparica",
-          "price_original": "€70",
-          "price_discount": "€56",
-          "savings": "Save €\\1",
-          "discount_label": "20% OFF",
-          "code": "SURF20",
-          "official_url": "https://exemplo-escola-surf.pt",
-          "images": [
-            "https://images.pexels.com/photos/1761179/pexels-photo-1761179.jpeg",
-            "https://images.pexels.com/photos/390051/surfer-wave-sunset-the-indian-ocean-390051.jpeg",
-            "https://images.pexels.com/photos/416676/pexels-photo-416676.jpeg",
-            "https://images.pexels.com/photos/2260938/pexels-photo-2260938.jpeg",
-            "https://images.pexels.com/photos/1654495/pexels-photo-1654495.jpeg"
+            "https://surfwavelisbon.com/wp-content/uploads/2023/09/logo_swl.webp",
+            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1759785453/IMG-20251002-WA0018_valbsf.jpg",
+            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1759785453/IMG-20251002-WA0015_mgxpde.jpg",
+            "https://surfwavelisbon.com/wp-content/uploads/2024/02/DSC6244-1536x1024.jpg",
+            "https://surfwavelisbon.com/wp-content/uploads/2023/11/DSC5235-copy-1536x1024.jpg"
           ],
           "icon": "fas fa-water"
         }
