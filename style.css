@@ -902,6 +902,7 @@ body {
     background: rgba(255, 255, 255, 0.1);
     padding: var(--spacing-md);
     border-radius: var(--radius);
+    padding: 4px;
   }
   
   .cards-grid {
