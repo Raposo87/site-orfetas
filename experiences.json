@@ -29,9 +29,9 @@
     },
     {
       "slug": "Moda",
-      "title": "Twolines",
+      "title": "Vestuário moda",
       "badge": "Vestuario Moda",
-      "description": "Marca de roupa twolines.",
+      "description": "Partner clothing stores with exclusive discounts.",
       "partners": [
         {
           "name": "Twolines",
@@ -150,7 +150,7 @@
     },
     {
       "slug": "yoga",
-      "title": "Yoga Studio",
+      "title": "Yoga Studios",
       "badge": "Wellness",
       "description": "Yoga classes in Lisbon at a discount.",
       "partners": [

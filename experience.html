@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title id="page-title">VoucherHub — Experience</title>
+    <title id="page-title">VoucherHub – Experience</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="i18n-styles.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap"
       rel="stylesheet"
@@ -18,28 +19,26 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
   
-  <!-- SEO: Base Meta; will be refined dynamically by experience.js -->
-<meta name="description" content="Find partner schools and tour operators in Portugal with exclusive coupon codes.">
-<link rel="canonical" href="https://yourdomain.com/experience">
-<link rel="alternate" hreflang="en" href="https://yourdomain.com/experience" />
-<link rel="alternate" hreflang="pt-br" href="https://yourdomain.com/br/experiencia" />
-<link rel="alternate" hreflang="x-default" href="https://yourdomain.com/experience" />
-<meta name="google" content="notranslate">
-</head>
+    <!-- SEO: Base Meta; will be refined dynamically by experience.js -->
+    <meta name="description" content="Find partner schools and tour operators in Portugal with exclusive coupon codes.">
+    <link rel="canonical" href="https://yourdomain.com/experience">
+    <link rel="alternate" hreflang="en" href="https://yourdomain.com/experience" />
+    <link rel="alternate" hreflang="pt-br" href="https://yourdomain.com/br/experiencia" />
+    <link rel="alternate" hreflang="x-default" href="https://yourdomain.com/experience" />
+    <meta name="google" content="notranslate">
+  </head>
   <body>
     <!-- Navegação reutilizada -->
     <nav class="navbar">
       <div class="nav-container">
         <a href="index.html" class="logo">
-          <img
-            src="logo.png"
-            alt="VoucherHub Logo"
-          />
+          <img src="logo.png" alt="VoucherHub Logo" />
         </a>
         <div class="nav-badge">
           <i class="fas fa-fire"></i>
-          <span>Current Deals</span>
+          <span data-i18n="nav.badge">Current Deals</span>
         </div>
+        <!-- O seletor de idiomas será inserido aqui automaticamente pelo i18n.js -->
       </div>
     </nav>
 
@@ -52,12 +51,10 @@
           <span>Category</span>
         </div>
         <h1 id="mode-title">Category</h1>
-        <p id="mode-description">
-          See partner schools with exclusive discounts.
-        </p>
+        <p id="mode-description">See partner schools with exclusive discounts.</p>
 
         <div class="breadcrumb" style="margin-top: 1rem">
-          <a href="index.html">Home</a>
+          <a href="index.html" data-i18n="experiencePage.home">Home</a>
           <span>›</span>
           <span id="crumb-current">Category</span>
         </div>
@@ -68,8 +65,8 @@
     <section class="experiences">
       <div class="container">
         <div class="section-header">
-          <h2>Centro de <span class="highlight-orange">Descontos</span></h2>
-          <p id="results-count">Loading offers…</p>
+          <h2 data-i18n="experiencePage.discountCenter">Discount <span class="highlight-orange">Center</span></h2>
+          <p id="results-count" data-i18n="experiencePage.loading">Loading offers…</p>
         </div>
 
         <div class="cards-grid" id="partners-grid"></div>
@@ -79,10 +76,11 @@
     <!-- Toast -->
     <div id="toast" class="toast">
       <i class="fas fa-check-circle"></i>
-      <span>Code copied successfully!</span>
+      <span data-i18n="toast.codeCopied">Code copied successfully!</span>
     </div>
 
     <!-- Scripts -->
+    <script src="i18n.js"></script>
     <script src="script.js"></script>
     <script src="experience.js"></script>
   </body>

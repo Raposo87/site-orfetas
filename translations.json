@@ -1,0 +1,140 @@
+{
+  "en": {
+    "nav": {
+      "badge": "Limited-Time Deals"
+    },
+    "hero": {
+      "badge": "Exclusive Coupons",
+      "title": "Discover Portugal with <span class='highlight'>Amazing Discounts</span>",
+      "subtitle": "Authentic experiences in Lisbon and nearby with exclusive promo codes. Choose your adventure and save!",
+      "avgDiscount": "Average Discount",
+      "happyCustomers": "Happy Customers"
+    },
+    "experiences": {
+      "title": "Experiences with <span class='highlight-orange'>Exclusive Discounts</span>",
+      "subtitle": "Click on a category to see its promotions",
+      "surfSchools": "Surf Schools",
+      "yogaStudios": "Yoga Studios",
+      "fashionBrand": "Fashion Brand",
+      "kitesurfSchools": "Kitesurf Schools",
+      "quadBikeTour": "Quad Bike Tour",
+      "save": "Save",
+      "seeSchools": "See schools on sale",
+      "seeStudios": "See studios on sale",
+      "seeTours": "See tours on sale"
+    },
+    "howItWorks": {
+      "title": "How <span class='highlight-orange'>It Works?</span>",
+      "subtitle": "Simple and fast in 3 steps",
+      "step1Title": "Choose Your Experience",
+      "step1Text": "Browse the available offers and find your perfect experience.",
+      "step2Title": "Reveal the Code",
+      "step2Text": "Click the 'Reveal Code' button inside the chosen category and copy the code, or take the QR code to the physical store to be scanned.",
+      "step3Title": "Enjoy the Discount",
+      "step3Text": "Go to the official site, enter the code at checkout and enjoy your discounted experience!"
+    },
+    "footer": {
+      "description": "Exclusive coupons for the best experiences in Portugal.",
+      "experiences": "Experiences",
+      "waterSports": "Water Sports",
+      "adventure": "Adventure",
+      "culture": "Culture & History",
+      "gastronomy": "Gastronomy",
+      "support": "Support",
+      "howItWorks": "How It Works",
+      "faq": "FAQ",
+      "contact": "Contact",
+      "terms": "Terms of Use",
+      "copyright": "All rights reserved.",
+      "disclaimer": "Promotional codes are valid only on official partner websites."
+    },
+    "buttons": {
+      "revealCode": "Reveal Code",
+      "goToSite": "Go to Official Site",
+      "copyCode": "Copy Code"
+    },
+    "toast": {
+      "codeCopied": "Code copied successfully!",
+      "error": "Error copying code"
+    },
+    "experiencePage": {
+      "category": "Category",
+      "home": "Home",
+      "discountCenter": "Discount Center",
+      "loading": "Loading offers…",
+      "offers": "offer",
+      "offersPlural": "offers",
+      "notFound": "Not found",
+      "nonExistent": "Non-existent category."
+    }
+  },
+  "pt": {
+    "nav": {
+      "badge": "Ofertas por Tempo Limitado"
+    },
+    "hero": {
+      "badge": "Cupons Exclusivos",
+      "title": "Descubra Portugal com <span class='highlight'>Descontos Incríveis</span>",
+      "subtitle": "Experiências autênticas em Lisboa e arredores com códigos promocionais exclusivos. Escolha sua aventura e economize!",
+      "avgDiscount": "Desconto Médio",
+      "happyCustomers": "Clientes Satisfeitos"
+    },
+    "experiences": {
+      "title": "Experiências com <span class='highlight-orange'>Descontos Exclusivos</span>",
+      "subtitle": "Clique em uma categoria para ver suas promoções",
+      "surfSchools": "Escolas de Surf",
+      "yogaStudios": "Estúdios de Yoga",
+      "fashionBrand": "Marca / Moda",
+      "kitesurfSchools": "Escolas de Kitesurf",
+      "quadBikeTour": "Passeio de Quadriciclo",
+      "save": "Economize",
+      "seeSchools": "Ver escolas em promoção",
+      "seeStudios": "Ver estúdios em promoção",
+      "seeTours": "Ver passeios em promoção"
+    },
+    "howItWorks": {
+      "title": "Como <span class='highlight-orange'>Funciona?</span>",
+      "subtitle": "Simples e rápido em 3 passos",
+      "step1Title": "Escolha Sua Experiência",
+      "step1Text": "Navegue pelas ofertas disponíveis e encontre sua experiência perfeita.",
+      "step2Title": "Revele o Código",
+      "step2Text": "Clique no botão 'Revelar Código' dentro da categoria escolhida e copie o código, ou leve o QR code para a loja física ser escaneado.",
+      "step3Title": "Aproveite o Desconto",
+      "step3Text": "Vá ao site oficial, insira o código no checkout e aproveite sua experiência com desconto!"
+    },
+    "footer": {
+      "description": "Cupons exclusivos para as melhores experiências em Portugal.",
+      "experiences": "Experiências",
+      "waterSports": "Esportes Aquáticos",
+      "adventure": "Aventura",
+      "culture": "Cultura e História",
+      "gastronomy": "Gastronomia",
+      "support": "Suporte",
+      "howItWorks": "Como Funciona",
+      "faq": "FAQ",
+      "contact": "Contato",
+      "terms": "Termos de Uso",
+      "copyright": "Todos os direitos reservados.",
+      "disclaimer": "Os códigos promocionais são válidos apenas nos sites oficiais dos parceiros indicados."
+    },
+    "buttons": {
+      "revealCode": "Revelar Código",
+      "goToSite": "Ir para Site Oficial",
+      "copyCode": "Copiar Código"
+    },
+    "toast": {
+      "codeCopied": "Código copiado com sucesso!",
+      "error": "Erro ao copiar código"
+    },
+    "experiencePage": {
+      "category": "Categoria",
+      "home": "Início",
+      "discountCenter": "Centro de Descontos",
+      "loading": "Carregando ofertas…",
+      "offers": "oferta",
+      "offersPlural": "ofertas",
+      "notFound": "Não encontrado",
+      "nonExistent": "Modalidade inexistente."
+    }
+  }
+}
