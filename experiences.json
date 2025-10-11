@@ -9,10 +9,10 @@
         {
           "name": "Surf Wave Lisbon",
           "location": "Cabana do Pescador, Coata da Caparica",
-          "price_original": "€60",
-          "price_discount": "€48",
-          "savings": "Save €\\1",
-          "discount_label": "20% OFF",
+          "price_original": "€30",
+          "price_discount": "€25,5",
+          "savings": "Save €4,5",
+          "discount_label": "15% OFF",
           "code": "SURF20",
           "official_url": "https://surfwavelisbon.com/",
           "images": [
@@ -36,9 +36,9 @@
         {
           "name": "Twolines",
           "location": "Coata da Caparica",
-          "price_original": "€60",
-          "price_discount": "€48",
-          "savings": "Save €\\1",
+          "price_original": "€67,83",
+          "price_discount": "€54,27",
+          "savings": "Save €13,56",
           "discount_label": "20% OFF",
           "code": "SURF20",
           "official_url": "https://twolines.pt/",
