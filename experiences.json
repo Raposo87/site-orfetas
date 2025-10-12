@@ -8,7 +8,7 @@
       "partners": [
         {
           "name": "Surf Wave Lisbon",
-          "location": "Cabana do Pescador, Coata da Caparica",
+          "location": "Cabana do Pescador, Costa da Caparica",
           "price_original": "€30",
           "price_discount": "€25,5",
           "savings": "Save €4,5",
@@ -30,12 +30,12 @@
     {
       "slug": "Moda",
       "title": "Vestuário moda",
-      "badge": "Vestuario Moda",
+      "badge": "Vestuário Moda",
       "description": "Partner clothing stores with exclusive discounts.",
       "partners": [
         {
           "name": "Twolines",
-          "location": "Coata da Caparica",
+          "location": "Costa da Caparica",
           "price_original": "€67,83",
           "price_discount": "€54,27",
           "savings": "Save €13,56",
