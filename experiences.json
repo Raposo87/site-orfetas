@@ -13,7 +13,7 @@
           "price_discount": "€25,5",
           "savings": "Save €4,5",
           "discount_label": "15% OFF",
-          "code": "SURF20",
+          "code": "Raposo15",
           "official_url": "https://surfwavelisbon.com/",
           "images": [
             "https://surfwavelisbon.com/wp-content/uploads/2024/02/DSC6244-1536x1024.jpg",
@@ -48,7 +48,7 @@
             "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1759862655/IMG-20251002-WA0020_dsvvsi.jpg",
             "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1759862655/IMG-20251002-WA0019_tnybfq.jpg"
           ],
-          "icon": "fas fa-water"
+          "icon": "fas fa-tshirt"
         }
       ]
     },

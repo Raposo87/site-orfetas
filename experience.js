@@ -145,7 +145,7 @@
         <div class="card-image">
           ${images.length > 0 ? '<img src="' + images[0] + '" alt="' + p.name + '">' : ''}
           <div class="card-badge">
-            <i class="fas fa-percentage"></i>
+            
             <span>${p.discount_label}</span>
           </div>
         </div>

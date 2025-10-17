@@ -1067,6 +1067,8 @@ a:focus {
 .card-badge {
   padding: 0.3rem 0.5rem;
   font-size: 0.7rem;
+  margin-top: -1px;
+  margin-left:-17px;
 }
 
 .featured-badge {
