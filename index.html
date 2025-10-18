@@ -6,18 +6,16 @@
   <title>VoucherHub – Exclusive Discount Codes for Experiences in Portugal</title>
 
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="i18n-styles.css">
   
-  <!-- Google Fonts - Tipografia moderna -->
+  <link rel="preload" href="i18n-styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="i18n-styles.css"></noscript>
+  
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
   
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎫</text></svg>">
 
-  <!-- SEO: Meta / Open Graph / Twitter -->
   <meta name="description" content="VoucherHub – Discover the best experiences in Portugal with exclusive coupon codes. Save on restaurants, surf schools, walking tours, yoga studios and more in Lisbon and beyond.">
   <meta name="keywords" content="Portugal discount codes, Lisbon coupons, Portugal deals, surf school discount, walking tour promo code Lisbon, yoga class offers, restaurant discounts Portugal, travel deals Portugal, o que fazer em Portugal, atividades em Lisboa, experiências com desconto, códigos promocionais Portugal, cupões de desconto Lisboa, tours e bilhetes baratos, surf lessons Portugal, yoga studio Lisboa desconto, voucher atividades Portugal, turismo barato Portugal, descontos exclusivos, things to do in Lisbon, Lisbon activities, exclusive discounts, what to do in Portugal, activities in Lisbon, discounted experiences, promotional codes Portugal, discount coupons Lisbon, cheap tours and tickets, surf lessons Portugal, yoga studio Lisbon discount, voucher activities Portugal, cheap tourism Portugal, exclusive discounts">
   <meta name="author" content="VoucherHub">
@@ -35,7 +33,6 @@
   <meta name="twitter:description" content="Exclusive promo codes for the best experiences in Lisbon and beyond.">
   <meta name="twitter:image" content="https://yourdomain.com/og-image.jpg">
   
-  <!-- JSON-LD: WebSite & SearchAction -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -49,8 +46,7 @@
     }
   }
   </script>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-8PZ7RNGLVL"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8PZ7RNGLVL"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -62,7 +58,6 @@
 </head>
 
 <body>
-  <!-- Navegação -->
   <nav class="navbar">
     <div class="nav-container">
       <a href="#" class="logo">
@@ -72,12 +67,9 @@
         <i class="fas fa-fire"></i>
         <span data-i18n="nav.badge">Limited-Time Deals</span>
       </div>
-      <!-- O seletor de idiomas será inserido aqui automaticamente pelo i18n.js -->
-       
-    </div>
+      </div>
   </nav>
 
-  <!-- Hero Section -->
   <section class="hero">
     <div class="hero-background"></div>
     <div class="hero-content">
@@ -100,7 +92,6 @@
     </div>
   </section>
 
-  <!-- Seção de Experiences -->
   <section class="experiences" id="modalidades">
     <div class="container">
       <div class="section-header">
@@ -110,14 +101,13 @@
       
       <div class="cards-grid">
 
-        <!-- Surf -->
         <a class="experience-card" data-category="praia" href="experience.html?slug=surf" style="text-decoration:none;color:inherit">
           <div class="featured-badge">
             <i class="fas fa-crown"></i>
             <span>Popular</span>
           </div>
           <div class="card-image">
-            <img src="https://images.pexels.com/photos/4783706/pexels-photo-4783706.jpeg" alt="Surf Lessons">
+            <img src="https://images.pexels.com/photos/4783706/pexels-photo-4783706.jpeg" alt="Surf Lessons" width="400" height="267" loading="lazy">
             <div class="card-badge">
               <i class="fas fa-percentage"></i>
               <span> 10% - 20% OFF</span>
@@ -140,14 +130,13 @@
           </div>
         </a>
 
-        <!-- Yoga -->
         <a class="experience-card" data-category="yoga" href="experience.html?slug=yoga" style="text-decoration:none;color:inherit">
           <div class="featured-badge">
             <i class="fas fa-crown"></i>
             <span>Popular</span>
           </div>
           <div class="card-image">
-            <img src="https://images.pexels.com/photos/317155/pexels-photo-317155.jpeg" alt="Lisboa">
+            <img src="https://images.pexels.com/photos/317155/pexels-photo-317155.jpeg" alt="Lisboa" width="400" height="267" loading="lazy">
             <div class="card-badge">
               <i class="fas fa-percentage"></i>
               <span>15% - 20% OFF</span>
@@ -172,10 +161,9 @@
           </div>
         </a>
 
-        <!-- Moda -->
         <a class="experience-card featured" data-category="praia" href="experience.html?slug=Moda" style="text-decoration:none;color:inherit">
           <div class="card-image">
-            <img src="https://res.cloudinary.com/dqn2v9mtu/image/upload/v1759862655/IMG-20251002-WA0020_dsvvsi.jpg" alt="Moda">
+            <img src="https://res.cloudinary.com/dqn2v9mtu/image/upload/v1759862655/IMG-20251002-WA0020_dsvvsi.jpg" alt="Moda" width="400" height="267" loading="lazy">
             <div class="card-badge">
               
               <span>10% - 20% OFF</span>
@@ -198,10 +186,9 @@
           </div>
         </a>
 
-        <!-- Kitesurf -->
         <a class="experience-card featured" data-category="praia" href="experience.html?slug=kitesurf" style="text-decoration:none;color:inherit">
           <div class="card-image">
-            <img src="https://images.pexels.com/photos/1705264/pexels-photo-1705264.jpeg" alt="Kitesurf">
+            <img src="https://images.pexels.com/photos/1705264/pexels-photo-1705264.jpeg" alt="Kitesurf" width="400" height="267" loading="lazy">
             <div class="card-badge">
               <i class="fas fa-percentage"></i>
               <span>10% - 20% OFF</span>
@@ -224,10 +211,9 @@
           </div>
         </a>
 
-        <!-- Quadriciclo -->
         <a class="experience-card" data-category="aventura" href="experience.html?slug=quad" style="text-decoration:none;color:inherit">
           <div class="card-image">
-            <img src="https://images.pexels.com/photos/1135197/pexels-photo-1135197.jpeg" alt="Quadriciclo Sintra">
+            <img src="https://images.pexels.com/photos/1135197/pexels-photo-1135197.jpeg" alt="Quadriciclo Sintra" width="400" height="267" loading="lazy">
             <div class="card-badge">
               <i class="fas fa-percentage"></i>
               <span>10% - 20% OFF</span>
@@ -254,7 +240,6 @@
     </div>
   </section>
 
-  <!-- Como Funciona -->
   <section class="how-it-works">
     <div class="container">
       <div class="section-header">
@@ -290,7 +275,6 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <div class="footer-content">
@@ -300,7 +284,6 @@
           </div>
           <p data-i18n="footer.description">Exclusive coupons for the best experiences in Portugal.</p>
           <div class="social-links">
-            <!--<a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>-->
             <a href="https://www.instagram.com/voucherhub.pt?igsh=amxlbjN0cWhpNzho" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
           </div>
         </div>
@@ -334,14 +317,13 @@
     </div>
   </footer>
 
-  <!-- Toast para feedback -->
   <div id="toast" class="toast">
     <i class="fas fa-check-circle"></i>
     <span data-i18n="toast.codeCopied">Code copied successfully!</span>
   </div>
 
-  <!-- Scripts -->
-  <script src="i18n.js"></script>
-  <script src="script.js"></script>
+  <script src="i18n.js" defer></script>
+  <script src="script.js" defer></script>
+  
 </body>
 </html>
