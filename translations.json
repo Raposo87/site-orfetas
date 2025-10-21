@@ -21,7 +21,8 @@
       "save": "Save",
       "seeSchools": "See schools on sale",
       "seeStudios": "See studios on sale",
-      "seeTours": "See tours on sale"
+      "seeTours": "See tours on sale",
+      "seeBrands": "See brands on sale"
     },
     "howItWorks": {
       "title": "How <span class='highlight-orange'>It Works?</span>",
@@ -68,6 +69,9 @@
       "nonExistent": "Non-existent category."
     }
   },
+
+
+
   "pt": {
     "nav": {
       "badge": "Ofertas por Tempo Limitado"
@@ -90,7 +94,8 @@
       "save": "Economize",
       "seeSchools": "Ver escolas em promoção",
       "seeStudios": "Ver estúdios em promoção",
-      "seeTours": "Ver passeios em promoção"
+      "seeTours": "Ver passeios em promoção",
+      "seeBrands": "Ver as marcas em promoção"
     },
     "howItWorks": {
       "title": "Como <span class='highlight-orange'>Funciona?</span>",
