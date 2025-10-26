@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Cabeçalho (head)
+       Contém: meta charset, viewport, título da página, links para CSS, fontes, ícones,
+       metadados SEO (description, keywords, canonical, open graph) e scripts de analytics.
+       Atenção: SEO dinâmico é atualizado em experience.js quando necessário.
+  -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>VoucherHub – Exclusive Discount Codes for Experiences in Portugal</title>
@@ -58,6 +63,10 @@
 </head>
 
 <body>
+  <!-- Navegação principal (navbar)
+       Contém logo (link para home) e badge com destaque de ofertas.
+       Elementos marcados com data-i18n serão traduzidos pelo i18n.js.
+  -->
   <nav class="navbar">
     <div class="nav-container">
       <a href="#" class="logo">
@@ -70,6 +79,10 @@
       </div>
   </nav>
 
+  <!-- Seção Hero (destaque principal)
+       Mostra o título da página, subtítulo e estatísticas rápidas.
+       Deve ser chamativo e contextualizar o site para o usuário.
+  -->
   <section class="hero">
     <div class="hero-background"></div>
     <div class="hero-content">
@@ -92,6 +105,11 @@
     </div>
   </section>
 
+  <!-- Seção experiências (cards)
+       Grade de cards com categorias. Cada card é um link para experience.html?slug=...
+       Dentro de cada card: imagem(s), título (data-i18n), preços e ação (ver escolas/marcas).
+       Observação: padronizar slugs (lowercase) evita problemas de mapeamento.
+  -->
   <section class="experiences" id="modalidades">
     <div class="container">
       <div class="section-header">
@@ -101,6 +119,9 @@
       
       <div class="cards-grid">
 
+        <!-- Card: Surf
+             data-category pode ser usado para filtros; href envia slug 'surf' para experience.html
+        -->
         <a class="experience-card" data-category="praia" href="experience.html?slug=surf" style="text-decoration:none;color:inherit">
           <div class="featured-badge">
             <i class="fas fa-crown"></i>
@@ -130,6 +151,7 @@
           </div>
         </a>
 
+        <!-- Card: Yoga -->
         <a class="experience-card" data-category="yoga" href="experience.html?slug=yoga" style="text-decoration:none;color:inherit">
           <div class="featured-badge">
             <i class="fas fa-crown"></i>
@@ -161,6 +183,33 @@
           </div>
         </a>
 
+        <!-- Card: Guide and Driver Tour -->
+        <a class="experience-card" data-category="culture" href="experience.html?slug=tour%20guide%20and%20driver" style="text-decoration:none;color:inherit">
+          <div class="card-image">
+            <img src="https://images.pexels.com/photos/1761179/pexels-photo-1761179.jpeg" alt="Sintra Tour" width="400" height="267" loading="lazy">
+            <div class="card-badge">
+              <i class="fas fa-percentage"></i>
+              <span>10% - 20% OFF</span>
+            </div>
+          </div>
+          <div class="card-content">
+            <i class="fas fa-car"></i>
+            <h3 data-i18n="experiences.driverGuide">Guide and Driver Tour</h3>
+            <div class="price-section">
+              <div class="price-original">€30</div>
+              <div class="price-discount">€24</div>
+              <div class="savings"><span data-i18n="experiences.save">Save</span> €6</div>
+            </div>
+            <div class="card-actions">
+              <span class="btn btn-code" style="pointer-events:none">
+                <i class="fas fa-arrow-right"></i>
+                <span data-i18n="experiences.seeTours">See tours on sale</span>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Card: Fashion (atenção: slug está 'Moda' com maiúscula; padronize para 'fashion' ou 'moda' lowercase) -->
         <a class="experience-card featured" data-category="praia" href="experience.html?slug=Moda" style="text-decoration:none;color:inherit">
           <div class="card-image">
             <img src="https://res.cloudinary.com/dqn2v9mtu/image/upload/v1759862655/IMG-20251002-WA0020_dsvvsi.jpg" alt="Moda" width="400" height="267" loading="lazy">
@@ -180,6 +229,7 @@
             <div class="card-actions">
               <span class="btn btn-code" style="pointer-events:none">
                 <i class="fas fa-arrow-right"></i>
+                <!-- Usar experiences.seeBrands; se não traduz, verifique translations.json e currentLang -->
                 <span data-i18n="experiences.seeBrands">
                   See brands on sale 
                </span>
@@ -187,6 +237,7 @@
           </div>
         </a>
 
+        <!-- Card: Kitesurf -->
         <a class="experience-card featured" data-category="praia" href="experience.html?slug=kitesurf" style="text-decoration:none;color:inherit">
           <div class="card-image">
             <img src="https://images.pexels.com/photos/1705264/pexels-photo-1705264.jpeg" alt="Kitesurf" width="400" height="267" loading="lazy">
@@ -212,6 +263,7 @@
           </div>
         </a>
 
+        <!-- Card: Quad (aventura) -->
         <a class="experience-card" data-category="aventura" href="experience.html?slug=quad" style="text-decoration:none;color:inherit">
           <div class="card-image">
             <img src="https://images.pexels.com/photos/1135197/pexels-photo-1135197.jpeg" alt="Quadriciclo Sintra" width="400" height="267" loading="lazy">
@@ -241,6 +293,7 @@
     </div>
   </section>
 
+  <!-- How it works: passo a passo -->
   <section class="how-it-works">
     <div class="container">
       <div class="section-header">
@@ -276,6 +329,7 @@
     </div>
   </section>
 
+  <!-- Footer: informações de contato, links e disclaimers -->
   <footer class="footer">
     <div class="container">
       <div class="footer-content">
@@ -318,11 +372,17 @@
     </div>
   </footer>
 
+  <!-- Toast global (notificações) -->
   <div id="toast" class="toast">
     <i class="fas fa-check-circle"></i>
     <span data-i18n="toast.codeCopied">Code copied successfully!</span>
   </div>
 
+  <!-- Scripts (carregados no final)
+       i18n.js: gerencia traduções (procura atributos data-i18n)
+       script.js: lógica global da UI
+       NOTE: experience.js é carregado apenas na página experience.html
+  -->
   <script src="i18n.js" defer></script>
   <script src="script.js" defer></script>
   

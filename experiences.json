@@ -17,11 +17,11 @@
           "official_url": "https://surfwavelisbon.com/",
           "images": [
             "https://surfwavelisbon.com/wp-content/uploads/2024/02/DSC6244-1536x1024.jpg",
-            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1759785453/IMG-20251002-WA0018_valbsf.jpg",
-            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1759785453/IMG-20251002-WA0015_mgxpde.jpg",
-            "https://surfwavelisbon.com/wp-content/uploads/2024/02/DSC6244-1536x1024.jpg",
+            "https://surfwavelisbon.com/wp-content/uploads/2025/09/andrehilariophoto_fullres_DSC5835-1536x1024.jpg",
             "https://surfwavelisbon.com/wp-content/uploads/2023/11/DSC5114-1-1536x1024.jpg",
-            "https://surfwavelisbon.com/wp-content/uploads/2023/11/DSC5903-scaled.jpg"
+            "https://surfwavelisbon.com/wp-content/uploads/2023/11/DSC5903-scaled.jpg",
+            "https://surfwavelisbon.com/wp-content/uploads/2023/11/DSC5235-copy-1536x1024.jpg"
+            
           ],
           "icon": "fas fa-water"
         }
@@ -105,28 +105,28 @@
       ]
     },
     {
-      "slug": "walking-tour",
-      "title": "Walking Tour in Lisbon",
+      "slug": "tour guide and driver",
+      "title": "Guide and Driver in Sintra",
       "badge": "Culture & History",
-      "description": "Walking tours through historic neighborhoods with a local guide.",
+      "description": "Driver tours through historic neighborhoods with a local guide.",
       "partners": [
         {
-          "name": "Lisboa Free Walkers",
-          "location": "Baixa & Alfama",
+          "name": "Nanan Adventures",
+          "location": "Sintra",
           "price_original": "€30",
           "price_discount": "€24",
           "savings": "Save €6",
           "discount_label": "20% OFF",
           "code": "LISBOA20",
-          "official_url": "https://lisbon-walking-tours.com",
+          "official_url": "https://www.nananadventures.com/",
           "images": [
-            "https://images.pexels.com/photos/1761179/pexels-photo-1761179.jpeg",
+            "https://static.wixstatic.com/media/7da485_4a135d2cbe504a36b0e53ae302ecc2d5~mv2.jpeg/v1/fill/w_320,h_280,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Cabo%20da%20Roca%20-%20Nanan%20Adventures.jpeg",
             "https://images.pexels.com/photos/390051/surfer-wave-sunset-the-indian-ocean-390051.jpeg",
             "https://images.pexels.com/photos/416676/pexels-photo-416676.jpeg",
             "https://images.pexels.com/photos/2260938/pexels-photo-2260938.jpeg",
             "https://images.pexels.com/photos/1654495/pexels-photo-1654495.jpeg"
           ],
-          "icon": "fas fa-walking"
+          "icon": "fas fa-car"
         }
       ]
     },
