@@ -120,11 +120,10 @@
           "code": "LISBOA20",
           "official_url": "https://www.nananadventures.com/",
           "images": [
-            "https://static.wixstatic.com/media/7da485_4a135d2cbe504a36b0e53ae302ecc2d5~mv2.jpeg/v1/fill/w_320,h_280,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Cabo%20da%20Roca%20-%20Nanan%20Adventures.jpeg",
-            "https://images.pexels.com/photos/390051/surfer-wave-sunset-the-indian-ocean-390051.jpeg",
-            "https://images.pexels.com/photos/416676/pexels-photo-416676.jpeg",
-            "https://images.pexels.com/photos/2260938/pexels-photo-2260938.jpeg",
-            "https://images.pexels.com/photos/1654495/pexels-photo-1654495.jpeg"
+            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1761544226/IMG-20251007-WA0014_auqqnt.jpg",
+            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1761544226/IMG-20251027-WA0006_imjcoh.jpg",
+            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1761544226/IMG-20251027-WA0005_ygbi4k.jpg",
+            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1761544226/IMG-20251027-WA0003_xqxcyx.jpg"
           ],
           "icon": "fas fa-car"
         }
