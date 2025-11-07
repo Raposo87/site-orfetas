@@ -201,18 +201,13 @@ updateSEO();
             <div class="savings">${p.savings}</div>
           </div>
           <div class="card-actions">
-            <button class="btn btn-code" data-code="${p.code || ''}">
-              <i class="fas fa-code"></i>
-              <span data-i18n="buttons.revealCode">${getTranslation('buttons.revealCode')}</span>
-            </button>
-            <div class="promo-code">
-              ${p.qrcode_url 
-                ? `<img src="${p.qrcode_url}" alt="QR Code" class="qr-code">`
-                : `<span class="code-text">${p.code || ''}</span>${p.code ? '<button class="copy-btn"><i class="fas fa-copy"></i></button>' : ''}`}
-            </div>
-            <a href="${p.official_url}" target="_blank" class="btn btn-official">
+            <a href="partner.html?slug=${p.slug}" class="btn btn-secondary btn-sm">
+              <i class="fas fa-info-circle"></i>  <span>Ver detalhes</span>
+            </a>
+            
+            <a href="${p.official_url}" target="_blank" class="btn btn-official btn-sm">
               <i class="fas fa-external-link-alt"></i>
-              <span data-i18n="buttons.goToSite">${getTranslation('buttons.goToSite')}</span>
+              <span>Visitar Site Oficial</span>
             </a>
           </div>
         </div>

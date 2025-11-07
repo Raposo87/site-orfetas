@@ -375,11 +375,13 @@ class VoucherhubApp {
 
   setupEventListeners() {
     document.addEventListener('click', (e) => {
+      /*
       if (e.target.closest('.btn-code')) {
         const button = e.target.closest('.btn-code');
         const code = this.extractCodeFromButton(button);
         if (code) this.promoManager.showCode(button, code);
       }
+        */
       
       if (e.target.closest('.copy-btn')) {
         const button = e.target.closest('.copy-btn');

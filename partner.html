@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="partner-title">Parceiro – VoucherHub</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="favcon.png">
+
+  <script src="https://kit.fontawesome.com/a2b1234567.js" crossorigin="anonymous"></script>
+  <script src="i18n.js" defer></script>
+  <script src="script.js" defer></script>
+  <script src="partner.js" defer></script>
+</head>
+<body>
+  <nav class="navbar glassy">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <img src="logo.png" alt="VoucherHub Logo" />
+      </a>
+      <div class="nav-badge">
+        <i class="fas fa-fire"></i><span>Ofertas em Destaque</span>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+  <section class="partner-hero">
+    <div class="partner-hero-background">
+      <img id="partner-hero-image" src="" alt="Imagem de capa do parceiro" />
+    </div>
+    <div class="hero-content container">
+      <div class="hero-badge" id="partner-badge">
+        <i id="partner-icon" class="fas fa-tag"></i>
+        <span id="partner-category">Categoria</span>
+      </div>
+      <h1 id="partner-name">Nome do Parceiro</h1>
+      <a id="partner-link-top" href="#" target="_blank" class="btn btn-official btn-lg">
+        <i class="fas fa-external-link-alt"></i> Visitar Site Oficial
+      </a>
+    </div>
+  </section>
+  
+  <section class="partner-details">
+    <div class="container">
+      
+      <div class="info-grid">
+        <div class="info-card">
+          <h2><i class="fas fa-map-marker-alt"></i> Localização</h2>
+          <p id="partner-location"></p>
+        </div>
+        
+        <div class="info-card">
+          <h2><i class="fas fa-percent"></i> Desconto Exclusivo</h2>
+          <p id="partner-discount-label" class="discount-label-lg">--% OFF</p>
+          <p>Adquira o seu voucher de desconto agora e receba as instruções de uso por email.</p>
+        </div>
+      </div>
+
+      <div class="gallery">
+        <h2><i class="fas fa-images"></i> Galeria de Fotos</h2>
+        <div id="partner-gallery"></div>
+      </div>
+
+      <div class="info-card">
+        <h2><i class="fas fa-book-open"></i> Sobre Nós</h2>
+        <p id="partner-story-short"></p>
+        <button id="toggle-history" class="btn btn-secondary">
+          <i class="fas fa-chevron-down"></i> Mostrar mais
+        </button>
+        <p id="partner-story-full" style="display:none; margin-top: 1rem;"></p>
+      </div>
+
+      <div class="info-card">
+        <h2><i class="fas fa-concierge-bell"></i> O que oferecemos</h2>
+        <ul id="partner-offers"></ul>
+      </div>
+      
+    </div>
+  </section>
+
+  <div class="buy-section">
+    <div class="container">
+      <h3>Adquira Seu Voucher de Desconto Exclusivo!</h3>
+      <p>Clique no botão abaixo para prosseguir com a compra do seu voucher. Ele será enviado para o seu email com todas as instruções de como desfrutar da sua experiência.</p>
+      <a id="partner-link" href="#" target="_blank" class="btn btn-official btn-lg">
+        <i class="fas fa-shopping-cart"></i> Adquirir Voucher Agora
+      </a>
+    </div>
+  </div>
+</main>
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 VoucherHub – Todos os direitos reservados.</p>
+    </div>
+  </footer>
+</body>
+</html>

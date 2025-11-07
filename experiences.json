@@ -2,145 +2,178 @@
   "modes": [
     {
       "slug": "surf",
-      "title": "Surf Lessons",
-      "badge": "Water Sports",
-      "description": "Choose a surf school and use the VoucherHub code at checkout.",
+      "title": "Aulas de Surf",
+      "badge": "Esportes Aquáticos",
+      "description": "Escolha uma escola de surf e use o código VoucherHub no checkout.",
       "partners": [
         {
+          "slug": "surf-wave-lisbon",
           "name": "Surf Wave Lisbon",
           "location": "Cabana do Pescador, Costa da Caparica",
           "price_original": "€30",
-          "price_discount": "€25,5",
-          "savings": "Save €4,5",
+          "price_discount": "€25,50",
+          "savings": "Economize €4,50",
           "discount_label": "15% OFF",
-          "code": "Raposo15",
+          "code": "RAPOSO15",
           "official_url": "https://surfwavelisbon.com/",
           "images": [
             "https://surfwavelisbon.com/wp-content/uploads/2024/02/DSC6244-1536x1024.jpg",
             "https://surfwavelisbon.com/wp-content/uploads/2025/09/andrehilariophoto_fullres_DSC5835-1536x1024.jpg",
-            "https://surfwavelisbon.com/wp-content/uploads/2023/11/DSC5114-1-1536x1024.jpg",
-            "https://surfwavelisbon.com/wp-content/uploads/2023/11/DSC5903-scaled.jpg",
-            "https://surfwavelisbon.com/wp-content/uploads/2023/11/DSC5235-copy-1536x1024.jpg"
-            
+            "https://surfwavelisbon.com/wp-content/uploads/2023/11/DSC5903-scaled.jpg"
           ],
-          "icon": "fas fa-water"
+          "icon": "fas fa-water",
+          "offers": [
+            "Aulas em grupo e individuais",
+            "Instrutores certificados",
+            "Equipamentos incluídos",
+            "Aulas para todos os níveis"
+          ],
+          "story_short": "A Surf Wave Lisbon conecta pessoas ao mar através do surf.",
+          "story_full": "Fundada em 2018, a Surf Wave Lisbon nasceu com a missão de aproximar pessoas do oceano e proporcionar experiências únicas. Com instrutores locais apaixonados, a escola oferece aulas seguras, divertidas e adaptadas a todos os níveis de experiência."
         }
       ]
     },
     {
-      "slug": "Moda",
-      "title": "Vestuário moda",
-      "badge": "Vestuário Moda",
-      "description": "Partner clothing stores with exclusive discounts.",
+      "slug": "moda",
+      "title": "Moda e Vestuário",
+      "badge": "Estilo de Vida",
+      "description": "Lojas de roupa parceiras com descontos exclusivos.",
       "partners": [
         {
+          "slug": "twolines",
           "name": "Twolines",
           "location": "Costa da Caparica",
           "price_original": "€67,83",
           "price_discount": "€54,27",
-          "savings": "Save €13,56",
+          "savings": "Economize €13,56",
           "discount_label": "20% OFF",
           "code": "SURF20",
           "official_url": "https://twolines.pt/",
           "images": [
             "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1759862656/IMG-20251002-WA0022_dqc6m5.jpg",
             "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1759862655/IMG-20251002-WA0021_sq0cgy.jpg",
-            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1759862655/IMG-20251002-WA0020_dsvvsi.jpg",
-            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1759862655/IMG-20251002-WA0019_tnybfq.jpg"
+            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1759862655/IMG-20251002-WA0020_dsvvsi.jpg"
           ],
-          "icon": "fas fa-tshirt"
+          "icon": "fas fa-tshirt",
+          "offers": [
+            "Coleções de verão e surfwear",
+            "Produtos sustentáveis",
+            "Descontos exclusivos para membros VoucherHub"
+          ],
+          "story_short": "A Twolines une moda e lifestyle praiano em uma só marca.",
+          "story_full": "Inspirada pelo estilo de vida das praias portuguesas, a Twolines oferece roupas confortáveis e sustentáveis. Localizada na Costa da Caparica, a marca aposta em design moderno e materiais ecológicos, valorizando o bem-estar e o planeta."
         }
       ]
     },
     {
       "slug": "kitesurf",
-      "title": "Kitesurf Lessons",
-      "badge": "Extreme Sports",
-      "description": "Partner kitesurf schools with exclusive discounts.",
+      "title": "Aulas de Kitesurf",
+      "badge": "Esportes Radicais",
+      "description": "Escolas parceiras de kitesurf com descontos exclusivos.",
       "partners": [
         {
+          "slug": "caparica-kite-center",
           "name": "Caparica Kite Center",
           "location": "Costa da Caparica",
           "price_original": "€85",
           "price_discount": "€68",
-          "savings": "Save €17",
+          "savings": "Economize €17",
           "discount_label": "20% OFF",
           "code": "KITE15",
           "official_url": "https://escola-de-kitesurf.pt",
           "images": [
             "https://images.pexels.com/photos/1604869/pexels-photo-1604869.jpeg",
             "https://images.pexels.com/photos/1604794/pexels-photo-1604794.jpeg",
-            "https://images.pexels.com/photos/1620416/pexels-photo-1620416.jpeg",
-            "https://images.pexels.com/photos/1599921/pexels-photo-1599921.jpeg",
-            "https://images.pexels.com/photos/1563211/pexels-photo-1563211.jpeg"
+            "https://images.pexels.com/photos/1620416/pexels-photo-1620416.jpeg"
           ],
-          "icon": "fas fa-wind"
+          "icon": "fas fa-wind",
+          "offers": [
+            "Aulas de iniciação e avançadas",
+            "Equipamentos incluídos",
+            "Instrutores certificados IKO"
+          ],
+          "story_short": "O Caparica Kite Center é referência em kitesurf em Portugal.",
+          "story_full": "Com uma equipa de instrutores experientes e certificação internacional, o Caparica Kite Center oferece aulas para todos os níveis. Localizado na deslumbrante Costa da Caparica, é o lugar ideal para quem busca adrenalina e mar."
         }
       ]
     },
     {
       "slug": "quad",
-      "title": "Quad Bike Tour",
-      "badge": "Adventure",
-      "description": "Explore Sintra trails at a discount.",
+      "title": "Passeio de Quadriciclo",
+      "badge": "Aventura",
+      "description": "Explore trilhas e natureza com passeios de quadriciclo em Sintra.",
       "partners": [
         {
+          "slug": "sintra-quad-adventures",
           "name": "Sintra Quad Adventures",
           "location": "Serra de Sintra",
           "price_original": "€55",
           "price_discount": "€44",
-          "savings": "Save €11",
+          "savings": "Economize €11",
           "discount_label": "20% OFF",
           "code": "QUAD10",
           "official_url": "https://quad-sintra.com",
           "images": [
             "https://images.pexels.com/photos/5976712/pexels-photo-5976712.jpeg",
             "https://images.pexels.com/photos/1135198/pexels-photo-1135198.jpeg",
-            "https://images.pexels.com/photos/1135197/pexels-photo-1135197.jpeg",
-            "https://images.pexels.com/photos/209892/pexels-photo-209892.jpeg",
             "https://images.pexels.com/photos/11020074/pexels-photo-11020074.jpeg"
           ],
-          "icon": "fas fa-mountain"
+          "icon": "fas fa-mountain",
+          "offers": [
+            "Passeios guiados por trilhas de Sintra",
+            "Roteiros personalizados",
+            "Experiência segura e emocionante"
+          ],
+          "story_short": "A Sintra Quad Adventures oferece emoção sobre quatro rodas.",
+          "story_full": "Explore a natureza e os caminhos secretos de Sintra com a Sintra Quad Adventures. A empresa combina aventura, segurança e paisagens deslumbrantes em uma experiência off-road inesquecível."
         }
       ]
     },
     {
-      "slug": "tour guide and driver",
-      "title": "Guide and Driver",
-      "badge": "Culture & History",
-      "description": "Driver tours through historic neighborhoods with a local guide.",
+      "slug": "tour",
+      "title": "Tour com Guia e Motorista",
+      "badge": "Cultura e História",
+      "description": "Passeios guiados por bairros históricos com motorista local.",
       "partners": [
         {
+          "slug": "nanan-adventures",
           "name": "Nanan Adventures",
           "location": "Sintra",
           "price_original": "€30",
           "price_discount": "€24",
-          "savings": "Save €6",
+          "savings": "Economize €6",
           "discount_label": "20% OFF",
           "code": "LISBOA20",
           "official_url": "https://www.nananadventures.com/",
           "images": [
             "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1761544226/IMG-20251007-WA0014_auqqnt.jpg",
             "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1761544226/IMG-20251027-WA0006_imjcoh.jpg",
-            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1761544226/IMG-20251027-WA0005_ygbi4k.jpg",
             "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1761544226/IMG-20251027-WA0003_xqxcyx.jpg"
           ],
-          "icon": "fas fa-car"
+          "icon": "fas fa-car",
+          "offers": [
+            "Passeios privados e em grupo",
+            "Guias locais experientes",
+            "Transporte confortável e climatizado"
+          ],
+          "story_short": "A Nanan Adventures mostra Portugal com autenticidade.",
+          "story_full": "Com motoristas experientes e guias locais apaixonados, a Nanan Adventures proporciona tours personalizados que exploram o melhor de Lisboa, Sintra e arredores. Uma experiência de viagem única, cheia de cultura e história."
         }
       ]
     },
     {
       "slug": "yoga",
-      "title": "Yoga Studios",
-      "badge": "Wellness",
-      "description": "Yoga classes in Lisbon at a discount.",
+      "title": "Estúdios de Yoga",
+      "badge": "Bem-Estar",
+      "description": "Aulas de yoga em Lisboa com desconto.",
       "partners": [
         {
-          "name": "Yoga Kula ",
+          "slug": "yoga-kula",
+          "name": "Yoga Kula",
           "location": "Benfica, Lisboa",
           "price_original": "€15",
           "price_discount": "€12,75",
-          "savings": "Save €2,25",
+          "savings": "Economize €2,25",
           "discount_label": "15% OFF",
           "code": "YOGA20",
           "qrcode_url": "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=YOGA20",
@@ -148,13 +181,17 @@
           "images": [
             "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1742932207/logoSemFundo_mrfs2z.png",
             "https://i.pinimg.com/736x/6a/86/3e/6a863edd0e7355873024260ab9fc742c.jpg",
-            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1759782464/IMG-20250929-WA0001_r45exm.jpg",
-            "https://i.pinimg.com/736x/14/fc/89/14fc8971e3bf1a626ae5322fbb247aec.jpg",
-            "https://i.pinimg.com/736x/b8/6c/66/b86c669e87669cfce3c09a25364d3272.jpg"
+            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1759782464/IMG-20250929-WA0001_r45exm.jpg"
           ],
-          "icon": "fas fa-spa"
+          "icon": "fas fa-spa",
+          "offers": [
+            "Aulas em grupo e individuais",
+            "Workshops temáticos",
+            "Ambiente calmo e acolhedor"
+          ],
+          "story_short": "O Yoga Kula promove bem-estar e conexão em Lisboa.",
+          "story_full": "O estúdio Yoga Kula nasceu com o propósito de unir corpo, mente e comunidade. Oferece aulas para todos os níveis, workshops e retiros que fortalecem o equilíbrio e o autoconhecimento."
         }
-        
       ]
     }
   ]

@@ -22,8 +22,8 @@ class I18nManager {
     const browserLang = navigator.language.toLowerCase();
     if (browserLang.startsWith('pt')) return 'pt';
     
-    // 3. Padrão: inglês
-    return 'en';
+    // 3. Padrão: portugues
+    return 'pt';
   }
 
   async loadTranslations() {
