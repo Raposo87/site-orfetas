@@ -7,6 +7,10 @@ import { initDb } from './db.js';
 
 const app = express();
 
+// Health check rápido (antes de qualquer middleware)
+app.get('/health', (req, res) => res.status(200).json({ ok: true }));
+
+
 // We need the raw body for Stripe webhook signature verification
 app.use((req, res, next) => {
   if (req.originalUrl.startsWith('/api/payments/webhook')) {
