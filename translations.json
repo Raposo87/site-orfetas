@@ -19,23 +19,25 @@
       "kitesurfSchools": "Kitesurf Schools",
       "quadBikeTour": "Quad Bike Tour",
       "driverGuide": "Guide and Driver Tour",
+      "wellnessTherapies": "Natural & Holistic Therapies",
       "save": "Save",
       "seeSchools": "See schools on sale",
       "seeStudios": "See studios on sale",
       "seeTours": "See tours on sale",
-      "seeBrands": "See brands on sale"
+      "seeBrands": "See brands on sale",
+      "seeTherapies": "See therapies on sale"
     },
     "howItWorks": {
-  "title": "How <span class='highlight-orange'>It Works?</span>",
-  "subtitle": "Simple and secure in 3 steps",
-  "step1Title": "Choose a Category",
-  "step1Text": "Explore the categories and find the perfect experience or service for you.",
-  "step2Title": "Purchase Your Discount Voucher",
-  "step2Text": "On the desired experience page, purchase the discount voucher. We process your payment securely.",
-  "step3Title": "Receive and Use the Voucher",
-  "step3Text": "Your discount voucher will be sent **immediately via email**. Contact the partner for further details or visit the location with the voucher in hand and enjoy your experience! All instructions will be detailed in the email.",
-  "safetyNote": "Your safety is our priority. All payments are processed by secure platforms. Keep your voucher safe."
-},
+      "title": "How <span class='highlight-orange'>It Works?</span>",
+      "subtitle": "Simple and secure in 3 steps",
+      "step1Title": "Choose a Category",
+      "step1Text": "Explore the categories and find the perfect experience or service for you.",
+      "step2Title": "Purchase Your Discount Voucher",
+      "step2Text": "On the desired experience page, purchase the discount voucher. We process your payment securely.",
+      "step3Title": "Receive and Use the Voucher",
+      "step3Text": "Your discount voucher will be sent **immediately via email**. Contact the partner for further details or visit the location with the voucher in hand and enjoy your experience! All instructions will be detailed in the email.",
+      "safetyNote": "Your safety is our priority. All payments are processed by secure platforms. Keep your voucher safe."
+    },
     "footer": {
       "description": "Exclusive coupons for the best experiences in Portugal.",
       "experiences": "Experiences",
@@ -72,8 +74,6 @@
     }
   },
 
-
-
   "pt": {
     "nav": {
       "badge": "Ofertas por Tempo Limitado"
@@ -94,23 +94,25 @@
       "kitesurfSchools": "Escolas de Kitesurf",
       "quadBikeTour": "Passeio de Quadriciclo",
       "driverGuide": "Tour Guia e Motorista",
+      "wellnessTherapies": "Terapias Naturais e Holísticas",
       "save": "Economize",
       "seeSchools": "Ver escolas em promoção",
       "seeStudios": "Ver estúdios em promoção",
       "seeTours": "Ver passeios em promoção",
-      "seeBrands": "Ver marcas em promoção"
+      "seeBrands": "Ver marcas em promoção",
+      "seeTherapies": "Ver terapias em promoção"
     },
-   "howItWorks": {
-  "title": "Como <span class='highlight-orange'>Funciona?</span>",
-  "subtitle": "Simples e seguro em 3 passos",
-  "step1Title": "Escolha a categoria",
-  "step1Text": "Explore as categorias e encontre a experiência ou serviço perfeito para você.",
-  "step2Title": "Adquira seu Desconto",
-  "step2Text": "Na página da experiência desejada, efetue a compra do desconto. Processamos seu pagamento de forma segura.",
-  "step3Title": "Receba e Use o Voucher",
-  "step3Text": "O seu voucher de desconto será enviado **imediatamente por email**. Entre em contato com o parceiro para melhores detlahes ou vá até o local com o voucher em mãos e desfrute da sua experiência! Todas as instruções estarão detalhadas no email.",
-  "safetyNote": "Sua segurança é nossa prioridade. Todos os pagamentos são processados por plataformas seguras. Mantenha seu voucher seguro."
-},
+    "howItWorks": {
+      "title": "Como <span class='highlight-orange'>Funciona?</span>",
+      "subtitle": "Simples e seguro em 3 passos",
+      "step1Title": "Escolha a categoria",
+      "step1Text": "Explore as categorias e encontre a experiência ou serviço perfeito para você.",
+      "step2Title": "Adquira seu Desconto",
+      "step2Text": "Na página da experiência desejada, efetue a compra do desconto. Processamos seu pagamento de forma segura.",
+      "step3Title": "Receba e Use o Voucher",
+      "step3Text": "O seu voucher de desconto será enviado **imediatamente por email**. Entre em contato com o parceiro para melhores detlahes ou vá até o local com o voucher em mãos e desfrute da sua experiência! Todas as instruções estarão detalhadas no email.",
+      "safetyNote": "Sua segurança é nossa prioridade. Todos os pagamentos são processados por plataformas seguras. Mantenha seu voucher seguro."
+    },
     "footer": {
       "description": "Cupons exclusivos para as melhores experiências em Portugal.",
       "experiences": "Experiências",

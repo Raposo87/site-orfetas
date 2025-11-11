@@ -193,6 +193,40 @@
           "story_full": "O estúdio Yoga Kula nasceu com o propósito de unir corpo, mente e comunidade. Oferece aulas para todos os níveis, workshops e retiros que fortalecem o equilíbrio e o autoconhecimento."
         }
       ]
+    },
+    {
+      "slug": "wellness",
+      "title": "Terapias Naturais e Holísticas",
+      "badge": "Terapias",
+      "description": "Descubra terapias naturais e holísticas com descontos exclusivos.",
+      "partners": [
+        {
+          "slug": "espaco-libela",
+          "name": "Espaço libélula",
+          "location": "Rua Vieira da Silva, 54 Lisboa",
+          "price_original": "€90",
+          "price_discount": "€63",
+          "savings": "Economize €27",
+          "discount_label": "30% OFF",
+          "code": "WELLNESS20",
+          "official_url": "#",
+          "email": "Nicoleraposof7@gmail.com",
+          "images": [
+            "https://images.pexels.com/photos/3822622/pexels-photo-3822622.jpeg",
+            "https://images.pexels.com/photos/317155/pexels-photo-317155.jpeg",
+            "https://images.pexels.com/photos/3768146/pexels-photo-3768146.jpeg"
+          ],
+          "icon": "fas fa-leaf",
+          "offers": [
+            "Consulta de Naturopatia Clínica",
+            "Diagnóstico clínico e holístico",
+            "Plano terapêutico personalizado",
+            "Suplementação natural sob medida"
+          ],
+          "story_short": "Consulta de Naturopatia Clínica",
+          "story_full": "Para quem sente-se cansado, com a mente acelerada e o corpo pedindo mesmo cuidado a muito tempo.\n\nA Naturopatia Clínica é um cuidado completo que vai muito além de aliviar sintomas, ela busca entender as causas reais do que está acontecendo com você.\n\nDurante a consulta, fazemos um diagnóstico clínico e holístico, avaliando corpo, mente e hábitos para identificar desequilíbrios que estão drenando sua energia e bem-estar.\n\nA partir disso, você recebe um plano terapêutico personalizado, que pode incluir:\n\n- Mudanças de estilo de vida práticas e sustentáveis\n- Suplementação natural sob medida para suas necessidades\n- Orientação alimentar realista e nutritiva, sem dietas impossíveis\n- Estratégias naturais para restaurar sono, digestão, energia, equilíbrio hormonal e emocional\n\nO objetivo é ajudar você a reconectar-se com o seu corpo, recuperar vitalidade e viver com mais leveza naturalmente."
+        }
+      ]
     }
   ]
 }

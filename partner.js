@@ -36,7 +36,16 @@
   document.getElementById("partner-icon").className = partner.icon || "fas fa-tag";
   document.getElementById("partner-link").href = partner.official_url;
   document.getElementById("partner-story-short").textContent = partner.story_short || "";
-  document.getElementById("partner-story-full").textContent = partner.story_full || "";
+  const storyFullEl = document.getElementById("partner-story-full");
+  if (partner.story_full) {
+    // Converter quebras de linha em <br> e manter parágrafos
+    const formattedText = partner.story_full
+      .replace(/\n\n/g, '</p><p>')
+      .replace(/\n/g, '<br>');
+    storyFullEl.innerHTML = `<p>${formattedText}</p>`;
+  } else {
+    storyFullEl.textContent = "";
+  }
 
   // Galeria
   const gallery = document.getElementById("partner-gallery");
