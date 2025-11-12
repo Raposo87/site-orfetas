@@ -16,6 +16,8 @@
           "discount_label": "15% OFF",
           "code": "RAPOSO15",
           "official_url": "https://surfwavelisbon.com/",
+          "email": "",
+          "phone": "",
           "images": [
             "https://surfwavelisbon.com/wp-content/uploads/2024/02/DSC6244-1536x1024.jpg",
             "https://surfwavelisbon.com/wp-content/uploads/2025/09/andrehilariophoto_fullres_DSC5835-1536x1024.jpg",
@@ -49,6 +51,8 @@
           "discount_label": "20% OFF",
           "code": "SURF20",
           "official_url": "https://twolines.pt/",
+          "email": "",
+          "phone": "",
           "images": [
             "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1759862656/IMG-20251002-WA0022_dqc6m5.jpg",
             "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1759862655/IMG-20251002-WA0021_sq0cgy.jpg",
@@ -81,6 +85,8 @@
           "discount_label": "20% OFF",
           "code": "KITE15",
           "official_url": "https://escola-de-kitesurf.pt",
+          "email": "",
+          "phone": "",
           "images": [
             "https://images.pexels.com/photos/1604869/pexels-photo-1604869.jpeg",
             "https://images.pexels.com/photos/1604794/pexels-photo-1604794.jpeg",
@@ -113,6 +119,8 @@
           "discount_label": "20% OFF",
           "code": "QUAD10",
           "official_url": "https://quad-sintra.com",
+          "email": "",
+          "phone": "",
           "images": [
             "https://images.pexels.com/photos/5976712/pexels-photo-5976712.jpeg",
             "https://images.pexels.com/photos/1135198/pexels-photo-1135198.jpeg",
@@ -145,6 +153,8 @@
           "discount_label": "20% OFF",
           "code": "LISBOA20",
           "official_url": "https://www.nananadventures.com/",
+          "email": "",
+          "phone": "",
           "images": [
             "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1761544226/IMG-20251007-WA0014_auqqnt.jpg",
             "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1761544226/IMG-20251027-WA0006_imjcoh.jpg",
@@ -178,6 +188,8 @@
           "code": "YOGA20",
           "qrcode_url": "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=YOGA20",
           "official_url": "https://yogakulastudio.pt/",
+          "email": "",
+          "phone": "",
           "images": [
             "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1742932207/logoSemFundo_mrfs2z.png",
             "https://i.pinimg.com/736x/6a/86/3e/6a863edd0e7355873024260ab9fc742c.jpg",
@@ -210,7 +222,8 @@
           "discount_label": "30% OFF",
           "code": "WELLNESS20",
           "official_url": "#",
-          "email": "Nicoleraposof7@gmail.com",
+          "email": "nicoleraposof7@gmail.com",
+          "phone": "+351 936 065 569",
           "images": [
             "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1762900622/descontos_xaef5m.jpg",
             "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1762900622/voucherhub_descontos_tphm62.jpg",

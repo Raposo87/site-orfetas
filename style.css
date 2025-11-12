@@ -1268,6 +1268,31 @@ a:focus {
   font-weight: 600;
 }
 
+/* Estilos para seção de contato */
+#partner-contact p {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+#partner-contact a {
+  color: var(--primary-blue);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+#partner-contact a:hover {
+  color: var(--primary-blue-dark);
+  text-decoration: underline;
+}
+
+#partner-contact i {
+  color: var(--gray-600);
+  width: 20px;
+  text-align: center;
+}
+
 /* Estilização para a seção Hero do Parceiro (partner.html) */
 .partner-hero {
   position: relative;

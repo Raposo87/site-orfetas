@@ -36,6 +36,34 @@
   document.getElementById("partner-icon").className = partner.icon || "fas fa-tag";
   document.getElementById("partner-link").href = partner.official_url;
   document.getElementById("partner-story-short").textContent = partner.story_short || "";
+  
+  // Exibir email e telefone se disponíveis
+  const emailEl = document.getElementById("partner-email");
+  const emailLinkEl = document.getElementById("partner-email-link");
+  const phoneEl = document.getElementById("partner-phone");
+  const phoneLinkEl = document.getElementById("partner-phone-link");
+  
+  if (partner.email) {
+    emailEl.style.display = "block";
+    emailLinkEl.textContent = partner.email;
+    emailLinkEl.href = `mailto:${partner.email}`;
+  } else {
+    emailEl.style.display = "none";
+  }
+  
+  if (partner.phone) {
+    phoneEl.style.display = "block";
+    phoneLinkEl.textContent = partner.phone;
+    phoneLinkEl.href = `tel:${partner.phone.replace(/\s/g, '')}`;
+  } else {
+    phoneEl.style.display = "none";
+  }
+  
+  // Ocultar seção de contato se não houver email nem telefone
+  const contactSection = document.getElementById("partner-contact").parentElement;
+  if (!partner.email && !partner.phone) {
+    contactSection.style.display = "none";
+  }
   const storyFullEl = document.getElementById("partner-story-full");
   if (partner.story_full) {
     // Converter quebras de linha em <br> e manter parágrafos

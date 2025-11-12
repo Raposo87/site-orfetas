@@ -186,10 +186,6 @@ updateSEO();
           </div>
         </div>
         <div class="card-content">
-          <div class="card-category">
-            <i class="${p.icon || 'fas fa-water'}"></i>
-            <span>${mode.title}</span>
-          </div>
           <h3>${p.name}</h3>
           <div class="location">
             <i class="fas fa-map-marker-alt"></i> 
