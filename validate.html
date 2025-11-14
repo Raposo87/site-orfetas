@@ -108,7 +108,9 @@
 
   <script>
     const API = "https://voucherhub-backend-production.up.railway.app/api/vouchers";
-    const code = location.pathname.split("/").pop() || new URLSearchParams(location.search).get("code");
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get("code") || location.pathname.split("/").pop();
+
 
     const statusMessage = document.getElementById("status-message");
     const voucherInfo = document.getElementById("voucher-info");
