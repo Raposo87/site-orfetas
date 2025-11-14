@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Validação de Voucher – VoucherHub</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="favcon.png">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: var(--gray-50);
+      color: var(--gray-800);
+      text-align: center;
+      font-family: var(--font-primary);
+      padding: 2rem;
+    }
+
+    .validate-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      padding: 2rem;
+      max-width: 450px;
+      width: 100%;
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    h1 {
+      color: var(--primary-blue);
+      font-family: var(--font-display);
+      margin-bottom: 1rem;
+    }
+
+    .status {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 1rem 0;
+    }
+
+    .status.valid { color: var(--success); }
+    .status.used { color: var(--error); }
+    .status.expired { color: var(--warning); }
+
+    .voucher-info {
+      text-align: left;
+      font-size: 0.95rem;
+      margin-top: 1rem;
+      color: var(--gray-700);
+    }
+
+    .pin-section {
+      margin-top: 1.5rem;
+    }
+
+    input[type="password"] {
+      padding: 0.5rem;
+      border: 1px solid var(--gray-300);
+      border-radius: var(--radius);
+      width: 70%;
+      margin-right: 0.5rem;
+    }
+
+    button {
+      background: var(--secondary-orange);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    button:hover {
+      background: var(--secondary-orange-dark);
+      transform: translateY(-2px);
+    }
+
+    .back-home {
+      display: inline-block;
+      margin-top: 2rem;
+      text-decoration: none;
+      color: var(--primary-blue);
+      font-weight: 600;
+    }
+
+    .hidden { display: none; }
+  </style>
+</head>
+
+<body>
+  <div class="validate-card">
+    <h1>Validação de Voucher</h1>
+    <p id="status-message" class="status">Carregando...</p>
+    <div id="voucher-info" class="voucher-info hidden"></div>
+    <div id="pin-section" class="pin-section hidden">
+      <input type="password" id="pin-input" placeholder="PIN do parceiro" maxlength="6" />
+      <button id="use-btn">Marcar como usado</button>
+    </div>
+  </div>
+
+  <a href="index.html" class="back-home">← Voltar ao site</a>
+
+  <script>
+    const API = "https://voucherhub-backend-production.up.railway.app/api/vouchers";
+    const code = location.pathname.split("/").pop() || new URLSearchParams(location.search).get("code");
+
+    const statusMessage = document.getElementById("status-message");
+    const voucherInfo = document.getElementById("voucher-info");
+    const pinSection = document.getElementById("pin-section");
+
+    async function loadVoucher() {
+      try {
+        const res = await fetch(`${API}/validate/${code}`);
+        const data = await res.json();
+
+        if (!data || !data.voucher) {
+          statusMessage.textContent = "Voucher não encontrado.";
+          statusMessage.className = "status used";
+          return;
+        }
+
+        voucherInfo.classList.remove("hidden");
+        voucherInfo.innerHTML = `
+          <p><strong>Código:</strong> ${data.voucher.code}</p>
+          <p><strong>Parceiro:</strong> ${data.voucher.partner_slug}</p>
+          <p><strong>Email:</strong> ${data.voucher.email}</p>
+          <p><strong>Valor:</strong> ${(data.voucher.amount_cents / 100).toFixed(2)} ${data.voucher.currency?.toUpperCase()}</p>
+          <p><strong>Status:</strong> ${data.status}</p>
+        `;
+
+        if (data.status === "used") {
+          statusMessage.textContent = "❌ Voucher já utilizado.";
+          statusMessage.className = "status used";
+        } else if (data.status === "expired") {
+          statusMessage.textContent = "⚠️ Voucher expirado.";
+          statusMessage.className = "status expired";
+        } else {
+          statusMessage.textContent = "✅ Voucher válido!";
+          statusMessage.className = "status valid";
+          pinSection.classList.remove("hidden");
+        }
+
+      } catch (err) {
+        console.error(err);
+        statusMessage.textContent = "Erro ao validar voucher.";
+        statusMessage.className = "status used";
+      }
+    }
+
+    async function markAsUsed() {
+      const pin = document.getElementById("pin-input").value.trim();
+      if (!pin) return alert("Por favor, insira o PIN do parceiro.");
+
+      try {
+        const res = await fetch(`${API}/use/${code}`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ pin })
+        });
+        const result = await res.json();
+
+        if (result.success) {
+          alert("Voucher marcado como usado com sucesso!");
+          location.reload();
+        } else {
+          alert(result.error || "Erro ao marcar voucher.");
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Erro de conexão com o servidor.");
+      }
+    }
+
+    document.getElementById("use-btn").addEventListener("click", markAsUsed);
+
+    loadVoucher();
+  </script>
+</body>
+</html>
