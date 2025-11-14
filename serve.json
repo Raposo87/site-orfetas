@@ -2,6 +2,7 @@
   "public": ".",
   "cleanUrls": false,
   "rewrites": [
+    { "source": "/validate/**", "destination": "/validate.html" },
     { "source": "/**", "destination": "/index.html" }
   ]
 }
