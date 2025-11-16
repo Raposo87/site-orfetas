@@ -30,7 +30,16 @@
   document.title = `${partner.name} – VoucherHub`;
   document.getElementById("partner-title").textContent = partner.name;
   document.getElementById("partner-name").textContent = partner.name;
-  document.getElementById("partner-location").textContent = partner.location;
+  const locationLink = document.getElementById("partner-location-link");
+
+  if (partner.location) {
+    const googleMapsURL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(partner.location)}`;
+    locationLink.textContent = partner.location;
+    locationLink.href = googleMapsURL;
+  } else {
+    locationLink.textContent = "Localização não informada";
+    locationLink.removeAttribute("href");
+  }
   document.getElementById("partner-discount-label").textContent = partner.discount_label;
   document.getElementById("partner-category").textContent = mode.title;
   document.getElementById("partner-icon").className = partner.icon || "fas fa-tag";

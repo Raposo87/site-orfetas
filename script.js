@@ -293,9 +293,14 @@ class NavigationManager {
 
   setupSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      const href = anchor.getAttribute('href');
+
+      // 📌 Ignora links que NÃO são âncoras internas reais
+      if (href === "#" || href.startsWith("#.") || href.length === 1) return;
+
       anchor.addEventListener('click', (e) => {
         e.preventDefault();
-        const target = document.querySelector(anchor.getAttribute('href'));
+        const target = document.querySelector(href);
         if (target) {
           target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
