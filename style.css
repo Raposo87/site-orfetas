@@ -1430,6 +1430,35 @@ a:focus {
   color: var(--gray-700);
 }
 
+#partner-contact p i {
+  color: var(--primary-blue);
+  margin-right: 6px;
+  font-size: 1rem;
+}
+
+#partner-contact a {
+  color: var(--primary-blue-dark);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+#partner-contact a:hover {
+  color: var(--secondary-orange);
+}
+
+.insta-icon {
+  font-size: 1.4rem;
+  color: #E1306C; /* Rosa clássico Instagram */
+  transition: 0.2s ease;
+}
+
+.insta-icon:hover {
+  color: #C13584;
+  transform: scale(1.15);
+}
+
+
+
 /* Estilização para o QR Code e Botões de Compra */
 .buy-section {
   text-align: center;
@@ -1515,3 +1544,56 @@ a:focus {
   margin-bottom: 1rem;
   line-height: 1.6;
 }
+
+
+/* Container da linha (título + botão) */
+.accordion-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--gray-200);
+  margin-bottom: 5px;
+}
+
+/* Título */
+.accordion-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary-blue);
+  margin: 0;
+}
+
+/* Botão */
+.accordion-button {
+  background: var(--secondary-orange);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.accordion-button:hover {
+  background: var(--secondary-orange-dark);
+  transform: translateY(-2px);
+}
+
+/* Conteúdo escondido */
+.accordion-content {
+  display: none;
+  padding: 10px 5px;
+  color: var(--gray-700);
+  line-height: 1.5;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+

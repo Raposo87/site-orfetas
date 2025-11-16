@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title id="partner-title">Parceiro – VoucherHub</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="favcon.png">
 
-  <script src="https://kit.fontawesome.com/a2b1234567.js" crossorigin="anonymous"></script>
   <script src="i18n.js" defer></script>
   <script src="script.js" defer></script>
   <script src="partner.js" defer></script>
@@ -64,13 +65,20 @@
         <h2><i class="fas fa-address-book"></i> Contato</h2>
         <div id="partner-contact">
           <p id="partner-email" style="display: none; margin-bottom: 0.5rem;">
-            <i class="fas fa-envelope"></i> 
-            <a href="#" id="partner-email-link"></a>
-          </p>
-          <p id="partner-phone" style="display: none;">
-            <i class="fas fa-phone"></i> 
-            <a href="#" id="partner-phone-link"></a>
-          </p>
+          <i class="fas fa-envelope"></i> 
+          <a id="partner-email-link"></a>
+        </p>
+
+        <p id="partner-phone" style="display: none;">
+          <i class="fas fa-phone"></i> 
+          <a id="partner-phone-link"></a>
+        </p>
+
+        <p id="partner-instagram" style="display: none; margin-top: 0.5rem;">
+          <a href="https://www.instagram.com/" id="partner-instagram-link" target="_blank">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </p>
         </div>
       </div>
 
@@ -90,8 +98,9 @@
 
       <div class="info-card">
         <h2><i class="fas fa-concierge-bell"></i> O que oferecemos</h2>
-        <ul id="partner-offers"></ul>
+        <div id="partner-offers" class="accordion"></div>
       </div>
+
       
     </div>
   </section>

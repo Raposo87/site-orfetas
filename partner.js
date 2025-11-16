@@ -42,6 +42,8 @@
   const emailLinkEl = document.getElementById("partner-email-link");
   const phoneEl = document.getElementById("partner-phone");
   const phoneLinkEl = document.getElementById("partner-phone-link");
+  const instagramEl = document.getElementById("partner-instagram");
+  const instagramLinkEl = document.getElementById("partner-instagram-link");
   
   if (partner.email) {
     emailEl.style.display = "block";
@@ -58,12 +60,21 @@
   } else {
     phoneEl.style.display = "none";
   }
+
+  // Instagram
+  if (partner.instagram) {
+    instagramEl.style.display = "block";
+    instagramLinkEl.href = partner.instagram;
+  } else {
+    instagramEl.style.display = "none";
+  }
   
   // Ocultar seção de contato se não houver email nem telefone
   const contactSection = document.getElementById("partner-contact").parentElement;
-  if (!partner.email && !partner.phone) {
+  if (!partner.email && !partner.phone && !partner.instagram) {
     contactSection.style.display = "none";
   }
+
   const storyFullEl = document.getElementById("partner-story-full");
   if (partner.story_full) {
     // Converter quebras de linha em <br> e manter parágrafos
@@ -84,13 +95,47 @@
     gallery.appendChild(el);
   });
 
-  // Ofertas
-  const offers = document.getElementById("partner-offers");
-  partner.offers?.forEach(o => {
-    const li = document.createElement("li");
-    li.textContent = o;
-    offers.appendChild(li);
+
+  // Ofertas com título + botão separado
+const offersContainer = document.getElementById("partner-offers");
+
+if (partner.offers && partner.offers.length) {
+  partner.offers.forEach(o => {
+    const item = document.createElement("div");
+    item.className = "accordion-item";
+
+    const title = typeof o === "string" ? o : o.title;
+    const text = typeof o === "string" ? o : o.text;
+
+    item.innerHTML = `
+      <div class="accordion-header-row">
+        <h3 class="accordion-title">${title}</h3>
+        <button class="accordion-button">Saber mais</button>
+      </div>
+      <div class="accordion-content">
+        ${text}
+      </div>
+    `;
+
+    offersContainer.appendChild(item);
   });
+
+  // Comportamento para abrir/fechar
+  document.querySelectorAll(".accordion-button").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const content = btn.parentElement.nextElementSibling;
+      const isOpen = content.style.display === "block";
+
+      document.querySelectorAll(".accordion-content").forEach(c => {
+        c.style.display = "none";
+      });
+
+      content.style.display = isOpen ? "none" : "block";
+    });
+  });
+
+}
+
 
   // Botão mostrar/ocultar história
   document.getElementById("toggle-history").addEventListener("click", function() {

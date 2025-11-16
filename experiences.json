@@ -153,8 +153,9 @@
           "discount_label": "20% OFF",
           "code": "LISBOA20",
           "official_url": "https://www.nananadventures.com/",
-          "email": "",
-          "phone": "",
+          "email": "nananadventures@gmail.com",
+          "phone": "+351 922 256 634",
+          "instagram": "https://www.instagram.com/nananadventures/",
           "images": [
             "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1761544226/IMG-20251007-WA0014_auqqnt.jpg",
             "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1761544226/IMG-20251027-WA0006_imjcoh.jpg",
@@ -162,10 +163,24 @@
           ],
           "icon": "fas fa-car",
           "offers": [
-            "Passeios privados e em grupo",
-            "Guias locais experientes",
-            "Transporte confortável e climatizado"
+            {
+              "title": "Caminho do Alto",
+              "text": "Transporte de Van pelos principais pontos turísticos da cidade de Sintra: Praça da Vigia – Fonte Sabuga – Vista do Palácio Nacional – Família Biester – Vista Castelo dos Mouros e Palácio da Pena. Inclui paradas para fotos e comentários do guia. Valor original €30 → €24 com 20% de desconto. Duração: 1 hora."
+            },
+            {
+              "title": "Caminho do Meio",
+              "text": "Transporte de Van pelos pontos icónicos de Sintra: Praça da Vigia – Fonte Sabuga – Vista do Palácio Nacional – Vista Quinta da Regaleira – Vista Palácio de Seteais – Vista Palácio de Monserrate – Vista da vila de Sintra. Inclui paradas para fotos e comentários do guia. Valor original €30 → €24 com 20% de desconto. Duração: 1 hora."
+            },
+            {
+              "title": "Tour de Meio Dia",
+              "text": "Tour de 4h pelos principais locais de Sintra: Praça da Vigia – Fonte da Sabuga – Palácio Família Biester – Vista Castelo dos Mouros e Palácio da Pena – Palácio da Pena (área dos lagos) – Quinta da Regaleira – Palácio Seteais – Palácio Monserrate – Vista para a vila. Inclui visita agendada a 1 monumento (ingresso não incluso). Valor original €70 → €56 com 20% de desconto. Duração: 4 horas."
+            },
+            {
+              "title": "Tour Dia Inteiro",
+              "text": "Passeio completo de 7h: Praça da Vigia – Fonte da Sabuga – Palácio Família Biester – Vista Castelo dos Mouros e Palácio da Pena – Palácio da Pena (lagos) – Quinta da Regaleira – Palácio Seteais – Palácio Monserrate – Vista para a vila – Praia Azenhas do Mar – Cabo da Roca. Inclui visita agendada a 2 monumentos (ingressos não inclusos). Valor original €100 → €80 com 20% de desconto. Duração: 7 horas."
+            }
           ],
+
           "story_short": "A Nanan Adventures mostra Portugal com autenticidade.",
           "story_full": "Com motoristas experientes e guias locais apaixonados, a Nanan Adventures proporciona tours personalizados que exploram o melhor de Lisboa, Sintra e arredores. Uma experiência de viagem única, cheia de cultura e história."
         }
@@ -188,8 +203,9 @@
           "code": "YOGA20",
           "qrcode_url": "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=YOGA20",
           "official_url": "https://yogakulastudio.pt/",
-          "email": "",
-          "phone": "",
+          "email": "geral@yogakulabenfica.com",
+          "phone": "(+351)933782610",
+          "instagram": "https://www.instagram.com/yoga_kulastudio?igsh=bTZzeWl4b2xteTJm",
           "images": [
             "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1742932207/logoSemFundo_mrfs2z.png",
             "https://i.pinimg.com/736x/6a/86/3e/6a863edd0e7355873024260ab9fc742c.jpg",
@@ -197,11 +213,32 @@
           ],
           "icon": "fas fa-spa",
           "offers": [
-            "Aulas em grupo e individuais",
-            "Workshops temáticos",
-            "Ambiente calmo e acolhedor"
+            {
+              "title": "Hatha Yoga (Nível Iniciante e Intermédio)",
+              "text": "Prática tradicional que combina posturas físicas (ásanas), técnicas de respiração (pranayama) e meditação para promover o equilíbrio entre corpo e mente. As aulas de Hatha Yoga são de ritmo moderado, focando-se no alinhamento corporal e na permanência em cada postura. Adequadas para iniciantes que desejam aprender as bases e para praticantes intermédios que procuram aprofundar a sua prática."
+            },
+
+            {
+              "title": "Vinyasa Yoga (Nível Intermédio)",
+              "text": "Conhecida pela sua fluidez, o Vinyasa Yoga sincroniza movimento e respiração, criando sequências dinâmicas que aumentam a força, flexibilidade e resistência. As aulas têm um ritmo energético e desafiante, adequadas para praticantes de nível intermédio que já possuem alguma experiência e procuram explorar sequências mais criativas."
+            },
+
+            {
+              "title": "Yoga Dinâmico (Todos Níveis)",
+              "text": "Uma modalidade versátil que pode assumir diferentes formas, dependendo do foco do instrutor e do grupo de praticantes. Pode incluir sequências energéticas inspiradas no Vinyasa, exercícios de força e flexibilidade, ou até práticas focadas na mobilidade. Adaptável a vários níveis, esta aula é ideal para quem procura variedade e desafio na prática de Yoga."
+            },
+
+            {
+              "title": "Yoga Restaurativo (Todos os Níveis)",
+              "text": "O Yoga restaurativo é uma prática suave que utiliza posturas simples e totalmente apoiadas por acessórios para promover relaxamento profundo. Sem esforço físico, ajuda a reduzir o stress, acalmar a mente e libertar tensões."
+            },
+
+            {
+              "title": "Yoga Restaurativo (Todos os Níveis)",
+              "text": "O Yoga restaurativo é uma prática suave que utiliza posturas simples e totalmente apoiadas por acessórios para promover relaxamento profundo. Sem esforço físico, ajuda a reduzir o stress, acalmar a mente e libertar tensões."
+            }
           ],
-          "story_short": "O Yoga Kula promove bem-estar e conexão em Lisboa.",
+          "story_short": "Valores",
           "story_full": "O estúdio Yoga Kula nasceu com o propósito de unir corpo, mente e comunidade. Oferece aulas para todos os níveis, workshops e retiros que fortalecem o equilíbrio e o autoconhecimento."
         }
       ]
