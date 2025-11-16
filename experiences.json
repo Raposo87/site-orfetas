@@ -13,11 +13,12 @@
           "price_original": "€30",
           "price_discount": "€25,50",
           "savings": "Economize €4,50",
-          "discount_label": "15% OFF",
+          "discount_label": "15% OFF Todas as experiencias!",
           "code": "RAPOSO15",
           "official_url": "https://surfwavelisbon.com/",
-          "email": "",
-          "phone": "",
+          "email": "surfwavelisbon@gmail.com",
+          "phone": "+351 969 013 614 / +351 961 793 637",
+          "instagram": "https://www.instagram.com/surfwavelisbon/",
           "images": [
             "https://surfwavelisbon.com/wp-content/uploads/2024/02/DSC6244-1536x1024.jpg",
             "https://surfwavelisbon.com/wp-content/uploads/2025/09/andrehilariophoto_fullres_DSC5835-1536x1024.jpg",
@@ -25,10 +26,38 @@
           ],
           "icon": "fas fa-water",
           "offers": [
-            "Aulas em grupo e individuais",
-            "Instrutores certificados",
-            "Equipamentos incluídos",
-            "Aulas para todos os níveis"
+            {
+              "title": "Aulas de surf em grupo",
+              "text": "30 € 1 aula de surf - 1h30min, rancha de surf e roupa de neoprene inclusas instrutor certificado, eguro esportivo incluso."
+            },
+            {
+              "title": "Aulas particulares de surf",
+              "text": "70€ 1 aula de surf - 1h30min, Prancha de surf e roupa de neoprene, inclusas, Instrutor certificado., Seguro esportivo incluso."
+            },
+            {
+              "title": "Aulas de surf em grupo com transporte incluído",
+              "text": ""
+            },
+            {
+              "title": "",
+              "text": ""
+            },
+            {
+              "title": "",
+              "text": ""
+            },
+            {
+              "title": "",
+              "text": ""
+            },
+            {
+              "title": "",
+              "text": ""
+            },
+            {
+              "title": "",
+              "text": ""
+            }
           ],
           "story_short": "A Surf Wave Lisbon conecta pessoas ao mar através do surf.",
           "story_full": "Fundada em 2018, a Surf Wave Lisbon nasceu com a missão de aproximar pessoas do oceano e proporcionar experiências únicas. Com instrutores locais apaixonados, a escola oferece aulas seguras, divertidas e adaptadas a todos os níveis de experiência."
@@ -150,7 +179,7 @@
           "price_original": "€30",
           "price_discount": "€24",
           "savings": "Economize €6",
-          "discount_label": "20% OFF",
+          "discount_label": "20% OFF Todas as experiencias",
           "code": "LISBOA20",
           "official_url": "https://www.nananadventures.com/",
           "email": "nananadventures@gmail.com",
@@ -199,7 +228,7 @@
           "price_original": "€15",
           "price_discount": "€12,75",
           "savings": "Economize €2,25",
-          "discount_label": "15% OFF",
+          "discount_label": "15% OFF para aulas avulsas!",
           "code": "YOGA20",
           "qrcode_url": "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=YOGA20",
           "official_url": "https://yogakulastudio.pt/",
@@ -226,11 +255,6 @@
             {
               "title": "Yoga Dinâmico (Todos Níveis)",
               "text": "Uma modalidade versátil que pode assumir diferentes formas, dependendo do foco do instrutor e do grupo de praticantes. Pode incluir sequências energéticas inspiradas no Vinyasa, exercícios de força e flexibilidade, ou até práticas focadas na mobilidade. Adaptável a vários níveis, esta aula é ideal para quem procura variedade e desafio na prática de Yoga."
-            },
-
-            {
-              "title": "Yoga Restaurativo (Todos os Níveis)",
-              "text": "O Yoga restaurativo é uma prática suave que utiliza posturas simples e totalmente apoiadas por acessórios para promover relaxamento profundo. Sem esforço físico, ajuda a reduzir o stress, acalmar a mente e libertar tensões."
             },
 
             {
