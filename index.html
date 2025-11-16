@@ -386,7 +386,7 @@
             <a href="https://www.instagram.com/voucherhub.pt?igsh=amxlbjN0cWhpNzho" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
           </div>
         </div>
-        <div class="footer-info">
+        <!--<div class="footer-info">
           <div class="footer-section">
             <h4 data-i18n="footer.experiences">Experiences</h4>
             <ul>
@@ -395,7 +395,7 @@
               <li><a href="#modalidades" data-i18n="footer.culture">Culture & History</a></li>
               <li><a href="#modalidades" data-i18n="footer.gastronomy">Gastronomy</a></li>
             </ul>
-          </div>
+          </div>-->
           <div class="footer-section">
             <h4 data-i18n="footer.support">Support</h4>
             <ul>
@@ -416,6 +416,15 @@
     </div>
   </footer>
 
+  <!-- ===== MODAL BASE ===== -->
+<div id="modal-overlay" class="modal-overlay" style="display:none;">
+  <div class="modal-box">
+    <button class="modal-close">&times;</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+
   <!-- Toast global (notificações) -->
   <div id="toast" class="toast">
     <i class="fas fa-check-circle"></i>
@@ -429,6 +438,60 @@
   -->
   <script src="i18n.js" defer></script>
   <script src="script.js" defer></script>
+  
+  <script>
+  const modalOverlay = document.getElementById("modal-overlay");
+  const modalContent = document.getElementById("modal-content");
+  const closeBtn = document.querySelector(".modal-close");
+
+  const openModal = (html) => {
+    modalContent.innerHTML = html;
+    modalOverlay.style.display = "flex";
+  };
+
+  closeBtn.addEventListener("click", () => {
+    modalOverlay.style.display = "none";
+  });
+
+  // Fecha clicando fora da caixa
+  modalOverlay.addEventListener("click", (e) => {
+    if (e.target === modalOverlay) modalOverlay.style.display = "none";
+  });
+
+  // Conteúdos
+  const contentHow = `
+    <h2>Como Funciona</h2>
+    <p>Escolha uma experiência, compre o voucher de desconto e receba tudo por email imediatamente.</p>
+    <p>O parceiro valida seu voucher no momento da experiência.</p>
+  `;
+
+  const contentFAQ = `
+    <h2>FAQ</h2>
+    <p><strong>1. Quando recebo meu voucher?</strong><br>Imediatamente após a compra.</p>
+    <p><strong>2. Como uso?</strong><br>Mostre ao parceiro, ele valida online.</p>
+    <p><strong>3. Posso pedir reembolso?</strong><br>Depende das regras do parceiro.</p>
+  `;
+
+  const contentContact = `
+    <h2>Contato</h2>
+    <p>Para qualquer dúvida, fale conosco:</p>
+    <p><strong>Email:</strong> <a href="mailto:info@voucherhub.pt">info@voucherhub.pt</a></p>
+  `;
+
+  const contentTerms = `
+    <h2>Termos de Uso</h2>
+    <p>O VoucherHub atua como intermediário na venda de vouchers de desconto.</p>
+    <p>Os serviços são executados pelos parceiros oficiais.</p>
+    <p>O uso do site implica concordância com estes termos.</p>
+  `;
+
+  // Eventos do footer
+  document.querySelector('[data-i18n="footer.howItWorks"]').addEventListener("click", () => openModal(contentHow));
+  document.querySelector('[data-i18n="footer.faq"]').addEventListener("click", () => openModal(contentFAQ));
+  document.querySelector('[data-i18n="footer.contact"]').addEventListener("click", () => openModal(contentContact));
+  document.querySelector('[data-i18n="footer.terms"]').addEventListener("click", () => openModal(contentTerms));
+</script>
+
   
 </body>
 </html>

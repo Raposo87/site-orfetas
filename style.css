@@ -1471,3 +1471,47 @@ a:focus {
   border-radius: var(--radius-lg);
 }
 
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999999;
+}
+
+.modal-box {
+  background: white;
+  max-width: 600px;
+  width: 90%;
+  padding: 2rem;
+  border-radius: 12px;
+  position: relative;
+  animation: fadeInUp .3s ease;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #444;
+}
+
+.modal-box h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: var(--primary-blue);
+}
+
+.modal-box p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
