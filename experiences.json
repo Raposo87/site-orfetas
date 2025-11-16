@@ -98,74 +98,7 @@
         }
       ]
     },
-    {
-      "slug": "kitesurf",
-      "title": "Aulas de Kitesurf",
-      "badge": "Esportes Radicais",
-      "description": "Escolas parceiras de kitesurf com descontos exclusivos.",
-      "partners": [
-        {
-          "slug": "caparica-kite-center",
-          "name": "Caparica Kite Center",
-          "location": "Costa da Caparica",
-          "price_original": "€85",
-          "price_discount": "€68",
-          "savings": "Economize €17",
-          "discount_label": "20% OFF",
-          "code": "KITE15",
-          "official_url": "https://escola-de-kitesurf.pt",
-          "email": "",
-          "phone": "",
-          "images": [
-            "https://images.pexels.com/photos/1604869/pexels-photo-1604869.jpeg",
-            "https://images.pexels.com/photos/1604794/pexels-photo-1604794.jpeg",
-            "https://images.pexels.com/photos/1620416/pexels-photo-1620416.jpeg"
-          ],
-          "icon": "fas fa-wind",
-          "offers": [
-            "Aulas de iniciação e avançadas",
-            "Equipamentos incluídos",
-            "Instrutores certificados IKO"
-          ],
-          "story_short": "O Caparica Kite Center é referência em kitesurf em Portugal.",
-          "story_full": "Com uma equipa de instrutores experientes e certificação internacional, o Caparica Kite Center oferece aulas para todos os níveis. Localizado na deslumbrante Costa da Caparica, é o lugar ideal para quem busca adrenalina e mar."
-        }
-      ]
-    },
-    {
-      "slug": "quad",
-      "title": "Passeio de Quadriciclo",
-      "badge": "Aventura",
-      "description": "Explore trilhas e natureza com passeios de quadriciclo em Sintra.",
-      "partners": [
-        {
-          "slug": "sintra-quad-adventures",
-          "name": "Sintra Quad Adventures",
-          "location": "Serra de Sintra",
-          "price_original": "€55",
-          "price_discount": "€44",
-          "savings": "Economize €11",
-          "discount_label": "20% OFF",
-          "code": "QUAD10",
-          "official_url": "https://quad-sintra.com",
-          "email": "",
-          "phone": "",
-          "images": [
-            "https://images.pexels.com/photos/5976712/pexels-photo-5976712.jpeg",
-            "https://images.pexels.com/photos/1135198/pexels-photo-1135198.jpeg",
-            "https://images.pexels.com/photos/11020074/pexels-photo-11020074.jpeg"
-          ],
-          "icon": "fas fa-mountain",
-          "offers": [
-            "Passeios guiados por trilhas de Sintra",
-            "Roteiros personalizados",
-            "Experiência segura e emocionante"
-          ],
-          "story_short": "A Sintra Quad Adventures oferece emoção sobre quatro rodas.",
-          "story_full": "Explore a natureza e os caminhos secretos de Sintra com a Sintra Quad Adventures. A empresa combina aventura, segurança e paisagens deslumbrantes em uma experiência off-road inesquecível."
-        }
-      ]
-    },
+    
     {
       "slug": "tour",
       "title": "Tour com Guia e Motorista",
@@ -215,6 +148,7 @@
         }
       ]
     },
+
     {
       "slug": "yoga",
       "title": "Estúdios de Yoga",
@@ -267,6 +201,7 @@
         }
       ]
     },
+    
     {
       "slug": "wellness",
       "title": "Terapias Naturais e Holísticas",
