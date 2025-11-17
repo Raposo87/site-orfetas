@@ -108,7 +108,7 @@
         {
           "slug": "nanan-adventures",
           "name": "Nanan Adventures",
-          "location": "Sintra",
+          "location": "Praça Dom Afonso V, 2710-521  - Portela de Sintra, Portugal",
           "price_original": "€30",
           "price_discount": "€24",
           "savings": "Economize €6",
@@ -171,7 +171,7 @@
           "instagram": "https://www.instagram.com/yoga_kulastudio?igsh=bTZzeWl4b2xteTJm",
           "images": [
             "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1742932207/logoSemFundo_mrfs2z.png",
-            "https://i.pinimg.com/736x/6a/86/3e/6a863edd0e7355873024260ab9fc742c.jpg",
+            "https://i.pinimg.com/736x/de/3b/bd/de3bbd149f05c7e75a92a2e40a69a49f.jpg",
             "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1759782464/IMG-20250929-WA0001_r45exm.jpg"
           ],
           "icon": "fas fa-spa",
