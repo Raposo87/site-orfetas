@@ -138,7 +138,6 @@ if (partner.offers && partner.offers.length) {
       document.querySelectorAll(".accordion-content").forEach(c => {
         c.style.display = "none";
       });
-
       content.style.display = isOpen ? "none" : "block";
     });
   });

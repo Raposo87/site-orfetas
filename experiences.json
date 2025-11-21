@@ -28,27 +28,11 @@
           "offers": [
             {
               "title": "Aulas de surf em grupo",
-              "text": "30 € 1 aula de surf - 1h30min, rancha de surf e roupa de neoprene inclusas instrutor certificado, eguro esportivo incluso."
+              "text": "30 € 1 aula de surf por pessoa - 1h30min, rancha de surf e roupa de neoprene inclusas instrutor certificado, eguro esportivo incluso."
             },
             {
               "title": "Aulas particulares de surf",
-              "text": "70€ 1 aula de surf - 1h30min, prancha de surf e roupa de neoprene, inclusas, Instrutor certificado., seguro esportivo incluso."
-            },
-            {
-              "title": "Aulas de surf em grupo com transporte incluído",
-              "text": "Entre em contato conosco pelo WhatsApp. Transporte até a praia, 1 aula de surf (1h30), prancha de surf e roupa de neoprene, instrutor certificado, seguro desportivo."
-            },
-            {
-              "title": "Aulas particulares de surf com transfer.",
-              "text": "Entre em contato conosco pelo WhatsApp. Transporte até a praia, 1 aula de surf (1h30), prancha de surf e roupa de neoprene, instrutor certificado, seguro desportivo."
-            },
-            {
-              "title": "Aula de dia inteiro com traslado incluído",
-              "text": "Entre em contato conosco pelo WhatsApp. Transporte até a praia, 2 Aulas de SURF - 1:30 horas, prancha de surf e roupa de neoprene, instrutor certificado, seguro esportivo"
-            },
-            {
-              "title": "Aula de surf em grupo de nível intermediário com traslado.",
-              "text": "Entre em contato conosco pelo WhatsApp. Transporte até a praia, 1 aula de surf - 1h30min, prancha de surf e roupa de neoprene, instrutor certificado níveis 1 e 2 com mais de 15 anos de experiência, seguro esportivo."
+              "text": "70€ 1 aula de surf - 1h30min, prancha de surf e roupa de neoprene, inclusas, Instrutor certificado, seguro esportivo incluso."
             },
             {
               "title": "Aula para crianças menores de 12 anos",
@@ -57,6 +41,54 @@
             {
               "title": "Aula de Surfskate",
               "text": "20€ Localização: Costa da Caparica, 1 aula de surfskate - 1 hora de aula com instrutor certificado em skate e equipamentos, ídeos para análise."
+            }
+          ],
+          "story_short": "A Surf Wave Lisbon conecta pessoas ao mar através do surf.",
+          "story_full": "Fundada em 2018, a Surf Wave Lisbon nasceu com a missão de aproximar pessoas do oceano e proporcionar experiências únicas. Com instrutores locais apaixonados, a escola oferece aulas seguras, divertidas e adaptadas a todos os níveis de experiência."
+        }
+      ]
+    },
+    {
+      "slug": "surf",
+      "title": "Aulas de Surf",
+      "badge": "Esportes Aquáticos",
+      "description": "Escolha uma escola de surf e use o código VoucherHub no checkout.",
+      "partners": [
+        {
+          "slug": "surf-wave-lisbon",
+          "name": "Surf Wave Lisbon",
+          "location": "Cabana do Pescador, Costa da Caparica",
+          "price_original": "€30",
+          "price_discount": "€25,50",
+          "savings": "Economize €4,50",
+          "discount_label": "15% OFF Todas as experiencias!",
+          "code": "RAPOSO15",
+          "official_url": "https://surfwavelisbon.com/",
+          "email": "surfwavelisbon@gmail.com",
+          "phone": "+351 969 013 614 / +351 961 793 637",
+          "instagram": "https://www.instagram.com/surfwavelisbon/",
+          "images": [
+            "https://surfwavelisbon.com/wp-content/uploads/2024/02/DSC6244-1536x1024.jpg",
+            "https://surfwavelisbon.com/wp-content/uploads/2025/09/andrehilariophoto_fullres_DSC5835-1536x1024.jpg",
+            "https://surfwavelisbon.com/wp-content/uploads/2023/11/DSC5903-scaled.jpg"
+          ],
+          "icon": "fas fa-water",
+          "offers": [
+            {
+              "title": "Aulas de surf em grupo",
+              "description": "1h30min, prancha de surf e roupa de neoprene inclusas, instrutor certificado, seguro esportivo incluso."
+            },
+            {
+              "title": "Aulas particulares de surf",
+              "description": "1h30min, prancha de surf e roupa de neoprene inclusas, instrutor certificado, seguro esportivo incluso."
+            },
+            {
+              "title": "Aula para crianças menores de 12 anos",
+              "description": "1h30min, prancha de surf e roupa de neoprene inclusas, instrutor certificado, seguro esportivo incluso."
+            },
+            {
+              "title": "Aula de Surfskate",
+              "description": "1h de aula com instrutor certificado em surfskate, equipamentos incluídos, análise em vídeo."
             }
           ],
           "story_short": "A Surf Wave Lisbon conecta pessoas ao mar através do surf.",
