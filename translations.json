@@ -4,9 +4,9 @@
       "badge": "Limited-Time Deals"
     },
     "hero": {
-      "badge": "Exclusive Coupons",
+      "badge": "Exclusive Vouchers",
       "title": "Discover Portugal with <span class='highlight'>Amazing Discounts</span>",
-      "subtitle": "Authentic experiences in Lisbon and nearby with exclusive promo codes. Choose your adventure and save!",
+      "subtitle": "Authentic experiences in and around Lisbon with exclusive promotional vouchers. Choose your adventure and save!",
       "avgDiscount": "Average Discount",
       "happyCustomers": "Happy Customers"
     },
@@ -79,9 +79,9 @@
       "badge": "Ofertas por Tempo Limitado"
     },
     "hero": {
-      "badge": "Cupons Exclusivos",
+      "badge": "Vouches Exclusivos",
       "title": "Descubra Portugal com <span class='highlight'>Descontos Incríveis</span>",
-      "subtitle": "Experiências autênticas em Lisboa e arredores com códigos promocionais exclusivos. Econonomize!",
+      "subtitle": "Experiências autênticas em Lisboa e arredores com vouchers promocionais exclusivos. Econonomize!",
       "avgDiscount": "Desconto Médio",
       "happyCustomers": "Clientes Satisfeitos"
     },
