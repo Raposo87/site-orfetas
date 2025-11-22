@@ -1,51 +1,52 @@
-// === buy.js ===
 document.addEventListener("DOMContentLoaded", () => {
-  const buyButton = document.getElementById("partner-link");
-  if (!buyButton) return;
+  
+  document.body.addEventListener("click", async (event) => {
+    
+    const btn = event.target.closest(".btn-buy-offer");
+    if (!btn) return;
 
-  buyButton.addEventListener("click", async (event) => {
     event.preventDefault();
 
-    const params = new URLSearchParams(location.search);
-    const slug = params.get("slug");
+    // Recupera os dados JÁ CALCULADOS no partner.js
+    const slug = btn.dataset.slug;
+    const offerName = btn.dataset.offerName;
+    // Este é o valor COM 15% de desconto que colocamos no partner.js
+    const priceVal = parseFloat(btn.dataset.price); 
+
     if (!slug) {
-      alert("Erro: parceiro inválido.");
+      alert("Erro técnico: Slug do parceiro não encontrado.");
       return;
     }
 
-    const email = prompt("✉️ Por favor, insira seu e-mail para receber o voucher:");
+    if (!priceVal || priceVal <= 0) {
+      alert("Para adquirir esta experiência, por favor entre em contato direto com o parceiro via Instagram ou WhatsApp, pois o preço é sob consulta.");
+      return;
+    }
+
+    // Confirmação visual para o usuário
+    const email = prompt(`🛒 Comprando: ${offerName}\n💰 Valor com Desconto: €${priceVal}\n\nDigite seu e-mail para receber o voucher:`);
+    
     if (!email || !email.includes("@")) {
-      alert("⚠️ É necessário um e-mail válido para continuar.");
+      alert("⚠️ É necessário um e-mail válido para processar o pagamento.");
       return;
     }
 
+    const originalHtml = btn.innerHTML;
+    
     try {
-      buyButton.disabled = true;
-      buyButton.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Criando pagamento...`;
-
-      // Busca informações do parceiro
-      const res = await fetch("experiences.json");
-      const data = await res.json();
-      let partner = null;
-      for (const m of data.modes) {
-        const found = m.partners.find(p => p.slug === slug);
-        if (found) {
-          partner = found;
-          break;
-        }
-      }
-      if (!partner) throw new Error("Parceiro não encontrado.");
+      btn.disabled = true;
+      btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ...`;
 
       const payload = {
-        email,
+        email: email,
         partnerSlug: slug,
-        productName: partner.name,
-        amountCents: Math.round(
-          parseFloat(partner.price_discount.replace(/[^\d.,]/g, "").replace(",", ".")) * 100
-        ),
+        productName: offerName, 
+        // O backend espera centavos (ex: 25.50 vira 2550)
+        amountCents: Math.round(priceVal * 100), 
         currency: "eur"
       };
 
+      // Envio para o Stripe (Backend)
       const response = await fetch(`${window.VOUCHERHUB_API}/api/payments/create-checkout-session`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -53,19 +54,23 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       const dataResp = await response.json();
+
       if (!response.ok || !dataResp.url) {
-        throw new Error(dataResp.error || "Erro ao criar sessão de pagamento");
+        throw new Error(dataResp.error || "Erro na criação do checkout");
       }
 
-      // Redirecionar para Stripe
+      // Redirecionamento seguro
       window.location.href = dataResp.url;
 
     } catch (err) {
-      console.error(err);
-      alert("❌ Ocorreu um erro ao criar a sessão de pagamento. Tente novamente.");
-      buyButton.innerHTML = `<i class="fas fa-shopping-cart"></i> Adquirir Voucher Agora`;
+      console.error("Erro Stripe:", err);
+      alert("❌ Não foi possível iniciar o pagamento. Tente novamente.");
+      btn.innerHTML = originalHtml;
     } finally {
-      buyButton.disabled = false;
+      btn.disabled = false;
+      if (!window.location.href.includes("checkout")) {
+         btn.innerHTML = originalHtml;
+      }
     }
   });
 });

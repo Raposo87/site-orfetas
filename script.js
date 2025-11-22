@@ -63,12 +63,7 @@ class CarouselManager {
             <div class="carousel-dot ${i === 0 ? 'active' : ''}" data-index="${i}"></div>
           `).join('')}
         </div>
-      </div>
-      <div class="card-badge">
-        <i class="fas fa-percentage"></i>
-        <span>${card.dataset.discount || '20% OFF'}</span>
-      </div>
-    `;
+      </div>`;
 
     const carousel = {
       currentIndex: 0,

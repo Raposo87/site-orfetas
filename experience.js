@@ -159,6 +159,7 @@ updateSEO();
   ld.textContent = JSON.stringify(offers);
   document.head.appendChild(ld);
 
+
   // Função para renderizar cards
   const renderCards = () => {
     const grid = document.getElementById('partners-grid');
@@ -180,10 +181,6 @@ updateSEO();
       card.innerHTML = `
         <div class="card-image">
           ${images.length > 0 ? '<img src="' + images[0] + '" alt="' + p.name + '">' : ''}
-          <div class="card-badge">
-            
-            <span>${p.discount_label}</span>
-          </div>
         </div>
         <div class="card-content">
           <h3>${p.name}</h3>
@@ -191,17 +188,17 @@ updateSEO();
             <i class="fas fa-map-marker-alt"></i> 
             <span>${p.location}</span>
           </div>
-          <div class="price-section">
-            <div class="price-original">${p.price_original}</div>
-            <div class="price-discount">${p.price_discount}</div>
-            <div class="savings">${p.savings}</div>
+          
+          <div class="discount-moved-area"> 
+            <span class="discount-label-lg">${p.discount_label}</span>
           </div>
+          
           <div class="card-actions">
-            <a href="partner.html?slug=${p.slug}" class="btn btn-secondary btn-sm">
+            <a href="partner.html?slug=${p.slug}" class="btn btn-official btn-sm">
               <i class="fas fa-info-circle"></i>  <span>Ver detalhes</span>
             </a>
             
-            <a href="${p.official_url}" target="_blank" class="btn btn-official btn-sm">
+            <a href="${p.official_url}" target="_blank" class="btn btn-secondary btn-sm">
               <i class="fas fa-external-link-alt"></i>
               <span>Visitar Site Oficial</span>
             </a>

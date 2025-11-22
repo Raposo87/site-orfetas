@@ -1469,6 +1469,81 @@ a:focus {
   transform: scale(1.15);
 }
 
+/* ===== NOVOS CARDS DE OFERTA (Substitui o Accordion) ===== */
+/* Adicione ao final do style.css */
+
+.offers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.offer-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.2s ease;
+  border-left: 4px solid var(--secondary-orange);
+}
+
+.offer-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.offer-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--gray-800);
+  margin-bottom: 0.5rem;
+  font-family: var(--font-display);
+}
+
+.offer-desc {
+  font-size: 0.95rem;
+  color: var(--gray-600);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.offer-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.offer-price {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary-blue);
+}
+
+.btn-buy-offer {
+  background: var(--secondary-orange);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background 0.2s;
+}
+
+.btn-buy-offer:hover {
+  background: #ea580c; /* Tom mais escuro de laranja */
+}
 
 
 /* Estilização para o QR Code e Botões de Compra */
@@ -1494,7 +1569,7 @@ a:focus {
 
 .discount-label-lg {
   font-family: var(--font-display); /* Usar fonte de destaque se disponível */
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: var(--secondary-orange);
   margin: var(--spacing-sm) 0 var(--spacing-md);
@@ -1609,3 +1684,104 @@ a:focus {
 }
 
 
+/* ===== GALERIA MOBILE & CARDS COMPACTOS ===== */
+
+/* Botão de ver fotos (escondido no desktop) */
+#toggle-gallery-btn {
+  display: none;
+  width: 100%;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* Ajustes para Mobile (Telas menores que 768px) */
+@media (max-width: 768px) {
+  
+  /* 1. Espaçamento Extra antes do Footer */
+  .partner-details {
+    padding-bottom: 5rem; /* Adiciona um espaço grande (5rem) no final da seção principal */
+  }
+
+  /* 2. Galeria Mobile (Ajustada para fotos em tamanho normal/largura total) */
+  #partner-gallery {
+    display: none; /* Esconde por padrão */
+  }
+  
+  /* Quando aberto, mostra apenas 1 foto por linha */
+  #partner-gallery.show {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 Coluna = Fotos em tamanho normal */
+    gap: 1rem;
+    animation: slideDown 0.5s ease;
+  }
+
+  /* Ajuste da Imagem para evitar o formato "fino e comprido" */
+  #partner-gallery img {
+    width: 100% !important; /* Força largura total do celular */
+    height: auto; /* Altura automática para não esticar (tamanho normal) */
+    aspect-ratio: 4/3; /* Define uma proporção de tela agradável */
+    object-fit: cover;
+    border-radius: var(--radius);
+  }
+
+  /* Botão de ver fotos visível apenas no mobile */
+  #toggle-gallery-btn {
+    display: inline-block; 
+  }
+
+  /* 3. Cards de Oferta Compactos */
+  .offers-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .offer-card {
+    padding: 1rem;
+  }
+
+  .offer-title {
+    font-size: 1.1rem;
+  }
+  
+  .offer-footer {
+    flex-direction: column; /* Preço em cima, botão em baixo */
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .btn-buy-offer {
+    width: 100%; /* Botão grande para facilitar o toque */
+    justify-content: center;
+    padding: 0.8rem;
+  }
+}
+
+/* Estilos de Preço (Desktop e Base) */
+.offer-price-wrapper {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.offer-price-old {
+  text-decoration: line-through;
+  color: var(--gray-400);
+  font-size: 0.9rem;
+}
+
+.offer-price-final {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--primary-blue);
+}
+
+.discount-badge-small {
+  background: #10b981; /* Verde Sucesso */
+  color: white;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 5px;
+  vertical-align: middle;
+  font-weight: 600;
+}

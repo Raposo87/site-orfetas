@@ -13,7 +13,8 @@
           "price_original": "€30",
           "price_discount": "€25,50",
           "savings": "Economize €4,50",
-          "discount_label": "15% OFF Todas as experiencias!",
+          "discount_label": "15% OFF",
+          "discount_percent": 15,
           "code": "RAPOSO15",
           "official_url": "https://surfwavelisbon.com/",
           "email": "surfwavelisbon@gmail.com",
@@ -28,67 +29,23 @@
           "offers": [
             {
               "title": "Aulas de surf em grupo",
-              "text": "30 € 1 aula de surf por pessoa - 1h30min, rancha de surf e roupa de neoprene inclusas instrutor certificado, eguro esportivo incluso."
+              "text": "1 aula de surf por pessoa - 1h30min, prancha de surf e roupa de neoprene inclusas, instrutor certificado, seguro esportivo incluso.",
+              "price": 30.00
             },
             {
               "title": "Aulas particulares de surf",
-              "text": "70€ 1 aula de surf - 1h30min, prancha de surf e roupa de neoprene, inclusas, Instrutor certificado, seguro esportivo incluso."
+              "text": "1 aula de surf - 1h30min, prancha de surf e roupa de neoprene inclusas, instrutor certificado, seguro esportivo incluso.",
+              "price": 70.00
             },
             {
-              "title": "Aula para crianças menores de 12 anos",
-              "text": "70€ 1 aula de surf - 1h30min, Prancha de surf e roupa de neoprene inclusas, instrutor certificado, seguro esportivo incluso."
-            },
-            {
-              "title": "Aula de Surfskate",
-              "text": "20€ Localização: Costa da Caparica, 1 aula de surfskate - 1 hora de aula com instrutor certificado em skate e equipamentos, ídeos para análise."
-            }
-          ],
-          "story_short": "A Surf Wave Lisbon conecta pessoas ao mar através do surf.",
-          "story_full": "Fundada em 2018, a Surf Wave Lisbon nasceu com a missão de aproximar pessoas do oceano e proporcionar experiências únicas. Com instrutores locais apaixonados, a escola oferece aulas seguras, divertidas e adaptadas a todos os níveis de experiência."
-        }
-      ]
-    },
-    {
-      "slug": "surf",
-      "title": "Aulas de Surf",
-      "badge": "Esportes Aquáticos",
-      "description": "Escolha uma escola de surf e use o código VoucherHub no checkout.",
-      "partners": [
-        {
-          "slug": "surf-wave-lisbon",
-          "name": "Surf Wave Lisbon",
-          "location": "Cabana do Pescador, Costa da Caparica",
-          "price_original": "€30",
-          "price_discount": "€25,50",
-          "savings": "Economize €4,50",
-          "discount_label": "15% OFF Todas as experiencias!",
-          "code": "RAPOSO15",
-          "official_url": "https://surfwavelisbon.com/",
-          "email": "surfwavelisbon@gmail.com",
-          "phone": "+351 969 013 614 / +351 961 793 637",
-          "instagram": "https://www.instagram.com/surfwavelisbon/",
-          "images": [
-            "https://surfwavelisbon.com/wp-content/uploads/2024/02/DSC6244-1536x1024.jpg",
-            "https://surfwavelisbon.com/wp-content/uploads/2025/09/andrehilariophoto_fullres_DSC5835-1536x1024.jpg",
-            "https://surfwavelisbon.com/wp-content/uploads/2023/11/DSC5903-scaled.jpg"
-          ],
-          "icon": "fas fa-water",
-          "offers": [
-            {
-              "title": "Aulas de surf em grupo",
-              "description": "1h30min, prancha de surf e roupa de neoprene inclusas, instrutor certificado, seguro esportivo incluso."
-            },
-            {
-              "title": "Aulas particulares de surf",
-              "description": "1h30min, prancha de surf e roupa de neoprene inclusas, instrutor certificado, seguro esportivo incluso."
-            },
-            {
-              "title": "Aula para crianças menores de 12 anos",
-              "description": "1h30min, prancha de surf e roupa de neoprene inclusas, instrutor certificado, seguro esportivo incluso."
+              "title": "Aula para crianças (menores de 12 anos)",
+              "text": "1 aula de surf - 1h30min, prancha de surf e roupa de neoprene inclusas, instrutor certificado, seguro esportivo incluso.",
+              "price": 70.00
             },
             {
               "title": "Aula de Surfskate",
-              "description": "1h de aula com instrutor certificado em surfskate, equipamentos incluídos, análise em vídeo."
+              "text": "1 hora de aula com instrutor certificado em skate e equipamentos, vídeos para análise. Localização: Costa da Caparica.",
+              "price": 20.00
             }
           ],
           "story_short": "A Surf Wave Lisbon conecta pessoas ao mar através do surf.",
@@ -104,12 +61,13 @@
       "partners": [
         {
           "slug": "twolines",
-          "name": "Twolines",
+          "name": "Twolines  / 15% em qualquer item",
           "location": "Costa da Caparica",
           "price_original": "€67,83",
-          "price_discount": "€54,27",
-          "savings": "Economize €13,56",
-          "discount_label": "20% OFF",
+          "price_discount": "€57,66",
+          "savings": "Economize €10,17",
+          "discount_label": "15% OFF",
+          "discount_percent": 15,
           "code": "SURF20",
           "official_url": "https://twolines.pt/",
           "email": "",
@@ -121,16 +79,17 @@
           ],
           "icon": "fas fa-tshirt",
           "offers": [
-            "Coleções de verão e surfwear",
-            "Produtos sustentáveis",
-            "Descontos exclusivos para membros VoucherHub"
+            {
+              "title": "Coleções de verão, surfwear, acessórios e lifestyle.",
+              "text": "Produtos sustentáveis e design moderno + Bonés, bolsas e equipamentos.",
+              "price": 67.83
+            }
           ],
           "story_short": "A Twolines une moda e lifestyle praiano em uma só marca.",
           "story_full": "Inspirada pelo estilo de vida das praias portuguesas, a Twolines oferece roupas confortáveis e sustentáveis. Localizada na Costa da Caparica, a marca aposta em design moderno e materiais ecológicos, valorizando o bem-estar e o planeta."
         }
       ]
     },
-    
     {
       "slug": "tour",
       "title": "Tour com Guia e Motorista",
@@ -140,11 +99,12 @@
         {
           "slug": "nanan-adventures",
           "name": "Nanan Adventures",
-          "location": "Praça Dom Afonso V, 2710-521  - Portela de Sintra, Portugal",
+          "location": "Praça Dom Afonso V, 2710-521 - Portela de Sintra, Portugal",
           "price_original": "€30",
           "price_discount": "€24",
           "savings": "Economize €6",
-          "discount_label": "20% OFF Todas as experiencias",
+          "discount_label": "20% OFF",
+          "discount_percent": 20,
           "code": "LISBOA20",
           "official_url": "https://www.nananadventures.com/",
           "email": "nananadventures@gmail.com",
@@ -159,28 +119,30 @@
           "offers": [
             {
               "title": "Caminho do Alto",
-              "text": "Transporte de Van pelos principais pontos turísticos da cidade de Sintra: Praça da Vigia – Fonte Sabuga – Vista do Palácio Nacional – Família Biester – Vista Castelo dos Mouros e Palácio da Pena. Inclui paradas para fotos e comentários do guia. Valor original €30 → €24 com 20% de desconto. Duração: 1 hora."
+              "text": "Transporte de Van pelos principais pontos turísticos da cidade de Sintra: Praça da Vigia – Fonte Sabuga – Vista do Palácio Nacional – Família Biester – Vista Castelo dos Mouros e Palácio da Pena. Inclui paradas para fotos e comentários do guia. Duração: 1 hora.",
+              "price": 30.00
             },
             {
               "title": "Caminho do Meio",
-              "text": "Transporte de Van pelos pontos icónicos de Sintra: Praça da Vigia – Fonte Sabuga – Vista do Palácio Nacional – Vista Quinta da Regaleira – Vista Palácio de Seteais – Vista Palácio de Monserrate – Vista da vila de Sintra. Inclui paradas para fotos e comentários do guia. Valor original €30 → €24 com 20% de desconto. Duração: 1 hora."
+              "text": "Transporte de Van pelos pontos icónicos de Sintra: Praça da Vigia – Fonte Sabuga – Vista do Palácio Nacional – Vista Quinta da Regaleira – Vista Palácio de Seteais – Vista Palácio de Monserrate – Vista da vila de Sintra. Duração: 1 hora.",
+              "price": 30.00
             },
             {
               "title": "Tour de Meio Dia",
-              "text": "Tour de 4h pelos principais locais de Sintra: Praça da Vigia – Fonte da Sabuga – Palácio Família Biester – Vista Castelo dos Mouros e Palácio da Pena – Palácio da Pena (área dos lagos) – Quinta da Regaleira – Palácio Seteais – Palácio Monserrate – Vista para a vila. Inclui visita agendada a 1 monumento (ingresso não incluso). Valor original €70 → €56 com 20% de desconto. Duração: 4 horas."
+              "text": "Tour de 4h pelos principais locais de Sintra. Inclui visita agendada a 1 monumento (ingresso não incluso). Duração: 4 horas.",
+              "price": 70.00
             },
             {
               "title": "Tour Dia Inteiro",
-              "text": "Passeio completo de 7h: Praça da Vigia – Fonte da Sabuga – Palácio Família Biester – Vista Castelo dos Mouros e Palácio da Pena – Palácio da Pena (lagos) – Quinta da Regaleira – Palácio Seteais – Palácio Monserrate – Vista para a vila – Praia Azenhas do Mar – Cabo da Roca. Inclui visita agendada a 2 monumentos (ingressos não inclusos). Valor original €100 → €80 com 20% de desconto. Duração: 7 horas."
+              "text": "Passeio completo de 7h com visita agendada a 2 monumentos (ingressos não inclusos) e ida ao Cabo da Roca. Duração: 7 horas.",
+              "price": 100.00
             }
           ],
-
           "story_short": "A Nanan Adventures mostra Portugal com autenticidade.",
           "story_full": "Com motoristas experientes e guias locais apaixonados, a Nanan Adventures proporciona tours personalizados que exploram o melhor de Lisboa, Sintra e arredores. Uma experiência de viagem única, cheia de cultura e história."
         }
       ]
     },
-
     {
       "slug": "yoga",
       "title": "Estúdios de Yoga",
@@ -194,9 +156,9 @@
           "price_original": "€15",
           "price_discount": "€12,75",
           "savings": "Economize €2,25",
-          "discount_label": "15% OFF para aulas avulsas!",
+          "discount_label": "15% OFF",
+          "discount_percent": 15,
           "code": "YOGA20",
-          "qrcode_url": "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=YOGA20",
           "official_url": "https://yogakulastudio.pt/",
           "email": "geral@yogakulabenfica.com",
           "phone": "(+351)933782610",
@@ -209,31 +171,32 @@
           "icon": "fas fa-spa",
           "offers": [
             {
-              "title": "Hatha Yoga (Nível Iniciante e Intermédio)",
-              "text": "Prática tradicional que combina posturas físicas (ásanas), técnicas de respiração (pranayama) e meditação para promover o equilíbrio entre corpo e mente. As aulas de Hatha Yoga são de ritmo moderado, focando-se no alinhamento corporal e na permanência em cada postura. Adequadas para iniciantes que desejam aprender as bases e para praticantes intermédios que procuram aprofundar a sua prática."
+              "title": "Hatha Yoga (Iniciante/Intermédio)",
+              "text": "Prática tradicional que combina posturas físicas (ásanas) e respiração para equilíbrio.",
+              "price": 15.00
             },
-
             {
-              "title": "Vinyasa Yoga (Nível Intermédio)",
-              "text": "Conhecida pela sua fluidez, o Vinyasa Yoga sincroniza movimento e respiração, criando sequências dinâmicas que aumentam a força, flexibilidade e resistência. As aulas têm um ritmo energético e desafiante, adequadas para praticantes de nível intermédio que já possuem alguma experiência e procuram explorar sequências mais criativas."
+              "title": "Vinyasa Yoga (Intermédio)",
+              "text": "Sincroniza movimento e respiração, criando sequências dinâmicas.",
+              "price": 15.00
             },
-
             {
               "title": "Yoga Dinâmico (Todos Níveis)",
-              "text": "Uma modalidade versátil que pode assumir diferentes formas, dependendo do foco do instrutor e do grupo de praticantes. Pode incluir sequências energéticas inspiradas no Vinyasa, exercícios de força e flexibilidade, ou até práticas focadas na mobilidade. Adaptável a vários níveis, esta aula é ideal para quem procura variedade e desafio na prática de Yoga."
+              "text": "Modalidade versátil com sequências energéticas.",
+              "price": 15.00
             },
-
             {
-              "title": "Yoga Restaurativo (Todos os Níveis)",
-              "text": "O Yoga restaurativo é uma prática suave que utiliza posturas simples e totalmente apoiadas por acessórios para promover relaxamento profundo. Sem esforço físico, ajuda a reduzir o stress, acalmar a mente e libertar tensões."
+              "title": "Yoga Restaurativo",
+              "text": "Prática suave com posturas apoiadas para relaxamento profundo.",
+              "price": 15.00
             }
           ],
           "story_short": "Valores",
           "story_full": "O estúdio Yoga Kula nasceu com o propósito de unir corpo, mente e comunidade. Oferece aulas para todos os níveis, workshops e retiros que fortalecem o equilíbrio e o autoconhecimento."
         }
+        
       ]
     },
-    
     {
       "slug": "wellness",
       "title": "Terapias Naturais e Holísticas",
@@ -248,6 +211,7 @@
           "price_discount": "€63",
           "savings": "Economize €27",
           "discount_label": "30% OFF",
+          "discount_percent": 30,
           "code": "WELLNESS20",
           "official_url": "#",
           "email": "nicoleraposof7@gmail.com",
@@ -259,10 +223,11 @@
           ],
           "icon": "fas fa-leaf",
           "offers": [
-            "Consulta de Naturopatia Clínica",
-            "Diagnóstico clínico e holístico",
-            "Plano terapêutico personalizado",
-            "Suplementação natural sob medida"
+            {
+              "title": "Consulta de Naturopatia Clínica",
+              "text": "Diagnóstico clínico e holístico + Plano terapêutico personalizado.",
+              "price": 90.00
+            }
           ],
           "story_short": "Consulta de Naturopatia Clínica",
           "story_full": "Para quem sente-se cansado, com a mente acelerada e o corpo pedindo mesmo cuidado a muito tempo.\n\nA Naturopatia Clínica é um cuidado completo que vai muito além de aliviar sintomas, ela busca entender as causas reais do que está acontecendo com você.\n\nDurante a consulta, fazemos um diagnóstico clínico e holístico, avaliando corpo, mente e hábitos para identificar desequilíbrios que estão drenando sua energia e bem-estar.\n\nA partir disso, você recebe um plano terapêutico personalizado, que pode incluir:\n\n- Mudanças de estilo de vida práticas e sustentáveis\n- Suplementação natural sob medida para suas necessidades\n- Orientação alimentar realista e nutritiva, sem dietas impossíveis\n- Estratégias naturais para restaurar sono, digestão, energia, equilíbrio hormonal e emocional\n\nO objetivo é ajudar você a reconectar-se com o seu corpo, recuperar vitalidade e viver com mais leveza naturalmente."
