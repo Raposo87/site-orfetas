@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const offerName = btn.dataset.offerName;
     // Este é o valor COM 15% de desconto que colocamos no partner.js
     const priceVal = parseFloat(btn.dataset.price); 
+    const originalPrice = parseFloat(btn.dataset.originalPrice);
+
 
     if (!slug) {
       alert("Erro técnico: Slug do parceiro não encontrado.");
@@ -43,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
         productName: offerName, 
         // O backend espera centavos (ex: 25.50 vira 2550)
         amountCents: Math.round(priceVal * 100), 
+        originalPriceCents: Math.round(originalPrice * 100),
         currency: "eur"
       };
 

@@ -185,12 +185,13 @@
             <div class="offer-footer">
               ${priceHtml}
               <button class="btn-buy-offer" 
-                data-slug="${slug}" 
-                data-offer-name="${title}" 
-                data-price="${finalPrice.toFixed(2)}" 
-              >
-                <i class="fas fa-ticket-alt"></i> Comprar
-              </button>
+    data-slug="${slug}" 
+    data-offer-name="${title}" 
+    data-price="${finalPrice.toFixed(2)}"
+    data-original-price="${originalPrice}"
+>
+    <i class="fas fa-ticket-alt"></i> Comprar
+</button>
             </div>
           `;
           offersContainer.appendChild(card);
