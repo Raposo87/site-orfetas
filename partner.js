@@ -86,20 +86,25 @@
       errorEl.textContent = '';
 
       try {
-        // URL DO BACKEND (ajuste se necessário, mas o proxy do live server geralmente lida com caminhos relativos se configurado, senão use a URL completa)
-        // Se estiver rodando localmente e o backend na Railway:
-        const backendUrl = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' 
-             ? 'https://voucherhub-backend-production.up.railway.app/api/payments/create-checkout-session' // URL PRODUÇÃO
-             : '/api/payments/create-checkout-session'; // URL RELATIVA (se tudo estiver no mesmo dominio)
-
-        // ATENÇÃO: Para teste local com backend na Railway, use a URL completa da Railway acima.
+        // 👇 1. DEFINIÇÃO MANUAL DA URL (Para garantir que vai para a Railway)
+        const backendUrl = 'https://voucherhub-backend-production.up.railway.app/api/payments/create-checkout-session';
+        
+        console.log("🚀 Iniciando pagamento para:", backendUrl);
+        console.log("📦 Payload:", {
+            email,
+            partnerSlug,
+            productName: offerName,
+            amountCents: Math.round(price * 100),
+            originalPriceCents: Math.round(originalPrice * 100),
+            sponsorCode: sponsorCode 
+        });
 
         const response = await fetch(backendUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             email,
-            partnerSlug,
+            partnerSlug: partnerSlug,
             productName: offerName,
             amountCents: Math.round(price * 100),
             originalPriceCents: Math.round(originalPrice * 100),
@@ -107,18 +112,30 @@
           })
         });
 
+        // 👇 2. TRATAMENTO DE ERRO MELHORADO
+        // Se o servidor retornar erro (400, 500), lemos o texto antes de tentar JSON
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error("❌ Erro do Servidor:", errorText);
+            try {
+                const errorJson = JSON.parse(errorText);
+                throw new Error(errorJson.error || 'Erro no servidor');
+            } catch (e) {
+                throw new Error(`Erro técnico: ${response.status} ${response.statusText}`);
+            }
+        }
+
         const data = await response.json();
 
-        if (response.ok && data.url) {
-          window.location.href = data.url; // Redireciona para o Stripe
+        if (data.url) {
+          window.location.href = data.url; 
         } else {
-          errorEl.textContent = data.error || 'Erro ao iniciar pagamento.';
-          payBtn.disabled = false;
-          payBtn.innerText = `Pagar €${price}`;
+          throw new Error('URL de pagamento não recebida.');
         }
+
       } catch (err) {
-        console.error(err);
-        errorEl.textContent = 'Erro de conexão. Verifique o console.';
+        console.error("❌ ERRO FETCH:", err);
+        errorEl.textContent = `Erro: ${err.message}`;
         payBtn.disabled = false;
         payBtn.innerText = `Pagar €${price}`;
       }
