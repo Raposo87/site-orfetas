@@ -10,10 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // Recupera os dados JÁ CALCULADOS no partner.js
     const slug = btn.dataset.slug;
     const offerName = btn.dataset.offerName;
-    // Este é o valor COM 15% de desconto que colocamos no partner.js
     const priceVal = parseFloat(btn.dataset.price); 
     const originalPrice = parseFloat(btn.dataset.originalPrice);
-
 
     if (!slug) {
       alert("Erro técnico: Slug do parceiro não encontrado.");
@@ -25,14 +23,31 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Confirmação visual para o usuário
-    const email = prompt(`🛒 Comprando: ${offerName}\n💰 Valor com Desconto: €${priceVal}\n\nDigite seu e-mail para receber o voucher:`);
+    // ===============================
+    // 1) PEDIR EMAIL (já existente)
+    // ===============================
+    const email = prompt(
+      `🛒 Comprando: ${offerName}\n💰 Valor com Desconto: €${priceVal}\n\nDigite seu e-mail para receber o voucher:`
+    );
     
     if (!email || !email.includes("@")) {
       alert("⚠️ É necessário um e-mail válido para processar o pagamento.");
       return;
     }
 
+    // ==============================================
+    // 2) NOVO: CAMPO OPCIONAL PARA CÓDIGO PATROCINADOR
+    // ==============================================
+    const sponsorCode = prompt(
+      "Você possui um código especial de parceiro/banco?\n\nSe tiver, digite aqui:\nSe não tiver, deixe vazio."
+    ) || "";
+
+    // Normalizar (sem espaços)
+    const sponsorCodeClean = sponsorCode.trim().toUpperCase();
+
+    // ===============================
+    // 3) PROSSEGUIR COM A COMPRA
+    // ===============================
     const originalHtml = btn.innerHTML;
     
     try {
@@ -42,14 +57,17 @@ document.addEventListener("DOMContentLoaded", () => {
       const payload = {
         email: email,
         partnerSlug: slug,
-        productName: offerName, 
-        // O backend espera centavos (ex: 25.50 vira 2550)
-        amountCents: Math.round(priceVal * 100), 
+        productName: offerName,
+        amountCents: Math.round(priceVal * 100),
         originalPriceCents: Math.round(originalPrice * 100),
-        currency: "eur"
+        currency: "eur",
+
+        // NOVO (envia o código especial para o backend)
+        sponsorCode: sponsorCodeClean
       };
 
-      // Envio para o Stripe (Backend)
+      console.log("PAYLOAD ENVIADO:", payload); // debug opcional
+
       const response = await fetch(`${window.VOUCHERHUB_API}/api/payments/create-checkout-session`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -62,7 +80,6 @@ document.addEventListener("DOMContentLoaded", () => {
         throw new Error(dataResp.error || "Erro na criação do checkout");
       }
 
-      // Redirecionamento seguro
       window.location.href = dataResp.url;
 
     } catch (err) {
