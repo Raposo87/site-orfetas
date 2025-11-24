@@ -65,11 +65,27 @@
     const closeBtn = modal.querySelector('.modal-close-btn');
     const payBtn = document.getElementById('modal-pay-btn');
     const errorEl = document.getElementById('modal-error');
+    
+    // Inputs
+    const emailInput = document.getElementById('buy-email');
+    const sponsorInput = document.getElementById('sponsor-code-input');
 
     // Fechar Modal
     const closeModal = () => modal.remove();
     closeBtn.addEventListener('click', closeModal);
     modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+
+    // ✅ CORREÇÃO DO ENTER: Impedir que o Enter dispare formulários antigos
+    const handleEnterKey = (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault(); // Para tudo o que o navegador ia fazer
+            e.stopPropagation(); // Impede o erro "Slug não encontrado" de subir
+            payBtn.click(); // Clica no botão Pagar do nosso modal
+        }
+    };
+
+    emailInput.addEventListener('keydown', handleEnterKey);
+    sponsorInput.addEventListener('keydown', handleEnterKey);
 
     // AÇÃO DE PAGAR
     payBtn.addEventListener('click', async () => {
