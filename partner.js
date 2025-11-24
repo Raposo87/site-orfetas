@@ -1,366 +1,343 @@
-(async function () {
-  const params = new URLSearchParams(location.search);
-  const slug = params.get('slug');
+import { Router } from "express";
+import Stripe from "stripe";
+import { pool } from "../db.js";
+import { sendEmail } from "../utils/sendEmail.js"; // <-- VERIFIQUE ESTE CAMINHO NOVAMENTE! Deve ser ../utils/
+import { randomBytes } from "crypto";
+
+const router = Router();
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+  apiVersion: "2024-06-20",
+});
+
+function generateVoucherCode() {
+  return "VH-" + randomBytes(4).toString("hex").toUpperCase();
+}
+
+// Normalização do sponsorCode
+function normalize(code) {
+  return (code || "").trim().toUpperCase();
+}
+
+// ==========================================================
+// 1) CREATE CHECKOUT SESSION
+// ==========================================================
+// (Nenhuma mudança necessária aqui, o código que você enviou estava correto)
+router.post("/create-checkout-session", async (req, res) => {
+    // ... [Seu código CREATE-CHECKOUT-SESSION completo e correto aqui] ...
+    const client = await pool.connect();
+
+    try {
+      const {
+        email,
+        partnerSlug,
+        productName,
+        amountCents,
+        originalPriceCents,
+        currency = "eur",
+        sponsorCode: rawSponsorCode,
+      } = req.body;
   
-  if (!slug) {
-    document.body.innerHTML = "<h1 style='text-align:center; margin-top:50px;'>Parceiro não especificado.</h1>";
-    return;
-  }
-
-  // ==================================================================
-  // 🆕 FUNÇÃO DO MODAL DE COMPRA (Adicionada sem quebrar o layout)
-  // ==================================================================
-  function openBuyModal(offerData) {
-    const { partnerSlug, offerName, price, originalPrice } = offerData;
-
-    // Remove modal anterior se existir (evita duplicação)
-    const existingModal = document.getElementById('buy-modal');
-    if (existingModal) existingModal.remove();
-
-    // HTML do Modal
-    const modalHtml = `
-      <div id="buy-modal" class="modal-backdrop">
-        <div class="modal-content">
-          <span class="modal-close-btn">&times;</span>
-          <h3 style="margin-top:0">Comprar: ${offerName}</h3>
-          <p>Preço Final: <b style="color:#00AA00">€${price}</b> <span style="font-size:0.9em; color:#777">(Original: €${originalPrice})</span></p>
-          
-          <div class="form-group">
-            <label for="buy-email" style="display:block; margin-bottom:5px; font-weight:bold;">Seu E-mail:</label>
-            <input type="email" id="buy-email" required placeholder="ex: seu.email@exemplo.com" style="width:100%; padding:8px; margin-bottom:15px;">
-          </div>
-          
-          <div class="form-group sponsor-code-section" style="background:#f9f9f9; padding:10px; border-radius:5px; border:1px dashed #ccc;">
-            <label for="sponsor-code-input" style="display:block; margin-bottom:5px; font-weight:bold; color:#d35400;">Código Especial (Opcional):</label>
-            <input type="text" id="sponsor-code-input" placeholder="Ex: BANCO-123" style="width:100%; padding:8px;">
-            <small style="color:#666; font-size:0.8em;">Parceiros/Patrocinadores têm +5% de desconto extra.</small>
-          </div>
-
-          <button id="modal-pay-btn" class="btn-buy-offer" style="margin-top: 20px; width:100%; padding:12px; background:#28a745; color:white; border:none; font-size:16px; cursor:pointer;">
-            Pagar €${price}
-          </button>
-
-          <p id="modal-error" style="color:red; margin-top:10px; font-size:0.9em; text-align:center;"></p>
-        </div>
-      </div>
-    `;
-
-    document.body.insertAdjacentHTML('beforeend', modalHtml);
-    
-    // Estilos CSS dinâmicos para o modal (caso não existam no CSS principal)
-    if(!document.getElementById('modal-dynamic-style')) {
-        const style = document.createElement('style');
-        style.id = 'modal-dynamic-style';
-        style.innerHTML = `
-            .modal-backdrop { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; justify-content: center; align-items: center; z-index: 9999; }
-            .modal-content { background: white; padding: 25px; border-radius: 10px; max-width: 400px; width: 90%; position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-            .modal-close-btn { position: absolute; top: 10px; right: 15px; font-size: 24px; cursor: pointer; color: #aaa; }
-            .modal-close-btn:hover { color: #000; }
-        `;
-        document.head.appendChild(style);
-    }
-
-    // Elementos
-    const modal = document.getElementById('buy-modal');
-    const closeBtn = modal.querySelector('.modal-close-btn');
-    const payBtn = document.getElementById('modal-pay-btn');
-    const errorEl = document.getElementById('modal-error');
-    
-    // Inputs
-    const emailInput = document.getElementById('buy-email');
-    const sponsorInput = document.getElementById('sponsor-code-input');
-
-    // Fechar Modal
-    const closeModal = () => modal.remove();
-    closeBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-
-    // ✅ CORREÇÃO DO ENTER: Impedir que o Enter dispare formulários antigos
-    const handleEnterKey = (e) => {
-        if (e.key === 'Enter') {
-            e.preventDefault(); // Para tudo o que o navegador ia fazer
-            e.stopPropagation(); // Impede o erro "Slug não encontrado" de subir
-            payBtn.click(); // Clica no botão Pagar do nosso modal
-        }
-    };
-
-    emailInput.addEventListener('keydown', handleEnterKey);
-    sponsorInput.addEventListener('keydown', handleEnterKey);
-
-    // AÇÃO DE PAGAR
-    payBtn.addEventListener('click', async () => {
-      const email = document.getElementById('buy-email').value.trim();
-      const sponsorCode = document.getElementById('sponsor-code-input').value.trim();
-      
-      if (!email || !email.includes('@')) {
-        errorEl.textContent = 'Por favor, insira um e-mail válido.';
-        return;
+      if (!email || !partnerSlug || !productName || !amountCents) {
+        return res.status(400).json({
+          error: "Missing fields: email, partnerSlug, productName, amountCents",
+        });
       }
-      
-      payBtn.disabled = true;
-      payBtn.innerText = 'Processando...';
-      errorEl.textContent = '';
-
-      try {
-        // 👇 1. DEFINIÇÃO MANUAL DA URL (Para garantir que vai para a Railway)
-        const backendUrl = 'https://voucherhub-backend-production.up.railway.app/api/payments/create-checkout-session';
+  
+      const sponsorCode = normalize(rawSponsorCode);
+      let extraDiscount = 0;
+      let sponsorName = null;
+  
+      await client.query("BEGIN");
+  
+      // 1. Buscar parceiro
+      const partnerRes = await client.query(
+        "SELECT stripe_account_id FROM partners WHERE slug=$1",
+        [partnerSlug]
+      );
+  
+      if (!partnerRes.rows.length) {
+        await client.query("ROLLBACK");
+        return res.status(400).json({ error: "Parceiro não encontrado." });
+      }
+  
+      const partner = partnerRes.rows[0];
+  
+      if (!partner.stripe_account_id) {
+        await client.query("ROLLBACK");
+        return res.status(400).json({
+          error:
+            "Parceiro não tem stripe_account_id configurado — configure no banco.",
+        });
+      }
+  
+      // 2. Validar sponsorCode
+      if (sponsorCode) {
+        const { rows } = await client.query(
+          "SELECT * FROM sponsor_vouchers WHERE code = $1",
+          [sponsorCode]
+        );
+  
+        if (!rows.length) {
+          await client.query("ROLLBACK");
+          return res.status(400).json({ error: "Código especial inválido." });
+        }
+  
+        const voucher = rows[0];
+  
+        if (voucher.used) {
+          await client.query("ROLLBACK");
+          return res
+            .status(400)
+            .json({ error: "Este código especial já foi utilizado." });
+        }
+  
+        if (!voucher.discount_extra || voucher.discount_extra <= 0) {
+          await client.query("ROLLBACK");
+          return res
+            .status(400)
+            .json({ error: "Código especial não possui desconto ativo." });
+        }
+  
+        extraDiscount = voucher.discount_extra;
+        sponsorName = voucher.sponsor;
+      }
+  
+      // 3. Cálculo financeiro
+      const totalCents = Number(amountCents);
+      if (!Number.isFinite(totalCents) || totalCents <= 0) {
+        await client.query("ROLLBACK");
+        return res.status(400).json({ error: "amountCents inválido." });
+      }
+  
+      let baseAmountCents = totalCents;
+      const platformPctOriginal = 0.18; // 18%
+  
+      let applicationFeeCents;
+  
+      if (extraDiscount > 0) {
+        // Correção de cálculo se você estiver usando a versão anterior:
+        // A lógica de aplicação de taxas é mais simples: 
+        // A taxa é aplicada sobre o valor original (baseAmountCents) menos o desconto extra que você assumiu.
+        // Já que você está a passar o valor final no amountCents do POST, vamos usar essa lógica aqui:
+        const factor = 1 - extraDiscount / 100;
+        // baseAmountCents deve ser o valor *antes* do desconto extra
+        baseAmountCents = Math.round(originalPriceCents * (1 - (partner.discount_percent || 15) / 100)); // Calculamos o valor base (com desconto normal)
         
-        console.log("🚀 Iniciando pagamento para:", backendUrl);
-        console.log("📦 Payload:", {
-            email,
-            partnerSlug,
-            productName: offerName,
-            amountCents: Math.round(price * 100),
-            originalPriceCents: Math.round(originalPrice * 100),
-            sponsorCode: sponsorCode 
-        });
-
-        const response = await fetch(backendUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email,
-            partnerSlug: partnerSlug,
-            productName: offerName,
-            amountCents: Math.round(price * 100),
-            originalPriceCents: Math.round(originalPrice * 100),
-            sponsorCode: sponsorCode 
-          })
-        });
-
-        // 👇 2. TRATAMENTO DE ERRO MELHORADO
-        // Se o servidor retornar erro (400, 500), lemos o texto antes de tentar JSON
-        if (!response.ok) {
-            const errorText = await response.text();
-            console.error("❌ Erro do Servidor:", errorText);
-            try {
-                const errorJson = JSON.parse(errorText);
-                throw new Error(errorJson.error || 'Erro no servidor');
-            } catch (e) {
-                throw new Error(`Erro técnico: ${response.status} ${response.statusText}`);
-            }
-        }
-
-        const data = await response.json();
-
-        if (data.url) {
-          window.location.href = data.url; 
-        } else {
-          throw new Error('URL de pagamento não recebida.');
-        }
-
-      } catch (err) {
-        console.error("❌ ERRO FETCH:", err);
-        errorEl.textContent = `Erro: ${err.message}`;
-        payBtn.disabled = false;
-        payBtn.innerText = `Pagar €${price}`;
+        const platformPctFinal = platformPctOriginal - extraDiscount / 100;
+        applicationFeeCents = Math.round(baseAmountCents * platformPctFinal);
+      } else {
+        applicationFeeCents = Math.round(totalCents * platformPctOriginal);
       }
-    });
-  }
-  // ==================================================================
+      
+      applicationFeeCents = Math.max(1, applicationFeeCents); // Garante taxa mínima de 1 cent
 
+  
+      // 4. Criar sessão Stripe
+      const successUrl = `${process.env.FRONTEND_URL}/success.html?session_id={CHECKOUT_SESSION_ID}`;
+      const cancelUrl = `${process.env.FRONTEND_URL}/cancel.html`;
+  
+      const session = await stripe.checkout.sessions.create({
+        mode: "payment",
+        customer_email: email,
+        payment_method_types: ["card"],
+  
+        line_items: [
+          {
+            price_data: {
+              currency,
+              product_data: { name: productName },
+              unit_amount: totalCents,
+            },
+            quantity: 1,
+          },
+        ],
+  
+        success_url: successUrl,
+        cancel_url: cancelUrl,
+  
+        metadata: {
+          email,
+          partnerSlug,
+          productName,
+          originalPriceCents,
+          sponsorCode,
+          extraDiscount,
+          sponsorName: sponsorName || "",
+          baseAmountCents, // Valor após desconto normal, antes de qualquer desconto extra
+        },
+  
+        payment_intent_data: {
+          application_fee_amount: applicationFeeCents,
+          transfer_data: {
+            destination: partner.stripe_account_id,
+          },
+        },
+      });
+  
+      await client.query("COMMIT");
+      return res.json({ url: session.url });
+    } catch (err) {
+      await client.query("ROLLBACK");
+      console.error("❌ ERRO CREATE-SESSION:", err);
+      return res.status(500).json({ error: "Erro ao criar checkout session" });
+    } finally {
+      client.release();
+    }
+});
+// ==========================================================
+
+
+// ==========================================================
+// 2) STRIPE WEBHOOK — NOVO CÓDIGO SIMPLIFICADO
+// ==========================================================
+router.post("/webhook", async (req, res) => {
+  let event;
+  try {
+    event = stripe.webhooks.constructEvent(
+      req.body,
+      req.headers["stripe-signature"],
+      process.env.STRIPE_WEBHOOK_SECRET
+    );
+  } catch (err) {
+    console.error("Webhook signature error:", err);
+    return res.status(400).send("Webhook signature failed");
+  }
+
+  if (event.type !== "checkout.session.completed") {
+    return res.json({ received: true });
+  }
+
+  const session = event.data.object;
 
   try {
-    const res = await fetch('experiences.json');
-    const data = await res.json();
+    const email =
+      session.customer_details?.email || session.metadata?.email || "no-email";
+    const partnerSlug = session.metadata?.partnerSlug;
+    const productName = session.metadata?.productName;
+    const sponsorCode = normalize(session.metadata?.sponsorCode);
+    const extraDiscount = Number(session.metadata?.extraDiscount || 0);
+    const sponsorName = session.metadata?.sponsorName || "";
+    const originalPriceCents = Number(session.metadata?.originalPriceCents || 0);
 
-    let partner = null;
-    let mode = null;
-    
-    for (const m of data.modes) {
-      const found = m.partners.find(p => p.slug === slug);
-      if (found) {
-        partner = found;
-        mode = m;
-        break;
-      }
-    }
+    const amountCents = session.amount_total;
+    const currency = session.currency || "eur";
+    let baseAmountCents = Number(session.metadata?.baseAmountCents || amountCents);
 
-    if (!partner) {
-      document.body.innerHTML = "<h1 style='text-align:center; margin-top:50px;'>Parceiro não encontrado.</h1>";
-      return;
-    }
+    // Cálculos financeiros (seu código existente)
+    const platformPctOriginal = 0.18;
+    let platformFeeCents;
+    let partnerShareCents;
 
-    // === 1. DEFINIR A PORCENTAGEM DE DESCONTO ===
-    const discountPct = partner.discount_percent || 15; 
-
-    // === PREENCHIMENTO BÁSICO (SEU CÓDIGO ORIGINAL MANTIDO) ===
-    document.title = `${partner.name} – VoucherHub`;
-    if(document.getElementById("partner-title")) document.getElementById("partner-title").textContent = partner.name;
-    document.getElementById("partner-name").textContent = partner.name;
-    document.getElementById("partner-category").textContent = mode.title || "Experiência";
-    if(document.getElementById("partner-icon")) document.getElementById("partner-icon").className = partner.icon || "fas fa-tag";
-    if(document.getElementById("partner-link")) document.getElementById("partner-link").href = partner.official_url;
-
-    // Localização
-    const locationLink = document.getElementById("partner-location-link");
-    if (partner.location) {
-      locationLink.textContent = partner.location;
-      locationLink.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(partner.location)}`;
+    if (extraDiscount > 0) {
+      const platformPctFinal = platformPctOriginal - extraDiscount / 100;
+      platformFeeCents = Math.round(baseAmountCents * platformPctFinal);
+      partnerShareCents = amountCents - platformFeeCents;
     } else {
-      locationLink.textContent = "Ver no mapa";
-      locationLink.removeAttribute("href");
+      platformFeeCents = Math.round(amountCents * platformPctOriginal);
+      partnerShareCents = amountCents - platformFeeCents;
     }
 
-    // Label de Desconto
-    document.getElementById("partner-discount-label").textContent = partner.discount_label || `${discountPct}% OFF`;
+    // Criar voucher
+    const code = generateVoucherCode();
 
-    // Contatos
-    const emailEl = document.getElementById("partner-email");
-    const emailLinkEl = document.getElementById("partner-email-link");
-    if (partner.email && emailEl) {
-      emailEl.style.display = "block";
-      emailLinkEl.textContent = partner.email;
-      emailLinkEl.href = `mailto:${partner.email}`;
+    // Validade
+    const partnerRes = await pool.query(
+      "SELECT voucher_validity_days, name FROM partners WHERE slug = $1",
+      [partnerSlug]
+    );
+    const partner = partnerRes.rows[0] || {};
+    const daysValidity = partner.voucher_validity_days || 60;
+
+    const expiryDate = new Date();
+    expiryDate.setDate(expiryDate.getDate() + daysValidity);
+
+    await pool.query(
+      `INSERT INTO vouchers (
+        email, partner_slug, code, amount_cents, currency, 
+        stripe_session_id, expires_at, platform_fee_cents, partner_share_cents
+      ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)`,
+      [
+        email,
+        partnerSlug,
+        code,
+        amountCents,
+        currency,
+        session.id,
+        expiryDate.toISOString(),
+        platformFeeCents,
+        partnerShareCents,
+      ]
+    );
+
+    // Marcar sponsorCode como usado
+    if (sponsorCode && extraDiscount > 0) {
+      await pool.query(
+        `UPDATE sponsor_vouchers 
+         SET used = TRUE, used_at = NOW()
+         WHERE code=$1 AND used=FALSE`,
+        [sponsorCode]
+      );
     }
 
-    const phoneEl = document.getElementById("partner-phone");
-    const phoneLinkEl = document.getElementById("partner-phone-link");
-    if (partner.phone && phoneEl) {
-      phoneEl.style.display = "block";
-      phoneLinkEl.textContent = partner.phone;
-      phoneLinkEl.href = `tel:${partner.phone.replace(/\s/g, '')}`;
-    }
+    // ------------------------------------------------------------
+    // QR CODE SIMPLES (melhor para evitar spam)
+    // ------------------------------------------------------------
+    const validateUrl = `${process.env.FRONTEND_URL}/validate.html?code=${code}`;
+    
+    // QR Code Simples sem logo
+    const qrCodeUrl = `https://quickchart.io/qr?text=${encodeURIComponent(validateUrl)}&size=300&ecLevel=H&margin=1`;
 
-    const instaEl = document.getElementById("partner-instagram");
-    const instaLink = document.getElementById("partner-instagram-link");
-    if (partner.instagram && instaEl) {
-      instaEl.style.display = "block";
-      instaLink.href = partner.instagram;
-    }
+    const amountPaidEuros = (amountCents / 100).toFixed(2);
+    const originalPriceEuros = (originalPriceCents / 100).toFixed(2);
+    const standardDiscPct = Math.round(((originalPriceCents - baseAmountCents) / originalPriceCents) * 100);
 
-    // História
-    document.getElementById("partner-story-short").textContent = partner.story_short || "";
-    const storyFullEl = document.getElementById("partner-story-full");
-    if (partner.story_full) {
-      storyFullEl.innerHTML = `<p>${partner.story_full.replace(/\n/g, '<br>')}</p>`;
-    }
+    // ------------------------------------------------------------
+    // TEMPLATE DE EMAIL SIMPLIFICADO (melhor para evitar spam)
+    // ------------------------------------------------------------
+    const discountInfo = extraDiscount > 0 
+        ? `<p style="color:#D35400; font-weight:bold;">✅ Desconto Especial Patrocinador (${extraDiscount}%) aplicado!</p>`
+        : '';
 
-    const toggleHistBtn = document.getElementById("toggle-history");
-    if (toggleHistBtn) {
-      toggleHistBtn.addEventListener("click", function() {
-        const visible = storyFullEl.style.display === "block";
-        storyFullEl.style.display = visible ? "none" : "block";
-        this.innerHTML = visible 
-          ? '<i class="fas fa-chevron-down"></i> Mostrar mais' 
-          : '<i class="fas fa-chevron-up"></i> Mostrar menos';
-      });
-    }
-
-    // === GALERIA (SEU CÓDIGO ORIGINAL MANTIDO) ===
-    const gallery = document.getElementById("partner-gallery");
-    const heroBg = document.querySelector(".partner-hero-background");
-
-    if (partner.images && partner.images.length > 0) {
-      if(heroBg) heroBg.innerHTML = `<img src="${partner.images[0]}" alt="${partner.name}" style="width:100%; height:100%; object-fit:cover;">`;
-
-      partner.images.forEach(img => {
-        const el = document.createElement("img");
-        el.src = img;
-        el.alt = partner.name;
-        gallery.appendChild(el);
-      });
-    }
-
-    const toggleGalleryBtn = document.getElementById("toggle-gallery-btn");
-    if (toggleGalleryBtn) {
-      toggleGalleryBtn.addEventListener("click", function() {
-        gallery.classList.toggle("show");
-        const isShown = gallery.classList.contains("show");
-        this.innerHTML = isShown 
-          ? '<i class="fas fa-times"></i> Ocultar Fotos' 
-          : '<i class="fas fa-camera"></i> Ver Fotos da Experiência';
-      });
-    }
-
-    // === OFERTAS (MODIFICADO PARA INCLUIR O NOVO CLICK) ===
-    const offersContainer = document.getElementById("partner-offers-grid");
-    if (offersContainer) {
-      offersContainer.innerHTML = "";
-
-      const offersTitleP = offersContainer.parentElement.querySelector("p");
-      if(offersTitleP) {
-         offersTitleP.innerHTML = `Selecione a opção abaixo. O valor já inclui <b>${discountPct}% de desconto</b>.`;
-      }
-
-      if (partner.offers && partner.offers.length > 0) {
-        partner.offers.forEach((o, index) => {
-          const card = document.createElement("div");
-          card.className = "offer-card";
-
-          let title = typeof o === "string" ? o : o.title;
-          let text = typeof o === "string" ? "" : (o.text || o.description || "");
-
-          let originalPrice = 0;
-          let finalPrice = 0;
-          let priceHtml = "";
-
-          const priceMatch = text.match(/€?\s?(\d+[.,]?\d*)\s?€?/);
-
-          if (o.price) {
-            originalPrice = parseFloat(o.price);
-          } else if (priceMatch) {
-            originalPrice = parseFloat(priceMatch[1].replace(",", "."));
-          }
-
-          if (originalPrice > 0) {
-            const multiplier = 1 - (discountPct / 100);
-            finalPrice = originalPrice * multiplier;
-            
-            const fmtOriginal = originalPrice % 1 === 0 ? originalPrice : originalPrice.toFixed(2);
-            const fmtFinal = finalPrice.toFixed(2);
-
-            priceHtml = `
-              <div class="offer-price-wrapper">
-                <span class="offer-price-old">€${fmtOriginal}</span>
-                <div style="display:flex; align-items:center;">
-                  <span class="offer-price-final">€${fmtFinal}</span>
-                  <span class="discount-badge-small">-${discountPct}%</span>
+    const html = `
+        <div style="font-family: sans-serif; max-width: 500px; margin: auto; border: 1px solid #ccc; border-radius: 8px;">
+            <div style="background-color: #000; color: #fff; padding: 15px; text-align: center; border-radius: 8px 8px 0 0;">
+                <h2 style="margin:0;">Voucher para ${partner.name || 'Sua Experiência'}</h2>
+            </div>
+            <div style="padding: 20px; text-align: center;">
+                <p style="font-size: 1.1em;">Obrigado por adquirir <b>${productName}</b>.</p>
+                
+                <div style="margin: 25px 0; border: 1px solid #eee; padding: 15px; border-radius: 5px; background: #f9f9f9;">
+                    <p style="font-size: 1.2em; margin: 0 0 10px 0; color: #555;">Código de Validação:</p>
+                    <p style="font-size: 2em; font-weight: bold; color: #006400; margin: 0;">${code}</p>
+                    <img src="${qrCodeUrl}" alt="QR Code" style="width: 150px; height: 150px; margin-top: 15px; border: 1px solid #ddd; padding: 5px;">
+                    <p style="font-size: 0.8em; color: #777; margin-top: 5px;">Aponte a câmara para validar.</p>
                 </div>
-              </div>
-            `;
-          } else {
-            priceHtml = `<span class="offer-price-final" style="font-size:1.2rem">Sob Consulta</span>`;
-            finalPrice = 0;
-          }
-
-          card.innerHTML = `
-            <div>
-              <h3 class="offer-title">${title}</h3>
-              <p class="offer-desc">${text}</p>
+                
+                <table style="width:100%; text-align:left; font-size: 0.9em;">
+                    <tr><td style="padding: 5px 0;">Preço Original:</td><td style="padding: 5px 0; text-align:right;">€${originalPriceEuros}</td></tr>
+                    <tr><td style="padding: 5px 0;">Desconto Padrão (${standardDiscPct}%):</td><td style="padding: 5px 0; text-align:right; color:#CC0000;">- €${(originalPriceCents / 100 - baseAmountCents / 100).toFixed(2)}</td></tr>
+                    <tr style="font-weight:bold; background:#e8ffe8;"><td style="padding: 5px 0;">Total Pago:</td><td style="padding: 5px 0; text-align:right; color:#006400;">€${amountPaidEuros}</td></tr>
+                </table>
+                
+                ${discountInfo}
+                
+                <p style="margin-top: 30px;">Validade: ${expiryDate.toLocaleDateString('pt-PT')}</p>
+                <p style="font-size: 0.9em;"><a href="${validateUrl}">Link de Validação</a></p>
             </div>
-            <div class="offer-footer">
-              ${priceHtml}
-              <button class="btn-buy-offer">
-                  <i class="fas fa-ticket-alt"></i> Comprar
-              </button>
-            </div>
-          `;
-          
-          // ✅ AQUI ESTÁ A MÁGICA: Adiciona o evento de clique direto no botão criado
-          // Isso previne conflitos com outros arquivos JS
-          const btn = card.querySelector('.btn-buy-offer');
-          btn.addEventListener('click', (e) => {
-             e.preventDefault(); // Impede qualquer comportamento estranho
-             e.stopPropagation(); // Impede que o clique "suba" para outros elementos
-             
-             // Chama nosso novo modal
-             openBuyModal({
-                 partnerSlug: slug,
-                 offerName: title,
-                 price: finalPrice.toFixed(2),
-                 originalPrice: originalPrice
-             });
-          });
+        </div>
+    `;
 
-          offersContainer.appendChild(card);
-        });
-      } else {
-        offersContainer.innerHTML = "<p>Não há ofertas disponíveis.</p>";
-      }
-    }
+    await sendEmail({
+      to: email,
+      subject: `Seu Voucher para ${partner.name} - ${productName}`,
+      html,
+    });
 
+    return res.json({ received: true });
   } catch (err) {
-    console.error("Erro JS:", err);
+    console.error("❌ ERRO WEBHOOK:", err);
+    return res.status(500).json({ error: "Erro processando webhook" });
   }
-})();
+});
+
+export default router;
