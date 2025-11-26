@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registo Concluído | VoucherHub</title>
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* Estilos específicos para esta página de sucesso */
+        .success-page { 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 80vh; 
+            text-align: center;
+            padding: 20px;
+        }
+        .success-icon { 
+            color: #4CAF50; /* Verde de sucesso */
+            font-size: 80px; 
+            margin-bottom: 20px; 
+        }
+        h1 { 
+            color: #333; 
+            font-size: 28px; 
+            margin-bottom: 10px; 
+        }
+        p { 
+            color: #666; 
+            font-size: 18px; 
+            line-height: 1.6; 
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+        .button-home {
+            background-color: #667eea; /* Cor principal, se for o seu caso */
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .button-home:hover {
+            background-color: #5a67d8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="success-page">
+        <div class="success-icon">✅</div>
+        <h1>Registo Stripe Concluído com Sucesso!</h1>
+        <p>
+            Parabéns! Os dados da sua conta de repasses (IBAN e informações fiscais) foram enviados e verificados pela Stripe. 
+            A sua parceria com a VoucherHub está agora pronta para receber pagamentos de vouchers.
+        </p>
+        <p>
+            Você pode fechar esta página ou voltar ao site.
+        </p>
+        <a href="index.html" class="button-home">Voltar à Página Inicial</a>
+    </div>
+
+</body>
+</html>
