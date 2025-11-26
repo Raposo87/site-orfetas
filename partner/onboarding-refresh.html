@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Carregar Novo Link...</title>
+    <link rel="stylesheet" href="../style.css"> <style>
+        .loading-page { 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 80vh; 
+            text-align: center; 
+        }
+        .spinner { 
+            border: 4px solid rgba(0, 0, 0, 0.1); 
+            border-top: 4px solid #667eea; 
+            border-radius: 50%; 
+            width: 40px; 
+            height: 40px; 
+            animation: spin 1s linear infinite; 
+            margin-bottom: 20px;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        h1 { font-size: 20px; color: #333; }
+        p { color: #666; }
+    </style>
+</head>
+<body>
+
+    <div class="loading-page">
+        <div class="spinner"></div>
+        <h1>O seu link expirou. Estamos a gerar um novo...</h1>
+        <p>Aguarde um momento. Será redirecionado para a página de registo Stripe automaticamente.</p>
+    </div>
+
+    <script>
+        // Use a URL do seu backend no Railway
+        const BACKEND_URL = "https://voucherhub-backend-production.up.railway.app";
+        const REFRESH_ENDPOINT = "/api/partners/create-onboarding-link";
+
+        async function getNewStripeLink() {
+            // 1. Obtém o 'partnerSlug' que a Stripe anexou ao URL (ex: ?slug=yoga-kula)
+            const urlParams = new URLSearchParams(window.location.search);
+            const partnerSlug = urlParams.get('slug');
+            
+            if (!partnerSlug) {
+                alert("Erro: O parceiro não foi identificado. Por favor, entre em contacto com o suporte.");
+                window.location.href = '../index.html'; // Ajuste o caminho
+                return;
+            }
+
+            try {
+                // 2. Chama a sua API (POST) para gerar um NOVO link da Stripe
+                const response = await fetch(`${BACKEND_URL}${REFRESH_ENDPOINT}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        partnerSlug: partnerSlug,
+                        // É crucial que o backend saiba que parceiro é para gerar o link para o ID Stripe correto.
+                        // O email não é estritamente necessário para REFRESH, mas o slug é suficiente.
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (response.ok && data.url) {
+                    // 3. Redireciona o utilizador para o novo link da Stripe
+                    window.location.href = data.url;
+                } else {
+                    throw new Error(data.message || "Falha ao obter novo link.");
+                }
+
+            } catch (error) {
+                console.error("Erro ao gerar novo link:", error);
+                alert("Não foi possível gerar um novo link de registo. Por favor, tente novamente mais tarde.");
+                window.location.href = '../index.html'; // Ajuste o caminho
+            }
+        }
+
+        getNewStripeLink();
+    </script>
+
+</body>
+</html>
