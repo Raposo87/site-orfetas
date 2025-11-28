@@ -7,125 +7,193 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/png" href="favcon.png">
   <style>
-    /* ... (O seu CSS aqui) ... */
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: var(--gray-50);
+      color: var(--gray-800);
+      text-align: center;
+      font-family: var(--font-primary);
+      padding: 2rem;
+    }
+
+    .validate-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      padding: 2rem;
+      max-width: 450px;
+      width: 100%;
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    h1 {
+      color: var(--primary-blue);
+      font-family: var(--font-display);
+      margin-bottom: 1rem;
+    }
+
+    .status {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 1rem 0;
+    }
+
+    .status.valid { color: var(--success); }
+    .status.used { color: var(--error); }
+    .status.expired { color: var(--warning); }
+
+    .voucher-info {
+      text-align: left;
+      font-size: 0.95rem;
+      margin-top: 1rem;
+      color: var(--gray-700);
+    }
+
+    .pin-section {
+      margin-top: 1.5rem;
+    }
+
+    input[type="password"] {
+      padding: 0.5rem;
+      border: 1px solid var(--gray-300);
+      border-radius: var(--radius);
+      width: 70%;
+      margin-right: 0.5rem;
+    }
+
+    button {
+      background: var(--secondary-orange);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    button:hover {
+      background: var(--secondary-orange-dark);
+      transform: translateY(-2px);
+    }
+
+    .back-home {
+      display: inline-block;
+      margin-top: 2rem;
+      text-decoration: none;
+      color: var(--primary-blue);
+      font-weight: 600;
+    }
+
+    .hidden { display: none; }
   </style>
 </head>
+
 <body>
-
   <div class="validate-card">
-    <div class="logo">VoucherHub</div>
-    <h1 id="status-code">VOUCHER ...</h1>
-    <p id="status-message" class="status loading">A carregar status...</p>
-    <p id="status-product-name" style="color: var(--gray-600); font-size: 16px; margin-top: -10px;"></p>
-
-    <div id="pin-section" class="hidden">
-      <hr style="margin: 1.5rem 0; border: 0; border-top: 1px solid var(--gray-200);">
-      <p style="margin-bottom: 1rem; font-weight: 500;">Insira o PIN do parceiro para validar o uso:</p>
-      <input type="password" id="pin-input" placeholder="PIN Secreto" maxlength="4" style="text-align: center; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: var(--radius-md); width: 100%; max-width: 150px; font-size: 1.2rem;">
-      <button id="use-btn" class="btn btn-primary" style="margin-top: 1rem;">✅ Usar e Transferir Fundos</button>
+    <h1>Validação de Voucher</h1>
+    <p id="status-message" class="status">Carregando...</p>
+    <div id="voucher-info" class="voucher-info hidden"></div>
+    <div id="pin-section" class="pin-section hidden">
+      <input type="password" id="pin-input" placeholder="PIN do parceiro" maxlength="6" />
+      <button id="use-btn">Marcar como usado</button>
     </div>
   </div>
 
+  <a href="index.html" class="back-home">← Voltar ao site</a>
+
   <script>
-    // URL base da sua API
-    const API_BASE = "https://voucherhub-backend-production.up.railway.app/api/vouchers";
-    const VALIDATE_URL = `${API_BASE}/validate`; // Endpoint único
+    const API = "https://voucherhub-backend-production.up.railway.app/api/vouchers";
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get("code") || location.pathname.split("/").pop();
 
-    // Pega o código do URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const code = urlParams.get("code");
-    
-    // Mostra o código do voucher
-    document.getElementById("status-code").textContent = `VOUCHER ${code || 'INVÁLIDO'}`;
 
-    if (!code) {
-        document.getElementById("status-message").textContent = "Código do voucher não encontrado na URL.";
-        document.getElementById("status-message").className = "status used";
-    }
+    const statusMessage = document.getElementById("status-message");
+    const voucherInfo = document.getElementById("voucher-info");
+    const pinSection = document.getElementById("pin-section");
 
-    // Função para carregar o status inicial do voucher (Status Check)
     async function loadVoucher() {
-      if (!code) return;
-
-      const statusMessage = document.getElementById("status-message");
-      const pinSection = document.getElementById("pin-section");
-      const statusProductName = document.getElementById("status-product-name");
-
       try {
-        // ✅ 1. Status Check: Envia código e PIN vazio/nulo
-        const res = await fetch(VALIDATE_URL, { 
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ code: code, pin: "" }) // PIN VAZIO: ACIONA STATUS CHECK
-        });
-        
+        const res = await fetch(`${API}/validate/${code}`);
         const data = await res.json();
 
-        if (!res.ok && res.status !== 400 && res.status !== 401 && res.status !== 403 && res.status !== 404) {
-             // Erro de Servidor (500)
-             statusMessage.textContent = "Erro de Servidor ao carregar status.";
-             statusMessage.className = "status used";
-             return;
+        if (!data || !data.voucher) {
+          statusMessage.textContent = "Voucher não encontrado.";
+          statusMessage.className = "status used";
+          return;
         }
 
-        // 2. Trata o Status devolvido pelo backend
+        voucherInfo.classList.remove("hidden");
+        voucherInfo.innerHTML = `
+          <p><strong>Código:</strong> ${data.voucher.code}</p>
+          <p><strong>Parceiro:</strong> ${data.voucher.partner_slug}</p>
+          <p><strong>Email:</strong> ${data.voucher.email}</p>
+          <p><strong>Valor:</strong> ${(data.voucher.amount_cents / 100).toFixed(2)} ${data.voucher.currency?.toUpperCase()}</p>
+          <p><strong>Status:</strong> ${data.status}</p>
+        `;
+
         if (data.status === "used") {
           statusMessage.textContent = "❌ Voucher já utilizado.";
           statusMessage.className = "status used";
         } else if (data.status === "expired") {
           statusMessage.textContent = "⚠️ Voucher expirado.";
           statusMessage.className = "status expired";
-        } else if (data.status === "valid") { 
-          statusMessage.textContent = "✅ Voucher válido!";
-          statusProductName.textContent = data.productName || ""; // Usa o dado do backend
-          statusMessage.className = "status valid";
-          pinSection.classList.remove("hidden"); // Mostra a caixa do PIN!
         } else {
-          // Caso de erro do backend (ex: código não encontrado)
-          statusMessage.textContent = data.error || "Erro desconhecido.";
-          statusMessage.className = "status used";
+          statusMessage.textContent = "✅ Voucher válido!";
+          statusMessage.className = "status valid";
+          pinSection.classList.remove("hidden");
         }
 
       } catch (err) {
-        console.error("Erro de Rede ou JSON:", err);
-        statusMessage.textContent = "Erro ao validar voucher. Verifique a conexão.";
+        console.error(err);
+        statusMessage.textContent = "Erro ao validar voucher.";
         statusMessage.className = "status used";
       }
     }
 
-
-    // Função para marcar como usado (Uso/Transferência)
     async function markAsUsed() {
-      const pin = document.getElementById("pin-input").value.trim();
-      if (!pin) return alert("Por favor, insira o PIN do parceiro.");
+        const pin = document.getElementById("pin-input").value.trim();
+        if (!pin) return alert("Por favor, insira o PIN do parceiro.");
 
-      try {
-        // ✅ Uso/Transferência: Envia código E PIN
-        const res = await fetch(VALIDATE_URL, { // Rota única
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ code: code, pin: pin }) // PIN PREENCHIDO: ACIONA USO
-        });
-        
-        const result = await res.json();
+        // 1. URL CORRETA: POST /api/vouchers/validate
+        const VALIDATE_URL = `${API}/vouchers/validate`; 
+        // 2. CORPO CORRETO: Envia { code: 'VH-...', pin: '1234' }
 
-        if (res.ok && result.success) {
-          // 🎉 SUCESSO!
-          alert("✅ Voucher validado e utilizado com sucesso! A transferência foi processada.");
-          location.reload(); // Atualiza a página para mostrar o novo status "Usado"
-        } else {
-          // ❌ ERRO de validação (PIN incorreto, já usado, etc.)
-          alert(result.error || "Erro ao marcar voucher.");
+        try {
+            const res = await fetch(VALIDATE_URL, { 
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ code: code, pin: pin }) // 🚨 Enviar AMBOS
+            });
+            const result = await res.json();
+
+            if (result.success) {
+                // Sucesso: Voucher validado E usado.
+                alert("✅ Voucher validado e utilizado com sucesso! A transferência foi processada.");
+                
+                // Atualizar o estado visual para mostrar que foi usado
+                document.getElementById("status-code").textContent = `VOUCHER ${code}`;
+                document.getElementById("status-message").textContent = "✅ Voucher Utilizado.";
+                document.getElementById("status-message").className = "status used";
+                document.getElementById("pin-section").classList.add("hidden");
+
+            } else {
+                // Falha: Erro de PIN, expirado, ou outro erro do backend
+                alert(result.error || "Erro ao validar/marcar voucher.");
+                // O backend (vouchers.js) já envia a mensagem de erro (400 ou 500)
+            }
+        } catch (err) {
+            console.error(err);
+            alert("❌ Erro de conexão com o servidor. Verifique o URL da API.");
         }
-      } catch (err) {
-        console.error(err);
-        alert("Erro de conexão com o servidor.");
-      }
     }
 
     document.getElementById("use-btn").addEventListener("click", markAsUsed);
 
-    // Inicia a verificação de status
     loadVoucher();
   </script>
 </body>
