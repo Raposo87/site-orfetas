@@ -156,27 +156,40 @@
     }
 
     async function markAsUsed() {
-      const pin = document.getElementById("pin-input").value.trim();
-      if (!pin) return alert("Por favor, insira o PIN do parceiro.");
+        const pin = document.getElementById("pin-input").value.trim();
+        if (!pin) return alert("Por favor, insira o PIN do parceiro.");
 
-      try {
-        const res = await fetch(`${API}/use/${code}`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ pin })
-        });
-        const result = await res.json();
+        // 1. URL CORRETA: POST /api/vouchers/validate
+        const VALIDATE_URL = `${API}/vouchers/validate`; 
+        // 2. CORPO CORRETO: Envia { code: 'VH-...', pin: '1234' }
 
-        if (result.success) {
-          alert("Voucher marcado como usado com sucesso!");
-          location.reload();
-        } else {
-          alert(result.error || "Erro ao marcar voucher.");
+        try {
+            const res = await fetch(VALIDATE_URL, { 
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ code: code, pin: pin }) // 🚨 Enviar AMBOS
+            });
+            const result = await res.json();
+
+            if (result.success) {
+                // Sucesso: Voucher validado E usado.
+                alert("✅ Voucher validado e utilizado com sucesso! A transferência foi processada.");
+                
+                // Atualizar o estado visual para mostrar que foi usado
+                document.getElementById("status-code").textContent = `VOUCHER ${code}`;
+                document.getElementById("status-message").textContent = "✅ Voucher Utilizado.";
+                document.getElementById("status-message").className = "status used";
+                document.getElementById("pin-section").classList.add("hidden");
+
+            } else {
+                // Falha: Erro de PIN, expirado, ou outro erro do backend
+                alert(result.error || "Erro ao validar/marcar voucher.");
+                // O backend (vouchers.js) já envia a mensagem de erro (400 ou 500)
+            }
+        } catch (err) {
+            console.error(err);
+            alert("❌ Erro de conexão com o servidor. Verifique o URL da API.");
         }
-      } catch (err) {
-        console.error(err);
-        alert("Erro de conexão com o servidor.");
-      }
     }
 
     document.getElementById("use-btn").addEventListener("click", markAsUsed);
