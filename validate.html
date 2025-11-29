@@ -188,7 +188,7 @@
       <hr style="margin: 1.5rem 0; border: 0; border-top: 1px solid var(--gray-200);">
       <p style="margin-bottom: 1rem; font-weight: 500;">Insira o PIN do parceiro para validar o uso:</p>
       <input type="password" id="pin-input" placeholder="PIN Secreto" maxlength="4" style="text-align: center; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: var(--radius-md); width: 100%; max-width: 150px; font-size: 1.2rem;">
-      <button id="use-btn" class="btn btn-primary" style="margin-top: 1rem;">✅ Usar e Transferir Fundos</button>
+      <button id="use-btn" class="btn btn-primary" style="margin-top: 1rem;">✅ Validar Voucher</button>
     </div>
   </div>
 
@@ -277,7 +277,7 @@
 
         if (res.ok && result.success) {
           // 🎉 SUCESSO!
-          alert("✅ Voucher validado e utilizado com sucesso! A transferência foi processada.");
+          alert("✅ ✔ voucher validado e registado, e o pagamento será processado automaticamente.");
           location.reload(); // Atualiza a página para mostrar o novo status "Usado"
         } else {
           // ❌ ERRO de validação (PIN incorreto, já usado, etc.)
