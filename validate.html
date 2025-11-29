@@ -277,7 +277,8 @@
 
         if (res.ok && result.success) {
           // 🎉 SUCESSO!
-          alert("✅ ✔ voucher validado e registado, e o pagamento será processado automaticamente.");
+          alert("✔️ Voucher validado com sucesso!\n\n💸 O pagamento será transferido automaticamente para a sua conta Stripe dentro de até 5 dias úteis.");
+
           location.reload(); // Atualiza a página para mostrar o novo status "Usado"
         } else {
           // ❌ ERRO de validação (PIN incorreto, já usado, etc.)
