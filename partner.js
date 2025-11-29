@@ -10,8 +10,8 @@
   // ==================================================================
   // 🆕 FUNÇÃO DO MODAL DE COMPRA (Adicionada sem quebrar o layout)
   // ==================================================================
-  function openBuyModal({ partnerSlug: realPartnerSlug, offerName, price, originalPrice }) {
-
+  function openBuyModal(offerData) {
+    const { partnerSlug, offerName, price, originalPrice } = offerData;
 
     // Remove modal anterior se existir (evita duplicação)
     const existingModal = document.getElementById('buy-modal');
@@ -120,7 +120,7 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             email,
-            partnerSlug: realPartnerSlug,
+            partnerSlug: partnerSlug,
             productName: offerName,
             amountCents: Math.round(price * 100),
             originalPriceCents: Math.round(originalPrice * 100),
