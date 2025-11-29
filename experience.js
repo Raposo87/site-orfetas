@@ -1,38 +1,6 @@
-// === SEO Dinâmico por categoria ===
-async function updateSEO() {
-  const params = new URLSearchParams(window.location.search);
-  const slug = params.get("slug");
 
-  if (!slug) return;
-
-  const response = await fetch("experiences.json");
-  const data = await response.json();
-  const mode = data.modes.find((m) => m.slug === slug);
-
-  if (!mode) return;
-
-  // Atualiza título e meta description
-  const title = `${mode.title} – Exclusive Discounts | VoucherHub`;
-  const description = `${mode.description} Save with exclusive promo codes for ${mode.title} in Portugal.`;
-
-  document.title = title;
-
-  // Meta description
-  let metaDesc = document.querySelector('meta[name="description"]');
-  if (!metaDesc) {
-    metaDesc = document.createElement("meta");
-    metaDesc.name = "description";
-    document.head.appendChild(metaDesc);
-  }
-  metaDesc.setAttribute("content", description);
-
-  // Canonical URL
-  let canonical = document.querySelector('link[rel="canonical"]');
-  if (canonical) canonical.href = `https://yourdomain.com/experience/${slug}`;
-}
 
 updateSEO();
-
 
 // experience.js
 (async function () {
