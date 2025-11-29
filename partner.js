@@ -150,6 +150,8 @@
         }
 
       } catch (err) {
+        console.log("🔍 partnerSlug enviado realmente:", partnerSlug);
+
         console.error("❌ ERRO FETCH:", err);
         errorEl.textContent = `Erro: ${err.message}`;
         payBtn.disabled = false;
