@@ -51,7 +51,6 @@
           "story_short": "A Surf Wave Lisbon conecta pessoas ao mar através do surf.",
           "story_full": "Fundada em 2018, a Surf Wave Lisbon nasceu com a missão de aproximar pessoas do oceano e proporcionar experiências únicas. Com instrutores locais apaixonados, a escola oferece aulas seguras, divertidas e adaptadas a todos os níveis de experiência."
         }
-
       ]
     },
     {
@@ -62,7 +61,7 @@
       "partners": [
         {
           "slug": "twolines",
-          "name": "Twolines  / 15% em qualquer item",
+          "name": "Twolines / 15% em qualquer item",
           "location": "Costa da Caparica",
           "price_original": "€67,83",
           "price_discount": "€57,66",
@@ -192,10 +191,9 @@
               "price": 15.00
             }
           ],
-          "story_short": "Valores",
+          "story_short": "O estúdio Yoga Kula nasceu com o propósito de unir corpo, mente e comunidade.",
           "story_full": "O estúdio Yoga Kula nasceu com o propósito de unir corpo, mente e comunidade. Oferece aulas para todos os níveis, workshops e retiros que fortalecem o equilíbrio e o autoconhecimento."
         }
-        
       ]
     },
     {
@@ -244,14 +242,14 @@
         {
           "slug": "loopitour",
           "name": "Loopitour",
-          "location": "Rua Heliodoro Salgado ; 1170-174 Lisboa Ímpares de 1 a 47A.",
-          "price_original": "€50",
-          "price_discount": "€45",
-          "savings": "Economize €5",
-          "discount_label": "10% OFF",
-          "discount_percent": 10,
+          "location": "Rua Heliodoro Salgado, 1170-174 Lisboa Ímpares de 1 a 47A",
+          "price_original": "€95",
+          "price_discount": "€66,50",
+          "savings": "Economize €28,50",
+          "discount_label": "30% OFF",
+          "discount_percent": 30,
           "code": "",
-          "official_url": "https://loopitour.com/",
+          "official_url": "https://loopitour.com/mainpage-2",
           "email": "taibat@loopitour.com",
           "phone": "+351 925 987 650",
           "images": [
@@ -259,20 +257,20 @@
             "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1764689381/Imagem_WhatsApp_2025-12-02_%C3%A0s_15.10.21_9871fbe9_l00pzo.jpg",
             "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1764689462/Imagem_WhatsApp_2025-12-02_%C3%A0s_15.10.21_b030a6a6_gsnczv.jpg"
           ],
-          "icon": "fas fa-leaf",
+          "icon": "fas fa-bicycle",
           "offers": [
             {
-              "title": "Tour fotográfico de bicicleta ao longo do Rio Tejo. (valor por pessoa)",
-              "text": "Está pronto para explorar Lisboa de uma forma única, combinando ciclismo e fotografia? Participe de um passeio de bicicleta de 3 horas, onde compartilharei meu amor pela fotografia e capturarei os melhores momentos. Em um pequeno grupo de 1 a 6 pessoas, você desfrutará de uma experiência personalizada e levará para casa lindas fotos como lembrança. Reserve agora e prepare-se para uma aventura repleta de risadas e vistas deslumbrantes ao longo do Rio Tejo.",
-              "price": 50.00
+              "title": "Rota Autêntica",
+              "text": "Nos encontramos em Anjos, bem no centro da cidade. Subimos nas bicicletas e exploramos as ruas animadas e ruelas escondidas de Lisboa até chegarmos ao rio Tejo. Seguimos pela margem do rio, com pausas para apreciar a vista, ouvir música, tomar limonada e saborear um pastel de nata à beira da água.\n\nÉ o caminho mais fácil 🌱\n\nDuração: 3h\nNível: Fácil a intermediário\n📸 Documentário fotográfico profissional incluído\n🎥 Videoclipe disponível mediante solicitação",
+              "price": 95.00
             },
             {
-              "title": "Tour de bicicleta para conhecer artistas/Tour. (valor por pessoa)",
-              "text": "Junte-se a mim em uma aventura de 4 horas em Lisboa, onde combinamos ciclismo, fotografia e um olhar exclusivo sobre os bastidores da cena artística local. Descubra os ateliês dos artistas, as exposições e tenha um vislumbre íntimo da vida daqueles que criam as imagens, cores e melodias que nos emocionam. O artista escolhe a arte ou a arte escolhe o artista? Vamos descobrir juntos neste charmoso passeio de bicicleta pela cidade de Lisboa. Com a colaboração dos artistas, este passeio certamente irá surpreender e encantar você! Reserve agora e vamos explorar juntos o mundo oculto da arte.",
-              "price": 50.00
+              "title": "Bairro Escondido",
+              "text": "Explore os recantos secretos de Lisboa. Vamos explorar o lado secreto de Lisboa — a ideia é escapar das multidões e encontrar lugares tranquilos, sublimes e raros, onde a acolhida seja genuína.\n\nVocê descobrirá ruas tranquilas, cafés locais, mirantes escondidos nas colinas e o charme autêntico que a maioria dos visitantes nunca vê.\n\nÉ necessário um nível de habilidade maior com a bicicleta 🚴🏻‍♂️\n\nDuração: 3h\nNível: Ritmo médio a forte – subidas e descidas – bom nível de ciclismo\n📸 Documentário fotográfico profissional incluído\n🎥 Videoclipe disponível mediante solicitação",
+              "price": 95.00
             }
           ],
-          "story_short": "Olá, sou Taibat, fotógrafo com formação na Suíça.",
+          "story_short": "Passeios fotográficos únicos de bicicleta por Lisboa.",
           "story_full": "Cresci em Lausanne, na Suíça, mas sou originário da Nigéria. Em 2017, tomei a ousada decisão de me mudar para Lisboa, Portugal, onde construí o meu negócio dos sonhos, a Loopitour.\n\nMeu amor por bicicletas começou quando eu era criança. Não consigo precisar a idade exata, porque tudo começou quando me deram uma cadeirinha na traseira de uma bicicleta com dínamo. Ainda me lembro vividamente do barulho e do movimento daquela bicicleta antiga. Meu amor pelas duas rodas nasceu ali e, quando criança, prometi a mim mesmo que um dia teria uma bicicleta com rodas finas.\n\nEu proclamava esse sonho a qualquer um que quisesse ouvir e, finalmente, quando jovem adulto, encontrei a bicicleta perfeita – aquela que inspirou a criação da Loopitour. Dei o nome de \"Lupita\" à minha querida bicicleta, e a paixão dela por ciclismo e fotografia se entrelaçaram perfeitamente.\n\nEu sempre amei fotografia também, e essa paixão começou na minha infância. Havia algo nas câmeras que sempre me chamava a atenção. Cresci admirando as câmeras na vitrine de uma loja de fotografia e imaginando as histórias por trás das fotos que elas tiravam. Quando entrei para a Escola de Fotografia de Vevey, em 2009, eu já carregava uma pequena câmera Nikon CoolPix no bolso há oito anos.\n\nPara mim, fotografia e ciclismo sempre estiveram ligados. Uma câmera no bolso, rodando na minha bicicleta moderna – é a combinação perfeita.\n\nQuando criança, sempre ouvi dizer que, se você se dedicar às suas paixões todos os dias, pode ganhar a vida com isso. Levei essa mensagem a sério e passei anos tentando descobrir como combinar minhas duas paixões. Em 2015, me formei na Escola de Fotografia de Vevey e, em 2017, tomei a decisão que mudaria minha vida: me mudar para Lisboa.\n\nAo longo dos anos, treinei para andar de bicicleta sem as mãos para poder tirar fotos enquanto pedalava. Na época, eu não sabia por que precisava dessa habilidade, mas acabou sendo essencial para o nascimento da Loopitour. Depois de passar dois anos isolado em um apartamento perto da capital portuguesa, finalmente realizei meu sonho.\n\nEm março de 2021, a Loopitour nasceu e, apenas alguns meses depois, em 20 de julho de 2021, fizemos nosso primeiro passeio. Foi um sonho realizado e mal posso esperar para ver aonde a Loopitour me levará!"
         }
       ]
