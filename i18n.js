@@ -2,8 +2,11 @@
 class I18nManager {
   constructor() {
     this.translations = {};
-    this.currentLang = this.getInitialLanguage();
     this.supportedLangs = ['en', 'pt'];
+
+    // **PT-PT deve ser sempre o idioma padrão**
+    this.currentLang = this.getInitialLanguage();
+
     this.init();
   }
 
@@ -16,13 +19,11 @@ class I18nManager {
   getInitialLanguage() {
     // 1. Verificar se há idioma salvo no localStorage
     const saved = localStorage.getItem('voucherhub_lang');
-    if (saved && ['en', 'pt'].includes(saved)) return saved;
+    if (saved && this.supportedLangs.includes(saved)) {
+      return saved;
+    }
 
-    // 2. Detectar idioma do navegador
-    const browserLang = navigator.language.toLowerCase();
-    if (browserLang.startsWith('pt')) return 'pt';
-    
-    // 3. Padrão: portugues
+    // 2. SEM detecção automática do navegador — usar PT sempre
     return 'pt';
   }
 
@@ -32,7 +33,7 @@ class I18nManager {
       this.translations = await response.json();
     } catch (error) {
       console.error('Erro ao carregar traduções:', error);
-      // Traduções básicas de fallback
+      // Traduções mínimas de fallback
       this.translations = {
         en: { nav: { badge: "Limited-Time Deals" } },
         pt: { nav: { badge: "Ofertas por Tempo Limitado" } }
@@ -59,7 +60,7 @@ class I18nManager {
 
     navbar.insertAdjacentHTML('beforeend', switcherHTML);
 
-    // Adicionar event listeners
+    // Event listeners
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const lang = e.currentTarget.dataset.lang;
@@ -70,10 +71,10 @@ class I18nManager {
 
   switchLanguage(lang) {
     if (!this.supportedLangs.includes(lang)) return;
-    
+
     this.currentLang = lang;
     localStorage.setItem('voucherhub_lang', lang);
-    
+
     // Atualizar botões ativos
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.lang === lang);
@@ -82,12 +83,15 @@ class I18nManager {
     // Traduzir página
     this.translatePage();
 
-    // Atualizar HTML lang attribute
+    // Atualizar atributo lang no HTML
     document.documentElement.lang = lang;
 
-    // Mostrar feedback
+    // Toast de feedback (se sistema disponível)
     if (window.voucherhubApp && window.voucherhubApp.promoManager) {
-      const message = lang === 'pt' ? 'Idioma alterado para Português' : 'Language changed to English';
+      const message = lang === 'pt'
+        ? 'Idioma alterado para Português'
+        : 'Language changed to English';
+
       window.voucherhubApp.promoManager.showToast(message, 'success');
     }
   }
@@ -96,31 +100,25 @@ class I18nManager {
     const t = this.translations[this.currentLang];
     if (!t) return;
 
-    // Traduzir elementos com data-i18n
+    // Traduzir elementos data-i18n
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.dataset.i18n;
       const translation = this.getNestedTranslation(t, key);
-      if (translation) {
-        el.innerHTML = translation;
-      }
+      if (translation) el.innerHTML = translation;
     });
 
     // Traduzir placeholders
     document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
       const key = el.dataset.i18nPlaceholder;
       const translation = this.getNestedTranslation(t, key);
-      if (translation) {
-        el.placeholder = translation;
-      }
+      if (translation) el.placeholder = translation;
     });
 
-    // Traduzir títulos
+    // Traduzir title=""
     document.querySelectorAll('[data-i18n-title]').forEach(el => {
       const key = el.dataset.i18nTitle;
       const translation = this.getNestedTranslation(t, key);
-      if (translation) {
-        el.title = translation;
-      }
+      if (translation) el.title = translation;
     });
   }
 
@@ -137,7 +135,7 @@ class I18nManager {
   }
 }
 
-// Inicializar quando o DOM estiver pronto
+// Inicialização
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
     window.i18n = new I18nManager();
