@@ -8,7 +8,9 @@
   -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>VoucherHub – Vouchers with exclusive discounts for experiences in Portugal</title>
+
+  <!-- PT-PT FIX -->
+  <title>VoucherHub – Vouchers com descontos exclusivos para experiências em Portugal</title>
 
   <link rel="stylesheet" href="style.css">
   
@@ -21,22 +23,35 @@
   
   <link rel="icon" type="image/png" href="favcon.png">
 
+  <!-- PT-PT FIX -->
+  <meta name="description" content="VoucherHub – Descubra as melhores experiências em Portugal com descontos exclusivos. Poupe em escolas de surf, tours, yoga, restaurantes e muito mais em Lisboa e arredores.">
 
-  <meta name="description" content="VoucherHub – Discover the best experiences in Portugal with exclusive coupon codes. Save on restaurants, surf schools, walking tours, yoga studios and more in Lisbon and beyond.">
-  <meta name="keywords" content="Portugal discount codes, Lisbon coupons, Portugal deals, surf school discount, walking tour promo code Lisbon, yoga class offers, restaurant discounts Portugal, travel deals Portugal, o que fazer em Portugal, atividades em Lisboa, experiências com desconto, códigos promocionais Portugal, cupões de desconto Lisboa, tours e bilhetes baratos, surf lessons Portugal, yoga studio Lisboa desconto, voucher atividades Portugal, turismo barato Portugal, descontos exclusivos, things to do in Lisbon, Lisbon activities, exclusive discounts, what to do in Portugal, activities in Lisbon, discounted experiences, promotional codes Portugal, discount coupons Lisbon, cheap tours and tickets, surf lessons Portugal, yoga studio Lisbon discount, voucher activities Portugal, cheap tourism Portugal, exclusive discounts">
+  <meta name="keywords" content="
+    descontos portugal, cupões portugal, promoções lisboa, descontos surf portugal,
+    códigos promocionais portugal, voucher atividades lisboa, atividades com desconto,
+    experiências em portugal, turismo barato portugal, ofertas lisboa,
+    surf escola desconto portugal, yoga estúdios lisboa desconto, tours baratos portugal,
+    descontos exclusivos, things to do in Lisbon, Portugal coupons, Lisbon discount codes
+  ">
+
   <meta name="author" content="VoucherHub">
+
   <link rel="canonical" href="https://modest-comfort-production.up.railway.app/">
+
+  <!-- PT-PT FIX PARA INTERNACIONALIZAÇÃO -->
   <link rel="alternate" hreflang="en" href="https://yourdomain.com/" />
-  <link rel="alternate" hreflang="pt-br" href="https://yourdomain.com/br/" />
+  <link rel="alternate" hreflang="pt" href="https://yourdomain.com/pt/" />
   <link rel="alternate" hreflang="x-default" href="https://yourdomain.com/" />
-  <meta property="og:title" content="VoucherHub – Portugal Discount Codes & Deals">
-  <meta property="og:description" content="Save on surf lessons, tours, restaurants and studios with verified promo codes in Portugal.">
+
+  <meta property="og:title" content="VoucherHub – Descontos Exclusivos em Portugal">
+  <meta property="og:description" content="Poupe em aulas de surf, tours, restaurantes, yoga e outras atividades com códigos promocionais verificados.">
   <meta property="og:image" content="https://yourdomain.com/og-image.jpg">
   <meta property="og:url" content="https://yourdomain.com/">
   <meta property="og:type" content="website">
+
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="VoucherHub – Exclusive Coupons in Portugal">
-  <meta name="twitter:description" content="Exclusive promo codes for the best experiences in Lisbon and beyond.">
+  <meta name="twitter:title" content="VoucherHub – Descontos Exclusivos em Portugal">
+  <meta name="twitter:description" content="Promoções e códigos de desconto para experiências nas regiões de Lisboa e arredores.">
   <meta name="twitter:image" content="https://yourdomain.com/og-image.jpg">
   
   <script type="application/ld+json">
@@ -52,16 +67,17 @@
     }
   }
   </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8PZ7RNGLVL"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-8PZ7RNGLVL');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8PZ7RNGLVL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8PZ7RNGLVL');
+  </script>
 
 </head>
+
 
 <body>
 
@@ -74,7 +90,7 @@
 <style> body { margin-top: 40px; } </style>
 
 
-  <!-- Navegação principal (navbar)
+    <!-- Navegação principal (navbar)
        Contém logo (link para home) e badge com destaque de ofertas.
        Elementos marcados com data-i18n serão traduzidos pelo i18n.js.
   -->
@@ -85,38 +101,49 @@
       </a>
       <div class="nav-badge">
         <i class="fas fa-fire"></i>
-        <span data-i18n="nav.badge">Limited-Time Deals</span>
+        <span data-i18n="nav.badge">Ofertas por Tempo Limitado</span>
       </div>
-      </div>
+    </div>
   </nav>
 
   <!-- Seção Hero (destaque principal)
        Mostra o título da página, subtítulo e estatísticas rápidas.
-       Deve ser chamativo e contextualizar o site para o usuário.
+       Deve ser chamativo e contextualizar o site para o utilizador.
   -->
   <section class="hero">
     <div class="hero-background"></div>
     <div class="hero-content">
       <div class="hero-badge">
         <i class="fas fa-star"></i>
-        <span data-i18n="hero.badge">Exclusive Vouchers</span>
+        <span data-i18n="hero.badge">Vouchers Exclusivos</span>
       </div>
-      <h1 data-i18n="hero.title">Discover Portugal with <span class="highlight">Amazing Discounts</span></h1>
-      <p data-i18n="hero.subtitle">Authentic experiences in Lisbon and nearby with exclusive promo codes.Save!</p>
+
+      <h1 data-i18n="hero.title">
+        Descubra Portugal com <span class="highlight">Descontos Incríveis</span>
+      </h1>
+
+      <p data-i18n="hero.subtitle">
+        Experiências autênticas em Lisboa e arredores com códigos promocionais exclusivos. Poupe já!
+      </p>
+
       <div class="hero-stats">
-        <!-- <div class="stat">
+        <!-- estatísticas podem ser ativadas depois, se desejar -->
+        <!--
+        <div class="stat">
           <span class="stat-number">20%</span>
-          <span class="stat-label" data-i18n="hero.avgDiscount">Average Discount</span>
+          <span class="stat-label" data-i18n="hero.avgDiscount">Desconto Médio</span>
         </div>
         <div class="stat">
           <span class="stat-number">1000+</span>
-          <span class="stat-label" data-i18n="hero.happyCustomers">Happy Customers</span>
-        </div>-->
+          <span class="stat-label" data-i18n="hero.happyCustomers">Clientes Satisfeitos</span>
+        </div>
+        -->
       </div>
     </div>
   </section>
 
-  <!-- Seção experiências (cards)
+
+    <!-- Seção experiências (cards)
        Grade de cards com categorias. Cada card é um link para experience.html?slug=...
        Dentro de cada card: imagem(s), título (data-i18n), preços e ação (ver escolas/marcas).
        Observação: padronizar slugs (lowercase) evita problemas de mapeamento.
@@ -124,38 +151,37 @@
   <section class="experiences" id="modalidades">
     <div class="container">
       <div class="section-header">
-        <h2 data-i18n="experiences.title">Experiences with <span class="highlight-orange">Exclusive Discounts</span></h2>
-        <p data-i18n="experiences.subtitle">Click on a category to see its promotions</p>
+        <h2 data-i18n="experiences.title">Experiências com <span class="highlight-orange">Descontos Exclusivos</span></h2>
+        <p data-i18n="experiences.subtitle">Carregue numa categoria para ver as suas promoções</p>
       </div>
       
       <div class="cards-grid">
 
-        <!-- Card: Surf
-             data-category pode ser usado para filtros; href envia slug 'surf' para experience.html
-        -->
+        <!-- Card: Surf -->
         <a class="experience-card" data-category="praia" href="experience.html?slug=surf" style="text-decoration:none;color:inherit">
           <div class="featured-badge">
             <i class="fas fa-crown"></i>
             <span>Popular</span>
           </div>
           <div class="card-image">
-            <img src="https://images.pexels.com/photos/4783706/pexels-photo-4783706.jpeg" alt="Surf Lessons" width="400" height="267" loading="lazy">
+            <img src="https://images.pexels.com/photos/4783706/pexels-photo-4783706.jpeg" alt="Aulas de Surf" width="400" height="267" loading="lazy">
             <div class="card-badge">
-              <span> 10% - 30% OFF</span>
+              <span>10% - 30% OFF</span>
             </div>
           </div>
           <div class="card-content">
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M80-40v-80h40q32 0 62-10t58-30q28 20 58 29.5t62 9.5q32 0 62.5-9.5T480-160q28 20 58 29.5t62 9.5q32 0 62.5-9.5T720-160q27 20 57.5 30t62.5 10h40v80h-40q-31 0-61-7.5T720-70q-29 15-59 22.5T600-40q-31 0-61-7.5T480-70q-29 15-59 22.5T360-40q-31 0-61-7.5T240-70q-29 15-59 22.5T120-40H80Zm260-760 222 41q14 2 27 11t22 25l35 62q26 45 72 73t102 28v80q-78 0-142-39T577-621l-90 61 153 120v154q16 11 31 23t29 23q-21 18-46 29t-54 11q-36 0-67-17t-53-43q-22 26-53 43t-67 17q-10 0-19.5-1.5T322-206q-86-59-144-119t-58-104q0-31 24-41t50-10q29 0 67 8.5t81 24.5l-21-124q-4-20 4.5-39.5T352-642l86-58q-3 0-14.5-2.5t-25.5-5-25.5-5Q361-715 358-715l-113 77-45-66 140-96Zm72 284 18 106q27 13 67 34.5t63 35.5v-60L412-516Zm268-224q-33 0-56.5-23.5T600-820q0-33 23.5-56.5T680-900q33 0 56.5 23.5T760-820q0 33-23.5 56.5T680-740Z"/></svg>
-            <h3 data-i18n="experiences.surfSchools">Surf Schools</h3>
+            <i class="fas fa-water"></i>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" fill="#1f1f1f"><path d="M80-40v-80h40q32 0 62-10t58-30q28 20 58 29.5t62 9.5q32 0 62.5-9.5T480-160q28 20 58 29.5t62 9.5q32 0 62.5-9.5T720-160q27 20 57.5 30t62.5 10h40v80h-40q-31 0-61-7.5T720-70q-29 15-59 22.5T600-40q-31 0-61-7.5T480-70q-29 15-59 22.5T360-40q-31 0-61-7.5T240-70q-29 15-59 22.5T120-40H80Zm260-760 222 41q14 2 27 11t22 25l35 62q26 45 72 73t102 28v80q-78 0-142-39T577-621l-90 61 153 120v154q16 11 31 23t29 23q-21 18-46 29t-54 11q-36 0-67-17t-53-43q-22 26-53 43t-67 17q-10 0-19.5-1.5T322-206q-86-59-144-119t-58-104q0-31 24-41t50-10q29 0 67 8.5t81 24.5l-21-124q-4-20 4.5-39.5T352-642l86-58q-3 0-14.5-2.5t-25.5-5-25.5-5Q361-715 358-715l-113 77-45-66 140-96Zm72 284 18 106q27 13 67 34.5t63 35.5v-60L412-516Zm268-224q-33 0-56.5-23.5T600-820q0-33 23.5-56.5T680-900q33 0 56.5 23.5T760-820q0 33-23.5 56.5T680-740Z"/></svg>
+            <h3 data-i18n="experiences.surfSchools">Escolas de Surf</h3>
             <div class="price-section">
               <div class="price-original">€30</div>
               <div class="price-discount">€25,5</div>
-              <div class="savings"><span data-i18n="experiences.save">Save</span> €4,5</div>
+              <div class="savings"><span data-i18n="experiences.save">Poupe</span> €4,5</div>
             </div>
             <div class="card-actions">
               <span class="btn btn-code" style="pointer-events:none">
                 <i class="fas fa-arrow-right"></i>
-                <span data-i18n="experiences.seeSchools">See schools on sale</span>
+                <span data-i18n="experiences.seeSchools">Ver escolas com desconto</span>
               </span>
             </div>
           </div>
@@ -168,25 +194,23 @@
             <span>Popular</span>
           </div>
           <div class="card-image">
-            <img src="https://images.pexels.com/photos/317155/pexels-photo-317155.jpeg" alt="Lisboa" width="400" height="267" loading="lazy">
+            <img src="https://images.pexels.com/photos/317155/pexels-photo-317155.jpeg" alt="Yoga Lisboa" width="400" height="267" loading="lazy">
             <div class="card-badge">
               <span>15% - 30% OFF</span>
             </div>
           </div>
           <div class="card-content">
-            <span class="material-symbols-outlined">
-              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M272-160q-30 0-51-21t-21-51q0-21 12-39.5t32-26.5l156-62v-90q-54 63-125.5 96.5T120-320v-80q68 0 123.5-28T344-508l54-64q12-14 28-21t34-7h40q18 0 34 7t28 21l54 64q45 52 100.5 80T840-400v80q-83 0-154.5-33.5T560-450v90l156 62q20 8 32 26.5t12 39.5q0 30-21 51t-51 21H400v-20q0-26 17-43t43-17h120q9 0 14.5-5.5T600-260q0-9-5.5-14.5T580-280H460q-42 0-71 29t-29 71v20h-88Zm208-480q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"/></svg>
-            </span>
-            <h3 data-i18n="experiences.yogaStudios">Yoga Studios</h3>
+            <i class="fas fa-spa"></i>
+            <h3 data-i18n="experiences.yogaStudios">Estúdios de Yoga</h3>
             <div class="price-section">
               <div class="price-original">€30</div>
               <div class="price-discount">€24</div>
-              <div class="savings"><span data-i18n="experiences.save">Save</span> €6</div>
+              <div class="savings"><span data-i18n="experiences.save">Poupe</span> €6</div>
             </div>
             <div class="card-actions">
               <span class="btn btn-code" style="pointer-events:none">
                 <i class="fas fa-arrow-right"></i>
-                <span data-i18n="experiences.seeStudios">See studios on sale</span>
+                <span data-i18n="experiences.seeStudios">Ver estúdios com desconto</span>
               </span>
             </div>
           </div>
@@ -195,76 +219,68 @@
         <!-- Card: Guide and Driver Tour -->
         <a class="experience-card" data-category="culture" href="experience.html?slug=tour" style="text-decoration:none;color:inherit">
           <div class="card-image">
-            <img src="https://images.pexels.com/photos/6271668/pexels-photo-6271668.jpeg" alt="Tour" width="400" height="267" loading="lazy">
-            <div class="card-badge">
-              <span>10% - 30% OFF</span>
-            </div>
+            <img src="https://images.pexels.com/photos/6271668/pexels-photo-6271668.jpeg" alt="Tour com Guia" width="400" height="267" loading="lazy">
+            <div class="card-badge"><span>10% - 30% OFF</span></div>
           </div>
           <div class="card-content">
             <i class="fas fa-car"></i>
-            <h3 data-i18n="experiences.driverGuide">Guide and Driver Tour</h3>
+            <h3 data-i18n="experiences.driverGuide">Tour com Guia e Motorista</h3>
             <div class="price-section">
               <div class="price-original">€30</div>
               <div class="price-discount">€24</div>
-              <div class="savings"><span data-i18n="experiences.save">Save</span> €6</div>
+              <div class="savings"><span data-i18n="experiences.save">Poupe</span> €6</div>
             </div>
             <div class="card-actions">
               <span class="btn btn-code" style="pointer-events:none">
                 <i class="fas fa-arrow-right"></i>
-                <span data-i18n="experiences.seeTours">See tours on sale</span>
+                <span data-i18n="experiences.seeTour">Ver passeios com desconto</span>
               </span>
             </div>
           </div>
         </a>
 
-         <!-- Card: Terapias Naturais e Holísticas -->
+        <!-- Card: Terapias Naturais -->
         <a class="experience-card" data-category="terapias" href="experience.html?slug=wellness" style="text-decoration:none;color:inherit">
           <div class="card-image">
             <img src="https://res.cloudinary.com/dqn2v9mtu/image/upload/v1762900622/descontos_xaef5m.jpg" alt="Terapias Naturais e Holísticas" width="400" height="267" loading="lazy">
-            <div class="card-badge">
-              <span>10% - 30% OFF</span>
-            </div>
+            <div class="card-badge"><span>10% - 30% OFF</span></div>
           </div>
           <div class="card-content">
             <i class="fas fa-leaf"></i>
-            <h3 data-i18n="experiences.wellnessTherapies">Wellness & Natural Therapies</h3>
+            <h3 data-i18n="experiences.wellnessTherapies">Terapias Naturais e Holísticas</h3>
             <div class="price-section">
               <div class="price-original">€90</div>
               <div class="price-discount">€63</div>
-              <div class="savings"><span data-i18n="experiences.save">Save</span> €27</div>
+              <div class="savings"><span data-i18n="experiences.save">Poupe</span> €27</div>
             </div>
             <div class="card-actions">
               <span class="btn btn-code" style="pointer-events:none">
                 <i class="fas fa-arrow-right"></i>
-                <span data-i18n="experiences.seeTherapies">See therapies on sale</span>
+                <span data-i18n="experiences.seeTherapies">Ver terapias com desconto</span>
               </span>
             </div>
           </div>
         </a>
 
-        <!-- Card: Fashion -->
-        <a class="experience-card featured" data-category="praia" href="experience.html?slug=moda" style="text-decoration:none;color:inherit">
+        <!-- Card: Moda -->
+        <a class="experience-card featured" data-category="moda" href="experience.html?slug=moda" style="text-decoration:none;color:inherit">
           <div class="card-image">
             <img src="https://res.cloudinary.com/dqn2v9mtu/image/upload/v1759862655/IMG-20251002-WA0020_dsvvsi.jpg" alt="Moda" width="400" height="267" loading="lazy">
-            <div class="card-badge">
-              <span>10% - 30% OFF</span>
-            </div>
+            <div class="card-badge"><span>10% - 30% OFF</span></div>
           </div>
           <div class="card-content">
             <i class="fas fa-tshirt"></i>
-            <h3 data-i18n="experiences.fashionBrand">Fashion Brand</h3>
+            <h3 data-i18n="experiences.fashionBrand">Marca / Moda</h3>
             <div class="price-section">
               <div class="price-original">€67,83</div>
               <div class="price-discount">€54,27</div>
-              <div class="savings"><span data-i18n="experiences.save">Save</span> €13,56</div>
+              <div class="savings"><span data-i18n="experiences.save">Poupe</span> €13,56</div>
             </div>
             <div class="card-actions">
               <span class="btn btn-code" style="pointer-events:none">
                 <i class="fas fa-arrow-right"></i>
-                <!-- Usar experiences.seeBrands; se não traduz, verifique translations.json e currentLang -->
-                <span data-i18n="experiences.seeBrands">
-                  See brands on sale 
-               </span>
+                <span data-i18n="experiences.seeBrands">Ver marcas com desconto</span>
+              </span>
             </div>
           </div>
         </a>
@@ -273,47 +289,66 @@
         <a class="experience-card featured" data-category="praia" href="experience.html?slug=kitesurf" style="text-decoration:none;color:inherit">
           <div class="card-image">
             <img src="https://images.pexels.com/photos/1705264/pexels-photo-1705264.jpeg" alt="Kitesurf" width="400" height="267" loading="lazy">
-            <div class="card-badge">
-              <span>10% - 30% OFF</span>
-            </div>
+            <div class="card-badge"><span>10% - 30% OFF</span></div>
           </div>
           <div class="card-content">
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M80-40v-80h40q32 0 62.5-10t57.5-30q26 18 55 28t60 11q33 1 65-9t60-30q26 19 57 29t63 10q32 0 62-9.5t58-29.5q28 20 58.5 30t61.5 10h40v80h-40q-31 0-61-7.5T720-70q-29 15-58.5 22.5T600-40q-31 0-61-7.5T480-70q-29 16-61 23.5T355-40q-30-1-59-8.5T240-70q-29 15-58.5 22.5T120-40H80Zm280-160q-26 0-51.5-10T260-240q14-11 29-23t31-23l-62-119q-9-17-13.5-36t-4.5-39v-160q0-33 23.5-56.5T320-720h120q40 0 76.5-15t65.5-43l56 56q-41 40-92 61t-106 21h-56v140h112l68 75q65-27 115.5-41t86.5-14q35 0 54.5 13.5T840-429q0 39-54 98.5T638-206q-8 2-18.5 4t-19.5 2q-32 0-64-15.5T480-260q-24 29-55.5 44.5T360-200Zm33-136q16-10 46-27t49-26l-28-31-100 4 33 80Zm-73-424q-33 0-56.5-23.5T240-840q0-33 23.5-56.5T320-920q33 0 56.5 23.5T400-840q0 33-23.5 56.5T320-760Zm342-20-42-42 98-98h84L662-780Z"/></svg>
-            <h3 data-i18n="experiences.kitesurfSchools">Kitesurf Schools</h3>
+            <i class="fas fa-wind"></i>
+            <h3 data-i18n="experiences.kitesurfSchools">Escolas de Kitesurf</h3>
             <div class="price-section">
               <div class="price-original">€85</div>
               <div class="price-discount">€68</div>
-              <div class="savings"><span data-i18n="experiences.save">Save</span> €17</div>
+              <div class="savings"><span data-i18n="experiences.save">Poupe</span> €17</div>
             </div>
             <div class="card-actions">
               <span class="btn btn-code" style="pointer-events:none">
                 <i class="fas fa-arrow-right"></i>
-                <span data-i18n="experiences.seeSchools">See schools on sale</span>
+                <span data-i18n="experiences.seeSchools">Ver escolas com desconto</span>
               </span>
             </div>
           </div>
         </a>
 
-        <!-- Card: Quad (aventura) -->
+        <!-- Card: Quad -->
         <a class="experience-card" data-category="aventura" href="experience.html?slug=quad" style="text-decoration:none;color:inherit">
           <div class="card-image">
-            <img src="https://images.pexels.com/photos/1135197/pexels-photo-1135197.jpeg" alt="Quadriciclo Sintra" width="400" height="267" loading="lazy">
-            <div class="card-badge">
-              <span>10% - 30% OFF</span>
-            </div>
+            <img src="https://images.pexels.com/photos/1135197/pexels-photo-1135197.jpeg" alt="Passeio de Quad" width="400" height="267" loading="lazy">
+            <div class="card-badge"><span>10% - 30% OFF</span></div>
           </div>
           <div class="card-content">
             <i class="fas fa-mountain"></i>
-            <h3 data-i18n="experiences.quadBikeTour">Quad Bike Tour</h3>
+            <h3 data-i18n="experiences.quadBikeTour">Passeio de Moto4</h3>
             <div class="price-section">
               <div class="price-original">€55</div>
               <div class="price-discount">€44</div>
-              <div class="savings"><span data-i18n="experiences.save">Save</span> €11</div>
+              <div class="savings"><span data-i18n="experiences.save">Poupe</span> €11</div>
             </div>
             <div class="card-actions">
               <span class="btn btn-code" style="pointer-events:none">
                 <i class="fas fa-arrow-right"></i>
-                <span data-i18n="experiences.seeTours">See tours on sale</span>
+                <span data-i18n="experiences.seeTour">Ver passeios com desconto</span>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <!-- 🚴‍♂️ NOVO CARD: Bike Tour -->
+        <a class="experience-card" data-category="bike" href="experience.html?slug=bike" style="text-decoration:none;color:inherit">
+          <div class="card-image">
+            <img src="https://images.pexels.com/photos/289869/pexels-photo-289869.jpeg" alt="Bike Tour Lisboa" width="400" height="267" loading="lazy">
+            <div class="card-badge"><span>10% - 30% OFF</span></div>
+          </div>
+          <div class="card-content">
+            <i class="fas fa-bicycle"></i>
+            <h3 data-i18n="experiences.bikeTour">Passeio de Bicicleta</h3>
+            <div class="price-section">
+              <div class="price-original">€50</div>
+              <div class="price-discount">€45</div>
+              <div class="savings">Poupe €5</div>
+            </div>
+            <div class="card-actions">
+              <span class="btn btn-code" style="pointer-events:none">
+                <i class="fas fa-arrow-right"></i>
+                <span data-i18n="experiences.seeTour">Ver passeios com desconto</span>
               </span>
             </div>
           </div>
@@ -322,6 +357,7 @@
       </div>
     </div>
   </section>
+
 
   <!-- How it works: passo a passo -->
   <section class="how-it-works">
@@ -460,28 +496,34 @@
   // Conteúdos
   const contentHow = `
     <h2>Como Funciona</h2>
-    <p>Escolha uma experiência, compre o voucher de desconto e receba tudo por email imediatamente.</p>
-    <p>O parceiro valida seu voucher no momento da experiência.</p>
+    <p>Escolha uma experiência, adquira o voucher de desconto e receba tudo por email imediatamente.</p>
+    <p>O parceiro valida o seu voucher no momento da experiência.</p>
   `;
 
   const contentFAQ = `
-    <h2>FAQ</h2>
-    <p><strong>1. Quando recebo meu voucher?</strong><br>Imediatamente após a compra.</p>
-    <p><strong>2. Como uso?</strong><br>Mostre ao parceiro, ele valida online.</p>
-    <p><strong>3. Posso pedir reembolso?</strong><br>Depende das regras do parceiro.</p>
+    <h2>Perguntas Frequentes</h2>
+
+    <p><strong>1. Quando recebo o meu voucher?</strong><br>
+    O voucher é enviado automaticamente para o seu email logo após a compra.</p>
+
+    <p><strong>2. Como utilizo o voucher?</strong><br>
+    Basta apresentá-lo ao parceiro no dia da experiência. Ele valida o voucher online no sistema VoucherHub.</p>
+
+    <p><strong>3. Posso pedir reembolso?</strong><br>
+    As políticas de reembolso variam consoante o parceiro. Consulte diretamente o parceiro para mais informações.</p>
   `;
 
   const contentContact = `
-    <h2>Contato</h2>
-    <p>Para qualquer dúvida, fale conosco:</p>
+    <h2>Contacto</h2>
+    <p>Tem alguma dúvida? Estamos aqui para ajudar.</p>
     <p><strong>Email:</strong> <a href="mailto:info@voucherhub.pt">info@voucherhub.pt</a></p>
   `;
 
   const contentTerms = `
-    <h2>Termos de Uso</h2>
-    <p>O VoucherHub atua como intermediário na venda de vouchers de desconto.</p>
-    <p>Os serviços são executados pelos parceiros oficiais.</p>
-    <p>O uso do site implica concordância com estes termos.</p>
+    <h2>Termos de Utilização</h2>
+    <p>O VoucherHub atua como intermediário digital na venda de vouchers de desconto.</p>
+    <p>A prestação do serviço é integralmente da responsabilidade dos parceiros.</p>
+    <p>Ao utilizar este site, concorda com estes termos e condições.</p>
   `;
 
   // Eventos do footer
@@ -490,6 +532,7 @@
   document.querySelector('[data-i18n="footer.contact"]').addEventListener("click", () => openModal(contentContact));
   document.querySelector('[data-i18n="footer.terms"]').addEventListener("click", () => openModal(contentTerms));
 </script>
+
 
   
 </body>
