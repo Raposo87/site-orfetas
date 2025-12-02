@@ -6,7 +6,7 @@
     "hero": {
       "badge": "Exclusive Vouchers",
       "title": "Discover Portugal with <span class='highlight'>Amazing Discounts</span>",
-      "subtitle": "Authentic experiences in and around Lisbon with exclusive promotional vouchers. Choose your adventure and save!",
+      "subtitle": "Authentic experiences in Lisbon and surrounding regions with exclusive promotional vouchers. Choose your adventure and save!",
       "avgDiscount": "Average Discount",
       "happyCustomers": "Happy Customers"
     },
@@ -18,7 +18,7 @@
       "fashionBrand": "Fashion Brand",
       "kitesurfSchools": "Kitesurf Schools",
       "quadBikeTour": "Quad Bike Tour",
-      "driverGuide": "Guide and Driver Tour",
+      "driverGuide": "Guide & Driver Tour",
       "wellnessTherapies": "Natural & Holistic Therapies",
       "save": "Save",
       "seeSchools": "See schools on sale",
@@ -33,13 +33,13 @@
       "step1Title": "Choose a Category",
       "step1Text": "Explore the categories and find the perfect experience or service for you.",
       "step2Title": "Purchase Your Discount Voucher",
-      "step2Text": "On the desired experience page, purchase the discount voucher. We process your payment securely.",
+      "step2Text": "On the page of the desired experience, purchase the discount voucher. We process your payment securely.",
       "step3Title": "Receive and Use the Voucher",
-      "step3Text": "Your discount voucher will be sent **immediately via email**. Contact the partner for further details or visit the location with the voucher in hand and enjoy your experience! All instructions will be detailed in the email.",
+      "step3Text": "Your discount voucher will be sent **immediately via email**. Contact the partner for details or visit the location with the voucher in hand and enjoy your experience! All instructions will be included in the email.",
       "safetyNote": "Your safety is our priority. All payments are processed by secure platforms. Keep your voucher safe."
     },
     "footer": {
-      "description": "Exclusive vouchers for the best experiences in Portugal, enjoy the best, you deserve it!",
+      "description": "Exclusive vouchers for the best experiences in Portugal — enjoy the best, you deserve it!",
       "experiences": "Experiences",
       "waterSports": "Water Sports",
       "adventure": "Adventure",
@@ -51,7 +51,7 @@
       "contact": "Contact",
       "terms": "Terms of Use",
       "copyright": "All rights reserved.",
-      "disclaimer": "Promotional codes are valid only on official partner websites."
+      "disclaimer": "Promotional codes are valid only on the official partner websites listed."
     },
     "buttons": {
       "revealCode": "Reveal Code",
@@ -79,58 +79,58 @@
       "badge": "Ofertas por Tempo Limitado"
     },
     "hero": {
-      "badge": "Vouches Exclusivos",
+      "badge": "Vouchers Exclusivos",
       "title": "Descubra Portugal com <span class='highlight'>Descontos Incríveis</span>",
-      "subtitle": "Experiências autênticas em Lisboa e arredores com vouchers promocionais exclusivos. Econonomize!",
+      "subtitle": "Experiências autênticas em Lisboa e arredores com vouchers promocionais exclusivos. Poupe já!",
       "avgDiscount": "Desconto Médio",
       "happyCustomers": "Clientes Satisfeitos"
     },
     "experiences": {
       "title": "Experiências com <span class='highlight-orange'>Descontos Exclusivos</span>",
-      "subtitle": "Clique em uma categoria para ver suas promoções",
+      "subtitle": "Carregue numa categoria para ver as suas promoções",
       "surfSchools": "Escolas de Surf",
       "yogaStudios": "Estúdios de Yoga",
       "fashionBrand": "Marca / Moda",
       "kitesurfSchools": "Escolas de Kitesurf",
-      "quadBikeTour": "Passeio de Quadriciclo",
-      "driverGuide": "Tour Guia e Motorista",
+      "quadBikeTour": "Passeio de Moto4",
+      "driverGuide": "Tour com Guia e Motorista",
       "wellnessTherapies": "Terapias Naturais e Holísticas",
-      "save": "Economize",
-      "seeSchools": "Ver escolas em promoção",
-      "seeStudios": "Ver estúdios em promoção",
-      "seeTours": "Ver passeios em promoção",
-      "seeBrands": "Ver marcas em promoção",
-      "seeTherapies": "Ver terapias em promoção"
+      "save": "Poupe",
+      "seeSchools": "Ver escolas com desconto",
+      "seeStudios": "Ver estúdios com desconto",
+      "seeTours": "Ver tours com desconto",
+      "seeBrands": "Ver marcas com desconto",
+      "seeTherapies": "Ver terapias com desconto"
     },
     "howItWorks": {
       "title": "Como <span class='highlight-orange'>Funciona?</span>",
       "subtitle": "Simples e seguro em 3 passos",
       "step1Title": "Escolha a categoria",
-      "step1Text": "Explore as categorias e encontre a experiência ou serviço perfeito para você.",
-      "step2Title": "Adquira seu Desconto",
-      "step2Text": "Na página da experiência desejada, efetue a compra do desconto. Processamos seu pagamento de forma segura.",
-      "step3Title": "Receba e Use o Voucher",
-      "step3Text": "O seu voucher de desconto será enviado **imediatamente por email**. Entre em contato com o parceiro para melhores detlahes ou vá até o local com o voucher em mãos e desfrute da sua experiência! Todas as instruções estarão detalhadas no email.",
-      "safetyNote": "Sua segurança é nossa prioridade. Todos os pagamentos são processados por plataformas seguras. Mantenha seu voucher seguro."
+      "step1Text": "Explore as categorias e encontre a experiência ou serviço ideal para si.",
+      "step2Title": "Adquira o seu Voucher de Desconto",
+      "step2Text": "Na página da experiência desejada, adquira o voucher. O seu pagamento será processado com total segurança.",
+      "step3Title": "Receba e Utilize o Voucher",
+      "step3Text": "O seu voucher será enviado **imediatamente por email**. Contacte o parceiro para combinar detalhes ou apresente-o no local e desfrute da sua experiência! Todas as instruções serão enviadas por email.",
+      "safetyNote": "A sua segurança é a nossa prioridade. Todos os pagamentos são processados por plataformas seguras. Mantenha o seu voucher protegido."
     },
     "footer": {
-      "description": "Vouchers exclusivos para as melhores experiências em Portugal, desfrute do melhor, você merece!",
+      "description": "Vouchers exclusivos para as melhores experiências em Portugal — aproveite, porque merece!",
       "experiences": "Experiências",
-      "waterSports": "Esportes Aquáticos",
+      "waterSports": "Desportos Aquáticos",
       "adventure": "Aventura",
       "culture": "Cultura e História",
       "gastronomy": "Gastronomia",
-      "support": "Suporte",
+      "support": "Apoio",
       "howItWorks": "Como Funciona",
       "faq": "FAQ",
-      "contact": "Contato",
-      "terms": "Termos de Uso",
+      "contact": "Contacto",
+      "terms": "Termos de Utilização",
       "copyright": "Todos os direitos reservados.",
-      "disclaimer": "Os códigos promocionais são válidos apenas nos sites oficiais dos parceiros indicados."
+      "disclaimer": "Os códigos promocionais são válidos apenas nos sites oficiais dos parceiros listados."
     },
     "buttons": {
       "revealCode": "Revelar Código",
-      "goToSite": "Ir para Site Oficial",
+      "goToSite": "Ir para o Site Oficial",
       "copyCode": "Copiar Código"
     },
     "toast": {
@@ -141,11 +141,11 @@
       "category": "Categoria",
       "home": "Início",
       "discountCenter": "Centro de Descontos",
-      "loading": "Carregando ofertas…",
+      "loading": "A carregar ofertas…",
       "offers": "oferta",
       "offersPlural": "ofertas",
       "notFound": "Não encontrado",
-      "nonExistent": "Modalidade inexistente."
+      "nonExistent": "Categoria inexistente."
     }
   }
 }
