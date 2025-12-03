@@ -66,13 +66,17 @@
   }
   </script>
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8PZ7RNGLVL"></script>
-  <script>
+  <script 
+  data-src="https://www.googletagmanager.com/gtag/js?id=G-8PZ7RNGLVL" 
+  data-cookie-category="statistics"
+  async
+></script>
+<script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-8PZ7RNGLVL');
-  </script>
+</script>
 
   <script type="application/ld+json">
 {
@@ -550,6 +554,19 @@ type="text/javascript"></script>
   document.querySelector('[data-i18n="footer.terms"]').addEventListener("click", () => openModal(contentTerms));
 </script>
 
+<div id="cookie-banner" style="display:none;">
+    <p data-i18n="cookies.text">
+        Utilizamos cookies para melhorar a sua experiência. Ao continuar a navegar, aceita o uso de cookies.
+    </p>
+    <div class="cookie-buttons">
+        <button id="accept-cookies" class="btn-cookie-accept" data-i18n="cookies.accept">
+            Aceitar Todos
+        </button>
+        <button id="customize-cookies" class="btn-cookie-customize" data-i18n="cookies.customize">
+            Personalizar
+        </button>
+    </div>
+</div>
 
   
 </body>

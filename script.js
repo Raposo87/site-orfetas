@@ -409,3 +409,59 @@ class VoucherhubApp {
 
 // ===== INICIALIZAÇÃO =====
 window.voucherhubApp = new VoucherhubApp();
+
+// Função para carregar scripts externos (como Google Analytics)
+function loadScripts(category) {
+    document.querySelectorAll(`script[data-cookie-category="${category}"]`).forEach(script => {
+        // Cria um novo elemento script para forçar o carregamento
+        const newScript = document.createElement('script');
+        newScript.src = script.getAttribute('data-src'); // Usa 'data-src'
+        // Copia outros atributos como 'async' ou 'defer' se necessário
+        
+        // Remove o script temporário e adiciona o script real
+        script.parentNode.replaceChild(newScript, script);
+    });
+}
+
+// --------------------COOKIE---------------------------------
+// 1. Verificar Consentimento
+// -----------------------------------------------------
+function checkCookieConsent() {
+    const consent = localStorage.getItem('cookieConsent');
+    const banner = document.getElementById('cookie-banner');
+
+    if (consent) {
+        banner.style.display = 'none';
+        // Se o consentimento for 'accepted', carrega estatísticas/marketing
+        if (consent === 'accepted') {
+            loadScripts('statistics');
+            loadScripts('marketing');
+        }
+        // Nota: Para ser totalmente GDPR compliant, 'accepted' deveria carregar apenas o que foi permitido.
+        // Neste exemplo simplificado, 'accepted' carrega tudo.
+    } else {
+        // Se não houver consentimento, mostra o banner
+        banner.style.display = 'flex';
+    }
+}
+
+// -----------------------------------------------------
+// 2. Eventos do Banner
+// -----------------------------------------------------
+document.addEventListener('DOMContentLoaded', () => {
+    checkCookieConsent();
+
+    // Aceitar Todos
+    document.getElementById('accept-cookies').addEventListener('click', () => {
+        localStorage.setItem('cookieConsent', 'accepted');
+        document.getElementById('cookie-banner').style.display = 'none';
+        loadScripts('statistics');
+        loadScripts('marketing');
+    });
+
+    // Personalizar (Neste exemplo, apenas fecha e assume 'necessário', mas numa solução real abriria um modal)
+    document.getElementById('customize-cookies').addEventListener('click', () => {
+        alert("A personalização seria implementada aqui (modal com checkboxes). Por enquanto, aceitamos apenas os essenciais.");
+        // Implementar lógica de modal de personalização aqui
+    });
+});
