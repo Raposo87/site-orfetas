@@ -178,19 +178,47 @@
 </head>
 <body>
 
-  <div class="validate-card">
-    <div class="logo">VoucherHub</div>
-    <h1 id="status-code">VOUCHER ...</h1>
-    <p id="status-message" class="status loading">A carregar status...</p>
-    <p id="status-product-name" style="color: var(--gray-600); font-size: 16px; margin-top: -10px;"></p>
+      <div class="validate-card">
+      <div class="logo">VoucherHub</div>
+      <h1 id="status-code">VOUCHER ...</h1>
 
-    <div id="pin-section" class="hidden">
-      <hr style="margin: 1.5rem 0; border: 0; border-top: 1px solid var(--gray-200);">
-      <p style="margin-bottom: 1rem; font-weight: 500;">Insira o PIN do parceiro para validar o uso:</p>
-      <input type="password" id="pin-input" placeholder="PIN Secreto" maxlength="4" style="text-align: center; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: var(--radius-md); width: 100%; max-width: 150px; font-size: 1.2rem;">
-      <button id="use-btn" class="btn btn-primary" style="margin-top: 1rem;">✅ Validar Voucher</button>
+      <p id="status-message"
+         class="status loading"
+         data-i18n="validate.loading">
+        A carregar status...
+      </p>
+
+      <p id="status-product-name"
+         style="color: var(--gray-600); font-size: 16px; margin-top: -10px;"></p>
+
+      <div id="pin-section" class="hidden">
+        <hr style="margin: 1.5rem 0; border: 0; border-top: 1px solid var(--gray-200);">
+
+        <p style="margin-bottom: 1rem; font-weight: 500;"
+           data-i18n="validate.pinInstruction">
+          Insira o PIN do parceiro para validar o uso:
+        </p>
+
+        <input
+          type="password"
+          id="pin-input"
+          data-i18n-placeholder="validate.pinPlaceholder"
+          placeholder="PIN Secreto do Parceiro"
+          style="padding: 0.5rem; border: 1px solid var(--gray-300); border-radius: var(--radius-md); width: 100%; max-width: 150px; font-size: 1.2rem;"
+        >
+
+        <button
+          id="use-btn"
+          class="btn btn-primary"
+          style="margin-top: 1rem;"
+          data-i18n="validate.validateButton">
+          ✅ Validar Voucher
+        </button>
+      </div>
     </div>
-  </div>
+
+    <script src="i18n.js" defer></script>
+
 
   <script>
     // URL base da sua API

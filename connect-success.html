@@ -51,18 +51,27 @@
 </head>
 <body>
 
-    <div class="success-page">
-        <div class="success-icon">✅</div>
-        <h1>Registo Stripe Concluído com Sucesso!</h1>
-        <p>
-            Parabéns! Os dados da sua conta de repasses (IBAN e informações fiscais) foram enviados e verificados pela Stripe. 
-            A sua parceria com a VoucherHub está agora pronta para receber pagamentos de vouchers.
-        </p>
-        <p>
-            Você pode fechar esta página ou voltar ao site.
-        </p>
-        <a href="index.html" class="button-home">Voltar à Página Inicial</a>
-    </div>
+  <div class="success-page">
+    <div class="success-icon">✅</div>
 
+    <h1 data-i18n="connectSuccess.heading">
+      Registo Stripe Concluído com Sucesso!
+    </h1>
+
+    <p data-i18n="connectSuccess.message1">
+      Parabéns! Os dados da sua conta de repasses (IBAN e informações fiscais) foram enviados e verificados pela Stripe. 
+      A sua parceria com a VoucherHub está agora pronta para receber pagamentos de vouchers.
+    </p>
+
+    <p data-i18n="connectSuccess.message2">
+      Você pode fechar esta página ou voltar ao site.
+    </p>
+
+    <a href="index.html" class="button-home" data-i18n="connectSuccess.backHome">
+      Voltar à Página Inicial
+    </a>
+  </div>
+
+  <script src="i18n.js" defer></script>
 </body>
 </html>

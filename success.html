@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt">
+< lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,16 +38,25 @@
 </head>
 <body>
 
-    <div class="success-page">
-        <div class="success-icon">🎉</div>
-        <h1>Compra Realizada com Sucesso!</h1>
-        <p>
-            Obrigado pela sua compra. O seu voucher foi processado e será enviado para o seu email nos próximos momentos. 
-            Verifique a sua caixa de entrada (e a pasta de SPAM).
-        </p>
-        <a href="index.html" class="button-home">Voltar à Página Inicial</a>
-        
-        </div>
+  <div class="success-page">
+    <div class="success-icon">🎉</div>
 
+    <h1 data-i18n="success.heading">
+      Compra Realizada com Sucesso!
+    </h1>
+
+    <p data-i18n="success.message">
+      Obrigado pela sua compra. O seu voucher foi processado e será enviado para o seu email nos próximos momentos. 
+      Verifique a sua caixa de entrada (e a pasta de SPAM).
+    </p>
+
+    <a href="index.html" class="button-home" data-i18n="success.backHome">
+      Voltar à Página Inicial
+    </a>
+  </div>
+
+  <!-- Ativar o sistema de traduções nesta página -->
+  <script src="i18n.js" defer></script>
 </body>
+
 </html>

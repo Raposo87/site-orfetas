@@ -72,8 +72,37 @@
       "offersPlural": "offers",
       "notFound": "Not found",
       "nonExistent": "Non-existent category."
+    },
+        "success": {
+      "heading": "Purchase completed successfully!",
+      "message": "Thank you for your purchase. Your voucher has been processed and will be sent to your email shortly. Please check your inbox (and your spam folder).",
+      "backHome": "Back to homepage"
+    },
+        "connectSuccess": {
+      "heading": "Stripe registration completed successfully!",
+      "message1": "Congratulations! Your payout account data (IBAN and tax information) has been sent and verified by Stripe. Your partnership with VoucherHub is now ready to receive voucher payments.",
+      "message2": "You can close this page or go back to the website.",
+      "backHome": "Back to homepage"
+    },
+        "validate": {
+      "loading": "Loading voucher status...",
+      "pinInstruction": "Enter the partner PIN to validate usage:",
+      "pinPlaceholder": "Partner secret PIN",
+      "validateButton": "✅ Validate voucher"
+    },
+        "partnerPage": {
+      "navBadge": "Featured offers",
+      "location": "Location",
+      "discount": "VoucherHub Discount",
+      "contact": "Contact",
+      "gallery": "Photo Gallery",
+      "seePhotos": "See experience photos"
     }
+
   },
+
+
+
 
   "pt": {
     "nav": {
@@ -148,6 +177,33 @@
       "offersPlural": "ofertas",
       "notFound": "Não encontrado",
       "nonExistent": "Categoria inexistente."
+    },
+        "success": {
+      "heading": "Compra Realizada com Sucesso!",
+      "message": "Obrigado pela sua compra. O seu voucher foi processado e será enviado para o seu email nos próximos momentos. Verifique a sua caixa de entrada (e a pasta de SPAM).",
+      "backHome": "Voltar à Página Inicial"
+    },
+        "connectSuccess": {
+      "heading": "Registo Stripe Concluído com Sucesso!",
+      "message1": "Parabéns! Os dados da sua conta de repasses (IBAN e informações fiscais) foram enviados e verificados pela Stripe. A sua parceria com a VoucherHub está agora pronta para receber pagamentos de vouchers.",
+      "message2": "Você pode fechar esta página ou voltar ao site.",
+      "backHome": "Voltar à Página Inicial"
+    },
+        "validate": {
+      "loading": "A carregar status...",
+      "pinInstruction": "Insira o PIN do parceiro para validar o uso:",
+      "pinPlaceholder": "PIN Secreto do Parceiro",
+      "validateButton": "✅ Validar Voucher"
+    },
+        "partnerPage": {
+      "navBadge": "Ofertas em Destaque",
+      "location": "Localização",
+      "discount": "Desconto VoucherHub",
+      "contact": "Contato",
+      "gallery": "Galeria de Fotos",
+      "seePhotos": "Ver Fotos da Experiência"
     }
+
+
   }
 }
