@@ -187,14 +187,39 @@ body {
 
 
 /* ===== HERO SECTION ===== */
+/* HERO COM VÍDEO */
 .hero {
   position: relative;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   overflow: hidden;
 }
+
+/* Vídeo */
+.hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  filter: brightness(0.55);
+}
+
+/* Conteúdo */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  padding: 20px;
+  max-width: 900px;
+}
+
 
 .hero-background {
   position: absolute;

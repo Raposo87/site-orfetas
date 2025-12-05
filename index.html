@@ -142,7 +142,12 @@
        Deve ser chamativo e contextualizar o site para o utilizador.
   -->
   <section class="hero">
-    <div class="hero-background"></div>
+
+    <!-- 🎥 Vídeo de fundo via URL externa -->
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="https://www.pexels.com/pt-br/download/video/4823566/" type="video/mp4">
+    </video>
+
     <div class="hero-content">
       <div class="hero-badge">
         <i class="fas fa-star"></i>
@@ -157,21 +162,11 @@
         Experiências autênticas em Lisboa e arredores com códigos promocionais exclusivos. Poupe já!
       </p>
 
-      <div class="hero-stats">
-        <!-- estatísticas podem ser ativadas depois, se desejar -->
-        <!--
-        <div class="stat">
-          <span class="stat-number">20%</span>
-          <span class="stat-label" data-i18n="hero.avgDiscount">Desconto Médio</span>
-        </div>
-        <div class="stat">
-          <span class="stat-number">1000+</span>
-          <span class="stat-label" data-i18n="hero.happyCustomers">Clientes Satisfeitos</span>
-        </div>
-        -->
-      </div>
+      <div class="hero-stats"></div>
     </div>
+
   </section>
+
 
 
     <!-- Seção experiências (cards)
