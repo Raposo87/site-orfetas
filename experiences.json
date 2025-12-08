@@ -50,6 +50,53 @@
           ],
           "story_short": "A Surf Wave Lisbon conecta pessoas ao mar através do surf.",
           "story_full": "Fundada em 2018, a Surf Wave Lisbon nasceu com a missão de aproximar pessoas do oceano e proporcionar experiências únicas. Com instrutores locais apaixonados, a escola oferece aulas seguras, divertidas e adaptadas a todos os níveis de experiência."
+        },
+
+         {
+          "slug": "azores-surf-club",
+          "name": "Azonda Surf Club",
+          "location": "Classico By Olivier",
+          "price_original": "€40",
+          "price_discount": "€32",
+          "savings": "Economize €8",
+          "discount_label": "20% OFF",
+          "discount_percent": 20,
+          "code": "",
+          "official_url": "https://surfwavelisbon.com/",
+          "email": "ian.fcosta@icloud.com",
+          "phone": "+351 913 545 440",
+          "instagram": "https://www.instagram.com/azonda_surfclub/",
+          "images": [
+            "https://static.wixstatic.com/media/0094e6_ca2f2a80506447d3a29a375a36807b13~mv2.jpeg/v1/fill/w_676,h_500,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/0094e6_ca2f2a80506447d3a29a375a36807b13~mv2.jpeg",
+            "https://static.wixstatic.com/media/6ad535_d1003dd2897d4b3a82efcebc3be52655~mv2.jpeg/v1/fill/w_611,h_703,al_c,q_85,enc_avif,quality_auto/6ad535_d1003dd2897d4b3a82efcebc3be52655~mv2.jpeg",
+            "https://static.wixstatic.com/media/e384d8_3e8f9c2824fc4c2e809559de5ced9f04~mv2.jpeg/v1/fill/w_676,h_731,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/e384d8_3e8f9c2824fc4c2e809559de5ced9f04~mv2.jpeg",
+            "https://static.wixstatic.com/media/6ad535_6b69035bf0d84da69ede3594dd7e5509~mv2.jpg/v1/fill/w_676,h_651,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/6ad535_6b69035bf0d84da69ede3594dd7e5509~mv2.jpg"
+          ],
+          "icon": "fas fa-water",
+          "offers": [
+            {
+              "title": "Aulas de surf",
+              "text": "",
+              "price": 40.00
+            },
+            {
+              "title": "Aulas particulares de surf",
+              "text": "",
+              "price": 80.00
+            },
+            {
+              "title": "Pack 5 aulas (25€ Cada)",
+              "text": "",
+              "price": 150.00
+            },
+            {
+              "title": "Pack 10 aulas (20€ Cada)",
+              "text": "",
+              "price": 250.00
+            }
+          ],
+          "story_short": "Azonda Surf Club onde a paixão pelo surf o encontra!",
+          "story_full": "Fundado por surfistas profissionais, o Azonda Surf Club nasceu com o objetivo de compartilhar nossa maior paixão: o surf. Este esporte incrível é mais do que uma atividade, é um estilo de vida, e queremos dividir com você a experiência de anos dedicados às ondas. Aqui, acreditamos que o surf é para todos – desde iniciantes curiosos até aqueles que desejam se aperfeiçoar. Nosso maior prazer é ensinar, inspirar e ajudar você a criar memórias inesquecíveis no mar. Venha viver a essência do surf com quem realmente entende e ama o esporte. No Azonda Surf Club, você não apenas aprende a surfar, mas também descobre uma nova forma de se conectar com a natureza e com você mesmo."
         }
       ]
     },
