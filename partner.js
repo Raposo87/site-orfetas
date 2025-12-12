@@ -246,6 +246,7 @@
           : '<i class="fas fa-chevron-up"></i> Mostrar menos';
       });
     }
+    
 
     // === GALERIA (SEU CÓDIGO ORIGINAL MANTIDO) ===
     const gallery = document.getElementById("partner-gallery");
@@ -272,6 +273,20 @@
           : '<i class="fas fa-camera"></i> Ver Fotos da Experiência';
       });
     }
+
+    // ============================
+    // Renderiza "O que está incluído"
+    // ============================
+    const includesSection = document.getElementById("includes-section");
+    const includesList = document.getElementById("includes-list");
+
+    if (partner.includes && Array.isArray(partner.includes) && partner.includes.length > 0) {
+      includesSection.style.display = "block";
+      includesList.innerHTML = partner.includes
+        .map(item => `<li>${item}</li>`)
+        .join("");
+    }
+
 
     // === OFERTAS (MODIFICADO PARA INCLUIR O NOVO CLICK) ===
     const offersContainer = document.getElementById("partner-offers-grid");
