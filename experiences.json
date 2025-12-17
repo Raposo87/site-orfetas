@@ -90,6 +90,7 @@
         }
       ]
     },
+
     {
       "slug": "moda",
       "title": "Moda e Vestuário",
@@ -230,9 +231,55 @@
           ],
           "story_short": "O estúdio Yoga Kula nasceu com o propósito de unir corpo, mente e comunidade.",
           "story_full": "O estúdio Yoga Kula nasceu com o propósito de unir corpo, mente e comunidade. Oferece aulas para todos os níveis, workshops e retiros que fortalecem o equilíbrio e o autoconhecimento."
+        },
+        {
+          "slug": "pranavida-yoga",
+          "name": "PranaVida Yoga",
+          "location": "Rua General Morais Sarmento, Nº60, Lisboa",
+          "price_original": "€15",
+          "price_discount": "€12,75",
+          "savings": "Economize €2,25",
+          "discount_label": "15% OFF",
+          "discount_percent": 15,
+          "code": "",
+          "official_url": "https://raposo87.github.io/susy-yoga/",
+          "email": "pranavidaa@gmail.com",
+          "phone": "(+351)933782610",
+          "instagram": "https://www.instagram.com/pranavida.yoga",
+          "images": [
+            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1742932207/logoSemFundo_mrfs2z.png",
+            "https://i.pinimg.com/736x/de/3b/bd/de3bbd149f05c7e75a92a2e40a69a49f.jpg",
+            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1759782464/IMG-20250929-WA0001_r45exm.jpg"
+          ],
+          "icon": "fas fa-spa",
+          "offers": [
+            {
+              "title": "Aula avulsa",
+              "text": "Perfeito para experimentar a prática ou ter um encontro pontual.",
+              "price": 20.00
+            },
+            {
+              "title": "Pack 4 aulas",
+              "text": "Encontros regulares para iniciar uma rotina de cuidado.",
+              "price": 60.00
+            },
+            {
+              "title": "Pack 8 aulas",
+              "text": "Para quem deseja se comprometer com a prática ao longo do mês.",
+              "price": 100.00
+            },
+            {
+              "title": "Presenciais particular / hora (até 10km)",
+              "text": "Data e local a combinar.",
+              "price": 45.00
+            }
+          ],
+          "story_short": "Quem sou eu",
+          "story_full": "Sou Susy Santos, instrutora de Yoga, Meditação e Respiração consciente. Acredito que, através de práticas simples e consistentes, podemos trazer mais presença, leveza e equilíbrio para o dia a dia. Vamos trilhar esse caminho juntas(os)?"
         }
       ]
     },
+    
     {
       "slug": "wellness",
       "title": "Terapias Naturais e Holísticas",
