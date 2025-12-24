@@ -409,6 +409,64 @@
         }
 
       ]
+    },
+    {
+  "slug": "tour-aquatico",
+  "title": "Tour Aquático",
+  "badge": "Ocean Adventures",
+  "description": "Explore o rios e a costa portuguesa com passeios de barco, observação de golfinhos e atividades náuticas.",
+  "partners": [
+    {
+      "slug": "Giravela-Eco-Sailing",
+      "name": "Gira Vela Eco Sailing",
+      "location": "Doca da Marinha - Av. Infante Dom Henrique, S/N - Baixa - Lisboa, Lisbon, Portugal",
+      "price_original": "349,99€",
+      "price_discount": "314,91€",
+      "savings": "Poupa €34,99",
+      "discount_label": "10% OFF",
+      "discount_percent": 10,
+      "code": "",
+      "official_url": "https://giravelaecosailing.com/",
+      "email": "contacto@giravelaecosailing.com",
+      "phone": "+351 911 871 640",
+      "instagram": "https://www.instagram.com/giravelaecosailing/",
+      "images": [
+        "https://giravelaecosailing.com/wp-content/uploads/2025/04/5-1024x576.png",
+        "https://giravelaecosailing.com/wp-content/uploads/2025/04/4-1024x576.png",
+        "https://giravelaecosailing.com/wp-content/uploads/2025/08/2-1.png"
+      ],
+      "icon": "fas fa-ship",
+      "offers": [
+        {
+          "title": "Passeio Privado – Até 10 pessoas",
+          "description": "Duração: 2h30<br>Inclui: bebida de boas-vindas, snacks e ambientedescontraído.<br>Perfeito para aniversários, despedidas de solteiro ou eventos de equipa.",
+          "price": 349.99
+        },
+        {
+          "title": "Passeio Privado – 4 pessoas",
+          "description": "Duração: 2h30 <br>Inclui: bebida de boas-vindas (espumante ou sumo), snacks, vistas únicas de Lisboa.<br>Ideal para famílias pequenas, casais ou grupos reduzidos.",
+          "price": 299.99
+        },
+        {
+          "title": "Yoga & Meditação ao Nascer do Sol – Até 10 pessoas",
+          "description": "Duração: 2h<br>Inclui: instrutor certificado, chá quente, mini tostas, mantas, música relaxante e vistas deslumbrantes do amanhecer sobre Lisboa.<br>Uma experiência única para revitalizar corpo e mente.",
+          "price": 450.00
+        },
+         {
+          "title": "Passeio ao Pôr do Sol no Tejo – Até 10 pessoas",
+          "description": "Duração: 2h30<br>Inclui: bebida de boas-vindas, snacks e fotografias para eternizar o momento.Desfrute da luz dourada a pintar Lisboa, passando por monumentos icónicos enquanto o sol se põe.",
+          "price": 450.00
+        },
+        {
+          "title": "Réveillon a Bordo – Passeio de Veleiro no Rio Tejo (até 10 pessoas)",
+          "description": "Embarque na Marina do Parque das Nações às 22h00 e desfrute de um passeio exclusivo pelo rio Tejo até à 1h30 da manhã, com tudo o que precisa para uma noite mágica:<br>Inclui:🥂 Espumante para o brinde da meia-noite,🍷 Cerveja, vinho branco, whiskey Ballantine’s 7 anos, gin Beefeater, petiscos, tripulação, combustível e seguros 🍽️ Tábuas de queijos e enchidos, frutos secos e bolo-rei/rainha, 🌊 Vista privilegiada para os fogos sobre a cidade",
+          "price": 1200
+        }
+      ],
+      "story_short": "Escolha o passeio ideal para sua próxima aventura",
+      "story_full": "Descubra Lisboa a partir do Rio Tejo num passeio de veleiro privado, com direito a bebida de boas-vindas, snacks e fotografias. Uma experiência única para partilhar com quem mais gosta."
     }
   ]
+}
+]
 }

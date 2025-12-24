@@ -1,23 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://yourdomain.com/</loc>
+    <loc>https://voucherhub.pt/</loc>
+    <lastmod>2025-11-26</lastmod>
     <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://voucherhub.pt/experience.html?slug=surf</loc>
+    <lastmod>2025-12-24</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yourdomain.com/experience/surf</loc>
+    <loc>https://voucherhub.pt/experience.html?slug=kitesurf</loc>
+    <lastmod>2025-12-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yourdomain.com/experience/kitesurf</loc>
+    <loc>https://voucherhub.pt/experience.html?slug=wellness</loc>
+    <lastmod>2025-12-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yourdomain.com/experience/quad</loc>
+    <loc>https://voucherhub.pt/experience.html?slug=tour</loc>
+    <lastmod>2025-12-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yourdomain.com/experience/walking-tour</loc>
+    <loc>https://voucherhub.pt/experience.html?slug=quad</loc>
+    <lastmod>2025-12-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yourdomain.com/experience/yoga</loc>
+    <loc>https://voucherhub.pt/experience.html?slug=yoga</loc>
+    <lastmod>2025-12-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://voucherhub.pt/experience.html?slug=bike</loc>
+    <lastmod>2025-12-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+   <url>
+    <loc>https://voucherhub.pt/experience.html?slug=moda</loc>
+    <lastmod>2025-12-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+  <loc>https://voucherhub.pt/experience.html?slug=tour-aquatico</loc>
+  <lastmod>2025-12-24</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
 </urlset>
