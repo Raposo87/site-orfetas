@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>VoucherHub - Admin</title>
+    <style>
+        body { font-family: sans-serif; max-width: 500px; margin: 50px auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px; }
+        input, button { width: 100%; padding: 10px; margin: 10px 0; display: block; }
+        button { background: #6772e5; color: white; border: none; cursor: pointer; font-weight: bold; }
+        .result { margin-top: 20px; padding: 15px; background: #f4f4f4; display: none; word-break: break-all; }
+    </style>
+</head>
+<body>
+    <h2>Novo Parceiro</h2>
+    <form id="adminForm">
+        <input type="text" id="name" placeholder="Nome do Parceiro (Ex: Escola Surf)" required>
+        <input type="text" id="slug" placeholder="Slug (Ex: escola-surf)" required>
+        <input type="email" id="email" placeholder="Email do Parceiro" required>
+        <input type="text" id="location" placeholder="Localização">
+        <input type="number" id="price" placeholder="Preço Original (em cêntimos: 3000 = 30€)">
+        <button type="submit" id="btn">Criar e Gerar Link</button>
+    </form>
+
+    <div id="result" class="result"></div>
+
+    <script>
+        document.getElementById('adminForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('btn');
+            const resDiv = document.getElementById('result');
+            btn.innerText = "Processando...";
+            
+            const data = {
+                name: document.getElementById('name').value,
+                slug: document.getElementById('slug').value,
+                email: document.getElementById('email').value,
+                location: document.getElementById('location').value,
+                price_cents: document.getElementById('price').value
+            };
+
+            try {
+                // Substitua pela URL da sua Railway quando fizer deploy
+                const response = await fetch('http://localhost:3080/api/admin/setup-partner', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                
+                const res = await response.json();
+                
+                if(res.success) {
+                    resDiv.style.display = 'block';
+                    resDiv.innerHTML = `
+                        <p style="color:green"><b>Sucesso!</b></p>
+                        <p><b>PIN Gerado:</b> ${res.pin_gerado}</p>
+                        <p><b>Link Stripe:</b> <a href="${res.onboarding_url}" target="_blank">Clique aqui para abrir</a></p>
+                        <p>Copie o link acima e envie ao parceiro.</p>
+                    `;
+                } else {
+                    alert("Erro: " + res.error);
+                }
+            } catch (err) {
+                alert("Erro na conexão");
+            } finally {
+                btn.innerText = "Criar e Gerar Link";
+            }
+        };
+    </script>
+</body>
+</html>
