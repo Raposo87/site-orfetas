@@ -23,6 +23,17 @@
 
     <div id="result" class="result"></div>
 
+    <input type="password" id="adminPass" placeholder="Senha de Acesso" required>
+
+<script>
+    // No JavaScript, dentro do 'data'
+    const data = {
+        name: document.getElementById('name').value,
+        // ... outros campos
+        password: document.getElementById('adminPass').value
+    };
+</script>
+
     <script>
         document.getElementById('adminForm').onsubmit = async (e) => {
             e.preventDefault();
@@ -40,7 +51,7 @@
 
             try {
                 // Substitua pela URL da sua Railway quando fizer deploy
-                const response = await fetch('http://localhost:3080/api/admin/setup-partner', {
+                const response = await fetch('voucherhub-backend-production.up.railway.app', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data)
