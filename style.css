@@ -1877,7 +1877,7 @@ a:focus {
     }
 }
 
-.search-wrapper { position: relative; width: 100%; max-width: 500px; margin: 20px auto; padding: 0 20px; z-index: 1000; }
+.search-wrapper { position: relative; width: 100%; max-width: 400px; margin: 20px auto; padding: 0 20px; z-index: 1000; }
 .search-container { display: flex; background: white; border: 2px solid #667eea; border-radius: 50px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
 #global-search-input { flex: 1; padding: 15px 25px; border: none; outline: none; font-size: 16px; }
 #global-search-btn { background: #667eea; color: white; border: none; padding: 0 25px; cursor: pointer; transition: 0.3s; }
