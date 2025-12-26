@@ -97,6 +97,13 @@
       "contact": "Contact",
       "gallery": "Photo Gallery",
       "seePhotos": "See experience photos"
+    },
+        "search": {
+      "placeholder": "Search the entire site...",
+      "resultsTitle": "Search Results",
+      "noResults": "No experiences found...",
+      "close": "Close X",
+      "viewBtn": "View"
     }
 
   },
@@ -202,8 +209,13 @@
       "contact": "Contato",
       "gallery": "Galeria de Fotos",
       "seePhotos": "Ver Fotos da Experiência"
-    }
-
-
+    },
+        "search": {
+      "placeholder": "Pesquisar em todo o site...",
+      "resultsTitle": "Resultados da Pesquisa",
+      "noResults": "Nenhuma experiência encontrada...",
+      "close": "Fechar X",
+      "viewBtn": "Ver"
   }
+}
 }
