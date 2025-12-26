@@ -1876,3 +1876,14 @@ a:focus {
         margin-top: 5px;
     }
 }
+
+.search-wrapper { position: relative; width: 100%; max-width: 500px; margin: 20px auto; padding: 0 20px; z-index: 1000; }
+.search-container { display: flex; background: white; border: 2px solid #667eea; border-radius: 50px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+#global-search-input { flex: 1; padding: 15px 25px; border: none; outline: none; font-size: 16px; }
+#global-search-btn { background: #667eea; color: white; border: none; padding: 0 25px; cursor: pointer; transition: 0.3s; }
+#global-search-btn:hover { background: #5a67d8; }
+
+/* Overlay de Resultados */
+.search-results-overlay { position: absolute; top: 110%; left: 20px; right: 20px; background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); padding: 20px; max-height: 500px; overflow-y: auto; }
+.results-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+#close-search { background: none; border: none; color: #ff4d4d; cursor: pointer; font-weight: bold; }

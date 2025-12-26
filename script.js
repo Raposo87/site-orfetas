@@ -465,3 +465,104 @@ document.addEventListener('DOMContentLoaded', () => {
         // Implementar lógica de modal de personalização aqui
     });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('global-search-input');
+    const resultsOverlay = document.getElementById('global-search-results');
+    const resultsGrid = document.getElementById('results-grid');
+    const closeBtn = document.getElementById('close-search');
+
+    // 1. Função para fechar a busca
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            resultsOverlay.style.display = 'none';
+            searchInput.value = '';
+        });
+    }
+
+    // 2. Escutar a digitação
+    if (searchInput) {
+        searchInput.addEventListener('input', async (e) => {
+            const term = e.target.value.toLowerCase();
+
+            // Só começa a buscar após 2 letras
+            if (term.length < 2) {
+                resultsOverlay.style.display = 'none';
+                return;
+            }
+
+            try {
+                // Carrega o arquivo JSON
+                const response = await fetch('experiences.json');
+                const data = await response.json();
+                
+                let allItems = [];
+
+                // EXPLORAÇÃO DO JSON: Navega em data.modes -> partners
+                if (data.modes && Array.isArray(data.modes)) {
+                    data.modes.forEach(mode => {
+                        if (mode.partners && Array.isArray(mode.partners)) {
+                            mode.partners.forEach(partner => {
+                                allItems.push({ 
+                                    ...partner, 
+                                    categoryTitle: mode.title 
+                                });
+                            });
+                        }
+                    });
+                }
+
+                // FILTRAGEM: Procura por Nome, Localização ou descrição
+                const filtered = allItems.filter(p => {
+                    const name = p.name ? p.name.toLowerCase() : "";
+                    const location = p.location ? p.location.toLowerCase() : "";
+                    const desc = p.description ? p.description.toLowerCase() : "";
+                    
+                    return name.includes(term) || location.includes(term) || desc.includes(term);
+                });
+
+                renderSearchResults(filtered);
+            } catch (err) {
+                console.error("Erro na busca global:", err);
+            }
+        });
+    }
+
+    // 3. Renderizar os resultados na tela
+    function renderSearchResults(items) {
+        if (!resultsGrid || !resultsOverlay) return;
+
+        resultsOverlay.style.display = 'block';
+        resultsGrid.innerHTML = '';
+
+        if (items.length === 0) {
+            resultsGrid.innerHTML = '<p style="padding:20px; color:#666;">Nenhuma experiência encontrada para este termo...</p>';
+            return;
+        }
+
+        items.forEach(item => {
+            // Pega a primeira imagem do array 'images' ou usa um fallback
+            const thumb = (item.images && item.images.length > 0) ? item.images[0] : 'favcon.png';
+            
+            const card = document.createElement('div');
+            card.className = 'search-item-row'; 
+            card.innerHTML = `
+                <div style="display:flex; align-items:center; gap:15px; padding:12px; border-bottom:1px solid #eee;">
+                    <img src="${thumb}" style="width:50px; height:50px; object-fit:cover; border-radius:8px;">
+                    <div style="flex:1;">
+                        <h4 style="margin:0; font-size:14px; color:#333;">${item.name}</h4>
+                        <div style="display:flex; gap:10px; align-items:center;">
+                            <small style="color:#667eea; font-weight:600;">${item.categoryTitle}</small>
+                            <small style="color:#999; font-size:11px;"><i class="fas fa-map-marker-alt"></i> ${item.location}</small>
+                        </div>
+                    </div>
+                    <div style="text-align:right;">
+                        <span style="display:block; color:#2d3748; font-weight:bold; font-size:12px;">${item.price_discount || ''}</span>
+                        <a href="partner.html?slug=${item.slug}" style="display:inline-block; margin-top:5px; background:#667eea; color:white; padding:5px 12px; border-radius:4px; text-decoration:none; font-size:11px; font-weight:600;">Ver</a>
+                    </div>
+                </div>
+            `;
+            resultsGrid.appendChild(card);
+        });
+    }
+});
