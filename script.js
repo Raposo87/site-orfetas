@@ -466,6 +466,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+
+// ===== BUSCA GLOBAL =====
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('global-search-input');
     const resultsOverlay = document.getElementById('global-search-results');
@@ -475,12 +477,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (closeBtn) {
         closeBtn.addEventListener('click', () => {
             resultsOverlay.style.display = 'none';
-            searchInput.value = '';
+            if(searchInput) searchInput.value = '';
         });
     }
 
     if (searchInput) {
-        searchInput.addEventListener('input', async (e) => {
+        let searchTimer;
+
+        searchInput.addEventListener('input', (e) => {
+            clearTimeout(searchTimer);
             const term = e.target.value.toLowerCase().trim();
 
             if (term.length < 2) {
@@ -488,88 +493,59 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            try {
-                const response = await fetch('experiences.json');
-                const data = await response.json();
-                
-                let allItems = [];
-
-                if (data.modes && Array.isArray(data.modes)) {
-                    data.modes.forEach(mode => {
-                        if (mode.partners && Array.isArray(mode.partners)) {
-                            mode.partners.forEach(partner => {
-                                allItems.push({ 
-                                    ...partner, 
-                                    categoryTitle: mode.title 
-                                });
-                            });
-                        }
-                    });
-                }
-
-                // --- LÓGICA DE BUSCA MELHORADA ---
-                const filtered = allItems.filter(p => {
-                    const name = p.name ? p.name.toLowerCase() : "";
-                    const location = p.location ? p.location.toLowerCase() : "";
+            searchTimer = setTimeout(async () => {
+                try {
+                    const response = await fetch('experiences.json');
+                    const data = await response.json();
                     
-                    // Extrai todos os títulos das experiências do parceiro para pesquisar neles
-                    let experiencesText = "";
-                    if (p.experiences && Array.isArray(p.experiences)) {
-                        experiencesText = p.experiences.map(exp => exp.title.toLowerCase()).join(" ");
+                    let allPartners = [];
+                    if (data.modes) {
+                        data.modes.forEach(mode => {
+                            if (mode.partners) {
+                                mode.partners.forEach(p => {
+                                    allPartners.push({ ...p, categoryTitle: mode.title });
+                                });
+                            }
+                        });
                     }
 
-                    // Sistema de Sinónimos para facilitar a vida do utilizador
-                    let searchPool = `${name} ${location} ${experiencesText}`;
-                    if (term.includes("bike")) searchPool += " bicicleta ciclismo";
-                    if (term.includes("passeio")) searchPool += " tour visita boat boat-tour";
-                    if (term.includes("bicicleta")) searchPool += " bike";
+                    // FILTRAGEM PRECISA
+                    const filtered = allPartners.filter(p => {
+                        const partnerName = (p.name || "").toLowerCase();
+                        const partnerLoc = (p.location || "").toLowerCase();
+                        
+                        // Captura os títulos de todas as experiências individuais deste parceiro
+                        const experiencesTitles = (p.experiences || []).map(exp => (exp.title || "").toLowerCase());
+                        
+                        // Lógica de Sinónimos para "bike" e "passeio"
+                        let searchTerms = [term];
+                        if (term === "bike" || term === "bicicleta") searchTerms = ["bike", "bicicleta", "ciclismo"];
+                        if (term === "passeio" || term === "passeios") searchTerms = ["passeio", "tour", "veleiro", "barco"];
 
-                    return searchPool.includes(term);
-                });
+                        // Verifica se QUALQUER um dos termos de busca bate com o nome, local ou QUALQUER título de experiência
+                        return searchTerms.some(t => 
+                            partnerName.includes(t) || 
+                            partnerLoc.includes(t) || 
+                            experiencesTitles.some(title => title.includes(t))
+                        );
+                    });
 
-                renderSearchResults(filtered);
+                    renderSearchResults(filtered);
 
-                // --- REGISTO PARA O SEU RELATÓRIO MENSAL ---
-                // Enviamos o que ele pesquisou e quantos resultados deu
-                registrarPesquisaBI(term, filtered.length);
-
-            } catch (err) {
-                console.error("Erro na busca global:", err);
-            }
+                } catch (err) {
+                    console.error("Erro na busca:", err);
+                }
+            }, 300);
         });
     }
 
-    async function registrarPesquisaBI(termo, total) {
-        try {
-            // Pegamos a localização pelo IP (opcional, pode remover se não quiser usar API externa agora)
-            const locRes = await fetch('https://ipapi.co/json/').catch(() => null);
-            const locData = locRes ? await locRes.json() : {};
-
-            const logData = {
-                termo: termo,
-                resultados: total,
-                cidade: locData.city || "Desconhecida",
-                pais: locData.country_name || "Desconhecido",
-                dispositivo: window.innerWidth < 768 ? "Mobile" : "Desktop"
-            };
-
-            // Envia para o seu backend na Railway (precisa criar a rota lá)
-            fetch('/api/admin/log-search', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(logData)
-            }).catch(() => {}); // Falha silenciosa para não atrapalhar o user
-            
-        } catch (e) { console.log("Erro ao logar BI"); }
-    }
-
     function renderSearchResults(items) {
-        if (!resultsGrid || !resultsOverlay) return;
+        if (!resultsGrid) return;
         resultsOverlay.style.display = 'block';
         resultsGrid.innerHTML = '';
 
         if (items.length === 0) {
-            resultsGrid.innerHTML = '<p style="padding:20px; color:#666; text-align:center;">Nenhuma experiência encontrada...</p>';
+            resultsGrid.innerHTML = '<p style="padding:20px; text-align:center; color:#666;">Nenhuma experiência encontrada...</p>';
             return;
         }
 
@@ -578,18 +554,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const card = document.createElement('div');
             card.innerHTML = `
                 <div style="display:flex; align-items:center; gap:15px; padding:12px; border-bottom:1px solid #eee;">
-                    <img src="${thumb}" style="width:55px; height:55px; object-fit:cover; border-radius:8px; border: 1px solid #eee;">
+                    <img src="${thumb}" style="width:50px; height:50px; object-fit:cover; border-radius:8px;">
                     <div style="flex:1;">
-                        <h4 style="margin:0; font-size:14px; color:#1a202c;">${item.name}</h4>
-                        <div style="display:flex; gap:8px; align-items:center; margin-top:3px;">
-                            <span style="background:#edf2f7; color:#4a5568; padding:2px 6px; border-radius:4px; font-size:10px; font-weight:600;">${item.categoryTitle}</span>
-                            <small style="color:#718096; font-size:11px;"><i class="fas fa-map-marker-alt"></i> ${item.location}</small>
+                        <h4 style="margin:0; font-size:14px; color:#333;">${item.name}</h4>
+                        <div style="display:flex; gap:5px; flex-wrap:wrap;">
+                            <small style="color:#667eea; font-weight:bold;">${item.categoryTitle}</small>
+                            <small style="color:#999;">• ${item.location}</small>
                         </div>
                     </div>
-                    <div style="text-align:right;">
-                        <div style="color:#2d3748; font-weight:700; font-size:12px; margin-bottom:4px;">${item.price_discount || ''}</div>
-                        <a href="partner.html?slug=${item.slug}" style="background:#667eea; color:white; padding:6px 14px; border-radius:6px; text-decoration:none; font-size:11px; font-weight:600; display:inline-block; transition: 0.2s;">Ver</a>
-                    </div>
+                    <a href="partner.html?slug=${item.slug}" style="background:#667eea; color:white; padding:6px 12px; border-radius:6px; text-decoration:none; font-size:11px; font-weight:bold;">Ver</a>
                 </div>
             `;
             resultsGrid.appendChild(card);
