@@ -530,43 +530,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 3. Renderizar os resultados na tela
     function renderSearchResults(items) {
-    if (!resultsGrid || !resultsOverlay) return;
+        if (!resultsGrid || !resultsOverlay) return;
 
-    // Pega o idioma atual do seu sistema i18n
-    const lang = window.i18n ? window.i18n.currentLang : 'pt';
-    const t = translations[lang].search; // Usa o objeto de tradução que criamos acima
+        resultsOverlay.style.display = 'block';
+        resultsGrid.innerHTML = '';
 
-    resultsOverlay.style.display = 'block';
-    resultsGrid.innerHTML = '';
+        if (items.length === 0) {
+            resultsGrid.innerHTML = '<p style="padding:20px; color:#666;">Nenhuma experiência encontrada para este termo...</p>';
+            return;
+        }
 
-    if (items.length === 0) {
-        resultsGrid.innerHTML = `<p style="padding:20px; color:#666;">${t.noResults}</p>`;
-        return;
+        items.forEach(item => {
+            // Pega a primeira imagem do array 'images' ou usa um fallback
+            const thumb = (item.images && item.images.length > 0) ? item.images[0] : 'favcon.png';
+            
+            const card = document.createElement('div');
+            card.className = 'search-item-row'; 
+            card.innerHTML = `
+                <div style="display:flex; align-items:center; gap:15px; padding:12px; border-bottom:1px solid #eee;">
+                    <img src="${thumb}" style="width:50px; height:50px; object-fit:cover; border-radius:8px;">
+                    <div style="flex:1;">
+                        <h4 style="margin:0; font-size:14px; color:#333;">${item.name}</h4>
+                        <div style="display:flex; gap:10px; align-items:center;">
+                            <small style="color:#667eea; font-weight:600;">${item.categoryTitle}</small>
+                            <small style="color:#999; font-size:11px;"><i class="fas fa-map-marker-alt"></i> ${item.location}</small>
+                        </div>
+                    </div>
+                    <div style="text-align:right;">
+                        <span style="display:block; color:#2d3748; font-weight:bold; font-size:12px;">${item.price_discount || ''}</span>
+                        <a href="partner.html?slug=${item.slug}" style="display:inline-block; margin-top:5px; background:#667eea; color:white; padding:5px 12px; border-radius:4px; text-decoration:none; font-size:11px; font-weight:600;">Ver</a>
+                    </div>
+                </div>
+            `;
+            resultsGrid.appendChild(card);
+        });
     }
-
-    items.forEach(item => {
-        const thumb = (item.images && item.images.length > 0) ? item.images[0] : 'favcon.png';
-        
-        // Se você tiver descrições em inglês no JSON (ex: item.description_en), 
-        // você pode escolher qual mostrar aqui baseado na variável 'lang'
-        
-        const card = document.createElement('div');
-        card.innerHTML = `
-            <div style="display:flex; align-items:center; gap:15px; padding:12px; border-bottom:1px solid #eee;">
-                <img src="${thumb}" style="width:50px; height:50px; object-fit:cover; border-radius:8px;">
-                <div style="flex:1;">
-                    <h4 style="margin:0; font-size:14px;">${item.name}</h4>
-                    <small style="color:#667eea;">${item.categoryTitle}</small>
-                </div>
-                <div style="text-align:right;">
-                    <a href="partner.html?slug=${item.slug}" 
-                       style="background:#667eea; color:white; padding:5px 12px; border-radius:4px; text-decoration:none; font-size:11px;">
-                       ${t.viewBtn}
-                    </a>
-                </div>
-            </div>
-        `;
-        resultsGrid.appendChild(card);
-    });
-}
 });

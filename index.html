@@ -184,17 +184,18 @@
         <p data-i18n="experiences.subtitle">Carregue numa categoria para ver as suas promoções</p>
       </div>
       
-      <div class="search-container">
-           <input type="text" id="global-search-input" data-i18n="search.placeholder" placeholder="Pesquise..." />
-           <button id="global-search-btn"><i class="fas fa-search"></i></button>
-      </div>
-
-      <div id="global-search-results" class="search-results-overlay" style="display: none;">
-          <div class="results-header">
-               <h3 data-i18n="search.resultsTitle">Resultados da Pesquisa</h3>
-               <button id="close-search" data-i18n="search.close">Fechar X</button>
-           </div>
-           <div id="results-grid" class="experiences-grid"></div>
+      <div class="search-wrapper">
+        <div class="search-container">
+            <input type="text" id="global-search-input" placeholder="Encontre a melhor experiencia..." />
+            <button id="global-search-btn"><i class="fas fa-search"></i></button>
+        </div>
+        <div id="global-search-results" class="search-results-overlay" style="display: none;">
+            <div class="results-header">
+                <h3>Resultados da Pesquisa</h3>
+                <button id="close-search">Fechar X</button>
+            </div>
+            <div id="results-grid" class="experiences-grid"></div>
+        </div>
       </div>
       
       <div class="cards-grid">
