@@ -541,35 +541,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // FUNÇÃO NOVA PARA CAPTURA DE DADOS
     async function enviarDadosParaAnalise(termo, totalResultados) {
-        // Evita registrar testes locais excessivos se desejar
-        if (window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost") {
-            console.log("Log BI (Local):", termo, "Resultados:", totalResultados);
+    try {
+        const device = window.innerWidth < 768 ? "Telemóvel" : "Desktop";
+        
+        // 1. Tenta pegar a localização da memória do navegador (para não repetir pedidos à API)
+        let localData = JSON.parse(sessionStorage.getItem('user_location'));
+
+        // 2. Se não estiver na memória, busca na API (apenas 1 vez por sessão)
+        if (!localData) {
+            try {
+                const res = await fetch('https://ipapi.co/json/');
+                const fullData = await res.json();
+                localData = {
+                    city: fullData.city || "Desconhecido",
+                    country: fullData.country_name || "PT"
+                };
+                // Guarda na memória para as próximas pesquisas
+                sessionStorage.setItem('user_location', JSON.stringify(localData));
+            } catch (e) {
+                localData = { city: "N/A", country: "PT" };
+            }
         }
 
-        try {
-            const device = window.innerWidth < 768 ? "Telemóvel" : "Desktop";
-            
-            // Define a URL da API (ajusta automaticamente entre local e produção)
-            const API_URL = (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
-                ? "http://localhost:3000/api/analytics/search" 
-                : "https://voucherhub-backend-production.up.railway.app/api/analytics/search";
+        const API_URL = (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
+            ? "http://localhost:3000/api/analytics/search" 
+            : "https://voucherhub-backend-production.up.railway.app/api/analytics/search";
 
-            await fetch(API_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    term: termo,
-                    count: totalResultados,
-                    city: "Localização Pendente", 
-                    country: "PT",
-                    device: device
-                })
-            });
-        } catch (e) {
-            // Falha silenciosa: se o servidor estiver fora, a busca continua a funcionar
-            console.warn("Analytics temporariamente indisponível.");
-        }
+        await fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                term: termo,
+                count: totalResultados,
+                city: localData.city,
+                country: localData.country,
+                device: device
+            })
+        });
+    } catch (e) {
+        console.warn("Analytics: Erro ao enviar.");
     }
+}
 
     function renderSearchResults(items) {
         if (!resultsGrid) return;
