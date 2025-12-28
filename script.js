@@ -468,6 +468,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // ===== BUSCA GLOBAL =====
+// ===== BUSCA GLOBAL =====
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('global-search-input');
     const resultsOverlay = document.getElementById('global-search-results');
@@ -514,15 +515,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         const partnerName = (p.name || "").toLowerCase();
                         const partnerLoc = (p.location || "").toLowerCase();
                         
-                        // Captura os títulos de todas as experiências individuais deste parceiro
                         const experiencesTitles = (p.experiences || []).map(exp => (exp.title || "").toLowerCase());
                         
-                        // Lógica de Sinónimos para "bike" e "passeio"
                         let searchTerms = [term];
                         if (term === "bike" || term === "bicicleta") searchTerms = ["bike", "bicicleta", "ciclismo"];
                         if (term === "passeio" || term === "passeios") searchTerms = ["passeio", "tour", "veleiro", "barco"];
 
-                        // Verifica se QUALQUER um dos termos de busca bate com o nome, local ou QUALQUER título de experiência
                         return searchTerms.some(t => 
                             partnerName.includes(t) || 
                             partnerLoc.includes(t) || 
@@ -532,11 +530,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     renderSearchResults(filtered);
 
+                    // NOVO: DISPARAR O REGISTO DE BI (Business Intelligence)
+                    enviarDadosParaAnalise(term, filtered.length);
+
                 } catch (err) {
                     console.error("Erro na busca:", err);
                 }
             }, 300);
         });
+    }
+
+    // FUNÇÃO NOVA PARA CAPTURA DE DADOS
+    async function enviarDadosParaAnalise(termo, totalResultados) {
+        // Evita registrar testes locais excessivos se desejar
+        if (window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost") {
+            console.log("Log BI (Local):", termo, "Resultados:", totalResultados);
+        }
+
+        try {
+            const device = window.innerWidth < 768 ? "Telemóvel" : "Desktop";
+            
+            // Define a URL da API (ajusta automaticamente entre local e produção)
+            const API_URL = (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
+                ? "http://localhost:3000/api/analytics/search" 
+                : "/api/analytics/search";
+
+            await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    term: termo,
+                    count: totalResultados,
+                    city: "Localização Pendente", 
+                    country: "PT",
+                    device: device
+                })
+            });
+        } catch (e) {
+            // Falha silenciosa: se o servidor estiver fora, a busca continua a funcionar
+            console.warn("Analytics temporariamente indisponível.");
+        }
     }
 
     function renderSearchResults(items) {
