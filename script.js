@@ -468,7 +468,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // ===== BUSCA GLOBAL =====
-// ===== BUSCA GLOBAL =====
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('global-search-input');
     const resultsOverlay = document.getElementById('global-search-results');
@@ -553,7 +552,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Define a URL da API (ajusta automaticamente entre local e produção)
             const API_URL = (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
                 ? "http://localhost:3000/api/analytics/search" 
-                : "/api/analytics/search";
+                : "https://voucherhub-backend-production.up.railway.app/api/analytics/search";
 
             await fetch(API_URL, {
                 method: 'POST',
