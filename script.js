@@ -483,6 +483,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (searchInput) {
         let searchTimer;
+        let lastSentTerm = ""; // Para evitar enviar a mesma palavra duas vezes seguidas
 
         searchInput.addEventListener('input', (e) => {
             clearTimeout(searchTimer);
@@ -493,27 +494,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            // A busca visual continua rápida (300ms) para o utilizador ver resultados
             searchTimer = setTimeout(async () => {
                 try {
                     const response = await fetch('experiences.json');
                     const data = await response.json();
                     
+                    // ... (Mantenha toda a sua lógica de filtrar allPartners igual) ...
                     let allPartners = [];
-                    if (data.modes) {
-                        data.modes.forEach(mode => {
-                            if (mode.partners) {
-                                mode.partners.forEach(p => {
-                                    allPartners.push({ ...p, categoryTitle: mode.title });
-                                });
-                            }
-                        });
-                    }
+                    data.modes.forEach(mode => {
+                        if (mode.partners) {
+                            mode.partners.forEach(p => {
+                                allPartners.push({ ...p, categoryTitle: mode.title });
+                            });
+                        }
+                    });
 
-                    // FILTRAGEM PRECISA
                     const filtered = allPartners.filter(p => {
                         const partnerName = (p.name || "").toLowerCase();
                         const partnerLoc = (p.location || "").toLowerCase();
-                        
                         const experiencesTitles = (p.experiences || []).map(exp => (exp.title || "").toLowerCase());
                         
                         let searchTerms = [term];
@@ -529,8 +528,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     renderSearchResults(filtered);
 
-                    // NOVO: DISPARAR O REGISTO DE BI (Business Intelligence)
-                    enviarDadosParaAnalise(term, filtered.length);
+                    // --- LÓGICA DE BI MELHORADA ---
+                    // Só envia para o banco de dados se o utilizador parar de digitar por 1.5 segundos
+                    // e se o termo for novo (evita gravar "cachorro" duas vezes se ele clicar e apagar rápido)
+                    clearTimeout(window.biTimer);
+                    window.biTimer = setTimeout(() => {
+                        if (term !== lastSentTerm && term.length > 2) {
+                            enviarDadosParaAnalise(term, filtered.length);
+                            lastSentTerm = term;
+                        }
+                    }, 1500); // Aguarda 1.5 segundos de silêncio para gravar
 
                 } catch (err) {
                     console.error("Erro na busca:", err);
