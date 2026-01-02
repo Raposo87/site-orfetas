@@ -5,7 +5,7 @@
     },
     "hero": {
       "badge": "Exclusive Vouchers",
-      "title": "Discover Portugal with <span class='highlight'>Amazing Discounts</span>",
+      "title": "Discover Lisbon with <span class='highlight'>Amazing Discounts</span>",
       "subtitle": "Authentic experiences in Lisbon and surrounding regions with exclusive promotional vouchers. Choose your adventure and save!",
       "avgDiscount": "Average Discount",
       "happyCustomers": "Happy Customers"
@@ -40,7 +40,7 @@
       "safetyNote": "Your safety is our priority. All payments are processed by secure platforms. Keep your voucher safe."
     },
     "footer": {
-      "description": "Exclusive vouchers for the best experiences in Portugal — enjoy the best, you deserve it!",
+      "description": "Exclusive vouchers for the best experiences in Lisbon — enjoy the best, you deserve it!",
       "experiences": "Experiences",
       "waterSports": "Water Sports",
       "adventure": "Adventure",
@@ -117,7 +117,7 @@
     },
     "hero": {
       "badge": "Vouchers Exclusivos",
-      "title": "Descubra Portugal com <span class='highlight'>Descontos Incríveis</span>",
+      "title": "Descubra Lisboa com <span class='highlight'>Descontos Incríveis</span>",
       "subtitle": "Experiências autênticas em Lisboa e arredores com vouchers promocionais exclusivos. Poupe já!",
       "avgDiscount": "Desconto Médio",
       "happyCustomers": "Clientes Satisfeitos"
@@ -152,7 +152,7 @@
       "safetyNote": "A sua segurança é a nossa prioridade. Todos os pagamentos são processados por plataformas seguras. Mantenha o seu voucher protegido."
     },
     "footer": {
-      "description": "Vouchers exclusivos para as melhores experiências em Portugal — aproveite, porque merece!",
+      "description": "Vouchers exclusivos para as melhores experiências em Lisboa — aproveite, porque merece!",
       "experiences": "Experiências",
       "waterSports": "Desportos Aquáticos",
       "adventure": "Aventura",
