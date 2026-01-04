@@ -288,56 +288,44 @@
     }
 
 
-    // === OFERTAS (MODIFICADO PARA INCLUIR O NOVO CLICK) ===
+    // === OFERTAS (MODIFICADO PARA VERIFICAR STOCK) ===
     const offersContainer = document.getElementById("partner-offers-grid");
     if (offersContainer) {
       offersContainer.innerHTML = "";
 
-      const offersTitleP = offersContainer.parentElement.querySelector("p");
-      if(offersTitleP) {
-         offersTitleP.innerHTML = `Selecione a opção abaixo. O valor já inclui <b>${discountPct}% de desconto</b>.`;
-      }
-
       if (partner.offers && partner.offers.length > 0) {
-        partner.offers.forEach((o, index) => {
+        // Usamos um for...of para poder usar await dentro do loop
+        for (const o of partner.offers) {
           const card = document.createElement("div");
           card.className = "offer-card";
 
           let title = typeof o === "string" ? o : o.title;
           let text = typeof o === "string" ? "" : (o.text || o.description || "");
+          let originalPrice = o.price ? parseFloat(o.price) : 0;
+          let finalPrice = originalPrice * (1 - (discountPct / 100));
 
-          let originalPrice = 0;
-          let finalPrice = 0;
-          let priceHtml = "";
-
-          const priceMatch = text.match(/€?\s?(\d+[.,]?\d*)\s?€?/);
-
-          if (o.price) {
-            originalPrice = parseFloat(o.price);
-          } else if (priceMatch) {
-            originalPrice = parseFloat(priceMatch[1].replace(",", "."));
+          // --- 🛡️ VERIFICAÇÃO DE STOCK ---
+          let isAvailable = true;
+          try {
+            const stockCheck = await fetch(`https://voucherhub-backend-production.up.railway.app/api/payments/check-stock?partnerSlug=${slug}&productName=${encodeURIComponent(title)}`);
+            const stockData = await stockCheck.json();
+            isAvailable = stockData.available;
+          } catch (e) {
+            console.error("Erro ao checar stock", e);
           }
+          // --- FIM DA VERIFICAÇÃO ---
 
-          if (originalPrice > 0) {
-            const multiplier = 1 - (discountPct / 100);
-            finalPrice = originalPrice * multiplier;
-            
-            const fmtOriginal = originalPrice % 1 === 0 ? originalPrice : originalPrice.toFixed(2);
-            const fmtFinal = finalPrice.toFixed(2);
+          const priceHtml = originalPrice > 0 
+            ? `<div class="offer-price-wrapper">
+                <span class="offer-price-old">€${originalPrice.toFixed(2)}</span>
+                <span class="offer-price-final">€${finalPrice.toFixed(2)}</span>
+               </div>`
+            : `<span class="offer-price-final">Sob Consulta</span>`;
 
-            priceHtml = `
-              <div class="offer-price-wrapper">
-                <span class="offer-price-old">€${fmtOriginal}</span>
-                <div style="display:flex; align-items:center;">
-                  <span class="offer-price-final">€${fmtFinal}</span>
-                  <span class="discount-badge-small">-${discountPct}%</span>
-                </div>
-              </div>
-            `;
-          } else {
-            priceHtml = `<span class="offer-price-final" style="font-size:1.2rem">Sob Consulta</span>`;
-            finalPrice = 0;
-          }
+          // Se não houver stock, mudamos o botão
+          const buttonHtml = isAvailable 
+            ? `<button class="btn-buy-offer"><i class="fas fa-ticket-alt"></i> Comprar</button>`
+            : `<button class="btn-buy-offer" disabled style="background:#ccc; cursor:not-allowed;">Esgotado</button>`;
 
           card.innerHTML = `
             <div>
@@ -346,30 +334,26 @@
             </div>
             <div class="offer-footer">
               ${priceHtml}
-              <button class="btn-buy-offer">
-                  <i class="fas fa-ticket-alt"></i> Comprar
-              </button>
+              ${buttonHtml}
             </div>
           `;
           
-          // ✅ AQUI ESTÁ A MÁGICA: Adiciona o evento de clique direto no botão criado
-          // Isso previne conflitos com outros arquivos JS
-          const btn = card.querySelector('.btn-buy-offer');
-          btn.addEventListener('click', (e) => {
-             e.preventDefault(); // Impede qualquer comportamento estranho
-             e.stopPropagation(); // Impede que o clique "suba" para outros elementos
-             
-             // Chama nosso novo modal
-             openBuyModal({
-                 partnerSlug: slug,
-                 offerName: title,
-                 price: finalPrice.toFixed(2),
-                 originalPrice: originalPrice
-             });
-          });
+          if (isAvailable) {
+            const btn = card.querySelector('.btn-buy-offer');
+            btn.addEventListener('click', (e) => {
+               e.preventDefault();
+               e.stopPropagation();
+               openBuyModal({
+                   partnerSlug: slug,
+                   offerName: title,
+                   price: finalPrice.toFixed(2),
+                   originalPrice: originalPrice
+               });
+            });
+          }
 
           offersContainer.appendChild(card);
-        });
+        }
       } else {
         offersContainer.innerHTML = "<p>Não há ofertas disponíveis.</p>";
       }
