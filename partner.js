@@ -304,14 +304,22 @@
           let originalPrice = o.price ? parseFloat(o.price) : 0;
           let finalPrice = originalPrice * (1 - (discountPct / 100));
 
-          // --- 🛡️ VERIFICAÇÃO DE STOCK ---
+          // --- 🛡️ VERIFICAÇÃO DE STOCK (BANCO + JSON) ---
           let isAvailable = true;
           try {
+            // 1. Verifica no Banco de Dados
             const stockCheck = await fetch(`https://voucherhub-backend-production.up.railway.app/api/payments/check-stock?partnerSlug=${slug}&productName=${encodeURIComponent(title)}`);
             const stockData = await stockCheck.json();
             isAvailable = stockData.available;
+
+            // 2. Plano B: Se no JSON o limite for 0, bloqueia mesmo que o banco não saiba
+            if (o.stock_limit === 0) {
+              isAvailable = false;
+            }
           } catch (e) {
             console.error("Erro ao checar stock", e);
+            // Se o servidor cair, o JSON manda:
+            if (o.stock_limit === 0) isAvailable = false;
           }
           // --- FIM DA VERIFICAÇÃO ---
 
