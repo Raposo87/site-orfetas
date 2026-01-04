@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard - VoucherHub</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 20px; }
+        .container { max-width: 1000px; margin: auto; }
+        .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        h2 { color: #1a73e8; border-bottom: 2px solid #e8f0fe; padding-bottom: 10px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { padding: 12px; border-bottom: 1px solid #eee; text-align: left; }
+        input { padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+        button { cursor: pointer; padding: 10px 15px; border: none; border-radius: 5px; background: #1a73e8; color: white; font-weight: bold; }
+        button:hover { background: #1557b0; }
+        .status-ok { color: green; font-weight: bold; }
+        .status-error { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>VoucherHub Admin 🛡️</h1>
+
+    <div class="card">
+        <h2>📦 Gestão de Stock (Limites)</h2>
+        <div style="background: #f8f9fa; padding: 15px; margin-bottom: 15px;">
+            <h4>Adicionar Novo Limite</h4>
+            <input type="text" id="slug" placeholder="slug-parceiro">
+            <input type="text" id="title" placeholder="Título da Oferta">
+            <input type="number" id="limit" placeholder="Qtd">
+            <button onclick="saveStock()">Definir</button>
+        </div>
+        <table id="stockTable">
+            <thead>
+                <tr><th>Slug</th><th>Oferta</th><th>Limite</th><th>Ação</th></tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>💰 Auditoria de Repasses</h2>
+        <button onclick="checkTransfers()">Verificar Falhas de Pagamento</button>
+        <div id="transferResult" style="margin-top: 15px;"></div>
+    </div>
+</div>
+
+<script>
+    const API_BASE = 'https://voucherhub-backend-production.up.railway.app/api/admin';
+
+    // FUNÇÕES DE STOCK
+    async function loadStocks() {
+        const res = await fetch(`${API_BASE}/stock-list`);
+        const data = await res.json();
+        const tbody = document.querySelector('#stockTable tbody');
+        tbody.innerHTML = data.map(item => `
+            <tr>
+                <td>${item.partner_slug}</td>
+                <td>${item.offer_title}</td>
+                <td><input type="number" id="input-${item.id}" value="${item.stock_limit}"></td>
+                <td><button onclick="updateStock('${item.partner_slug}', '${item.offer_title}', ${item.id})">Atualizar</button></td>
+            </tr>
+        `).join('');
+    }
+
+    async function saveStock() {
+        const body = {
+            partner_slug: document.getElementById('slug').value,
+            offer_title: document.getElementById('title').value,
+            stock_limit: document.getElementById('limit').value
+        };
+        await fetch(`${API_BASE}/update-stock`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(body)
+        });
+        alert("Criado!"); loadStocks();
+    }
+
+    async function updateStock(slug, title, id) {
+        const val = document.getElementById(`input-${id}`).value;
+        await fetch(`${API_BASE}/update-stock`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ partner_slug: slug, offer_title: title, stock_limit: val })
+        });
+        alert("Atualizado!");
+    }
+
+    // FUNÇÃO DE AUDITORIA (Conecta com a sua rota existente)
+    async function checkTransfers() {
+        const res = await fetch(`${API_BASE}/audit-transfers`);
+        const data = await res.json();
+        const div = document.getElementById('transferResult');
+        if (data.vouchers) {
+            div.innerHTML = `<p class="status-error">${data.message}</p><ul>` + 
+                data.vouchers.map(v => `<li>${v.code}: ${v.transfer_error_msg}</li>`).join('') + `</ul>`;
+        } else {
+            div.innerHTML = `<p class="status-ok">${data.message}</p>`;
+        }
+    }
+
+    loadStocks();
+</script>
+</body>
+</html>
