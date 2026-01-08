@@ -205,6 +205,12 @@
     // Label de Desconto
     document.getElementById("partner-discount-label").textContent = partner.discount_label || `${discountPct}% OFF`;
 
+    // Texto dinâmico de desconto nas ofertas
+    const discountMessageEl = document.getElementById("discount-text-message");
+    if (discountMessageEl) {
+      discountMessageEl.innerHTML = `Selecione a opção abaixo. O valor já inclui <b>${discountPct}% de desconto</b>.`;
+    }
+
     // Contatos
     const emailEl = document.getElementById("partner-email");
     const emailLinkEl = document.getElementById("partner-email-link");

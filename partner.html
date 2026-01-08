@@ -1,127 +1,166 @@
 <!DOCTYPE html>
 <html lang="pt">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title id="partner-title">Parceiro – VoucherHub</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="favcon.png">
-
-
-</head>
-<body>
-  <nav class="navbar glassy">
-    <div class="nav-container">
-      <a href="index.html" class="logo">
-        <img src="logo.png" alt="VoucherHub Logo" />
-      </a>
-      <div class="nav-badge">
-        <i class="fas fa-fire"></i><span>Ofertas em Destaque</span>
-      </div>
-    </div>
-  </nav>
-
-  <main>
-    <section class="partner-hero">
-      <div class="partner-hero-background"></div>
-      <div class="hero-content container">
-        <div class="hero-badge" id="partner-badge">
-          <i id="partner-icon" class="fas fa-tag"></i>
-          <span id="partner-category">Categoria</span>
-        </div>
-        <h1 id="partner-name">Carregando...</h1>
-        <a id="partner-link" href="#" target="_blank" class="btn btn-official btn-lg">
-          <i class="fas fa-external-link-alt"></i> Visitar Site Oficial
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="partner-title">Parceiro – VoucherHub</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="favcon.png" />
+  </head>
+  <body>
+    <nav class="navbar glassy">
+      <div class="nav-container">
+        <a href="index.html" class="logo">
+          <img src="logo.png" alt="VoucherHub Logo" />
         </a>
+        <div class="nav-badge">
+          <i class="fas fa-fire"></i><span>Ofertas em Destaque</span>
+        </div>
       </div>
-    </section>
-    
-    <section class="partner-details">
+    </nav>
+
+    <main>
+      <section class="partner-hero">
+        <div class="partner-hero-background"></div>
+        <div class="hero-content container">
+          <div class="hero-badge" id="partner-badge">
+            <i id="partner-icon" class="fas fa-tag"></i>
+            <span id="partner-category">Categoria</span>
+          </div>
+          <h1 id="partner-name">Carregando...</h1>
+          <a
+            id="partner-link"
+            href="#"
+            target="_blank"
+            class="btn btn-official btn-lg"
+          >
+            <i class="fas fa-external-link-alt"></i> Visitar Site Oficial
+          </a>
+        </div>
+      </section>
+
+      <section class="partner-details">
+        <div class="container">
+          <div class="info-grid">
+            <div class="info-card">
+              <h2>
+                <i class="fas fa-map-marker-alt"></i>
+                <span data-i18n="partnerPage.location">Localização</span>
+              </h2>
+
+              <p id="partner-location">
+                <a id="partner-location-link" href="#" target="_blank"></a>
+              </p>
+            </div>
+            <div class="info-card">
+              <h2>
+                <i class="fas fa-percent"></i>
+                <span data-i18n="partnerPage.discount"
+                  >Desconto VoucherHub</span
+                >
+              </h2>
+
+              <p id="partner-discount-label" class="discount-label-lg">
+                --% OFF
+              </p>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <h2>
+              <i class="fas fa-address-book"></i>
+              <span data-i18n="partnerPage.contact">Contato</span>
+            </h2>
+
+            <div id="partner-contact">
+              <p id="partner-email" style="display: none">
+                <i class="fas fa-envelope"></i> <a id="partner-email-link"></a>
+              </p>
+              <p id="partner-phone" style="display: none">
+                <i class="fas fa-phone"></i> <a id="partner-phone-link"></a>
+              </p>
+              <p id="partner-instagram" style="display: none">
+                <a href="#" id="partner-instagram-link" target="_blank"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+              </p>
+            </div>
+          </div>
+
+          <div class="gallery">
+            <h2>
+              <i class="fas fa-images"></i>
+              <span data-i18n="partnerPage.gallery">Galeria de Fotos</span>
+            </h2>
+
+            <button id="toggle-gallery-btn" class="btn btn-secondary">
+              <i class="fas fa-camera"></i>
+              <span data-i18n="partnerPage.seePhotos"
+                >Ver Fotos da Experiência</span
+              >
+            </button>
+
+            <div id="partner-gallery"></div>
+          </div>
+
+          <div id="includes-section" class="info-card" style="display: none">
+            <h2>
+              <i class="fas fa-check-circle"></i>
+              O que está incluído
+            </h2>
+
+            <ul id="includes-list" class="includes-list"></ul>
+          </div>
+
+          <div class="info-card">
+            <h2><i class="fas fa-book-open"></i> Sobre Nós</h2>
+            <p id="partner-story-short"></p>
+            <button id="toggle-history" class="btn btn-secondary">
+              <i class="fas fa-chevron-down"></i> Mostrar mais
+            </button>
+            <p
+              id="partner-story-full"
+              style="display: none; margin-top: 1rem"
+            ></p>
+          </div>
+
+          <div
+            class="info-card"
+            style="background-color: #f8fafc; border: 1px solid #e2e8f0"
+          >
+            <h2 style="color: var(--secondary-orange)">
+              <i class="fas fa-ticket-alt"></i> Escolha sua Experiência
+            </h2>
+            <p id="discount-text-message" style="margin-bottom: 1.5rem">
+              Selecione a opção abaixo. O valor já inclui
+              <b>15% de desconto</b>.
+            </p>
+            <div id="partner-offers-grid" class="offers-grid"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
       <div class="container">
-        
-        <div class="info-grid">
-          <div class="info-card">
-            <h2>
-              <i class="fas fa-map-marker-alt"></i>
-              <span data-i18n="partnerPage.location">Localização</span>
-            </h2>
-
-            <p id="partner-location"><a id="partner-location-link" href="#" target="_blank"></a></p>
-          </div>
-          <div class="info-card">
-            <h2>
-              <i class="fas fa-percent"></i>
-              <span data-i18n="partnerPage.discount">Desconto VoucherHub</span>
-            </h2>
-
-            <p id="partner-discount-label" class="discount-label-lg">--% OFF</p>
-            
-          </div>
-        </div>
-
-        <div class="info-card">
-          <h2>
-            <i class="fas fa-address-book"></i>
-            <span data-i18n="partnerPage.contact">Contato</span>
-          </h2>
-
-          <div id="partner-contact">
-            <p id="partner-email" style="display: none;"><i class="fas fa-envelope"></i> <a id="partner-email-link"></a></p>
-            <p id="partner-phone" style="display: none;"><i class="fas fa-phone"></i> <a id="partner-phone-link"></a></p>
-            <p id="partner-instagram" style="display: none;"><a href="#" id="partner-instagram-link" target="_blank"><i class="fab fa-instagram"></i></a></p>
-          </div>
-        </div>
-
-        <div class="gallery">
-          <h2>
-            <i class="fas fa-images"></i>
-            <span data-i18n="partnerPage.gallery">Galeria de Fotos</span>
-          </h2>
-
-          
-          <button id="toggle-gallery-btn" class="btn btn-secondary">
-            <i class="fas fa-camera"></i>
-            <span data-i18n="partnerPage.seePhotos">Ver Fotos da Experiência</span>
-          </button>
-
-
-          <div id="partner-gallery"></div>
-        </div>
-
-        <div id="includes-section" class="info-card" style="display:none;">
-          <h2>
-            <i class="fas fa-check-circle"></i>
-            O que está incluído
-          </h2>
-
-          <ul id="includes-list" class="includes-list"></ul>
-        </div>
-
-        <div class="info-card">
-          <h2><i class="fas fa-book-open"></i> Sobre Nós</h2>
-          <p id="partner-story-short"></p>
-          <button id="toggle-history" class="btn btn-secondary"><i class="fas fa-chevron-down"></i> Mostrar mais</button>
-          <p id="partner-story-full" style="display:none; margin-top: 1rem;"></p>
-        </div>
-
-        <div class="info-card" style="background-color: #f8fafc; border: 1px solid #e2e8f0;">
-          <h2 style="color: var(--secondary-orange);"><i class="fas fa-ticket-alt"></i> Escolha sua Experiência</h2>
-          <p style="margin-bottom: 1.5rem;">Selecione a opção abaixo. O valor já inclui <b>15% de desconto</b>.</p>
-          <div id="partner-offers-grid" class="offers-grid"></div>
-        </div>
-
+        <p>© 2025 VoucherHub – Todos os direitos reservados.</p>
       </div>
-    </section>
-  </main>
+    </footer>
 
-  <footer class="footer">
-    <div class="container"><p>© 2025 VoucherHub – Todos os direitos reservados.</p></div>
-  </footer>
-
-  <script>window.VOUCHERHUB_API = "https://voucherhub-backend-production.up.railway.app";</script>
-  <script src="i18n.js" defer></script>
-  <script src="script.js" defer></script>
-  <script src="partner.js" defer></script></body>
+    <script>
+      window.VOUCHERHUB_API =
+        "https://voucherhub-backend-production.up.railway.app";
+    </script>
+    <script src="i18n.js" defer></script>
+    <script src="script.js" defer></script>
+    <script src="partner.js" defer></script>
+  </body>
 </html>

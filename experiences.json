@@ -286,35 +286,65 @@
       "badge": "Terapias",
       "description": "Descubra terapias naturais e holísticas com descontos exclusivos.",
       "partners": [
-        {
-          "slug": "espaco-libela",
-          "name": "Espaço libélula",
-          "location": "Rua Vieira da Silva, 54 Lisboa",
-          "price_original": "€90",
-          "price_discount": "€63",
-          "savings": "Economize €27",
-          "discount_label": "30% OFF",
-          "discount_percent": 30,
-          "code": "WELLNESS20",
-          "official_url": "#",
-          "email": "nicoleraposof7@gmail.com",
-          "phone": "+351 936 065 569",
-          "images": [
-            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1762900622/descontos_xaef5m.jpg",
-            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1762900622/voucherhub_descontos_tphm62.jpg",
-            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1762900622/descontos_voucher_urjqiz.jpg"
-          ],
-          "icon": "fas fa-leaf",
-          "offers": [
+          {
+            "slug": "espaco-libela",
+            "name": "Espaço libélula",
+            "location": "Rua Vieira da Silva, 54 Lisboa",
+            "price_original": "€90",
+            "price_discount": "€63",
+            "savings": "Economize €27",
+            "discount_label": "30% OFF",
+            "discount_percent": 30,
+            "code": "WELLNESS20",
+            "official_url": "#",
+            "email": "nicoleraposof7@gmail.com",
+            "phone": "+351 936 065 569",
+            "images": [
+              "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1762900622/descontos_xaef5m.jpg",
+              "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1762900622/voucherhub_descontos_tphm62.jpg",
+              "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1762900622/descontos_voucher_urjqiz.jpg"
+            ],
+            "icon": "fas fa-leaf",
+            "offers": [
+              {
+                "title": "Consulta de Naturopatia Clínica",
+                "text": "Diagnóstico clínico e holístico + Plano terapêutico personalizado.",
+                "price": 90.00
+              }
+            ],
+            "story_short": "Consulta de Naturopatia Clínica",
+            "story_full": "Para quem sente-se cansado, com a mente acelerada e o corpo pedindo mesmo cuidado a muito tempo.\n\nA Naturopatia Clínica é um cuidado completo que vai muito além de aliviar sintomas, ela busca entender as causas reais do que está acontecendo com você.\n\nDurante a consulta, fazemos um diagnóstico clínico e holístico, avaliando corpo, mente e hábitos para identificar desequilíbrios que estão drenando sua energia e bem-estar.\n\nA partir disso, você recebe um plano terapêutico personalizado, que pode incluir:\n\n- Mudanças de estilo de vida práticas e sustentáveis\n- Suplementação natural sob medida para suas necessidades\n- Orientação alimentar realista e nutritiva, sem dietas impossíveis\n- Estratégias naturais para restaurar sono, digestão, energia, equilíbrio hormonal e emocional\n\nO objetivo é ajudar você a reconectar-se com o seu corpo, recuperar vitalidade e viver com mais leveza naturalmente."
+          },
+
             {
-              "title": "Consulta de Naturopatia Clínica",
-              "text": "Diagnóstico clínico e holístico + Plano terapêutico personalizado.",
-              "price": 90.00
-            }
-          ],
-          "story_short": "Consulta de Naturopatia Clínica",
-          "story_full": "Para quem sente-se cansado, com a mente acelerada e o corpo pedindo mesmo cuidado a muito tempo.\n\nA Naturopatia Clínica é um cuidado completo que vai muito além de aliviar sintomas, ela busca entender as causas reais do que está acontecendo com você.\n\nDurante a consulta, fazemos um diagnóstico clínico e holístico, avaliando corpo, mente e hábitos para identificar desequilíbrios que estão drenando sua energia e bem-estar.\n\nA partir disso, você recebe um plano terapêutico personalizado, que pode incluir:\n\n- Mudanças de estilo de vida práticas e sustentáveis\n- Suplementação natural sob medida para suas necessidades\n- Orientação alimentar realista e nutritiva, sem dietas impossíveis\n- Estratégias naturais para restaurar sono, digestão, energia, equilíbrio hormonal e emocional\n\nO objetivo é ajudar você a reconectar-se com o seu corpo, recuperar vitalidade e viver com mais leveza naturalmente."
-        }
+            "slug": "clinica-redux",
+            "name": "Clínica Redux",
+            "location": " Rua Passos Manuel 55A, Arroios - Lisboa Lisbon, Portugal",
+            "price_original": "€60",
+            "price_discount": "€54",
+            "savings": "Economize €6",
+            "discount_label": "10% OFF",
+            "discount_percent": 10,
+            "code": "WELLNESS20",
+            "official_url": "https://sites.google.com/view/clnicaredux/p%C3%A1gina-inicial",
+            "email": "clinicaredux.pt@gmail.com",
+            "phone": "+351 920465185",
+            "images": [
+              "https://lh3.googleusercontent.com/sitesv/AAzXCkeMh3g-i_cbVOkq3I6TtIVFTgFvK7mmkuG9EUHa2IG6W1jWw2zZwcQM7Qa_4Dwx_aao8RK-fbm_bGuFyB8aXYnQLRA6Q4n57HEHfuH39XgeaTCoSsTRJp1Deiat2KAOfFpi9H8w4EUGRoq1oJ9ySPY0eoXxq4g1LyQoTxLxWqboYfmcSSyxzw_H=w16383",
+              "",
+              ""
+            ],
+            "icon": "fas fa-leaf",
+            "offers": [
+              {
+                "title": "Consulta de Naturopatia Clínica",
+                "text": "Diagnóstico clínico e holístico + Plano terapêutico personalizado.",
+                "price": 90.00
+              }
+            ],
+            "story_short": "Cuidar do corpo é um ato de amor próprio.",
+            "story_full": "Na Clínica Redux, acreditamos que cuidar do corpo é também cuidar da alma. Somos um espaço dedicado ao bem-estar, beleza e equilíbrio, onde cada detalhe foi pensado para oferecer uma experiência única de relaxamento e resultados visíveis.\nEspecialistas em massagens terapêuticas, drenagem linfática e estética avançada, desenvolvemos o Método Redux Luxe, uma técnica exclusiva que combina modelagem, tonificação e relaxamento num só tratamento.\nCom uma equipa altamente qualificada e atendimento personalizado, a nossa missão é ajudar cada cliente a sentir-se mais leve, confiante e em harmonia consigo mesmo.\nNa Redux, o cuidado vai além do corpo  é um convite ao autocuidado, à pausa e à reconexão com o que realmente importa: você."
+          }
       ]
     },
     {
