@@ -337,9 +337,9 @@
             "icon": "fas fa-leaf",
             "offers": [
               {
-                "title": "Consulta de Naturopatia Clínica",
-                "text": "Diagnóstico clínico e holístico + Plano terapêutico personalizado.",
-                "price": 90.00
+                "title": "",
+                "text": "",
+                "price": 0.00
               }
             ],
             "story_short": "Cuidar do corpo é um ato de amor próprio.",
