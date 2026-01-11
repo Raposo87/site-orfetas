@@ -120,7 +120,7 @@
             {
               "title": "Coleções de verão, surfwear, acessórios e lifestyle.",
               "text": "Produtos sustentáveis e design moderno + Bonés, bolsas e equipamentos.",
-              "price": 67.83
+              "price": 0.00
             }
           ],
           "story_short": "A Twolines une moda e lifestyle praiano em uma só marca.",
@@ -289,7 +289,7 @@
           {
             "slug": "espaco-libela",
             "name": "Espaço libélula",
-            "location": "Rua Vieira da Silva, 54 Lisboa",
+            "location": "Atendimento Online",
             "price_original": "€90",
             "price_discount": "€63",
             "savings": "Economize €27",
@@ -339,9 +339,24 @@
             "icon": "fas fa-leaf",
             "offers": [
               {
-                "title": "",
-                "text": "",
-                "price": 0.00
+                "title": "Redux ( Dreno modeladora)",
+                "text": "60 minutos <br>Técnica focada na redução de medidas e na modelagem corporal, estimulando o sistema linfático para diminuir retenção de líquidos e melhorar o contorno do corpo.",
+                "price": 60.00
+              },
+              {
+                "title": "Drenagem",
+                "text": "60 minutos <br>Massagem suave e rítmica que auxilia na eliminação de toxinas, reduz inchaços e melhora a circulação linfática, promovendo sensação de leveza.",
+                "price": 60.00
+              },
+              {
+                "title": "Massagem",
+                "text": "60 minutos <br>Massagem com finalidade terapêutica, indicada para aliviar dores musculares, tensões e desconfortos físicos, contribuindo para o equilíbrio do corpo.",
+                "price": 60.00
+              },
+              {
+                "title": "Massagem Relaxante",
+                "text": "60 minutos <br>Massagem de movimentos lentos e contínuos que promove relaxamento profundo, alívio do estresse e bem-estar físico e mental.",
+                "price": 60.00
               }
             ],
             "story_short": "Cuidar do corpo é um ato de amor próprio.",
@@ -472,7 +487,7 @@
       "offers": [
         {
           "title": "Passeio Privado – Até 10 pessoas",
-          "description": "Duração: 2h30<br>Inclui: bebida de boas-vindas, snacks e ambientedescontraído.<br>Perfeito para aniversários, despedidas de solteiro ou eventos de equipa.",
+          "description": "Duração: 2h30<br>Inclui: bebida de boas-vindas, snacks e ambiente descontraído.<br>Perfeito para aniversários, despedidas de solteiro ou eventos de equipa.",
           "price": 349.99
         },
         {
