@@ -299,6 +299,7 @@
             "official_url": "#",
             "email": "nicoleraposof7@gmail.com",
             "phone": "+351 936 065 569",
+            "instagram": "https://www.instagram.com/dra.nicoleraposo/",
             "images": [
               "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1762900622/descontos_xaef5m.jpg",
               "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1762900622/voucherhub_descontos_tphm62.jpg",
@@ -329,10 +330,12 @@
             "official_url": "https://sites.google.com/view/clnicaredux/p%C3%A1gina-inicial",
             "email": "clinicaredux.pt@gmail.com",
             "phone": "+351 920465185",
+            "instagram": "https://www.instagram.com/clinicareduxpt?igsh=MTd5Y3g4c2ZuczkxMQ%3D%3D",
             "images": [
               "https://lh3.googleusercontent.com/sitesv/AAzXCkd3YbkHtmNMDxN54gUN2FM-1IK4jr0TSOTg54ioB_xuF6K6sMq0ewLg4nYA7qirHme4A_A9VVzKw9-IObnser1a5FjmC_ZUQS8bd14iUIJ1TtC6PEJhaJAUVu8HQ9F5ImnyuIPfnqffaWF1Pl5mBItG77BJbktrOaJujXd98X19ePkDgRsgXiyK=w16383",
-              "",
-              ""
+              "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1768091931/Sem_T%C3%ADtulo_w8p7tw.png",
+              "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1768092305/massagem_xvgxps.png",
+              "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1768092855/3_spv67l.png"
             ],
             "icon": "fas fa-leaf",
             "offers": [
