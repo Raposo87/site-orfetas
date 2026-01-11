@@ -330,7 +330,7 @@
             "email": "clinicaredux.pt@gmail.com",
             "phone": "+351 920465185",
             "images": [
-              "https://lh3.googleusercontent.com/sitesv/AAzXCkeMh3g-i_cbVOkq3I6TtIVFTgFvK7mmkuG9EUHa2IG6W1jWw2zZwcQM7Qa_4Dwx_aao8RK-fbm_bGuFyB8aXYnQLRA6Q4n57HEHfuH39XgeaTCoSsTRJp1Deiat2KAOfFpi9H8w4EUGRoq1oJ9ySPY0eoXxq4g1LyQoTxLxWqboYfmcSSyxzw_H=w16383",
+              "https://lh3.googleusercontent.com/sitesv/AAzXCkd3YbkHtmNMDxN54gUN2FM-1IK4jr0TSOTg54ioB_xuF6K6sMq0ewLg4nYA7qirHme4A_A9VVzKw9-IObnser1a5FjmC_ZUQS8bd14iUIJ1TtC6PEJhaJAUVu8HQ9F5ImnyuIPfnqffaWF1Pl5mBItG77BJbktrOaJujXd98X19ePkDgRsgXiyK=w16383",
               "",
               ""
             ],
@@ -344,38 +344,7 @@
             ],
             "story_short": "Cuidar do corpo é um ato de amor próprio.",
             "story_full": "Na Clínica Redux, acreditamos que cuidar do corpo é também cuidar da alma. Somos um espaço dedicado ao bem-estar, beleza e equilíbrio, onde cada detalhe foi pensado para oferecer uma experiência única de relaxamento e resultados visíveis.\nEspecialistas em massagens terapêuticas, drenagem linfática e estética avançada, desenvolvemos o Método Redux Luxe, uma técnica exclusiva que combina modelagem, tonificação e relaxamento num só tratamento.\nCom uma equipa altamente qualificada e atendimento personalizado, a nossa missão é ajudar cada cliente a sentir-se mais leve, confiante e em harmonia consigo mesmo.\nNa Redux, o cuidado vai além do corpo  é um convite ao autocuidado, à pausa e à reconexão com o que realmente importa: você."
-          },
-
-          {
-            "slug": "clinica-e-spa131",
-            "name": "Clínica e spa131",
-            "location": "Rua almirante reis 131A, Arroios - Lisboa Lisbon, Portugal",
-            "price_original": "€60",
-            "price_discount": "€48",
-            "savings": "Economize €12",
-            "discount_label": "20% OFF",
-            "discount_percent": 20,
-            "code": "WELLNESS20",
-            "official_url": "",
-            "email": "liurialves@outlook.com",
-            "phone": "+351 963009259",
-            "images": [
-              "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1767988074/WhatsApp_Image_2026-01-08_at_21.35.43_1_fvriiq.jpg",
-              "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1767988075/WhatsApp_Image_2026-01-08_at_21.35.43_mleniy.jpg",
-              "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1767988074/WhatsApp_Image_2026-01-08_at_21.35.43_2_oue6tx.jpg"
-            ],
-            "icon": "fas fa-leaf",
-            "offers": [
-              {
-                "title": "",
-                "text": "",
-                "price": 0.00
-              }
-            ],
-            "story_short": "",
-            "story_full": ""
           }
-
       ]
     },
     {
