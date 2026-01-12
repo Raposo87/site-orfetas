@@ -511,20 +511,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
 
                     const filtered = allPartners.filter(p => {
-                        const partnerName = (p.name || "").toLowerCase();
-                        const partnerLoc = (p.location || "").toLowerCase();
-                        const experiencesTitles = (p.experiences || []).map(exp => (exp.title || "").toLowerCase());
-                        
-                        let searchTerms = [term];
-                        if (term === "bike" || term === "bicicleta") searchTerms = ["bike", "bicicleta", "ciclismo"];
-                        if (term === "passeio" || term === "passeios") searchTerms = ["passeio", "tour", "veleiro", "barco"];
+                      const partnerName = (p.name || "").toLowerCase();
+                      const partnerLoc = (p.location || "").toLowerCase();
+                      // Captura o título da categoria (Ex: "Aulas de Surf")
+                      const categoryName = (p.categoryTitle || "").toLowerCase(); 
+                      const experiencesTitles = (p.experiences || []).map(exp => (exp.title || "").toLowerCase());
+                      
+                      let searchTerms = [term];
+                      if (term === "bike" || term === "bicicleta") searchTerms = ["bike", "bicicleta", "ciclismo"];
+                      if (term === "passeio" || term === "passeios") searchTerms = ["passeio", "tour", "veleiro", "barco"];
 
-                        return searchTerms.some(t => 
-                            partnerName.includes(t) || 
-                            partnerLoc.includes(t) || 
-                            experiencesTitles.some(title => title.includes(t))
-                        );
-                    });
+                      return searchTerms.some(t => 
+                          partnerName.includes(t) || 
+                          partnerLoc.includes(t) || 
+                          categoryName.includes(t) || // <-- AGORA ELE PROCURA EM "Aulas de Surf"
+                          experiencesTitles.some(title => title.includes(t))
+                      );
+                  });
 
                     renderSearchResults(filtered);
 
