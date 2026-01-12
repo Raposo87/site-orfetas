@@ -430,40 +430,45 @@ function checkCookieConsent() {
     const consent = localStorage.getItem('cookieConsent');
     const banner = document.getElementById('cookie-banner');
 
+    // SEGURANÇA: Se o banner não existir na página atual, sai da função
+    if (!banner) return;
+
     if (consent) {
         banner.style.display = 'none';
-        // Se o consentimento for 'accepted', carrega estatísticas/marketing
         if (consent === 'accepted') {
             loadScripts('statistics');
             loadScripts('marketing');
         }
-        // Nota: Para ser totalmente GDPR compliant, 'accepted' deveria carregar apenas o que foi permitido.
-        // Neste exemplo simplificado, 'accepted' carrega tudo.
     } else {
-        // Se não houver consentimento, mostra o banner
         banner.style.display = 'flex';
     }
 }
 
 // -----------------------------------------------------
-// 2. Eventos do Banner
+// 2. Eventos do Banner - CORRIGIDO para evitar erro em páginas sem banner
 // -----------------------------------------------------
 document.addEventListener('DOMContentLoaded', () => {
     checkCookieConsent();
 
-    // Aceitar Todos
-    document.getElementById('accept-cookies').addEventListener('click', () => {
-        localStorage.setItem('cookieConsent', 'accepted');
-        document.getElementById('cookie-banner').style.display = 'none';
-        loadScripts('statistics');
-        loadScripts('marketing');
-    });
+    const acceptBtn = document.getElementById('accept-cookies');
+    const customizeBtn = document.getElementById('customize-cookies');
+    const banner = document.getElementById('cookie-banner');
 
-    // Personalizar (Neste exemplo, apenas fecha e assume 'necessário', mas numa solução real abriria um modal)
-    document.getElementById('customize-cookies').addEventListener('click', () => {
-        alert("A personalização seria implementada aqui (modal com checkboxes). Por enquanto, aceitamos apenas os essenciais.");
-        // Implementar lógica de modal de personalização aqui
-    });
+    // Só adiciona os eventos se os botões realmente existirem na página
+    if (acceptBtn && banner) {
+        acceptBtn.addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'accepted');
+            banner.style.display = 'none';
+            loadScripts('statistics');
+            loadScripts('marketing');
+        });
+    }
+
+    if (customizeBtn) {
+        customizeBtn.addEventListener('click', () => {
+            alert("A personalização seria implementada aqui (modal com checkboxes). Por enquanto, aceitamos apenas os essenciais.");
+        });
+    }
 });
 
 
