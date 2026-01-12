@@ -341,22 +341,22 @@
               {
                 "title": "Redux ( Dreno modeladora)",
                 "text": "60 minutos <br>Tratamento ideal para quem busca reduzir medidas, modelar o corpo e combater o inchaço, deixando a silhueta mais definida e leve desde as primeiras sessões.",
-                "price": 50.00
+                "price":50.00
               },
               {
                 "title": "Drenagem",
                 "text": "60 minutos <br>Perfeita para eliminar líquidos retidos, desinchar o corpo e proporcionar uma sensação imediata de leveza e bem-estar.",
-                "price": 50.00
+                "price":50.00
               },
               {
                 "title": "Massagem",
                 "text": "60 minutos <br>Indicada para aliviar dores, tensões musculares e desconfortos do dia a dia, promovendo alívio, equilíbrio e mais qualidade de vida..",
-                "price": 50.00
+                "price":50.00
               },
               {
                 "title": "Massagem Relaxante",
                 "text": "60 minutos <br>Uma experiência de relaxamento profundo que reduz o estresse, acalma a mente e renova as energias do corpo e da alma.",
-                "price": 50.00
+                "price":50.00
               }
             ],
             "story_short": "Cuidar do corpo é um ato de amor próprio.",
