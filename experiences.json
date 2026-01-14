@@ -433,17 +433,13 @@
                 "title": "Enfaixar os joelhos(20 minutos)",
                 "text": "Bandagem para corredores e ciclistas — máxima resistência, mínima dor! Redução do impacto nas articulações e músculos — especialmente nos joelhos. Recuperação mais rápida — as bandagens melhoram a circulação sanguínea e linfática, reduzindo o inchaço.",
                 "price":40.00
-              },
-              {
-                "title": "Sauna a vapor com ervas (Fitobarrel)(30 minutos)",
-                "text": "Um ritual de bem-estar suave, porém poderoso, que combina vapor quente e ervas medicinais para desintoxicar o corpo, estimular a circulação e relaxar profundamente o sistema nervoso. O FitoBarrel ajuda a liberar a tensão, reduzir a retenção de líquidos, acelerar o metabolismo e deixar o corpo com uma sensação de leveza, renovação e energia — tudo isso enquanto sua cabeça permanece confortavelmente fora da sauna. Perfeito como tratamento individual ou antes de uma massagem corporal para resultados ainda melhores.",
-                "price":30.00
               }
             ],
             "story_short": "Seu bem-estar, nossa missão.",
             "story_full": "A Lepka Tela dedica-se a proporcionar um refúgio onde você pode escapar do stress do dia a dia. Nossa missão é promover o seu bem-estar físico e mental através de massagens terapêuticas elaboradas por especialistas e personalizadas para atender às suas necessidades individuais. Com uma equipe de profissionais altamente qualificados, oferecemos uma variedade de técnicas de massagem que visam aliviar tensões, melhorar a circulação e restaurar o equilíbrio do corpo e da mente."
           },
 
+          
           {
             "slug": "lepka-tela-estoril",
             "name": "Lepka Tela Estoril",
@@ -514,11 +510,6 @@
                 "title": "Enfaixar os joelhos(20 minutos)",
                 "text": "Bandagem para corredores e ciclistas — máxima resistência, mínima dor! Redução do impacto nas articulações e músculos — especialmente nos joelhos. Recuperação mais rápida — as bandagens melhoram a circulação sanguínea e linfática, reduzindo o inchaço.",
                 "price":40.00
-              },
-              {
-                "title": "Sauna a vapor com ervas (Fitobarrel)(30 minutos)",
-                "text": "Um ritual de bem-estar suave, porém poderoso, que combina vapor quente e ervas medicinais para desintoxicar o corpo, estimular a circulação e relaxar profundamente o sistema nervoso. O FitoBarrel ajuda a liberar a tensão, reduzir a retenção de líquidos, acelerar o metabolismo e deixar o corpo com uma sensação de leveza, renovação e energia — tudo isso enquanto sua cabeça permanece confortavelmente fora da sauna. Perfeito como tratamento individual ou antes de uma massagem corporal para resultados ainda melhores.",
-                "price":30.00
               }
             ],
             "story_short": "Seu bem-estar, nossa missão.",
