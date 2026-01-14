@@ -520,6 +520,42 @@
             "story_full": "A Lepka Tela dedica-se a proporcionar um refúgio onde você pode escapar do stress do dia a dia. Nossa missão é promover o seu bem-estar físico e mental através de massagens terapêuticas elaboradas por especialistas e personalizadas para atender às suas necessidades individuais. Com uma equipe de profissionais altamente qualificados, oferecemos uma variedade de técnicas de massagem que visam aliviar tensões, melhorar a circulação e restaurar o equilíbrio do corpo e da mente."
           },
 
+          {
+            "slug": "spar-131",
+            "name": "Spar 131",
+            "location": "Av almirante Reis 131 Endereço",
+            "price_original": "€90",
+            "price_discount": "€72",
+            "savings": "Economize €18",
+            "discount_label": "20% OFF",
+            "discount_percent": 20,
+            "code": "WELLNESS20",
+            "official_url": "#",
+            "email": "liuri-jesus@outlook.com",
+            "phone": "+351 963009259",
+            "instagram": "https://www.instagram.com/lisboa_massage/",
+            "images": [
+              "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1767988074/WhatsApp_Image_2026-01-08_at_21.35.43_2_oue6tx.jpg",
+              "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1767988074/WhatsApp_Image_2026-01-08_at_21.35.43_1_fvriiq.jpg",
+              "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1767988075/WhatsApp_Image_2026-01-08_at_21.35.43_mleniy.jpg"
+            ],
+            "icon": "fas fa-leaf",
+            "offers": [
+              {
+                "title": "Massagem tantrica(60 minutos)",
+                "text": "Uma jornada sensorial que visa despertar a sensibilidade corporal e expandir a consciência através do toque e da respiração. Esta prática terapêutica trabalha o fluxo da energia vital por todo o corpo, desfazendo bloqueios e proporcionando uma conexão profunda consigo mesmo. </b>É indicada para quem deseja explorar novas percepções de prazer, bem-estar e autoconhecimento.",
+                "price": 90.00
+              },
+              {
+                "title": "Massagem relaxante(60 minutos)",
+                "text": "Uma experiência focada no alívio do estresse e da tensão muscular acumulada. Através de movimentos suaves, rítmicos e o uso de óleos terapêuticos, esta sessão promove um profundo estado de tranquilidade, acalma a mente e restaura o equilíbrio físico e emocional. </b>É a escolha ideal para quem busca um momento de pausa e renovação das energias.",
+                "price": 70.00
+              }
+            ],
+            "story_short": "Sobre mim",
+            "story_full": "Meu nome é Liuri, tenho 27 anos e trabalho com massagem desde os 18 anos, quando iniciei minha trajetória no Brasil. Ao longo desses anos, desenvolvi uma conexão profunda com o cuidado do corpo e do bem-estar, sempre buscando proporcionar momentos de relaxamento, presença e equilíbrio. \nAtualmente atendo em Portugal, na região de Lisboa e Grande Lisboa. \nPossuo espaço próprio em Lisboa, mas também realizo atendimento ao domicílio, oferecendo mais conforto e comodidade aos meus clientes. \nMinha especialidade é a massagem relaxante e tântrica, focadas no alívio do estresse, na reconexão corporal e no relaxamento profundo. \nTambém realizo massagem modeladora e drenagem linfática, adaptando cada atendimento às necessidades individuais de cada pessoa."
+          },
+
           
           {
             "slug": "lepka-tela-estoril",
