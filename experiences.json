@@ -364,9 +364,90 @@
           },
 
           {
-            "slug": "lepka-tela",
-            "name": "Lepka Tela",
+            "slug": "lepka-tela-lisboa",
+            "name": "Lepka Tela Lisboa",
             "location": "Av. Dom João II 16 R/C D, 1990-095 Lisboa",
+            "price_original": "€60",
+            "price_discount": "€51",
+            "savings": "Economize €9",
+            "discount_label": "15% OFF",
+            "discount_percent": 15,
+            "code": "WELLNESS20",
+            "official_url": "https://lepka-tela.com/",
+            "email": "lepka.tela.portugal@gmail.com",
+            "phone": "+351 932452255",
+            "instagram": "https://www.instagram.com/lepka_tela_portugal/",
+            "images": [
+              "https://lepka-tela.com/img/svg/bed.jpeg",
+              "https://lepka-tela.com/img/svg/beach_massage.jpeg",
+              "https://lepka-tela.com/img/svg/lepka_tela.jpeg"
+            ],
+            "icon": "fas fa-leaf",
+            "offers": [
+              {
+                "title": "Massagem de Escultura Corporal Completa(60 minutos)",
+                "text": "Uma massagem profunda e dinâmica que utiliza uma técnica especial para promover a drenagem linfática. Este tipo de massagem tonifica os músculos dos glúteos, abdômen e braços. A celulite é suavizada e o volume corporal é significativamente reduzido. O ideal é começar com uma sessão por semana, aumentando para duas sessões na segunda semana e três sessões na terceira semana.",
+                "price":90.00
+              },
+              {
+                "title": "Escultura - Pernas, Barriga, Laterais (40 minutos)",
+                "text": "Focada na correção das pernas, abdômen (incluindo técnicas abdominais e viscerais) e região lombar lateral. Esta massagem auxilia na remoção de gordura através de massagem profunda e elimina o excesso de líquidos.",
+                "price":70.00
+              },
+              {
+                "title": "Massagem Modeladora para Pernas e Glúteos(30 minutos)",
+                "text": "Com foco na modelagem e tonificação das pernas, remoção de gordura e eliminação do excesso de água através de técnicas de massagem profunda.",
+                "price":55.00
+              },
+              {
+                "title": "Massagem de Escultura Facial(35 minutos)",
+                "text": "Esta massagem visa diversas zonas do rosto, incluindo o decote, braços, pescoço (eliminando as linhas de expressão), papada e contornos faciais. Ajuda a firmar os cantos dos lábios, suavizar os sulcos nasogenianos e reduzir as rugas da testa. Inclui uma leve massagem na cabeça. Realizada com os renomados cosméticos Comfort Zone e toalhas quentes para uma experiência luxuosa. O tratamento termina com uma máscara de massagem seguida de uma segunda máscara. Não se trata apenas de uma massagem facial, mas de um tratamento cosmético completo.",
+                "price":60.00
+              },
+              {
+                "title": "Massagem Bucal Facial(50 minutos)",
+                "text": "Combina as mesmas técnicas da massagem escultural clássica com a adição de técnicas intraorais, realizadas com luvas. Não é dolorosa, mas altamente eficaz para tonificar os músculos faciais e proporcionar uma drenagem profunda. Esta massagem ajuda a restaurar o tônus ​​muscular.",
+                "price":70.00
+              },
+              {
+                "title": "Massagem relaxante com [Comfort Zone] da marca italiana e pedras de obsidiana mexicana.(80 minutos)",
+                "text": "Em nosso salão, esta não é apenas uma massagem relaxante, mas um ritual completo! Pedras quentes relaxam suavemente os músculos das costas enquanto trabalham os centros de energia. Utilizamos o lendário óleo 'Tranquility' para aromaterapia. Você pode solicitar uma massagem mais suave ou mais profunda. Presenteie-se com este mimo. Também oferecemos a opção de massagem relaxante para duas pessoas em uma mesma sala.",
+                "price":100.00
+              },
+              {
+                "title": "Massagem Desportiva(60 minutos)",
+                "text": "Ideal para quem busca equilibrar os músculos e eliminar o ácido lático. Altamente eficaz imediatamente após o treino ou no dia seguinte. Recomenda-se o uso uma vez por semana para melhores resultados.",
+                "price":75.00
+              },
+              {
+                "title": "Fita estética - abdômen(30 minutos)",
+                "text": "A bandagem estética é uma técnica suave de drenagem linfática que acelera o metabolismo, modela o corpo, reduz a celulite e melhora o tônus ​​e a luminosidade da pele.",
+                "price":40.00
+              },
+              {
+                "title": "Bandagem estética - pernas, laterais(30 minutos)",
+                "text": "A bandagem estética é uma técnica suave de drenagem linfática que acelera o metabolismo, modela o corpo, reduz a celulite e melhora o tônus ​​e a luminosidade da pele.",
+                "price":50.00
+              },
+              {
+                "title": "Enfaixar os joelhos(20 minutos)",
+                "text": "Bandagem para corredores e ciclistas — máxima resistência, mínima dor! Redução do impacto nas articulações e músculos — especialmente nos joelhos. Recuperação mais rápida — as bandagens melhoram a circulação sanguínea e linfática, reduzindo o inchaço.",
+                "price":40.00
+              },
+              {
+                "title": "Sauna a vapor com ervas (Fitobarrel)(30 minutos)",
+                "text": "Um ritual de bem-estar suave, porém poderoso, que combina vapor quente e ervas medicinais para desintoxicar o corpo, estimular a circulação e relaxar profundamente o sistema nervoso. O FitoBarrel ajuda a liberar a tensão, reduzir a retenção de líquidos, acelerar o metabolismo e deixar o corpo com uma sensação de leveza, renovação e energia — tudo isso enquanto sua cabeça permanece confortavelmente fora da sauna. Perfeito como tratamento individual ou antes de uma massagem corporal para resultados ainda melhores.",
+                "price":30.00
+              }
+            ],
+            "story_short": "Seu bem-estar, nossa missão.",
+            "story_full": "A Lepka Tela dedica-se a proporcionar um refúgio onde você pode escapar do stress do dia a dia. Nossa missão é promover o seu bem-estar físico e mental através de massagens terapêuticas elaboradas por especialistas e personalizadas para atender às suas necessidades individuais. Com uma equipe de profissionais altamente qualificados, oferecemos uma variedade de técnicas de massagem que visam aliviar tensões, melhorar a circulação e restaurar o equilíbrio do corpo e da mente."
+          },
+
+          {
+            "slug": "lepka-tela-estoril",
+            "name": "Lepka Tela Estoril",
+            "location": "https://maps.app.goo.gl/6nhg6HZBzZhdqR4F8?g_st=ic",
             "price_original": "€60",
             "price_discount": "€51",
             "savings": "Economize €9",
