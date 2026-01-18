@@ -399,52 +399,6 @@
           },
 
           {
-            "slug": "clinica-redux",
-            "name": "Clínica Redux",
-            "location": "Rua Passos Manuel 55A, Arroios - Lisboa Lisbon, Portugal",
-            "price_original": "€60",
-            "price_discount": "€54",
-            "savings": "Economize €6",
-            "discount_label": "10% OFF",
-            "discount_percent": 10,
-            "code": "WELLNESS20",
-            "official_url": "https://sites.google.com/view/clnicaredux/p%C3%A1gina-inicial",
-            "email": "clinicaredux.pt@gmail.com",
-            "phone": "+351 920465185",
-            "instagram": "https://www.instagram.com/clinicareduxpt?igsh=MTd5Y3g4c2ZuczkxMQ%3D%3D",
-            "images": [
-              "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1768092284/Sem_T%C3%ADtulo_dtvpyf.png",
-              "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1768092305/massagem_xvgxps.png",
-              "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1768092855/3_spv67l.png"
-            ],
-            "icon": "fas fa-leaf",
-            "offers": [
-              {
-                "title": "Redux ( Dreno modeladora)",
-                "text": "60 minutos <br>Tratamento ideal para quem busca reduzir medidas, modelar o corpo e combater o inchaço, deixando a silhueta mais definida e leve desde as primeiras sessões.",
-                "price":50.00
-              },
-              {
-                "title": "Drenagem",
-                "text": "60 minutos <br>Perfeita para eliminar líquidos retidos, desinchar o corpo e proporcionar uma sensação imediata de leveza e bem-estar.",
-                "price":50.00
-              },
-              {
-                "title": "Massagem",
-                "text": "60 minutos <br>Indicada para aliviar dores, tensões musculares e desconfortos do dia a dia, promovendo alívio, equilíbrio e mais qualidade de vida..",
-                "price":50.00
-              },
-              {
-                "title": "Massagem Relaxante",
-                "text": "60 minutos <br>Uma experiência de relaxamento profundo que reduz o estresse, acalma a mente e renova as energias do corpo e da alma.",
-                "price":50.00
-              }
-            ],
-            "story_short": "Cuidar do corpo é um ato de amor próprio.",
-            "story_full": "Na Clínica Redux, acreditamos que cuidar do corpo é também cuidar da alma. Somos um espaço dedicado ao bem-estar, beleza e equilíbrio, onde cada detalhe foi pensado para oferecer uma experiência única de relaxamento e resultados visíveis.\nEspecialistas em massagens terapêuticas, drenagem linfática e estética avançada, desenvolvemos o Método Redux Luxe, uma técnica exclusiva que combina modelagem, tonificação e relaxamento num só tratamento.\nCom uma equipa altamente qualificada e atendimento personalizado, a nossa missão é ajudar cada cliente a sentir-se mais leve, confiante e em harmonia consigo mesmo.\nNa Redux, o cuidado vai além do corpo  é um convite ao autocuidado, à pausa e à reconexão com o que realmente importa: você."
-          },
-
-          {
             "slug": "lepka-tela-lisboa",
             "name": "Lepka Tela Lisboa",
             "location": "Av. Dom João II 16 R/C D, 1990-095 Lisboa",
