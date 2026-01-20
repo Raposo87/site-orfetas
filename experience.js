@@ -125,8 +125,24 @@
   document.head.appendChild(ld);
 
 
+  // Função para buscar informações de stock do backend
+  const getStockInfo = async (partnerSlug, offerTitle) => {
+    try {
+      const API_BASE = (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
+        ? "http://localhost:3000/api/admin"
+        : "https://voucherhub-backend-production.up.railway.app/api/admin";
+      
+      const res = await fetch(`${API_BASE}/stock-list`);
+      const stocks = await res.json();
+      return stocks.find(s => s.partner_slug === partnerSlug && s.offer_title === offerTitle);
+    } catch (err) {
+      console.warn('Erro ao buscar stock:', err);
+      return null;
+    }
+  };
+
   // Função para renderizar cards
-  const renderCards = () => {
+  const renderCards = async () => {
     const grid = document.getElementById('partners-grid');
     grid.innerHTML = '';
 
@@ -136,12 +152,36 @@
       return window.i18n.getNestedTranslation(t, key) || key;
     };
 
-    mode.partners.forEach((p) => {
+    for (const p of mode.partners) {
       const card = document.createElement('div');
       card.className = 'experience-card';
       card.dataset.discount = p.discount_label;
       
       const images = p.images || (p.image ? [p.image] : []);
+      
+      // Buscar informações de stock para o primeiro offer
+      let stockInfo = null;
+      if (p.offers && p.offers.length > 0) {
+        stockInfo = await getStockInfo(p.slug, p.offers[0].title);
+      }
+
+      // Renderizar barra de urgência se houver stock
+      let stockIndicator = '';
+      if (stockInfo && stockInfo.stock_remaining !== null && stockInfo.stock_limit) {
+        const percentRemaining = (stockInfo.stock_remaining / stockInfo.stock_limit) * 100;
+        const isUrgent = percentRemaining <= 20; // Urgente se <= 20%
+        
+        stockIndicator = `
+          <div class="stock-indicator ${isUrgent ? 'urgent' : ''}">
+            <div class="stock-bar">
+              <div class="stock-fill" style="width: ${percentRemaining}%"></div>
+            </div>
+            <p class="stock-text">
+              ${isUrgent ? '🔥 ' : ''}Apenas ${stockInfo.stock_remaining} disponível${stockInfo.stock_remaining === 1 ? '' : 'is'}!
+            </p>
+          </div>
+        `;
+      }
       
       card.innerHTML = `
         <div class="card-image">
@@ -157,6 +197,8 @@
           <div class="discount-moved-area"> 
             <span class="discount-label-lg">${p.discount_label}</span>
           </div>
+
+          ${stockIndicator}
           
           <div class="card-actions">
             <a href="partner.html?slug=${p.slug}" class="btn btn-official btn-sm">
@@ -176,7 +218,7 @@
       if (images.length > 1 && window.voucherhubApp && window.voucherhubApp.carouselManager) {
         window.voucherhubApp.carouselManager.initCarousel(card, images);
       }
-    });
+    }
   };
 
   // Renderizar cards inicialmente

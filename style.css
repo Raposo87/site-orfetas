@@ -1922,3 +1922,64 @@ a:focus {
 .value-text .highlight-orange {
   font-weight: 700;
 }
+
+/* ===== INDICADOR DE STOCK ===== */
+.stock-indicator {
+  background: #f0f9ff;
+  border-left: 4px solid #3b82f6;
+  padding: 10px;
+  margin: 12px 0;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.stock-indicator.urgent {
+  background: #fef2f2;
+  border-left-color: #ef4444;
+}
+
+.stock-bar {
+  height: 8px;
+  background: #e0e7ff;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.stock-indicator.urgent .stock-bar {
+  background: #fee2e2;
+}
+
+.stock-fill {
+  background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+  height: 100%;
+  transition: width 0.3s ease;
+  border-radius: 10px;
+}
+
+.stock-indicator.urgent .stock-fill {
+  background: linear-gradient(90deg, #ef4444, #dc2626);
+  animation: pulse 1.5s infinite;
+}
+
+.stock-text {
+  font-size: 13px;
+  color: #1f2937;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.stock-indicator.urgent .stock-text {
+  color: #991b1b;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
