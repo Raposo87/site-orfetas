@@ -693,11 +693,11 @@
       "slug": "giravela-eco-sailing",
       "name": "Gira Vela Eco Sailing",
       "location": "Doca da Marinha - Av. Infante Dom Henrique, S/N - Baixa - Lisboa, Lisbon, Portugal",
-      "price_original": "349,99€",
-      "price_discount": "314,91€",
-      "savings": "Poupa €34,99",
-      "discount_label": "10% OFF",
-      "discount_percent": 10,
+      "price_original": "€",
+      "price_discount": "299.99€",
+      "savings": "Poupa €74,99",
+      "discount_label": "25% OFF",
+      "discount_percent": 25,
       "code": "",
       "official_url": "https://giravelaecosailing.com/",
       "email": "contacto@giravelaecosailing.com",
@@ -713,22 +713,22 @@
         {
           "title": "Passeio Privado – Até 10 pessoas",
           "description": "Duração: 2h30<br>Inclui: bebida de boas-vindas, snacks e ambiente descontraído.<br>Perfeito para aniversários, despedidas de solteiro ou eventos de equipa.",
-          "price": 250.00
+          "price": 349.99
         },
         {
           "title": "Passeio Privado – 4 pessoas",
           "description": "Duração: 2h30 <br>Inclui: bebida de boas-vindas (espumante ou sumo), snacks, vistas únicas de Lisboa.<br>Ideal para famílias pequenas, casais ou grupos reduzidos.",
-          "price": 150.00
+          "price": 299.99
         },
         {
           "title": "Yoga & Meditação ao Nascer do Sol – Até 9 pessoas",
           "description": "Duração: 2h<br>Inclui: instrutor certificado, chá quente, mini tostas, mantas, música relaxante e vistas deslumbrantes do amanhecer sobre Lisboa.<br>Uma experiência única para revitalizar corpo e mente.",
-          "price": 300.00
+          "price": 450.00
         },
          {
           "title": "Passeio ao Pôr do Sol no Tejo – Até 10 pessoas",
           "description": "Duração: 2h30<br>Inclui: bebida de boas-vindas, snacks e fotografias para eternizar o momento.Desfrute da luz dourada a pintar Lisboa, passando por monumentos icónicos enquanto o sol se põe.",
-          "price": 300.00
+          "price": 450.00
         }
       ],
       "story_short": "Escolha o passeio ideal para sua próxima aventura",
