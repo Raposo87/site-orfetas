@@ -1644,6 +1644,8 @@ a:focus {
   border-radius: 12px;
   position: relative;
   animation: fadeInUp .3s ease;
+  max-height: 85vh;
+  overflow-y: auto;
 }
 
 .modal-close {

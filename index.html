@@ -604,15 +604,79 @@
   const contentFAQ = `
     <h2>Perguntas Frequentes</h2>
 
+    <h3>Vouchers e Compra</h3>
+    
     <p><strong>1. Quando recebo o meu voucher?</strong><br>
-    O voucher é enviado automaticamente para o seu email logo após a compra.</p>
+    O voucher é enviado automaticamente para o seu email logo após a compra ser confirmada e o pagamento processado. Deverá chegar em poucos minutos.</p>
 
     <p><strong>2. Como utilizo o voucher?</strong><br>
-    Basta apresentá-lo ao parceiro no dia da experiência. Ele valida o voucher online no sistema VoucherHub.</p>
+    Basta apresentá-lo ao parceiro no dia da experiência. Ele valida o voucher online no sistema VoucherHub, inserindo o PIN de segurança fornecido.</p>
 
-    <p><strong>3. Posso pedir reembolso?</strong><br>
-    Nos termos do Decreto-Lei n.º 24/2014, o consumidor dispõe de um prazo de 14 dias para exercer o direito de livre resolução, sem necessidade de indicar qualquer motivo.
-    Este prazo conta a partir da data da compra do voucher e antes no mesmo ser validado pelo parceiro.</p>
+    <p><strong>3. Qual é a validade do voucher?</strong><br>
+    Os vouchers têm uma validade padrão de 240 dias (8 meses) a contar da data da compra. Após este período, o voucher expira e não pode ser utilizado.</p>
+
+    <p><strong>4. Posso utilizar o voucher após a data de expiração?</strong><br>
+    Não. Os vouchers expirados perdem automaticamente a sua validade e não conferem direito a reembolso ou utilização posterior.</p>
+
+    <h3>Reembolsos e Cancelamentos</h3>
+
+    <p><strong>5. Posso pedir reembolso?</strong><br>
+    Nos termos do Decreto-Lei n.º 24/2014, o consumidor dispõe de um prazo de 14 dias para exercer o direito de livre resolução, sem necessidade de indicar qualquer motivo. Este prazo conta a partir da data da compra do voucher e antes do mesmo ser validado pelo parceiro.</p>
+
+    <p><strong>6. Posso cancelar a minha compra?</strong><br>
+    Sim, desde que o voucher não tenha sido validado. Tem 14 dias para cancelar a compra. Após a validação do voucher pelo parceiro, a transação é considerada concluída e não é possível solicitar reembolso.</p>
+
+    <p><strong>7. O que acontece se o parceiro não aparecer?</strong><br>
+    O VoucherHub não é responsável pela prestação do serviço. Se tiver problemas, contacte diretamente o parceiro através dos dados fornecidos no voucher. Se não conseguir resolver, entre em contacto connosco em info@voucherhub.pt.</p>
+
+    <h3>Pagamentos e Segurança</h3>
+
+    <p><strong>8. Os pagamentos são seguros?</strong><br>
+    Sim, todos os pagamentos são processados através do Stripe, uma plataforma de pagamento líder em segurança. Os seus dados bancários nunca são armazenados na plataforma VoucherHub.</p>
+
+    <p><strong>9. Que métodos de pagamento aceitam?</strong><br>
+    Aceitamos cartões de crédito e débito (Visa, Mastercard, etc.) através da plataforma Stripe. Os detalhes exatos dos métodos podem variar conforme a sua região.</p>
+
+    <p><strong>10. Vejo um débito no meu banco, mas não recebi o voucher. O que devo fazer?</strong><br>
+    Verifique primeiro a sua caixa de spam/lixo no email. Se não encontrar, contacte-nos em info@voucherhub.pt com a referência da transação. Ajudaremos a resolver o problema.</p>
+
+    <h3>Códigos Promocionais</h3>
+
+    <p><strong>11. Como funciona um código promocional (Sponsor Code)?</strong><br>
+    Os códigos promocionais permitem descontos adicionais na compra do voucher. Insira o código no campo disponível durante o checkout para aplicar o desconto. A taxa do VoucherHub pode variar consoante o código utilizado.</p>
+
+    <p><strong>12. Onde encontro códigos promocionais?</strong><br>
+    Os códigos promocionais são distribuídos através das nossas redes sociais, campanhas de email e parcerias especiais. Fique atento às nossas comunicações para descobrir ofertas exclusivas.</p>
+
+    <h3>Dados Pessoais e Privacidade</h3>
+
+    <p><strong>13. Como são tratados os meus dados pessoais?</strong><br>
+    Os dados recolhidos (email e dados de pagamento) são processados exclusivamente para a emissão do voucher, processamento do pagamento e fins estatísticos de navegação, em conformidade com o Regulamento Geral sobre a Proteção de Dados (UE) 2016/679.</p>
+
+    <p><strong>14. Vou receber emails de marketing?</strong><br>
+    Apenas se consentir. Respeitamos a sua privacidade e poderá desinscrever-se de qualquer altura.</p>
+
+    <h3>Parceiros e Requisitos</h3>
+
+    <p><strong>15. Como verifico os requisitos da experiência?</strong><br>
+    Cada experiência tem requisitos específicos (ex: idade mínima, condições físicas). Verifique a descrição completa na página do parceiro antes de comprar. Se tiver dúvidas, contacte o parceiro diretamente.</p>
+
+    <p><strong>16. Preciso marcar previamente com o parceiro?</strong><br>
+    Sim, é sua responsabilidade contactar o parceiro para marcar a data e hora. Os detalhes de contacto (email, telemóvel, Instagram) estão na página do parceiro.</p>
+
+    <p><strong>17. O VoucherHub é responsável pela qualidade da experiência?</strong><br>
+    Não, o VoucherHub atua apenas como intermediário. O parceiro é o único responsável pela qualidade, segurança e realização da experiência.</p>
+
+    <h3>Técnicas e Gerais</h3>
+
+    <p><strong>18. Em que idiomas está disponível o VoucherHub?</strong><br>
+    Atualmente, o VoucherHub está disponível em Português e Inglês. Pode trocar de idioma no topo da página.</p>
+
+    <p><strong>19. Há alguma taxa cobrada pelo VoucherHub?</strong><br>
+    Sim, o VoucherHub retém uma taxa administrativa sobre o valor total da venda pela intermediação do serviço. Esta taxa é variável e pode ser influenciada pelo uso de códigos promocionais.</p>
+
+    <p><strong>20. Posso contactar o VoucherHub diretamente?</strong><br>
+    Sim! Entre em contacto connosco em info@voucherhub.pt para qualquer questão, sugestão ou feedback.</p>
   `;
 
   const contentContact = `
@@ -622,10 +686,42 @@
   `;
 
   const contentTerms = `
-    <h2>Termos de Utilização</h2>
-    <p>O VoucherHub atua como intermediário digital na venda de vouchers de desconto.</p>
-    <p>A prestação do serviço é integralmente da responsabilidade dos parceiros.</p>
-    <p>Ao utilizar este site, concorda com estes termos e condições.</p>
+    <h2>Termos e Condições</h2>
+    
+    <h3>1. Objeto</h3>
+    <p>O VoucherHub é uma plataforma tecnológica que facilita a aquisição de vouchers para experiências e serviços prestados por parceiros terceiros (ex: aulas de surf, yoga, tours) em Portugal. O VoucherHub atua como intermediário, não sendo o prestador direto dos serviços listados.</p>
+
+    <h3>2. Definições</h3>
+    <p><strong>Utilizador:</strong> Pessoa singular ou coletiva que adquire o voucher.</p>
+    <p><strong>Parceiro:</strong> Entidade que presta o serviço/experiência e aceita o voucher.</p>
+    <p><strong>Voucher:</strong> Documento digital com código único que confere o direito à experiência.</p>
+    <p><strong>Escrow:</strong> Sistema de retenção de pagamento onde o valor é guardado pela plataforma até a prestação do serviço.</p>
+
+    <h3>3. Processo de Compra e Pagamento</h3>
+    <p><strong>3.1</strong> Os pagamentos são processados de forma segura via Stripe.</p>
+    <p><strong>3.2 Sistema de Escrow:</strong> Ao comprar um voucher, o valor pago (deduzida a taxa de serviço) fica retido pela plataforma e só será transferido ao Parceiro após a validação efetiva do voucher no local da experiência.</p>
+    <p><strong>3.3</strong> O utilizador receberá o voucher por e-mail imediatamente após a confirmação do pagamento.</p>
+
+    <h3>4. Regras de Uso e Validade</h3>
+    <p><strong>4.1 Prazo de Validade:</strong> Todos os vouchers emitidos têm uma validade padrão de 240 dias (8 meses) a contar da data da compra, salvo indicação contrária na descrição da oferta.</p>
+    <p><strong>4.2 Expiração:</strong> Findo o prazo de 240 dias sem que o voucher tenha sido utilizado, este perderá a validade, não conferindo direito a reembolso ou utilização posterior.</p>
+    <p><strong>4.3 Validação:</strong> Para usufruir do serviço, o Utilizador deve apresentar o código do voucher ao Parceiro. A validação é feita mediante a inserção de um PIN de segurança pelo Parceiro na plataforma VoucherHub.</p>
+
+    <h3>5. Cancelamentos e Reembolsos</h3>
+    <p><strong>5.1 Direito de Livre Resolução:</strong> De acordo com a legislação portuguesa (DL n.º 24/2014), o Utilizador tem o direito de cancelar a compra num prazo de 14 dias seguidos, desde que o voucher não tenha sido validado/utilizado.</p>
+    <p><strong>5.2 Após a Validação:</strong> Uma vez que o voucher seja validado pelo Parceiro através do PIN, o serviço é considerado prestado e o pagamento é libertado, não sendo possível solicitar reembolso através da plataforma.</p>
+    <p><strong>5.3 Vouchers Expirados:</strong> Não existe direito a reembolso para vouchers que atingiram o limite de 240 dias sem uso.</p>
+
+    <h3>6. Responsabilidades</h3>
+    <p><strong>6.1 Do Parceiro:</strong> O Parceiro é o único responsável pela qualidade, segurança e realização da experiência, bem como pela gestão das suas reservas e horários.</p>
+    <p><strong>6.2 Do Utilizador:</strong> É responsabilidade do Utilizador verificar os requisitos da experiência (ex: idade mínima, condições físicas) e contactar o Parceiro para marcação, se necessário.</p>
+    <p><strong>6.3 Do VoucherHub:</strong> Responsabiliza-se pelo funcionamento da plataforma e pela custódia segura dos fundos até à validação.</p>
+
+    <h3>7. Proteção de Dados (RGPD)</h3>
+    <p>Os dados recolhidos (e-mail e dados de pagamento) são processados exclusivamente para a emissão do voucher, processamento do pagamento e fins estatísticos de navegação, em conformidade com o Regulamento Geral sobre a Proteção de Dados (UE) 2016/679.</p>
+
+    <h3>8. Taxas de Serviço</h3>
+    <p>O VoucherHub retém uma taxa administrativa sobre o valor total da venda pela intermediação do serviço. Esta taxa é variável e pode ser influenciada pelo uso de Sponsor Codes (Códigos de Promocionais) no momento do checkout.</p>
   `;
 
   // Eventos do footer
