@@ -21,12 +21,15 @@
       "driverGuide": "Guide & Driver Tour",
       "wellnessTherapies": "Wellness & Therapies",
       "bikeTour": "Bike Tour",
+      "restaurants": "Restaurants",
+      "aquaticTour": "Aquatic Tour",
       "save": "Save",
       "seeSchools": "See schools on sale",
       "seeStudios": "See studios on sale",
       "seeTour": "See tours on sale",
       "seeBrands": "See brands on sale",
-      "seeTherapies": "See therapies on sale"
+      "seeTherapies": "See therapies on sale",
+      "seeRestaurants": "See restaurants on sale"
     },
     "howItWorks": {
       "title": "How <span class='highlight-orange'>It Works?</span>",
@@ -133,12 +136,15 @@
       "driverGuide": "Passeios com Guia e Motorista",
       "wellnessTherapies": "Saúde & Bem-estar",
       "bikeTour": "Passeio de Bicicleta",
+      "restaurants": "Restaurantes",
+      "aquaticTour": "Passeio Aquático",
       "save": "Poupe",
       "seeSchools": "Ver escolas com desconto",
       "seeStudios": "Ver estúdios com desconto",
       "seeTour": "Ver passeios com desconto",
       "seeBrands": "Ver marcas com desconto",
-      "seeTherapies": "Ver terapias com desconto"
+      "seeTherapies": "Ver terapias com desconto",
+      "seeRestaurants": "Ver restaurantes com desconto"
     },
     "howItWorks": {
       "title": "Como <span class='highlight-orange'>Funciona?</span>",

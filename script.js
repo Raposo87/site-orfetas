@@ -699,7 +699,7 @@ async function fetchInitialLikes(slug) {
 
 // Carrega os contadores de curtidas das categorias quando a página carrega
 document.addEventListener('DOMContentLoaded', () => {
-    const categorySlugList = ['wellness', 'yoga', 'surf', 'tour', 'bike', 'kitesurf', 'quad', 'tour-aquatico'];
+    const categorySlugList = ['wellness', 'yoga', 'surf', 'tour', 'bike', 'kitesurf', 'quad', 'tour-aquatico', 'restaurants'];
     categorySlugList.forEach(slug => {
         fetchInitialLikes(slug);
     });
