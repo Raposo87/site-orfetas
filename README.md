@@ -1189,8 +1189,7 @@ Railway fornece SSL grátis automaticamente para custom domains.
 ## 📞 Suporte e Contato
 
 **Email:** info@voucherhub.pt
-**Instagram:** @voucherhub_pt
-
+**Instagram:** @voucherhub_
 ---
 
 ## 📝 Histórico de Versões
