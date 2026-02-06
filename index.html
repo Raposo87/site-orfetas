@@ -202,13 +202,17 @@
 
         <!-- Card: Terapias Naturais -->
         <a class="experience-card" data-category="terapias" href="experience.html?slug=wellness" style="text-decoration:none;color:inherit">
-          <div class="featured-badge">
+          <!--<div class="featured-badge">
             <i class="fas fa-crown"></i>
             <span>Popular</span>
-          </div>
+          </div>-->
           <div class="card-image">
             <img src="https://images.pexels.com/photos/3757942/pexels-photo-3757942.jpeg" alt="Saude & Bem-estar" width="400" height="267" loading="lazy">
             <div class="card-badge"><span>10% - 30% OFF</span></div>
+            <div class="like-badge" id="like-btn-wellness" onclick="toggleLike(event, 'wellness')">
+              <i class="fas fa-heart"></i>
+              <span class="like-count" id="like-count-wellness">0</span>
+            </div>
           </div>
           <div class="card-content">
             <i class="fas fa-leaf"></i>
@@ -229,14 +233,18 @@
 
         <!-- Card: Yoga -->
         <a class="experience-card" data-category="yoga" href="experience.html?slug=yoga" style="text-decoration:none;color:inherit">
-          <div class="featured-badge">
+          <!--<div class="featured-badge">
             <i class="fas fa-crown"></i>
             <span>Popular</span>
-          </div>
+          </div>-->
           <div class="card-image">
             <img src="https://images.pexels.com/photos/317155/pexels-photo-317155.jpeg" alt="Yoga Lisboa" width="400" height="267" loading="lazy">
             <div class="card-badge">
               <span>15% - 30% OFF</span>
+            </div>
+            <div class="like-badge" id="like-btn-yoga" onclick="toggleLike(event, 'yoga')">
+              <i class="fas fa-heart"></i>
+              <span class="like-count" id="like-count-yoga">0</span>
             </div>
           </div>
           <div class="card-content">
@@ -264,6 +272,10 @@
             <div class="card-badge">
               <span>10% - 30% OFF</span>
             </div>
+            <div class="like-badge" id="like-btn-surf" onclick="toggleLike(event, 'surf')">
+              <i class="fas fa-heart"></i>
+              <span class="like-count" id="like-count-surf">0</span>
+            </div>
           </div>
           <div class="card-content">
             <i class="fas fa-water"></i>
@@ -290,6 +302,10 @@
           <div class="card-image">
             <img src="https://images.pexels.com/photos/6271668/pexels-photo-6271668.jpeg" alt="Tour com Guia" width="400" height="267" loading="lazy">
             <div class="card-badge"><span>10% - 30% OFF</span></div>
+            <div class="like-badge" id="like-btn-tour" onclick="toggleLike(event, 'tour')">
+              <i class="fas fa-heart"></i>
+              <span class="like-count" id="like-count-tour">0</span>
+            </div>
           </div>
           <div class="card-content">
             <i class="fas fa-car"></i>
@@ -338,6 +354,10 @@
           <div class="card-image">
             <img src="https://images.pexels.com/photos/289869/pexels-photo-289869.jpeg" alt="Bike Tour Lisboa" width="400" height="267" loading="lazy">
             <div class="card-badge"><span>10% - 30% OFF</span></div>
+            <div class="like-badge" id="like-btn-bike" onclick="toggleLike(event, 'bike')">
+              <i class="fas fa-heart"></i>
+              <span class="like-count" id="like-count-bike">0</span>
+            </div>
           </div>
           <div class="card-content">
             <i class="fas fa-bicycle"></i>
@@ -361,6 +381,10 @@
           <div class="card-image">
             <img src="https://images.pexels.com/photos/1705264/pexels-photo-1705264.jpeg" alt="Kitesurf" width="400" height="267" loading="lazy">
             <div class="card-badge"><span>10% - 30% OFF</span></div>
+            <div class="like-badge" id="like-btn-kitesurf" onclick="toggleLike(event, 'kitesurf')">
+              <i class="fas fa-heart"></i>
+              <span class="like-count" id="like-count-kitesurf">0</span>
+            </div>
           </div>
           <div class="card-content">
             <i class="fas fa-wind"></i>
@@ -384,6 +408,10 @@
           <div class="card-image">
             <img src="https://images.pexels.com/photos/1135197/pexels-photo-1135197.jpeg" alt="Passeio de Quad" width="400" height="267" loading="lazy">
             <div class="card-badge"><span>10% - 30% OFF</span></div>
+            <div class="like-badge" id="like-btn-quad" onclick="toggleLike(event, 'quad')">
+              <i class="fas fa-heart"></i>
+              <span class="like-count" id="like-count-quad">0</span>
+            </div>
           </div>
           <div class="card-content">
             <i class="fas fa-mountain"></i>
@@ -407,6 +435,10 @@
           <div class="card-image">
             <img src="https://images.pexels.com/photos/5368722/pexels-photo-5368722.jpeg" alt="Tour Aquático" width="400" height="267" loading="lazy">
             <div class="card-badge"><span>10% - 30% OFF</span></div>
+            <div class="like-badge" id="like-btn-tour-aquatico" onclick="toggleLike(event, 'tour-aquatico')">
+              <i class="fas fa-heart"></i>
+              <span class="like-count" id="like-count-tour-aquatico">0</span>
+            </div>
           </div>
           <div class="card-content">
             <i class="fas fa-ship"></i>

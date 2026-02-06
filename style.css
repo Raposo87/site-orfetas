@@ -447,8 +447,8 @@ body {
 
 .featured-badge {
   position: absolute;
-  top: -1px;
-  right: var(--spacing-lg);
+  top: 2.8rem;
+  left: 0rem;;
   background: var(--gradient-secondary);
   color: var(--white);
   padding: var(--spacing-xs) var(--spacing-md);
@@ -462,6 +462,7 @@ body {
 }
 
 .card-image {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1179,14 +1180,14 @@ a:focus {
   }
   
   .card-badge {
-    top: 1.5rem;
+    top: 0.5rem;
     left: 1.1rem;
     padding: 0.25rem 0.4rem;
     font-size: 0.65rem;
   }
   
   .featured-badge {
-    right: 0.5rem;
+    right: 5.5rem;
     padding: 0.25rem 0.5rem;
     font-size: 0.65rem;
   }
@@ -1924,3 +1925,28 @@ a:focus {
 .value-text .highlight-orange {
   font-weight: 700;
 }
+
+
+/* Layout do Coração */
+.like-badge {
+  position: absolute;
+  top: 5px;
+  right: 0px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(4px);
+  padding: 2px 9px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  z-index: 5;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.like-badge:hover { transform: scale(1.1); }
+.like-badge i { color: #ccc; transition: 0.3s; font-size: 16px; }
+.like-badge.is-liked i { color: #ff4d4d; } /* Coração Vermelho */
+.like-count { font-size: 13px; font-weight: 700; color: #333; }

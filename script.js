@@ -49,6 +49,9 @@ class CarouselManager {
     const cardImage = card.querySelector('.card-image');
     if (!cardImage || !images || images.length === 0) return;
 
+    // Preservar o like-badge antes de limpar o HTML
+    const likeBadge = cardImage.querySelector('.like-badge');
+
     cardImage.innerHTML = `
       <div class="card-image-carousel">
         <div class="carousel-track">
@@ -64,6 +67,11 @@ class CarouselManager {
           `).join('')}
         </div>
       </div>`;
+
+    // Re-inserir o like-badge no final para ficar por cima
+    if (likeBadge) {
+      cardImage.appendChild(likeBadge);
+    }
 
     const carousel = {
       currentIndex: 0,
@@ -609,22 +617,90 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         items.forEach(item => {
-            const thumb = (item.images && item.images.length > 0) ? item.images[0] : 'favcon.png';
-            const card = document.createElement('div');
-            card.innerHTML = `
-                <div style="display:flex; align-items:center; gap:15px; padding:12px; border-bottom:1px solid #eee;">
-                    <img src="${thumb}" style="width:50px; height:50px; object-fit:cover; border-radius:8px;">
-                    <div style="flex:1;">
-                        <h4 style="margin:0; font-size:14px; color:#333;">${item.name}</h4>
-                        <div style="display:flex; gap:5px; flex-wrap:wrap;">
-                            <small style="color:#667eea; font-weight:bold;">${item.categoryTitle}</small>
-                            <small style="color:#999;">• ${item.location}</small>
-                        </div>
-                    </div>
-                    <a href="partner.html?slug=${item.slug}" style="background:#667eea; color:white; padding:6px 12px; border-radius:6px; text-decoration:none; font-size:11px; font-weight:bold;">Ver</a>
-                </div>
-            `;
-            resultsGrid.appendChild(card);
+        const thumb = (item.images && item.images.length > 0) ? item.images[0] : 'favcon.png';
+        const card = document.createElement('div');
+        
+        // ATENÇÃO: Aqui usamos "item" pois é o nome definido no forEach acima
+        card.innerHTML = `
+            <div class="card-image">
+        <div class="like-badge" id="like-btn-${item.slug}" onclick="toggleLike(event, '${item.slug}')">
+            <i class="fas fa-heart"></i>
+            <span class="like-count" id="like-count-${item.slug}">0</span>
+        </div>
+        <img src="${item.image || 'favcon.png'}" alt="${item.name || item.title}">
+    </div>
+    <div class="card-content">
+        <h3>${item.name || item.title}</h3>
+        <p>${item.description || ''}</p>
+        <span class="badge">${item.categoryTitle || item.badge || ''}</span>
+    </div>
+        `;
+        resultsGrid.appendChild(card);
+        
+        // Carrega o número de curtidas para este item da busca
+        fetchInitialLikes(item.slug);
         });
     }
+});
+
+// Função Global de Curtidas
+async function toggleLike(event, slug) {
+    event.preventDefault();
+    event.stopPropagation(); // Impede de abrir o link ao clicar no coração
+
+    // 1. Verificar se o usuário já curtiu (no navegador dele)
+    const likedItems = JSON.parse(localStorage.getItem('my_likes') || '{}');
+    if (likedItems[slug]) return; // Se já curtiu, não faz nada
+
+    try {
+        const API_BASE = (window.location.hostname === "localhost") 
+            ? "http://localhost:3000" 
+            : "https://voucherhub-backend-production.up.railway.app";
+
+        const res = await fetch(`${API_BASE}/api/likes/${slug}`, { method: 'POST' });
+        const data = await res.json();
+
+        // Atualizar visualmente
+        const container = document.getElementById(`like-btn-${slug}`);
+        const countSpan = document.getElementById(`like-count-${slug}`);
+        
+        if (container && countSpan) {
+            container.classList.add('is-liked');
+            countSpan.innerText = data.count;
+            
+            // Salvar no navegador que este usuário já curtiu
+            likedItems[slug] = true;
+            localStorage.setItem('my_likes', JSON.stringify(likedItems));
+        }
+    } catch (e) {
+        console.error("Erro ao curtir:", e);
+    }
+}
+
+// Função para buscar o total inicial de curtidas
+async function fetchInitialLikes(slug) {
+    try {
+        const API_BASE = (window.location.hostname === "localhost") 
+            ? "http://localhost:3000" 
+            : "https://voucherhub-backend-production.up.railway.app";
+
+        const res = await fetch(`${API_BASE}/api/likes/${slug}`);
+        const data = await res.json();
+        const countSpan = document.getElementById(`like-count-${slug}`);
+        if (countSpan) countSpan.innerText = data.count;
+
+        // Se já estiver no localStorage, pinta de vermelho
+        const likedItems = JSON.parse(localStorage.getItem('my_likes') || '{}');
+        if (likedItems[slug]) {
+            document.getElementById(`like-btn-${slug}`)?.classList.add('is-liked');
+        }
+    } catch (e) {}
+}
+
+// Carrega os contadores de curtidas das categorias quando a página carrega
+document.addEventListener('DOMContentLoaded', () => {
+    const categorySlugList = ['wellness', 'yoga', 'surf', 'tour', 'bike', 'kitesurf', 'quad', 'tour-aquatico'];
+    categorySlugList.forEach(slug => {
+        fetchInitialLikes(slug);
+    });
 });
