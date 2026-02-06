@@ -30,29 +30,29 @@
             {
               "title": "Aulas de surf",
               "text": "1 aula de surf por pessoa - 1h30min, prancha de surf e roupa de neoprene inclusas, instrutor certificado, seguro esportivo incluso.",
-              "price": 30.00
+              "price": 30.0
             },
             {
               "title": "Aulas particulares de surf",
               "text": "1 aula de surf - 1h30min, prancha de surf e roupa de neoprene inclusas, instrutor certificado, seguro esportivo incluso.",
-              "price": 70.00
+              "price": 70.0
             },
             {
               "title": "Aula para crianças (menores de 12 anos)",
               "text": "1 aula de surf - 1h30min, prancha de surf e roupa de neoprene inclusas, instrutor certificado, seguro esportivo incluso.",
-              "price": 70.00
+              "price": 70.0
             },
             {
               "title": "Aula de Surfskate",
               "text": "1 hora de aula com instrutor certificado em skate e equipamentos, vídeos para análise. Localização: Costa da Caparica.",
-              "price": 20.00
+              "price": 20.0
             }
           ],
           "story_short": "A Surf Wave Lisbon conecta pessoas ao mar através do surf.",
           "story_full": "Fundada em 2018, a Surf Wave Lisbon nasceu com a missão de aproximar pessoas do oceano e proporcionar experiências únicas. Com instrutores locais apaixonados, a escola oferece aulas seguras, divertidas e adaptadas a todos os níveis de experiência."
         },
 
-         {
+        {
           "slug": "azonda-surf-club",
           "name": "Azonda Surf Club",
           "location": "Classico By Olivier",
@@ -77,12 +77,12 @@
             {
               "title": "Aulas de surf",
               "text": "",
-              "price": 40.00
+              "price": 40.0
             },
             {
               "title": "Aulas particulares de surf",
               "text": "",
-              "price": 80.00
+              "price": 80.0
             }
           ],
           "story_short": "Azonda Surf Club onde a paixão pelo surf o encontra!",
@@ -120,7 +120,7 @@
             {
               "title": "Coleções de verão, surfwear, acessórios e lifestyle.",
               "text": "Produtos sustentáveis e design moderno + Bonés, bolsas e equipamentos.",
-              "price": 0.00
+              "price": 0.0
             }
           ],
           "story_short": "A Twolines une moda e lifestyle praiano em uma só marca.",
@@ -158,22 +158,22 @@
             {
               "title": "Caminho do Alto",
               "text": "Transporte de Van pelos principais pontos turísticos da cidade de Sintra: Praça da Vigia – Fonte Sabuga – Vista do Palácio Nacional – Família Biester – Vista Castelo dos Mouros e Palácio da Pena. Inclui paradas para fotos e comentários do guia. Duração: 1 hora.",
-              "price": 30.00
+              "price": 30.0
             },
             {
               "title": "Caminho do Meio",
               "text": "Transporte de Van pelos pontos icónicos de Sintra: Praça da Vigia – Fonte Sabuga – Vista do Palácio Nacional – Vista Quinta da Regaleira – Vista Palácio de Seteais – Vista Palácio de Monserrate – Vista da vila de Sintra. Duração: 1 hora.",
-              "price": 30.00
+              "price": 30.0
             },
             {
               "title": "Tour de Meio Dia",
               "text": "Tour de 4h pelos principais locais de Sintra. Inclui visita agendada a 1 monumento (ingresso não incluso). Duração: 4 horas.",
-              "price": 70.00
+              "price": 70.0
             },
             {
               "title": "Tour Dia Inteiro",
               "text": "Passeio completo de 7h com visita agendada a 2 monumentos (ingressos não inclusos) e ida ao Cabo da Roca. Duração: 7 horas.",
-              "price": 100.00
+              "price": 100.0
             }
           ],
           "story_short": "A Nanan Adventures mostra Portugal com autenticidade.",
@@ -211,32 +211,32 @@
             {
               "title": "Pack de 5 aulas(CONSISTÊNCIA)",
               "text": "Para quem quer criar um rítmo, aprofundar a prática e integrar o Yoga no dia a dia, de forma natural.",
-              "price": 50.00
+              "price": 50.0
             },
             {
               "title": "Pack de 10 aulas(PROFUNDA)",
               "text": "Perfeito para quem mergulhar na prática, ganhar fluidez e colher os beneficios a longo prazo.",
-              "price": 90.00
+              "price": 90.0
             },
             {
               "title": "Hatha Yoga (Iniciante/Intermédio)",
               "text": "Prática tradicional que combina posturas físicas (ásanas) e respiração para equilíbrio.",
-              "price": 15.00
+              "price": 15.0
             },
             {
               "title": "Vinyasa Yoga (Intermédio)",
               "text": "Sincroniza movimento e respiração, criando sequências dinâmicas.",
-              "price": 15.00
+              "price": 15.0
             },
             {
               "title": "Yoga Dinâmico (Todos Níveis)",
               "text": "Modalidade versátil com sequências energéticas.",
-              "price": 15.00
+              "price": 15.0
             },
             {
               "title": "Yoga Restaurativo",
               "text": "Prática suave com posturas apoiadas para relaxamento profundo.",
-              "price": 15.00
+              "price": 15.0
             }
           ],
           "story_short": "O estúdio Yoga Kula nasceu com o propósito de unir corpo, mente e comunidade.",
@@ -266,22 +266,22 @@
             {
               "title": "Aula avulsa",
               "text": "Perfeito para experimentar a prática ou ter um encontro pontual.",
-              "price": 20.00
+              "price": 20.0
             },
             {
               "title": "Pack 4 aulas",
               "text": "Encontros regulares para iniciar uma rotina de cuidado.",
-              "price": 60.00
+              "price": 60.0
             },
             {
               "title": "Pack 8 aulas",
               "text": "Para quem deseja se comprometer com a prática ao longo do mês.",
-              "price": 100.00
+              "price": 100.0
             },
             {
               "title": "Presenciais particular / hora (até 10km)",
               "text": "Data e local a combinar.",
-              "price": 45.00
+              "price": 45.0
             }
           ],
           "story_short": "Quem sou eu",
@@ -289,314 +289,313 @@
         }
       ]
     },
-    
+
     {
       "slug": "wellness",
       "title": "Saúde & Bem-estar",
       "badge": "Terapias",
       "description": "Descubra Saúde & Bem-estar com descontos exclusivos.",
       "partners": [
-          {
-            "slug": "espaco-libela",
-            "name": "Espaço libélula",
-            "location": "Atendimento Online",
-            "price_original": "€90",
-            "price_discount": "€63",
-            "savings": "Economize €27",
-            "discount_label": "30% OFF",
-            "discount_percent": 30,
-            "code": "WELLNESS20",
-            "official_url": "#",
-            "email": "nicoleraposof7@gmail.com",
-            "phone": "+351 936 065 569",
-            "instagram": "https://www.instagram.com/dra.nicoleraposo/",
-            "images": [
-              "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1762900622/descontos_xaef5m.jpg",
-              "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1762900622/voucherhub_descontos_tphm62.jpg",
-              "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1762900622/descontos_voucher_urjqiz.jpg"
-            ],
-            "icon": "fas fa-leaf",
-            "offers": [
-              {
-                "title": "Consulta de Naturopatia Clínica",
-                "text": "Atendimento online. <br> Diagnóstico clínico e holístico + Plano terapêutico personalizado.",
-                "price": 90.00
-              }
-            ],
-            "story_short": "Consulta de Naturopatia Clínica",
-            "story_full": "Para quem sente-se cansado, com a mente acelerada e o corpo pedindo mesmo cuidado a muito tempo.\nA Naturopatia Clínica é um cuidado completo que vai muito além de aliviar sintomas, ela busca entender as causas reais do que está acontecendo com você.\nDurante a consulta, fazemos um diagnóstico clínico e holístico, avaliando corpo, mente e hábitos para identificar desequilíbrios que estão drenando sua energia e bem-estar.\nA partir disso, você recebe um plano terapêutico personalizado, que pode incluir:\n\n- Mudanças de estilo de vida práticas e sustentáveis\n- Suplementação natural sob medida para suas necessidades\n- Orientação alimentar realista e nutritiva, sem dietas impossíveis\n- Estratégias naturais para restaurar sono, digestão, energia, equilíbrio hormonal e emocional\n\nO objetivo é ajudar você a reconectar-se com o seu corpo, recuperar vitalidade e viver com mais leveza naturalmente."
-          },
-          {
+        {
+          "slug": "espaco-libela",
+          "name": "Espaço libélula",
+          "location": "Atendimento Online",
+          "price_original": "€90",
+          "price_discount": "€63",
+          "savings": "Economize €27",
+          "discount_label": "30% OFF",
+          "discount_percent": 30,
+          "code": "WELLNESS20",
+          "official_url": "#",
+          "email": "nicoleraposof7@gmail.com",
+          "phone": "+351 936 065 569",
+          "instagram": "https://www.instagram.com/dra.nicoleraposo/",
+          "images": [
+            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1762900622/descontos_xaef5m.jpg",
+            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1762900622/voucherhub_descontos_tphm62.jpg",
+            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1762900622/descontos_voucher_urjqiz.jpg"
+          ],
+          "icon": "fas fa-leaf",
+          "offers": [
+            {
+              "title": "Consulta de Naturopatia Clínica",
+              "text": "Atendimento online. <br> Diagnóstico clínico e holístico + Plano terapêutico personalizado.",
+              "price": 90.0
+            }
+          ],
+          "story_short": "Consulta de Naturopatia Clínica",
+          "story_full": "Para quem sente-se cansado, com a mente acelerada e o corpo pedindo mesmo cuidado a muito tempo.\nA Naturopatia Clínica é um cuidado completo que vai muito além de aliviar sintomas, ela busca entender as causas reais do que está acontecendo com você.\nDurante a consulta, fazemos um diagnóstico clínico e holístico, avaliando corpo, mente e hábitos para identificar desequilíbrios que estão drenando sua energia e bem-estar.\nA partir disso, você recebe um plano terapêutico personalizado, que pode incluir:\n\n- Mudanças de estilo de vida práticas e sustentáveis\n- Suplementação natural sob medida para suas necessidades\n- Orientação alimentar realista e nutritiva, sem dietas impossíveis\n- Estratégias naturais para restaurar sono, digestão, energia, equilíbrio hormonal e emocional\n\nO objetivo é ajudar você a reconectar-se com o seu corpo, recuperar vitalidade e viver com mais leveza naturalmente."
+        },
+        {
           "slug": "lepka-tela-madeira",
-            "name": "Lepka Tela Madeira",
-            "location": "Rua Joao de Deus 12E 1 floor, Fracao H, 9050-027 Funchal",
-            "price_original": "€60",
-            "price_discount": "€51",
-            "savings": "Economize €9",
-            "discount_label": "15% OFF",
-            "discount_percent": 15,
-            "code": "WELLNESS20",
-            "official_url": "https://lepka-tela.com/",
-            "email": "lepka.tela.portugal@gmail.com",
-            "phone": "+351 932452255",
-            "instagram": "https://www.instagram.com/lepka_tela_portugal/",
-            "images": [
-              "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1768422153/IMG_6885_mufsfl.jpg",
-              "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1768422155/IMG_7177_ruzn4r.jpg",
-              "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1768422153/IMG_0642_kbzl9y.jpg",
-              "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1768422152/IMG_0364_hjlwea.jpg"
-            ],
-            "icon": "fas fa-leaf",
-            "offers": [
-              {
-                "title": "Sauna a vapor com ervas (Fitobarrel, 20 minutos)",
-                "text": "Um ritual de bem-estar suave, porém poderoso, que combina vapor quente e ervas medicinais para desintoxicar o corpo, estimular a circulação e relaxar profundamente o sistema nervoso. O FitoBarrel ajuda a liberar a tensão, reduzir a retenção de líquidos, acelerar o metabolismo e deixar o corpo com uma sensação de leveza, renovação e energia — tudo isso enquanto sua cabeça permanece confortavelmente fora da sauna. Perfeito como tratamento individual ou antes de uma massagem corporal para resultados ainda melhores.",
-                "price":30.00
-              },
-              {
-                "title": "Massagem de Escultura Corporal Completa(60 minutos)",
-                "text": "Uma massagem profunda e dinâmica que utiliza uma técnica especial para promover a drenagem linfática. Este tipo de massagem tonifica os músculos dos glúteos, abdômen e braços. A celulite é suavizada e o volume corporal é significativamente reduzido. O ideal é começar com uma sessão por semana, aumentando para duas sessões na segunda semana e três sessões na terceira semana.",
-                "price":90.00
-              },
-              {
-                "title": "Escultura - Pernas, Barriga, Laterais (40 minutos)",
-                "text": "Focada na correção das pernas, abdômen (incluindo técnicas abdominais e viscerais) e região lombar lateral. Esta massagem auxilia na remoção de gordura através de massagem profunda e elimina o excesso de líquidos.",
-                "price":70.00
-              },
-              {
-                "title": "Massagem Modeladora para Pernas e Glúteos(30 minutos)",
-                "text": "Com foco na modelagem e tonificação das pernas, remoção de gordura e eliminação do excesso de água através de técnicas de massagem profunda.",
-                "price":55.00
-              },
-              {
-                "title": "Massagem de Escultura Facial(35 minutos)",
-                "text": "Esta massagem visa diversas zonas do rosto, incluindo o decote, braços, pescoço (eliminando as linhas de expressão), papada e contornos faciais. Ajuda a firmar os cantos dos lábios, suavizar os sulcos nasogenianos e reduzir as rugas da testa. Inclui uma leve massagem na cabeça. Realizada com os renomados cosméticos Comfort Zone e toalhas quentes para uma experiência luxuosa. O tratamento termina com uma máscara de massagem seguida de uma segunda máscara. Não se trata apenas de uma massagem facial, mas de um tratamento cosmético completo.",
-                "price":60.00
-              },
-              {
-                "title": "Massagem Bucal Facial(50 minutos)",
-                "text": "Combina as mesmas técnicas da massagem escultural clássica com a adição de técnicas intraorais, realizadas com luvas. Não é dolorosa, mas altamente eficaz para tonificar os músculos faciais e proporcionar uma drenagem profunda. Esta massagem ajuda a restaurar o tônus ​​muscular.",
-                "price":70.00
-              },
-              {
-                "title": "Massagem relaxante com [Comfort Zone] da marca italiana e pedras de obsidiana mexicana.(80 minutos)",
-                "text": "Em nosso salão, esta não é apenas uma massagem relaxante, mas um ritual completo! Pedras quentes relaxam suavemente os músculos das costas enquanto trabalham os centros de energia. Utilizamos o lendário óleo 'Tranquility' para aromaterapia. Você pode solicitar uma massagem mais suave ou mais profunda. Presenteie-se com este mimo. Também oferecemos a opção de massagem relaxante para duas pessoas em uma mesma sala.",
-                "price":100.00
-              },
-              {
-                "title": "Massagem Desportiva(60 minutos)",
-                "text": "Ideal para quem busca equilibrar os músculos e eliminar o ácido lático. Altamente eficaz imediatamente após o treino ou no dia seguinte. Recomenda-se o uso uma vez por semana para melhores resultados.",
-                "price":75.00
-              },
-              {
-                "title": "Fita estética - abdômen(30 minutos)",
-                "text": "A bandagem estética é uma técnica suave de drenagem linfática que acelera o metabolismo, modela o corpo, reduz a celulite e melhora o tônus ​​e a luminosidade da pele.",
-                "price":40.00
-              },
-              {
-                "title": "Bandagem estética - pernas, laterais(30 minutos)",
-                "text": "A bandagem estética é uma técnica suave de drenagem linfática que acelera o metabolismo, modela o corpo, reduz a celulite e melhora o tônus ​​e a luminosidade da pele.",
-                "price":50.00
-              },
-              {
-                "title": "Enfaixar os joelhos(20 minutos)",
-                "text": "Bandagem para corredores e ciclistas — máxima resistência, mínima dor! Redução do impacto nas articulações e músculos — especialmente nos joelhos. Recuperação mais rápida — as bandagens melhoram a circulação sanguínea e linfática, reduzindo o inchaço.",
-                "price":40.00
-              }
-            ],
-            "story_short": "Seu bem-estar, nossa missão.",
-            "story_full": "A Lepka Tela dedica-se a proporcionar um refúgio onde você pode escapar do stress do dia a dia. Nossa missão é promover o seu bem-estar físico e mental através de massagens terapêuticas elaboradas por especialistas e personalizadas para atender às suas necessidades individuais. Com uma equipe de profissionais altamente qualificados, oferecemos uma variedade de técnicas de massagem que visam aliviar tensões, melhorar a circulação e restaurar o equilíbrio do corpo e da mente."
-          },
+          "name": "Lepka Tela Madeira",
+          "location": "Rua Joao de Deus 12E 1 floor, Fracao H, 9050-027 Funchal",
+          "price_original": "€60",
+          "price_discount": "€51",
+          "savings": "Economize €9",
+          "discount_label": "15% OFF",
+          "discount_percent": 15,
+          "code": "WELLNESS20",
+          "official_url": "https://lepka-tela.com/",
+          "email": "lepka.tela.portugal@gmail.com",
+          "phone": "+351 932452255",
+          "instagram": "https://www.instagram.com/lepka_tela_portugal/",
+          "images": [
+            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1768422153/IMG_6885_mufsfl.jpg",
+            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1768422155/IMG_7177_ruzn4r.jpg",
+            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1768422153/IMG_0642_kbzl9y.jpg",
+            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1768422152/IMG_0364_hjlwea.jpg"
+          ],
+          "icon": "fas fa-leaf",
+          "offers": [
+            {
+              "title": "Sauna a vapor com ervas (Fitobarrel, 20 minutos)",
+              "text": "Um ritual de bem-estar suave, porém poderoso, que combina vapor quente e ervas medicinais para desintoxicar o corpo, estimular a circulação e relaxar profundamente o sistema nervoso. O FitoBarrel ajuda a liberar a tensão, reduzir a retenção de líquidos, acelerar o metabolismo e deixar o corpo com uma sensação de leveza, renovação e energia — tudo isso enquanto sua cabeça permanece confortavelmente fora da sauna. Perfeito como tratamento individual ou antes de uma massagem corporal para resultados ainda melhores.",
+              "price": 30.0
+            },
+            {
+              "title": "Massagem de Escultura Corporal Completa(60 minutos)",
+              "text": "Uma massagem profunda e dinâmica que utiliza uma técnica especial para promover a drenagem linfática. Este tipo de massagem tonifica os músculos dos glúteos, abdômen e braços. A celulite é suavizada e o volume corporal é significativamente reduzido. O ideal é começar com uma sessão por semana, aumentando para duas sessões na segunda semana e três sessões na terceira semana.",
+              "price": 90.0
+            },
+            {
+              "title": "Escultura - Pernas, Barriga, Laterais (40 minutos)",
+              "text": "Focada na correção das pernas, abdômen (incluindo técnicas abdominais e viscerais) e região lombar lateral. Esta massagem auxilia na remoção de gordura através de massagem profunda e elimina o excesso de líquidos.",
+              "price": 70.0
+            },
+            {
+              "title": "Massagem Modeladora para Pernas e Glúteos(30 minutos)",
+              "text": "Com foco na modelagem e tonificação das pernas, remoção de gordura e eliminação do excesso de água através de técnicas de massagem profunda.",
+              "price": 55.0
+            },
+            {
+              "title": "Massagem de Escultura Facial(35 minutos)",
+              "text": "Esta massagem visa diversas zonas do rosto, incluindo o decote, braços, pescoço (eliminando as linhas de expressão), papada e contornos faciais. Ajuda a firmar os cantos dos lábios, suavizar os sulcos nasogenianos e reduzir as rugas da testa. Inclui uma leve massagem na cabeça. Realizada com os renomados cosméticos Comfort Zone e toalhas quentes para uma experiência luxuosa. O tratamento termina com uma máscara de massagem seguida de uma segunda máscara. Não se trata apenas de uma massagem facial, mas de um tratamento cosmético completo.",
+              "price": 60.0
+            },
+            {
+              "title": "Massagem Bucal Facial(50 minutos)",
+              "text": "Combina as mesmas técnicas da massagem escultural clássica com a adição de técnicas intraorais, realizadas com luvas. Não é dolorosa, mas altamente eficaz para tonificar os músculos faciais e proporcionar uma drenagem profunda. Esta massagem ajuda a restaurar o tônus ​​muscular.",
+              "price": 70.0
+            },
+            {
+              "title": "Massagem relaxante com [Comfort Zone] da marca italiana e pedras de obsidiana mexicana.(80 minutos)",
+              "text": "Em nosso salão, esta não é apenas uma massagem relaxante, mas um ritual completo! Pedras quentes relaxam suavemente os músculos das costas enquanto trabalham os centros de energia. Utilizamos o lendário óleo 'Tranquility' para aromaterapia. Você pode solicitar uma massagem mais suave ou mais profunda. Presenteie-se com este mimo. Também oferecemos a opção de massagem relaxante para duas pessoas em uma mesma sala.",
+              "price": 100.0
+            },
+            {
+              "title": "Massagem Desportiva(60 minutos)",
+              "text": "Ideal para quem busca equilibrar os músculos e eliminar o ácido lático. Altamente eficaz imediatamente após o treino ou no dia seguinte. Recomenda-se o uso uma vez por semana para melhores resultados.",
+              "price": 75.0
+            },
+            {
+              "title": "Fita estética - abdômen(30 minutos)",
+              "text": "A bandagem estética é uma técnica suave de drenagem linfática que acelera o metabolismo, modela o corpo, reduz a celulite e melhora o tônus ​​e a luminosidade da pele.",
+              "price": 40.0
+            },
+            {
+              "title": "Bandagem estética - pernas, laterais(30 minutos)",
+              "text": "A bandagem estética é uma técnica suave de drenagem linfática que acelera o metabolismo, modela o corpo, reduz a celulite e melhora o tônus ​​e a luminosidade da pele.",
+              "price": 50.0
+            },
+            {
+              "title": "Enfaixar os joelhos(20 minutos)",
+              "text": "Bandagem para corredores e ciclistas — máxima resistência, mínima dor! Redução do impacto nas articulações e músculos — especialmente nos joelhos. Recuperação mais rápida — as bandagens melhoram a circulação sanguínea e linfática, reduzindo o inchaço.",
+              "price": 40.0
+            }
+          ],
+          "story_short": "Seu bem-estar, nossa missão.",
+          "story_full": "A Lepka Tela dedica-se a proporcionar um refúgio onde você pode escapar do stress do dia a dia. Nossa missão é promover o seu bem-estar físico e mental através de massagens terapêuticas elaboradas por especialistas e personalizadas para atender às suas necessidades individuais. Com uma equipe de profissionais altamente qualificados, oferecemos uma variedade de técnicas de massagem que visam aliviar tensões, melhorar a circulação e restaurar o equilíbrio do corpo e da mente."
+        },
 
-          {
-            "slug": "lepka-tela-lisboa",
-            "name": "Lepka Tela Lisboa",
-            "location": "Av. Dom João II 16 R/C D, 1990-095 Lisboa",
-            "price_original": "€60",
-            "price_discount": "€51",
-            "savings": "Economize €9",
-            "discount_label": "15% OFF",
-            "discount_percent": 15,
-            "code": "WELLNESS20",
-            "official_url": "https://lepka-tela.com/",
-            "email": "lepka.tela.portugal@gmail.com",
-            "phone": "+351 932452255",
-            "instagram": "https://www.instagram.com/lepka_tela_portugal/",
-            "images": [
-              "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1768421922/IMG_2264_j6jc71.jpg",
-              "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1768421924/IMG_6767_ngty6a.jpg",
-              "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1768421925/IMG_6931_r7ees0.jpg"
-            ],
-            "icon": "fas fa-leaf",
-            "offers": [
-              {
-                "title": "Massagem de Escultura Corporal Completa(60 minutos)",
-                "text": "Uma massagem profunda e dinâmica que utiliza uma técnica especial para promover a drenagem linfática. Este tipo de massagem tonifica os músculos dos glúteos, abdômen e braços. A celulite é suavizada e o volume corporal é significativamente reduzido. O ideal é começar com uma sessão por semana, aumentando para duas sessões na segunda semana e três sessões na terceira semana.",
-                "price":90.00
-              },
-              {
-                "title": "Escultura - Pernas, Barriga, Laterais (40 minutos)",
-                "text": "Focada na correção das pernas, abdômen (incluindo técnicas abdominais e viscerais) e região lombar lateral. Esta massagem auxilia na remoção de gordura através de massagem profunda e elimina o excesso de líquidos.",
-                "price":70.00
-              },
-              {
-                "title": "Massagem Modeladora para Pernas e Glúteos(30 minutos)",
-                "text": "Com foco na modelagem e tonificação das pernas, remoção de gordura e eliminação do excesso de água através de técnicas de massagem profunda.",
-                "price":55.00
-              },
-              {
-                "title": "Massagem de Escultura Facial(35 minutos)",
-                "text": "Esta massagem visa diversas zonas do rosto, incluindo o decote, braços, pescoço (eliminando as linhas de expressão), papada e contornos faciais. Ajuda a firmar os cantos dos lábios, suavizar os sulcos nasogenianos e reduzir as rugas da testa. Inclui uma leve massagem na cabeça. Realizada com os renomados cosméticos Comfort Zone e toalhas quentes para uma experiência luxuosa. O tratamento termina com uma máscara de massagem seguida de uma segunda máscara. Não se trata apenas de uma massagem facial, mas de um tratamento cosmético completo.",
-                "price":60.00
-              },
-              {
-                "title": "Massagem Bucal Facial(50 minutos)",
-                "text": "Combina as mesmas técnicas da massagem escultural clássica com a adição de técnicas intraorais, realizadas com luvas. Não é dolorosa, mas altamente eficaz para tonificar os músculos faciais e proporcionar uma drenagem profunda. Esta massagem ajuda a restaurar o tônus ​​muscular.",
-                "price":70.00
-              },
-              {
-                "title": "Massagem relaxante com [Comfort Zone] da marca italiana e pedras de obsidiana mexicana.(80 minutos)",
-                "text": "Em nosso salão, esta não é apenas uma massagem relaxante, mas um ritual completo! Pedras quentes relaxam suavemente os músculos das costas enquanto trabalham os centros de energia. Utilizamos o lendário óleo 'Tranquility' para aromaterapia. Você pode solicitar uma massagem mais suave ou mais profunda. Presenteie-se com este mimo. Também oferecemos a opção de massagem relaxante para duas pessoas em uma mesma sala.",
-                "price":100.00
-              },
-              {
-                "title": "Massagem Desportiva(60 minutos)",
-                "text": "Ideal para quem busca equilibrar os músculos e eliminar o ácido lático. Altamente eficaz imediatamente após o treino ou no dia seguinte. Recomenda-se o uso uma vez por semana para melhores resultados.",
-                "price":75.00
-              },
-              {
-                "title": "Fita estética - abdômen(30 minutos)",
-                "text": "A bandagem estética é uma técnica suave de drenagem linfática que acelera o metabolismo, modela o corpo, reduz a celulite e melhora o tônus ​​e a luminosidade da pele.",
-                "price":40.00
-              },
-              {
-                "title": "Bandagem estética - pernas, laterais(30 minutos)",
-                "text": "A bandagem estética é uma técnica suave de drenagem linfática que acelera o metabolismo, modela o corpo, reduz a celulite e melhora o tônus ​​e a luminosidade da pele.",
-                "price":50.00
-              },
-              {
-                "title": "Enfaixar os joelhos(20 minutos)",
-                "text": "Bandagem para corredores e ciclistas — máxima resistência, mínima dor! Redução do impacto nas articulações e músculos — especialmente nos joelhos. Recuperação mais rápida — as bandagens melhoram a circulação sanguínea e linfática, reduzindo o inchaço.",
-                "price":40.00
-              }
-            ],
-            "story_short": "Seu bem-estar, nossa missão.",
-            "story_full": "A Lepka Tela dedica-se a proporcionar um refúgio onde você pode escapar do stress do dia a dia. Nossa missão é promover o seu bem-estar físico e mental através de massagens terapêuticas elaboradas por especialistas e personalizadas para atender às suas necessidades individuais. Com uma equipe de profissionais altamente qualificados, oferecemos uma variedade de técnicas de massagem que visam aliviar tensões, melhorar a circulação e restaurar o equilíbrio do corpo e da mente."
-          },
+        {
+          "slug": "lepka-tela-lisboa",
+          "name": "Lepka Tela Lisboa",
+          "location": "Av. Dom João II 16 R/C D, 1990-095 Lisboa",
+          "price_original": "€60",
+          "price_discount": "€51",
+          "savings": "Economize €9",
+          "discount_label": "15% OFF",
+          "discount_percent": 15,
+          "code": "WELLNESS20",
+          "official_url": "https://lepka-tela.com/",
+          "email": "lepka.tela.portugal@gmail.com",
+          "phone": "+351 932452255",
+          "instagram": "https://www.instagram.com/lepka_tela_portugal/",
+          "images": [
+            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1768421922/IMG_2264_j6jc71.jpg",
+            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1768421924/IMG_6767_ngty6a.jpg",
+            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1768421925/IMG_6931_r7ees0.jpg"
+          ],
+          "icon": "fas fa-leaf",
+          "offers": [
+            {
+              "title": "Massagem de Escultura Corporal Completa(60 minutos)",
+              "text": "Uma massagem profunda e dinâmica que utiliza uma técnica especial para promover a drenagem linfática. Este tipo de massagem tonifica os músculos dos glúteos, abdômen e braços. A celulite é suavizada e o volume corporal é significativamente reduzido. O ideal é começar com uma sessão por semana, aumentando para duas sessões na segunda semana e três sessões na terceira semana.",
+              "price": 90.0
+            },
+            {
+              "title": "Escultura - Pernas, Barriga, Laterais (40 minutos)",
+              "text": "Focada na correção das pernas, abdômen (incluindo técnicas abdominais e viscerais) e região lombar lateral. Esta massagem auxilia na remoção de gordura através de massagem profunda e elimina o excesso de líquidos.",
+              "price": 70.0
+            },
+            {
+              "title": "Massagem Modeladora para Pernas e Glúteos(30 minutos)",
+              "text": "Com foco na modelagem e tonificação das pernas, remoção de gordura e eliminação do excesso de água através de técnicas de massagem profunda.",
+              "price": 55.0
+            },
+            {
+              "title": "Massagem de Escultura Facial(35 minutos)",
+              "text": "Esta massagem visa diversas zonas do rosto, incluindo o decote, braços, pescoço (eliminando as linhas de expressão), papada e contornos faciais. Ajuda a firmar os cantos dos lábios, suavizar os sulcos nasogenianos e reduzir as rugas da testa. Inclui uma leve massagem na cabeça. Realizada com os renomados cosméticos Comfort Zone e toalhas quentes para uma experiência luxuosa. O tratamento termina com uma máscara de massagem seguida de uma segunda máscara. Não se trata apenas de uma massagem facial, mas de um tratamento cosmético completo.",
+              "price": 60.0
+            },
+            {
+              "title": "Massagem Bucal Facial(50 minutos)",
+              "text": "Combina as mesmas técnicas da massagem escultural clássica com a adição de técnicas intraorais, realizadas com luvas. Não é dolorosa, mas altamente eficaz para tonificar os músculos faciais e proporcionar uma drenagem profunda. Esta massagem ajuda a restaurar o tônus ​​muscular.",
+              "price": 70.0
+            },
+            {
+              "title": "Massagem relaxante com [Comfort Zone] da marca italiana e pedras de obsidiana mexicana.(80 minutos)",
+              "text": "Em nosso salão, esta não é apenas uma massagem relaxante, mas um ritual completo! Pedras quentes relaxam suavemente os músculos das costas enquanto trabalham os centros de energia. Utilizamos o lendário óleo 'Tranquility' para aromaterapia. Você pode solicitar uma massagem mais suave ou mais profunda. Presenteie-se com este mimo. Também oferecemos a opção de massagem relaxante para duas pessoas em uma mesma sala.",
+              "price": 100.0
+            },
+            {
+              "title": "Massagem Desportiva(60 minutos)",
+              "text": "Ideal para quem busca equilibrar os músculos e eliminar o ácido lático. Altamente eficaz imediatamente após o treino ou no dia seguinte. Recomenda-se o uso uma vez por semana para melhores resultados.",
+              "price": 75.0
+            },
+            {
+              "title": "Fita estética - abdômen(30 minutos)",
+              "text": "A bandagem estética é uma técnica suave de drenagem linfática que acelera o metabolismo, modela o corpo, reduz a celulite e melhora o tônus ​​e a luminosidade da pele.",
+              "price": 40.0
+            },
+            {
+              "title": "Bandagem estética - pernas, laterais(30 minutos)",
+              "text": "A bandagem estética é uma técnica suave de drenagem linfática que acelera o metabolismo, modela o corpo, reduz a celulite e melhora o tônus ​​e a luminosidade da pele.",
+              "price": 50.0
+            },
+            {
+              "title": "Enfaixar os joelhos(20 minutos)",
+              "text": "Bandagem para corredores e ciclistas — máxima resistência, mínima dor! Redução do impacto nas articulações e músculos — especialmente nos joelhos. Recuperação mais rápida — as bandagens melhoram a circulação sanguínea e linfática, reduzindo o inchaço.",
+              "price": 40.0
+            }
+          ],
+          "story_short": "Seu bem-estar, nossa missão.",
+          "story_full": "A Lepka Tela dedica-se a proporcionar um refúgio onde você pode escapar do stress do dia a dia. Nossa missão é promover o seu bem-estar físico e mental através de massagens terapêuticas elaboradas por especialistas e personalizadas para atender às suas necessidades individuais. Com uma equipe de profissionais altamente qualificados, oferecemos uma variedade de técnicas de massagem que visam aliviar tensões, melhorar a circulação e restaurar o equilíbrio do corpo e da mente."
+        },
 
-          {
-            "slug": "spar-131",
-            "name": "Spar 131",
-            "location": "Av almirante Reis 131, Lisboa",
-            "price_original": "€90",
-            "price_discount": "€72",
-            "savings": "Economize €18",
-            "discount_label": "20% OFF",
-            "discount_percent": 20,
-            "code": "WELLNESS20",
-            "official_url": "#",
-            "email": "liuri-jesus@outlook.com",
-            "phone": "+351 963009259",
-            "instagram": "https://www.instagram.com/lisboa_massage/",
-            "images": [
-              "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1767988074/WhatsApp_Image_2026-01-08_at_21.35.43_2_oue6tx.jpg",
-              "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1767988074/WhatsApp_Image_2026-01-08_at_21.35.43_1_fvriiq.jpg",
-              "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1767988075/WhatsApp_Image_2026-01-08_at_21.35.43_mleniy.jpg"
-            ],
-            "icon": "fas fa-leaf",
-            "offers": [
-              {
-                "title": "Massagem tantrica(60 minutos)",
-                "text": "Uma jornada sensorial que visa despertar a sensibilidade corporal e expandir a consciência através do toque e da respiração. Esta prática terapêutica trabalha o fluxo da energia vital por todo o corpo, desfazendo bloqueios e proporcionando uma conexão profunda consigo mesmo. </b>É indicada para quem deseja explorar novas percepções de prazer, bem-estar e autoconhecimento.",
-                "price": 90.00
-              },
-              {
-                "title": "Massagem relaxante(60 minutos)",
-                "text": "Uma experiência focada no alívio do estresse e da tensão muscular acumulada. Através de movimentos suaves, rítmicos e o uso de óleos terapêuticos, esta sessão promove um profundo estado de tranquilidade, acalma a mente e restaura o equilíbrio físico e emocional. </b>É a escolha ideal para quem busca um momento de pausa e renovação das energias.",
-                "price": 70.00
-              }
-            ],
-            "story_short": "Sobre mim",
-            "story_full": "Meu nome é Liuri, tenho 27 anos e trabalho com massagem desde os 18 anos, quando iniciei minha trajetória no Brasil. Ao longo desses anos, desenvolvi uma conexão profunda com o cuidado do corpo e do bem-estar, sempre buscando proporcionar momentos de relaxamento, presença e equilíbrio. \nAtualmente atendo em Portugal, na região de Lisboa e Grande Lisboa. \nPossuo espaço próprio em Lisboa, mas também realizo atendimento ao domicílio, oferecendo mais conforto e comodidade aos meus clientes. \nMinha especialidade é a massagem relaxante e tântrica, focadas no alívio do estresse, na reconexão corporal e no relaxamento profundo. \nTambém realizo massagem modeladora e drenagem linfática, adaptando cada atendimento às necessidades individuais de cada pessoa."
-          },
+        {
+          "slug": "spar-131",
+          "name": "Spar 131",
+          "location": "Av almirante Reis 131, Lisboa",
+          "price_original": "€90",
+          "price_discount": "€72",
+          "savings": "Economize €18",
+          "discount_label": "20% OFF",
+          "discount_percent": 20,
+          "code": "WELLNESS20",
+          "official_url": "#",
+          "email": "liuri-jesus@outlook.com",
+          "phone": "+351 963009259",
+          "instagram": "https://www.instagram.com/lisboa_massage/",
+          "images": [
+            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1767988074/WhatsApp_Image_2026-01-08_at_21.35.43_2_oue6tx.jpg",
+            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1767988074/WhatsApp_Image_2026-01-08_at_21.35.43_1_fvriiq.jpg",
+            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1767988075/WhatsApp_Image_2026-01-08_at_21.35.43_mleniy.jpg"
+          ],
+          "icon": "fas fa-leaf",
+          "offers": [
+            {
+              "title": "Massagem tantrica(60 minutos)",
+              "text": "Uma jornada sensorial que visa despertar a sensibilidade corporal e expandir a consciência através do toque e da respiração. Esta prática terapêutica trabalha o fluxo da energia vital por todo o corpo, desfazendo bloqueios e proporcionando uma conexão profunda consigo mesmo. </b>É indicada para quem deseja explorar novas percepções de prazer, bem-estar e autoconhecimento.",
+              "price": 90.0
+            },
+            {
+              "title": "Massagem relaxante(60 minutos)",
+              "text": "Uma experiência focada no alívio do estresse e da tensão muscular acumulada. Através de movimentos suaves, rítmicos e o uso de óleos terapêuticos, esta sessão promove um profundo estado de tranquilidade, acalma a mente e restaura o equilíbrio físico e emocional. </b>É a escolha ideal para quem busca um momento de pausa e renovação das energias.",
+              "price": 70.0
+            }
+          ],
+          "story_short": "Sobre mim",
+          "story_full": "Meu nome é Liuri, tenho 27 anos e trabalho com massagem desde os 18 anos, quando iniciei minha trajetória no Brasil. Ao longo desses anos, desenvolvi uma conexão profunda com o cuidado do corpo e do bem-estar, sempre buscando proporcionar momentos de relaxamento, presença e equilíbrio. \nAtualmente atendo em Portugal, na região de Lisboa e Grande Lisboa. \nPossuo espaço próprio em Lisboa, mas também realizo atendimento ao domicílio, oferecendo mais conforto e comodidade aos meus clientes. \nMinha especialidade é a massagem relaxante e tântrica, focadas no alívio do estresse, na reconexão corporal e no relaxamento profundo. \nTambém realizo massagem modeladora e drenagem linfática, adaptando cada atendimento às necessidades individuais de cada pessoa."
+        },
 
-          
-          {
-            "slug": "lepka-tela-estoril",
-            "name": "Lepka Tela Estoril",
-            "location": "R. Samuel Gonçalves Sanches 19a, 2765-280 Estoril",
-            "price_original": "€60",
-            "price_discount": "€51",
-            "savings": "Economize €9",
-            "discount_label": "15% OFF",
-            "discount_percent": 15,
-            "code": "WELLNESS20",
-            "official_url": "https://lepka-tela.com/",
-            "email": "lepka.tela.portugal@gmail.com",
-            "phone": "+351 932452255",
-            "instagram": "https://www.instagram.com/lepka_tela_portugal/",
-            "images": [
-              "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1768422031/IMG_8312_i72bo6.jpg",
-              "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1768422032/IMG_8266_tgrwij.jpg",
-              "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1768422030/IMG_8229_wzlhdi.jpg",
-              "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1768422032/IMG_8442_nv2vtr.jpg"
-            ],
-            "icon": "fas fa-leaf",
-            "offers": [
-              {
-                "title": "Massagem de Escultura Corporal Completa(60 minutos)",
-                "text": "Uma massagem profunda e dinâmica que utiliza uma técnica especial para promover a drenagem linfática. Este tipo de massagem tonifica os músculos dos glúteos, abdômen e braços. A celulite é suavizada e o volume corporal é significativamente reduzido. O ideal é começar com uma sessão por semana, aumentando para duas sessões na segunda semana e três sessões na terceira semana.",
-                "price":90.00
-              },
-              {
-                "title": "Escultura - Pernas, Barriga, Laterais (40 minutos)",
-                "text": "Focada na correção das pernas, abdômen (incluindo técnicas abdominais e viscerais) e região lombar lateral. Esta massagem auxilia na remoção de gordura através de massagem profunda e elimina o excesso de líquidos.",
-                "price":70.00
-              },
-              {
-                "title": "Massagem Modeladora para Pernas e Glúteos(30 minutos)",
-                "text": "Com foco na modelagem e tonificação das pernas, remoção de gordura e eliminação do excesso de água através de técnicas de massagem profunda.",
-                "price":55.00
-              },
-              {
-                "title": "Massagem de Escultura Facial(35 minutos)",
-                "text": "Esta massagem visa diversas zonas do rosto, incluindo o decote, braços, pescoço (eliminando as linhas de expressão), papada e contornos faciais. Ajuda a firmar os cantos dos lábios, suavizar os sulcos nasogenianos e reduzir as rugas da testa. Inclui uma leve massagem na cabeça. Realizada com os renomados cosméticos Comfort Zone e toalhas quentes para uma experiência luxuosa. O tratamento termina com uma máscara de massagem seguida de uma segunda máscara. Não se trata apenas de uma massagem facial, mas de um tratamento cosmético completo.",
-                "price":60.00
-              },
-              {
-                "title": "Massagem Bucal Facial(50 minutos)",
-                "text": "Combina as mesmas técnicas da massagem escultural clássica com a adição de técnicas intraorais, realizadas com luvas. Não é dolorosa, mas altamente eficaz para tonificar os músculos faciais e proporcionar uma drenagem profunda. Esta massagem ajuda a restaurar o tônus ​​muscular.",
-                "price":70.00
-              },
-              {
-                "title": "Massagem relaxante com [Comfort Zone] da marca italiana e pedras de obsidiana mexicana.(80 minutos)",
-                "text": "Em nosso salão, esta não é apenas uma massagem relaxante, mas um ritual completo! Pedras quentes relaxam suavemente os músculos das costas enquanto trabalham os centros de energia. Utilizamos o lendário óleo 'Tranquility' para aromaterapia. Você pode solicitar uma massagem mais suave ou mais profunda. Presenteie-se com este mimo. Também oferecemos a opção de massagem relaxante para duas pessoas em uma mesma sala.",
-                "price":100.00
-              },
-              {
-                "title": "Massagem Desportiva(60 minutos)",
-                "text": "Ideal para quem busca equilibrar os músculos e eliminar o ácido lático. Altamente eficaz imediatamente após o treino ou no dia seguinte. Recomenda-se o uso uma vez por semana para melhores resultados.",
-                "price":75.00
-              },
-              {
-                "title": "Fita estética - abdômen(30 minutos)",
-                "text": "A bandagem estética é uma técnica suave de drenagem linfática que acelera o metabolismo, modela o corpo, reduz a celulite e melhora o tônus ​​e a luminosidade da pele.",
-                "price":40.00
-              },
-              {
-                "title": "Bandagem estética - pernas, laterais(30 minutos)",
-                "text": "A bandagem estética é uma técnica suave de drenagem linfática que acelera o metabolismo, modela o corpo, reduz a celulite e melhora o tônus ​​e a luminosidade da pele.",
-                "price":50.00
-              },
-              {
-                "title": "Enfaixar os joelhos(20 minutos)",
-                "text": "Bandagem para corredores e ciclistas — máxima resistência, mínima dor! Redução do impacto nas articulações e músculos — especialmente nos joelhos. Recuperação mais rápida — as bandagens melhoram a circulação sanguínea e linfática, reduzindo o inchaço.",
-                "price":40.00
-              }
-            ],
-            "story_short": "Seu bem-estar, nossa missão.",
-            "story_full": "A Lepka Tela dedica-se a proporcionar um refúgio onde você pode escapar do stress do dia a dia. Nossa missão é promover o seu bem-estar físico e mental através de massagens terapêuticas elaboradas por especialistas e personalizadas para atender às suas necessidades individuais. Com uma equipe de profissionais altamente qualificados, oferecemos uma variedade de técnicas de massagem que visam aliviar tensões, melhorar a circulação e restaurar o equilíbrio do corpo e da mente."
-          }
+        {
+          "slug": "lepka-tela-estoril",
+          "name": "Lepka Tela Estoril",
+          "location": "R. Samuel Gonçalves Sanches 19a, 2765-280 Estoril",
+          "price_original": "€60",
+          "price_discount": "€51",
+          "savings": "Economize €9",
+          "discount_label": "15% OFF",
+          "discount_percent": 15,
+          "code": "WELLNESS20",
+          "official_url": "https://lepka-tela.com/",
+          "email": "lepka.tela.portugal@gmail.com",
+          "phone": "+351 932452255",
+          "instagram": "https://www.instagram.com/lepka_tela_portugal/",
+          "images": [
+            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1768422031/IMG_8312_i72bo6.jpg",
+            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1768422032/IMG_8266_tgrwij.jpg",
+            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1768422030/IMG_8229_wzlhdi.jpg",
+            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1768422032/IMG_8442_nv2vtr.jpg"
+          ],
+          "icon": "fas fa-leaf",
+          "offers": [
+            {
+              "title": "Massagem de Escultura Corporal Completa(60 minutos)",
+              "text": "Uma massagem profunda e dinâmica que utiliza uma técnica especial para promover a drenagem linfática. Este tipo de massagem tonifica os músculos dos glúteos, abdômen e braços. A celulite é suavizada e o volume corporal é significativamente reduzido. O ideal é começar com uma sessão por semana, aumentando para duas sessões na segunda semana e três sessões na terceira semana.",
+              "price": 90.0
+            },
+            {
+              "title": "Escultura - Pernas, Barriga, Laterais (40 minutos)",
+              "text": "Focada na correção das pernas, abdômen (incluindo técnicas abdominais e viscerais) e região lombar lateral. Esta massagem auxilia na remoção de gordura através de massagem profunda e elimina o excesso de líquidos.",
+              "price": 70.0
+            },
+            {
+              "title": "Massagem Modeladora para Pernas e Glúteos(30 minutos)",
+              "text": "Com foco na modelagem e tonificação das pernas, remoção de gordura e eliminação do excesso de água através de técnicas de massagem profunda.",
+              "price": 55.0
+            },
+            {
+              "title": "Massagem de Escultura Facial(35 minutos)",
+              "text": "Esta massagem visa diversas zonas do rosto, incluindo o decote, braços, pescoço (eliminando as linhas de expressão), papada e contornos faciais. Ajuda a firmar os cantos dos lábios, suavizar os sulcos nasogenianos e reduzir as rugas da testa. Inclui uma leve massagem na cabeça. Realizada com os renomados cosméticos Comfort Zone e toalhas quentes para uma experiência luxuosa. O tratamento termina com uma máscara de massagem seguida de uma segunda máscara. Não se trata apenas de uma massagem facial, mas de um tratamento cosmético completo.",
+              "price": 60.0
+            },
+            {
+              "title": "Massagem Bucal Facial(50 minutos)",
+              "text": "Combina as mesmas técnicas da massagem escultural clássica com a adição de técnicas intraorais, realizadas com luvas. Não é dolorosa, mas altamente eficaz para tonificar os músculos faciais e proporcionar uma drenagem profunda. Esta massagem ajuda a restaurar o tônus ​​muscular.",
+              "price": 70.0
+            },
+            {
+              "title": "Massagem relaxante com [Comfort Zone] da marca italiana e pedras de obsidiana mexicana.(80 minutos)",
+              "text": "Em nosso salão, esta não é apenas uma massagem relaxante, mas um ritual completo! Pedras quentes relaxam suavemente os músculos das costas enquanto trabalham os centros de energia. Utilizamos o lendário óleo 'Tranquility' para aromaterapia. Você pode solicitar uma massagem mais suave ou mais profunda. Presenteie-se com este mimo. Também oferecemos a opção de massagem relaxante para duas pessoas em uma mesma sala.",
+              "price": 100.0
+            },
+            {
+              "title": "Massagem Desportiva(60 minutos)",
+              "text": "Ideal para quem busca equilibrar os músculos e eliminar o ácido lático. Altamente eficaz imediatamente após o treino ou no dia seguinte. Recomenda-se o uso uma vez por semana para melhores resultados.",
+              "price": 75.0
+            },
+            {
+              "title": "Fita estética - abdômen(30 minutos)",
+              "text": "A bandagem estética é uma técnica suave de drenagem linfática que acelera o metabolismo, modela o corpo, reduz a celulite e melhora o tônus ​​e a luminosidade da pele.",
+              "price": 40.0
+            },
+            {
+              "title": "Bandagem estética - pernas, laterais(30 minutos)",
+              "text": "A bandagem estética é uma técnica suave de drenagem linfática que acelera o metabolismo, modela o corpo, reduz a celulite e melhora o tônus ​​e a luminosidade da pele.",
+              "price": 50.0
+            },
+            {
+              "title": "Enfaixar os joelhos(20 minutos)",
+              "text": "Bandagem para corredores e ciclistas — máxima resistência, mínima dor! Redução do impacto nas articulações e músculos — especialmente nos joelhos. Recuperação mais rápida — as bandagens melhoram a circulação sanguínea e linfática, reduzindo o inchaço.",
+              "price": 40.0
+            }
+          ],
+          "story_short": "Seu bem-estar, nossa missão.",
+          "story_full": "A Lepka Tela dedica-se a proporcionar um refúgio onde você pode escapar do stress do dia a dia. Nossa missão é promover o seu bem-estar físico e mental através de massagens terapêuticas elaboradas por especialistas e personalizadas para atender às suas necessidades individuais. Com uma equipe de profissionais altamente qualificados, oferecemos uma variedade de técnicas de massagem que visam aliviar tensões, melhorar a circulação e restaurar o equilíbrio do corpo e da mente."
+        }
       ]
     },
     {
@@ -629,31 +628,31 @@
             {
               "title": "Rota Autêntica",
               "text": "Nos encontramos em Anjos, bem no centro da cidade. Subimos nas bicicletas e exploramos as ruas animadas e ruelas escondidas de Lisboa até chegarmos ao rio Tejo. Seguimos pela margem do rio, com pausas para apreciar a vista, ouvir música, tomar limonada e saborear um pastel de nata à beira da água.\n\nÉ o caminho mais fácil 🌱\n\nDuração: 3h\nNível: Fácil a intermediário\n📸 Documentário fotográfico profissional incluído\n🎥 Videoclipe disponível mediante solicitação",
-              "price": 95.00
+              "price": 95.0
             },
             {
               "title": "Bairro Escondido",
               "text": "Explore os recantos secretos de Lisboa. Vamos explorar o lado secreto de Lisboa — a ideia é escapar das multidões e encontrar lugares tranquilos, sublimes e raros, onde a acolhida seja genuína.\n\nVocê descobrirá ruas tranquilas, cafés locais, mirantes escondidos nas colinas e o charme autêntico que a maioria dos visitantes nunca vê.\n\nÉ necessário um nível de habilidade maior com a bicicleta 🚴🏻‍♂️\n\nDuração: 3h\nNível: Ritmo médio a forte – subidas e descidas – bom nível de ciclismo\n📸 Documentário fotográfico profissional incluído\n🎥 Videoclipe disponível mediante solicitação",
-              "price": 95.00
+              "price": 95.0
             }
           ],
           "story_short": "Passeios fotográficos únicos de bicicleta por Lisboa.",
           "story_full": "Cresci em Lausanne, na Suíça, mas sou originário da Nigéria. Em 2017, tomei a ousada decisão de me mudar para Lisboa, Portugal, onde construí o meu negócio dos sonhos, a Loopitour.\n\nMeu amor por bicicletas começou quando eu era criança. Não consigo precisar a idade exata, porque tudo começou quando me deram uma cadeirinha na traseira de uma bicicleta com dínamo. Ainda me lembro vividamente do barulho e do movimento daquela bicicleta antiga. Meu amor pelas duas rodas nasceu ali e, quando criança, prometi a mim mesmo que um dia teria uma bicicleta com rodas finas.\n\nEu proclamava esse sonho a qualquer um que quisesse ouvir e, finalmente, quando jovem adulto, encontrei a bicicleta perfeita – aquela que inspirou a criação da Loopitour. Dei o nome de \"Lupita\" à minha querida bicicleta, e a paixão dela por ciclismo e fotografia se entrelaçaram perfeitamente.\n\nEu sempre amei fotografia também, e essa paixão começou na minha infância. Havia algo nas câmeras que sempre me chamava a atenção. Cresci admirando as câmeras na vitrine de uma loja de fotografia e imaginando as histórias por trás das fotos que elas tiravam. Quando entrei para a Escola de Fotografia de Vevey, em 2009, eu já carregava uma pequena câmera Nikon CoolPix no bolso há oito anos.\n\nPara mim, fotografia e ciclismo sempre estiveram ligados. Uma câmera no bolso, rodando na minha bicicleta moderna – é a combinação perfeita.\n\nQuando criança, sempre ouvi dizer que, se você se dedicar às suas paixões todos os dias, pode ganhar a vida com isso. Levei essa mensagem a sério e passei anos tentando descobrir como combinar minhas duas paixões. Em 2015, me formei na Escola de Fotografia de Vevey e, em 2017, tomei a decisão que mudaria minha vida: me mudar para Lisboa.\n\nAo longo dos anos, treinei para andar de bicicleta sem as mãos para poder tirar fotos enquanto pedalava. Na época, eu não sabia por que precisava dessa habilidade, mas acabou sendo essencial para o nascimento da Loopitour. Depois de passar dois anos isolado em um apartamento perto da capital portuguesa, finalmente realizei meu sonho.\n\nEm março de 2021, a Loopitour nasceu e, apenas alguns meses depois, em 20 de julho de 2021, fizemos nosso primeiro passeio. Foi um sonho realizado e mal posso esperar para ver aonde a Loopitour me levará!"
         },
 
-         {
+        {
           "slug": "ecoasters",
           "name": "eCoasters",
           "includes": [
-          "Seguro de responsabilidade civil e acidentes pessoais.",
-          "Aula sobre adaptação de veículos/equipamentos.",
-          "Lanches e água.",
-          "Caminhos fáceis para todos.",
-          "Bicicletas elétricas potentes.",
-          "Vistas incríveis.",
-          "Conhecimento local.",
-          "Muito divertido."
-        ],
+            "Seguro de responsabilidade civil e acidentes pessoais.",
+            "Aula sobre adaptação de veículos/equipamentos.",
+            "Lanches e água.",
+            "Caminhos fáceis para todos.",
+            "Bicicletas elétricas potentes.",
+            "Vistas incríveis.",
+            "Conhecimento local.",
+            "Muito divertido."
+          ],
           "location": "Costa da Caparica",
           "price_original": "€100",
           "price_discount": "€90",
@@ -675,161 +674,160 @@
             {
               "title": "Ande de bicicleta e surfe / 4 hotas / Fonte da Telha",
               "text": "Comece com um revigorante passeio de **bicicleta elétrica** pela natureza secreta da Costa da Caparica. Guiamos você por trilhas costeiras, caminhos na floresta e **mirantes exclusivos**, longe da multidão. É uma exploração fácil e atenta de dunas, falésias e pinheiros, com paradas para fotos incríveis. A aventura culmina na praia, onde um **instrutor profissional** assume para uma **aula de surfe** divertida e segura. Ideal para todos os níveis. Termine o dia com a sensação perfeita de ter deslizado pela natureza e surfado no oceano.",
-              "price": 100.00
+              "price": 100.0
             },
             {
               "title": "A joia escondida de Lisboa / 3 horas / Costa da Caparica",
               "text": "Explore o verdadeiro tesouro escondido de Lisboa, a Costa da Caparica, combinando litoral, natureza e vida local. Este passeio de 3 horas leva você por trilhas costeiras, percursos tranquilos na **Mata dos Medos** e paisagens que a maioria dos visitantes não conhece. Perfeito para viajantes curiosos, o passeio revela vistas deslumbrantes e inclui a passagem por **locais secretos** que tornam a experiência única e especial.",
-              "price": 60.00
+              "price": 60.0
             },
             {
               "title": "Com vista para Lisboa / 3 horas / Almada",
               "text": "Durante o passeio, você irá explorar zonas tranquilas de Almada, sentir a energia ribeirinha de Cacilhas e aproveitar mirantes impressionantes como a área do Cristo Rei, com vistas únicas sobre Lisboa, o Tejo e a Ponte 25 de Abril. É uma experiência divertida, panorâmica e enriquecida com conhecimento local.",
-              "price": 60.00
+              "price": 60.0
             }
           ],
           "story_short": "Bem-vindo(a) ao eCoasters!",
           "story_full": "Somos Gonçalo e Silvio, e estamos entusiasmados em compartilhar com vocês nosso amor pela Costa da Caparica. Este trecho deslumbrante do litoral, com suas florestas exuberantes e praias douradas, conquistou nossos corações, e queremos ajudá-los a descobrir seus tesouros escondidos. Mais do que nossa paixão pela região, nos dedicamos a proporcionar uma experiência inesquecível para cada visitante. Nossos passeios locais são pensados ​​para que vocês se sintam como moradores, permitindo que explorem a região como nós. Levaremos vocês aos melhores lugares, compartilharemos nossos locais favoritos e apresentaremos os sabores da região. Na eCoasters, acreditamos que a melhor maneira de explorar é de bicicleta elétrica. Essas bicicletas fáceis de pilotar permitem que vocês apreciem a paisagem e a cultura sem esforço, tornando-as acessíveis a todos. Sejam ciclistas experientes ou apenas estejam em busca de um dia divertido, nossos passeios oferecem opções para todos os gostos. Junte-se a nós em uma aventura onde você poderá se conectar com a natureza e mergulhar na cultura local. Mal podemos esperar para pedalar e explorar com vocês!"
         }
-
       ]
     },
     {
-  "slug": "tour-aquatico",
-  "title": "Tour Aquático",
-  "badge": "Ocean Adventures",
-  "description": "Explore o rios e a costa portuguesa com passeios de barco, observação de golfinhos e atividades náuticas.",
-  "partners": [
-    {
-      "slug": "giravela-eco-sailing",
-      "name": "Gira Vela Eco Sailing",
-      "location": "Doca da Marinha - Av. Infante Dom Henrique, S/N - Baixa - Lisboa, Lisbon, Portugal",
-      "price_original": "€",
-      "price_discount": "299.99€",
-      "savings": "Poupa €74,99",
-      "discount_label": "25% OFF",
-      "discount_percent": 25,
-      "code": "",
-      "official_url": "https://giravelaecosailing.com/",
-      "email": "giravela.eco.sailing@gmail.com",
-      "phone": "+351 911 871 640",
-      "instagram": "https://www.instagram.com/giravelaecosailing/",
-      "images": [
-        "https://giravelaecosailing.com/wp-content/uploads/2025/04/5-1024x576.png",
-        "https://giravelaecosailing.com/wp-content/uploads/2025/04/4-1024x576.png",
-        "https://giravelaecosailing.com/wp-content/uploads/2025/08/2-1.png"
-      ],
-      "icon": "fas fa-ship",
-      "offers": [
-        {
-          "title": "Passeio Privado – Até 10 pessoas",
-          "description": "Duração: 2h30<br>Inclui: bebida de boas-vindas, snacks e ambiente descontraído.<br>Perfeito para aniversários, despedidas de solteiro ou eventos de equipa.",
-          "price": 349.99
-        },
-        {
-          "title": "Passeio Privado – 4 pessoas",
-          "description": "Duração: 2h30 <br>Inclui: bebida de boas-vindas (espumante ou sumo), snacks, vistas únicas de Lisboa.<br>Ideal para famílias pequenas, casais ou grupos reduzidos.",
-          "price": 299.99
-        },
-        {
-          "title": "Yoga & Meditação ao Nascer do Sol – Até 9 pessoas",
-          "description": "Duração: 2h<br>Inclui: instrutor certificado, chá quente, mini tostas, mantas, música relaxante e vistas deslumbrantes do amanhecer sobre Lisboa.<br>Uma experiência única para revitalizar corpo e mente.",
-          "price": 450.00
-        },
-         {
-          "title": "Passeio ao Pôr do Sol no Tejo – Até 10 pessoas",
-          "description": "Duração: 2h30<br>Inclui: bebida de boas-vindas, snacks e fotografias para eternizar o momento.Desfrute da luz dourada a pintar Lisboa, passando por monumentos icónicos enquanto o sol se põe.",
-          "price": 450.00
-        }
-      ],
-      "story_short": "Escolha o passeio ideal para sua próxima aventura",
-      "story_full": "Descubra Lisboa a partir do Rio Tejo num passeio de veleiro privado, com direito a bebida de boas-vindas, snacks e fotografias. Uma experiência única para partilhar com quem mais gosta."
-    },
-
-    {
-      "slug": "restaurants",
-      "title": "Restaurantes",
-      "badge": "Gastronomia",
-      "description": "Restaurantes parceiros com descontos exclusivos para experiências gastronómicas.",
+      "slug": "tour-aquatico",
+      "title": "Tour Aquático",
+      "badge": "Ocean Adventures",
+      "description": "Explore o rios e a costa portuguesa com passeios de barco, observação de golfinhos e atividades náuticas.",
       "partners": [
         {
-          "slug": "restaurant-tasca-da-bica",
-          "name": "Tasca da Bica",
-          "location": "Rua da Bica de Duarte Belo, Lisboa",
-          "price_original": "€50",
-          "price_discount": "€42,50",
-          "savings": "Economize €7,50",
-          "discount_label": "15% OFF",
-          "discount_percent": 15,
-          "code": "VOUCHERHUB15",
-          "official_url": "https://tascadabica.pt/",
-          "email": "contact@tascadabica.pt",
-          "phone": "+351 213 427 112",
-          "instagram": "https://www.instagram.com/tascadabica/",
+          "slug": "giravela-eco-sailing",
+          "name": "Gira Vela Eco Sailing",
+          "location": "Doca da Marinha - Av. Infante Dom Henrique, S/N - Baixa - Lisboa, Lisbon, Portugal",
+          "price_original": "€",
+          "price_discount": "299.99€",
+          "savings": "Poupa €74,99",
+          "discount_label": "25% OFF",
+          "discount_percent": 25,
+          "code": "",
+          "official_url": "https://giravelaecosailing.com/",
+          "email": "giravela.eco.sailing@gmail.com",
+          "phone": "+351 911 871 640",
+          "instagram": "https://www.instagram.com/giravelaecosailing/",
           "images": [
-            "https://images.pexels.com/photos/1397132/pexels-photo-1397132.jpeg",
-            "https://images.pexels.com/photos/2116473/pexels-photo-2116473.jpeg",
-            "https://images.pexels.com/photos/1581384/pexels-photo-1581384.jpeg"
+            "https://giravelaecosailing.com/wp-content/uploads/2025/04/5-1024x576.png",
+            "https://giravelaecosailing.com/wp-content/uploads/2025/04/4-1024x576.png",
+            "https://giravelaecosailing.com/wp-content/uploads/2025/08/2-1.png"
           ],
-          "icon": "fas fa-utensils",
+          "icon": "fas fa-ship",
           "offers": [
             {
-              "title": "Menu de Degustação - 3 Pratos",
-              "description": "Experiência gastronómica com 3 pratos principais da cozinha portuguesa tradicional, bebida e sobremesa.",
-              "price": 50.00
+              "title": "Passeio Privado – Até 10 pessoas",
+              "description": "Duração: 2h30<br>Inclui: bebida de boas-vindas, snacks e ambiente descontraído.<br>Perfeito para aniversários, despedidas de solteiro ou eventos de equipa.",
+              "price": 349.99
             },
             {
-              "title": "Jantar Romântico para Dois",
-              "description": "Menu especial para casais com entrada, prato principal, vinho da casa e sobremesa.",
-              "price": 90.00
+              "title": "Passeio Privado – 4 pessoas",
+              "description": "Duração: 2h30 <br>Inclui: bebida de boas-vindas (espumante ou sumo), snacks, vistas únicas de Lisboa.<br>Ideal para famílias pequenas, casais ou grupos reduzidos.",
+              "price": 299.99
             },
             {
-              "title": "Menu Executivo (Almoço)",
-              "description": "Entrada, prato principal e bebida. Disponível de 2ª a 6ª feira, entre as 12h e 14h.",
-              "price": 35.00
+              "title": "Yoga & Meditação ao Nascer do Sol – Até 9 pessoas",
+              "description": "Duração: 2h<br>Inclui: instrutor certificado, chá quente, mini tostas, mantas, música relaxante e vistas deslumbrantes do amanhecer sobre Lisboa.<br>Uma experiência única para revitalizar corpo e mente.",
+              "price": 450.0
+            },
+            {
+              "title": "Passeio ao Pôr do Sol no Tejo – Até 10 pessoas",
+              "description": "Duração: 2h30<br>Inclui: bebida de boas-vindas, snacks e fotografias para eternizar o momento.Desfrute da luz dourada a pintar Lisboa, passando por monumentos icónicos enquanto o sol se põe.",
+              "price": 450.0
             }
           ],
-          "story_short": "Autêntica cozinha portuguesa com vista para Lisboa",
-          "story_full": "Tasca da Bica é um espaço aconchegante no coração de Lisboa, dedicado à gastronomia portuguesa tradicional. Com receitas passadas de geração em geração, oferecemos uma experiência autêntica com pratos caseiros, ingredientes frescos e um ambiente que transporta você para o coração da cultura portuguesa."
+          "story_short": "Escolha o passeio ideal para sua próxima aventura",
+          "story_full": "Descubra Lisboa a partir do Rio Tejo num passeio de veleiro privado, com direito a bebida de boas-vindas, snacks e fotografias. Uma experiência única para partilhar com quem mais gosta."
         },
+
         {
-          "slug": "restaurant-cervejaria-ramiro",
-          "name": "Cervejaria Ramiro",
-          "location": "Avenida Almirante Reis, Lisboa",
-          "price_original": "€60",
-          "price_discount": "€51",
-          "savings": "Economize €9",
-          "discount_label": "15% OFF",
-          "discount_percent": 15,
-          "code": "VOUCHERHUB15",
-          "official_url": "https://cervejariaramiro.pt/",
-          "email": "info@cervejariaramiro.pt",
-          "phone": "+351 218 851 024",
-          "instagram": "https://www.instagram.com/cervejariaramiro/",
-          "images": [
-            "https://images.pexels.com/photos/3535548/pexels-photo-3535548.jpeg",
-            "https://images.pexels.com/photos/1410235/pexels-photo-1410235.jpeg",
-            "https://images.pexels.com/photos/821365/pexels-photo-821365.jpeg"
-          ],
-          "icon": "fas fa-utensils",
-          "offers": [
+          "slug": "restaurants",
+          "title": "Restaurantes",
+          "badge": "Gastronomia",
+          "description": "Restaurantes parceiros com descontos exclusivos para experiências gastronómicas.",
+          "partners": [
             {
-              "title": "Mexa de Marisco",
-              "description": "Seleção de mariscos frescos: camarão, gambas, amêijoas e outras delícias do mar.",
-              "price": 60.00
+              "slug": "restaurant-tasca-da-bica",
+              "name": "Tasca da Bica",
+              "location": "Rua da Bica de Duarte Belo, Lisboa",
+              "price_original": "€50",
+              "price_discount": "€42,50",
+              "savings": "Economize €7,50",
+              "discount_label": "15% OFF",
+              "discount_percent": 15,
+              "code": "VOUCHERHUB15",
+              "official_url": "https://tascadabica.pt/",
+              "email": "contact@tascadabica.pt",
+              "phone": "+351 213 427 112",
+              "instagram": "https://www.instagram.com/tascadabica/",
+              "images": [
+                "https://images.pexels.com/photos/1397132/pexels-photo-1397132.jpeg",
+                "https://images.pexels.com/photos/2116473/pexels-photo-2116473.jpeg",
+                "https://images.pexels.com/photos/1581384/pexels-photo-1581384.jpeg"
+              ],
+              "icon": "fas fa-utensils",
+              "offers": [
+                {
+                  "title": "Menu de Degustação - 3 Pratos",
+                  "description": "Experiência gastronómica com 3 pratos principais da cozinha portuguesa tradicional, bebida e sobremesa.",
+                  "price": 50.0
+                },
+                {
+                  "title": "Jantar Romântico para Dois",
+                  "description": "Menu especial para casais com entrada, prato principal, vinho da casa e sobremesa.",
+                  "price": 90.0
+                },
+                {
+                  "title": "Menu Executivo (Almoço)",
+                  "description": "Entrada, prato principal e bebida. Disponível de 2ª a 6ª feira, entre as 12h e 14h.",
+                  "price": 35.0
+                }
+              ],
+              "story_short": "Autêntica cozinha portuguesa com vista para Lisboa",
+              "story_full": "Tasca da Bica é um espaço aconchegante no coração de Lisboa, dedicado à gastronomia portuguesa tradicional. Com receitas passadas de geração em geração, oferecemos uma experiência autêntica com pratos caseiros, ingredientes frescos e um ambiente que transporta você para o coração da cultura portuguesa."
             },
             {
-              "title": "Menu Completo de Peixe",
-              "description": "Entrada de marisco, peixe grelhado da hora e sobremesa. Acompanhado com vinho branco da casa.",
-              "price": 75.00
+              "slug": "restaurant-cervejaria-ramiro",
+              "name": "Cervejaria Ramiro",
+              "location": "Avenida Almirante Reis, Lisboa",
+              "price_original": "€60",
+              "price_discount": "€51",
+              "savings": "Economize €9",
+              "discount_label": "15% OFF",
+              "discount_percent": 15,
+              "code": "VOUCHERHUB15",
+              "official_url": "https://cervejariaramiro.pt/",
+              "email": "info@cervejariaramiro.pt",
+              "phone": "+351 218 851 024",
+              "instagram": "https://www.instagram.com/cervejariaramiro/",
+              "images": [
+                "https://images.pexels.com/photos/3535548/pexels-photo-3535548.jpeg",
+                "https://images.pexels.com/photos/1410235/pexels-photo-1410235.jpeg",
+                "https://images.pexels.com/photos/821365/pexels-photo-821365.jpeg"
+              ],
+              "icon": "fas fa-utensils",
+              "offers": [
+                {
+                  "title": "Mexa de Marisco",
+                  "description": "Seleção de mariscos frescos: camarão, gambas, amêijoas e outras delícias do mar.",
+                  "price": 60.0
+                },
+                {
+                  "title": "Menu Completo de Peixe",
+                  "description": "Entrada de marisco, peixe grelhado da hora e sobremesa. Acompanhado com vinho branco da casa.",
+                  "price": 75.0
+                }
+              ],
+              "story_short": "A melhor experiência de marisco em Lisboa",
+              "story_full": "Desde 1940, a Cervejaria Ramiro é uma instituição em Lisboa. Conhecida pela qualidade de seus mariscos frescos e peixe do dia, oferecemos uma experiência autêntica da cozinha portuguesa à beira do Tejo. Um lugar onde tradição e qualidade se encontram."
             }
-          ],
-          "story_short": "A melhor experiência de marisco em Lisboa",
-          "story_full": "Desde 1940, a Cervejaria Ramiro é uma instituição em Lisboa. Conhecida pela qualidade de seus mariscos frescos e peixe do dia, oferecemos uma experiência autêntica da cozinha portuguesa à beira do Tejo. Um lugar onde tradição e qualidade se encontram."
+          ]
         }
       ]
     }
   ]
-}
-]
 }
