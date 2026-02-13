@@ -116,7 +116,15 @@
       "yoga": "Find peace and balance! Yoga classes in welcoming Lisbon environments with certified instructors. Connect body, mind and spirit with exclusive prices.",
       "wellness": "Take care of yourself! Therapeutic massages, wellness consultations and relaxation rituals with qualified professionals. Renew body and mind with exclusive prices.",
       "bike": "Pedal through Lisbon and capture unique moments! Bike tours with professional photo documentary included. Explore the city in a different way with passionate local guides.",
-      "tourAquatico": "Explore Portuguese rivers and coasts with boat tours, dolphin watching and water activities. Discover stunning landscapes from the water with exclusive discounts."
+      "tourAquatico": "Explore Portuguese rivers and coasts with boat tours, dolphin watching and water activities. Discover stunning landscapes from the water with exclusive discounts.",
+      "tour-aquatico": "Explore Portuguese rivers and coasts with boat tours, dolphin watching and water activities. Discover stunning landscapes from the water with exclusive discounts."
+    },
+    "valueSection": {
+      "title": "Handpicked experiences with <span class='highlight-orange'>exclusive benefits</span>",
+      "p1": "VoucherHub selects high-quality experiences in Lisbon and negotiates directly with local partners to offer <strong>special conditions</strong> and <strong>reduced prices</strong>.",
+      "p2": "Here you'll find surf lessons, yoga studios, sightseeing tours, wellness and adventure experiences — always with <strong>real discounts</strong> and no hidden costs.",
+      "p3": "The process is simple: choose the experience, receive the voucher by email and present it directly to the partner. That way you can enjoy more and <strong>pay less</strong>, with full confidence.",
+      "p4": "Some partners may have date restrictions for discounted vouchers <strong>(especially on weekends and holidays)</strong>."
     }
   },
 
@@ -237,7 +245,15 @@
       "yoga": "Encontre paz e equilíbrio! Aulas de yoga em ambientes acolhedores de Lisboa com instrutores certificados. Conecte corpo, mente e espírito com preços exclusivos.",
       "wellness": "Cuide de si! Massagens terapêuticas, consultas de bem-estar e rituais de relaxamento com profissionais qualificados. Renove corpo e mente com preços exclusivos.",
       "bike": "Pedaleie por Lisboa e capture momentos únicos! Tours de bicicleta com documentário fotográfico profissional incluído. Explore a cidade de um jeito diferente com guias locais apaixonados.",
-      "tourAquatico": "Explore rios e a costa portuguesa com passeios de barco, observação de golfinhos e atividades náuticas. Descubra paisagens deslumbrantes da água com descontos exclusivos."
+      "tourAquatico": "Explore rios e a costa portuguesa com passeios de barco, observação de golfinhos e atividades náuticas. Descubra paisagens deslumbrantes da água com descontos exclusivos.",
+      "tour-aquatico": "Explore rios e a costa portuguesa com passeios de barco, observação de golfinhos e atividades náuticas. Descubra paisagens deslumbrantes da água com descontos exclusivos."
+    },
+    "valueSection": {
+      "title": "Experiências selecionadas com <span class='highlight-orange'>vantagens exclusivas</span>",
+      "p1": "O <strong>VoucherHub</strong> seleciona experiências de qualidade em Lisboa e negoceia diretamente com parceiros locais para oferecer <strong>condições especiais</strong> e <strong>preços reduzidos</strong>.",
+      "p2": "Aqui encontra aulas de surf, estúdios de yoga, passeios turísticos, experiências de bem-estar e aventura — sempre com <strong>descontos reais</strong> e sem custos escondidos.",
+      "p3": "O processo é simples: escolha a experiência, receba o voucher por email e apresente-o diretamente no parceiro. Assim, pode aproveitar mais e <strong>pagar menos</strong>, com total confiança.",
+      "p4": "Alguns parceiros podem ter restrições de datas para vouchers com desconto <strong>(especialmente aos fins de semana e feriados)</strong>."
     }
   }
 }

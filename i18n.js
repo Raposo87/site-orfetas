@@ -120,6 +120,40 @@ class I18nManager {
       const translation = this.getNestedTranslation(t, key);
       if (translation) el.title = translation;
     });
+
+    // Traduzir descrições das categorias
+    document.querySelectorAll('[data-category-slug]').forEach(el => {
+      const slug = el.dataset.categorySlug;
+      const description = t.categoryDescriptions?.[slug];
+      const descEl = el.querySelector('.card-description');
+      if (description && descEl) {
+        descEl.textContent = description;
+      }
+    });
+
+    // Se estivermos na página de uma categoria (experience.html?slug=...), traduzir título/descrição do modo
+    try {
+      const params = new URLSearchParams(location.search);
+      const pageSlug = params.get('slug');
+      if (pageSlug) {
+        const titleEl = document.getElementById('mode-title');
+        const descEl = document.getElementById('mode-description');
+        const crumbEl = document.getElementById('crumb-current');
+        const badgeSpan = document.getElementById('mode-badge')?.querySelector('span');
+
+        const translatedTitle = t.categoryTitles?.[pageSlug];
+        const translatedDesc = t.categoryDescriptions?.[pageSlug];
+        const translatedBadge = t.categoryBadges?.[pageSlug];
+
+        if (titleEl && translatedTitle) titleEl.textContent = translatedTitle;
+        if (descEl && translatedDesc) descEl.textContent = translatedDesc;
+        if (crumbEl && translatedTitle) crumbEl.textContent = translatedTitle;
+        if (badgeSpan && translatedBadge) badgeSpan.textContent = translatedBadge;
+      }
+    } catch (e) {
+      // nada — fail-safe
+      console.debug('i18n: no experience page slug or error', e);
+    }
   }
 
   getNestedTranslation(obj, path) {
