@@ -107,6 +107,16 @@
       "noResults": "No experiences found...",
       "close": "Close X",
       "viewBtn": "View"
+    },
+    "categoryDescriptions": {
+      "surf": "Conquer the waves! Learn with certified instructors, feel the adrenaline and gain exclusive discounts on your surfing lessons.",
+      "kitesurf": "Feel the adrenaline of wind and waves! Learn kitesurfing with certified instructors. Master the wind, have fun at sea and enjoy exclusive discounts at checkout.",
+      "moda": "Express your style! Discover fashion and lifestyle brands with exclusive discounts. From clothing to the perfect accessory, everything at incredible prices.",
+      "tour": "Explore Portugal like a local! Personalized tours with passionate guides and experienced drivers. Discover unique stories, landscapes and flavors with special discounts.",
+      "yoga": "Find peace and balance! Yoga classes in welcoming Lisbon environments with certified instructors. Connect body, mind and spirit with exclusive prices.",
+      "wellness": "Take care of yourself! Therapeutic massages, wellness consultations and relaxation rituals with qualified professionals. Renew body and mind with exclusive prices.",
+      "bike": "Pedal through Lisbon and capture unique moments! Bike tours with professional photo documentary included. Explore the city in a different way with passionate local guides.",
+      "tourAquatico": "Explore Portuguese rivers and coasts with boat tours, dolphin watching and water activities. Discover stunning landscapes from the water with exclusive discounts."
     }
   },
 
@@ -218,6 +228,16 @@
       "noResults": "Nenhuma experiência encontrada...",
       "close": "Fechar X",
       "viewBtn": "Ver"
+    },
+    "categoryDescriptions": {
+      "surf": "Conquiste as ondas! Aprenda com instrutores certificados, sinta a adrenalina e ganhe descontos exclusivos nas suas aulas de surf.",
+      "kitesurf": "Sinta a adrenalina do vento e das ondas! Aprenda kitesurf com instrutores certificados. Domine o vento, divirta-se no mar e aproveite descontos exclusivos no checkout.",
+      "moda": "Expresse seu estilo! Descubra marcas de moda e lifestyle com descontos exclusivos. Do vestuário ao acessório perfeito, tudo com preços incríveis.",
+      "tour": "Explore Lisboa como um local! Tours personalizados com guias apaixonados e motoristas experientes. Descubra histórias, paisagens e sabores únicos com descontos especiais.",
+      "yoga": "Encontre paz e equilíbrio! Aulas de yoga em ambientes acolhedores de Lisboa com instrutores certificados. Conecte corpo, mente e espírito com preços exclusivos.",
+      "wellness": "Cuide de si! Massagens terapêuticas, consultas de bem-estar e rituais de relaxamento com profissionais qualificados. Renove corpo e mente com preços exclusivos.",
+      "bike": "Pedaleie por Lisboa e capture momentos únicos! Tours de bicicleta com documentário fotográfico profissional incluído. Explore a cidade de um jeito diferente com guias locais apaixonados.",
+      "tourAquatico": "Explore rios e a costa portuguesa com passeios de barco, observação de golfinhos e atividades náuticas. Descubra paisagens deslumbrantes da água com descontos exclusivos."
     }
   }
 }

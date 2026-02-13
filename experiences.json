@@ -4,7 +4,7 @@
       "slug": "surf",
       "title": "Aulas de Surf",
       "badge": "Esportes Aquáticos",
-      "description": "Escolha uma escola de surf e use o código VoucherHub no checkout.",
+      "description": "Conquiste as ondas! Aprenda com instrutores certificados, sinta a adrenalina e ganhe descontos exclusivos nas suas aulas de surf.",
       "partners": [
         {
           "slug": "surf-wave-lisbon",
@@ -92,10 +92,64 @@
     },
 
     {
+      "slug": "kitesurf",
+      "title": "Aulas de Kitesurf",
+      "badge": "Esportes Aquáticos",
+      "description": "Sinta a adrenalina do vento e das ondas! Aprenda kitesurf com instrutores certificados. Domine o vento, divirta-se no mar e aproveite descontos exclusivos no checkout.",
+      "partners": [
+        {
+          "slug": "gustykite",
+          "name": "Gustykite",
+          "location": "Praia Azul, Av. 1 de Maio, 2825-486 Costa da Caparica, Portugal",
+          "price_original": "€165",
+          "price_discount": "€148,50",
+          "savings": "Economize €16,50",
+          "discount_label": "10% OFF",
+          "discount_percent": 10,
+          "code": "GUSTYKITE10",
+          "official_url": "https://gustykite.net/",
+          "email": "info@gustykite.net",
+          "phone": "+351 960 070 107",
+          "instagram": "https://www.instagram.com/gustykite_school/",
+          "images": [
+            "https://cdn-idehp.nitrocdn.com/uNqZXTmdnKXlbBnBnXCkhqMHHRltFxgj/assets/images/optimized/rev-f35e437/wp-content/uploads/2023/05/Logo_HORIZONTAL-CORES-20-anos-1.png",
+            "https://cdn-idehp.nitrocdn.com/uNqZXTmdnKXlbBnBnXCkhqMHHRltFxgj/assets/images/optimized/rev-f35e437/wp-content/uploads/2022/01/WhatsApp-Image-2022-03-07-at-22.11.32-700x430.jpeg",
+            "https://cdn-idehp.nitrocdn.com/uNqZXTmdnKXlbBnBnXCkhqMHHRltFxgj/assets/images/optimized/rev-f35e437/wp-content/uploads/2022/01/WhatsApp-Image-2022-03-07-at-22.11.32-1-700x430.jpeg"
+          ],
+          "icon": "fas fa-wind",
+          "offers": [
+            {
+              "title": "AULAS KITESURF PRIVADAS",
+              "text": "Aulas individuais são a melhor forma de aprender kitesurf. A tua progressão e exercícios serão totalmente adaptados aoas teus objetivos e dificuldades. Com o apoio e feedback constante do instrutor, a aprendizagem será fluída e ainda mais segura.",
+              "price": 60.0
+            },
+            {
+              "title": "AULAS KITESURF SEMI-PRIVADAS",
+              "text": "Reserva uma aula para 2 pessoas com material e instrutor dedicado a apenas a vocês. Se procuras uma progressão segura e divertida, esta é a opção.",
+              "price": 44.0
+            },
+            {
+              "title": "AULAS KITESURF AVANÇADAS",
+              "text": "Escolhe Aulas Avançadas se pretendes progredir em Big Air, Freestyle ou Surf.",
+              "price": 60.0
+            },
+            {
+              "title": "ALUGUER COM SUPERVISÃO",
+              "text": "Pode utilizar todo o material que precisar e navegar no nosso fantástico spot com a confiança da supervisão e dicas de um instrutor.",
+              "price": 20.0
+            }
+          ],
+          "story_short": "Gustykite oferece aulas de kitesurf seguras e divertidas para todos os níveis.",
+          "story_full": "Gustykite é uma escola de kitesurf localizada na Praia Azul, em Costa da Caparica, dedicada a ensinar o emocionante desporto do kitesurf. Com instrutores certificados e experientes, oferecemos aulas personalizadas que garantem segurança, progressão e diversão em cada sessão. Se é seu primeiro encontro com o vento ou se já tem experiência, a Gustykite tem o programa certo para você."
+        }
+      ]
+    },
+
+    {
       "slug": "moda",
       "title": "Moda e Vestuário",
       "badge": "Estilo de Vida",
-      "description": "Lojas de roupa parceiras com descontos exclusivos.",
+      "description": "Expresse seu estilo! Descubra marcas de moda e lifestyle com descontos exclusivos. Do vestuário ao acessório perfeito, tudo com preços incríveis.",
       "partners": [
         {
           "slug": "twolines",
@@ -132,7 +186,7 @@
       "slug": "tour",
       "title": "Tour com Guia e Motorista",
       "badge": "Cultura e História",
-      "description": "Passeios guiados por bairros históricos com motorista local.",
+      "description": "Explore Lisboa como um local! Tours personalizados com guias apaixonados e motoristas experientes. Descubra histórias, paisagens e sabores únicos com descontos especiais.",
       "partners": [
         {
           "slug": "nanan-adventures",
@@ -185,7 +239,7 @@
       "slug": "yoga",
       "title": "Estúdios de Yoga",
       "badge": "Bem-Estar",
-      "description": "Aulas de yoga em Lisboa com desconto.",
+      "description": "Encontre paz e equilíbrio! Aulas de yoga em ambientes acolhedores de Lisboa com instrutores certificados. Conecte corpo, mente e espírito com preços exclusivos.",
       "partners": [
         {
           "slug": "yoga-kula",
@@ -294,7 +348,7 @@
       "slug": "wellness",
       "title": "Saúde & Bem-estar",
       "badge": "Terapias",
-      "description": "Descubra Saúde & Bem-estar com descontos exclusivos.",
+      "description": "Cuide de si! Massagens terapêuticas, consultas de bem-estar e rituais de relaxamento com profissionais qualificados. Renove corpo e mente com preços exclusivos.",
       "partners": [
         {
           "slug": "espaco-libela",
@@ -602,7 +656,7 @@
       "slug": "bike",
       "title": "Bike Tour",
       "badge": "Cultura e História",
-      "description": "Passeio fotográfico de bicicleta.",
+      "description": "Pedaleie por Lisboa e capture momentos únicos! Tours de bicicleta com documentário fotográfico profissional incluído. Explore a cidade de um jeito diferente com guias locais apaixonados.",
       "partners": [
         {
           "slug": "loopitour",
@@ -745,5 +799,5 @@
         }
       ]
     }
-  ]     
+  ]
 }
