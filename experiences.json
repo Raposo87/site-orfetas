@@ -711,8 +711,8 @@
           "price_original": "€100",
           "price_discount": "€90",
           "savings": "Economize €10",
-          "discount_label": "10% OFF",
-          "discount_percent": 10,
+          "discount_label": "20% OFF",
+          "discount_percent": 20,
           "code": "",
           "official_url": "https://www.ecoasters.pt/",
           "email": "ecoasters24@gmail.com",
@@ -726,9 +726,9 @@
           "icon": "fas fa-bicycle",
           "offers": [
             {
-              "title": "Ande de bicicleta e surfe / 4 hotas / Fonte da Telha",
-              "text": "Comece com um revigorante passeio de **bicicleta elétrica** pela natureza secreta da Costa da Caparica. Guiamos você por trilhas costeiras, caminhos na floresta e **mirantes exclusivos**, longe da multidão. É uma exploração fácil e atenta de dunas, falésias e pinheiros, com paradas para fotos incríveis. A aventura culmina na praia, onde um **instrutor profissional** assume para uma **aula de surfe** divertida e segura. Ideal para todos os níveis. Termine o dia com a sensação perfeita de ter deslizado pela natureza e surfado no oceano.",
-              "price": 100.0
+              "title": "Para dentro da floresta / 1.5 horas",
+              "text": "Isto não é uma excursão.É uma aventura.Sem paradas para turismo. Sem aulas de história. Apenas pilotagem, apenas diversão pura adrenalina. Percorra trilhas na floresta, caminhos de terra e curvas inesperadas, onde o foco é a experiência em si — velocidade, fluidez e liberdade. Trata-se de sentir o terreno, ir um pouco além e aproveitar cada segundo na bicicleta. Perfeito para quem busca ação, energia e algo diferente dos passeios turísticos tradicionais.Sem rota definida. Sem pressão. Apenas pedale.",
+              "price": 35.0
             },
             {
               "title": "A joia escondida de Lisboa / 3 horas / Costa da Caparica",
@@ -796,6 +796,45 @@
           ],
           "story_short": "Escolha o passeio ideal para sua próxima aventura",
           "story_full": "Descubra Lisboa a partir do Rio Tejo num passeio de veleiro privado, com direito a bebida de boas-vindas, snacks e fotografias. Uma experiência única para partilhar com quem mais gosta."
+        }
+      ]
+    },
+    {
+      "slug": "tour-aereas",
+      "title": "Experiências Aéreas",
+      "badge": "Voo e Aventura",
+      "description": "Suba aos céus e descubra Portugal de uma nova perspectiva! Desde o silêncio mágico de um passeio de balão de ar quente à adrenalina de um salto de paraquedas, escolha a sua aventura nas nuvens com descontos exclusivos.",
+      "partners": [
+        {
+          "slug": "flydreams",
+          "name": "FlyDreams Alantejo",
+          "location": "Herdade dos Barros, 7250-065 Terena, Alandroal, Portugal",
+          "price_original": "€165",
+          "price_discount": "€148,50",
+          "savings": "Economize €16,50",
+          "discount_label": "10% OFF",
+          "discount_percent": 10,
+          "code": "GUSTYKITE10",
+          "official_url": "https://flydreamsalentejo.com/",
+          "email": "flydreamsalentejo@gmail.com",
+          "phone": "+351 964 310 216",
+          "instagram": "https://www.instagram.com/flydreams_alentejo/",
+          "images": [
+            "https://flydreamsalentejo.com/wp-content/uploads/2023/08/894A6317-1024x683.jpg",
+            "https://flydreamsalentejo.com/wp-content/uploads/2023/06/InCollage_20230622_165439628.jpg",
+            "https://flydreamsalentejo.com/wp-content/uploads/2023/04/Voo-em-Terena-1024x683.jpg",
+            "https://flydreamsalentejo.com/wp-content/uploads/2024/11/Snapinsta.app_466355565_525767693604806_7452457224027870195_n_1080-1024x683.jpg"
+          ],
+          "icon": "fas fa-wind",
+          "offers": [
+            {
+              "title": "Voar na Vila histórica de Terena​ / Voo disponivel apenas para dias de semana",
+              "text": "Duração do voo: +/- 1 h Duração da experiência: +/- 3 h / Terena, também conhecida por São Pedro de Terena, é uma pitoresca Vila Alentejana pertencente ao concelho do Alandroal.Autêntica e dona de um património histórico e cultural riquíssimo poder sobrevoá-la de balão de ar quente será uma experiência completa e ímpar.Do alto, a imensidão de paisagem revela a exuberância do nosso Alentejo, com seu caraterístico e vasto montado, os seus campos de cultivo, assim como o gado que pasta nos campos. O visual a 360º tem ainda como cenário contemplativo as harmoniosas paisagens sobre a Albufeira da Barragem de Lucifecit e avistando ao longe a imponente Barragem do Alqueva. Conheça e apaixone-se por esta região através de uma imperdível e emocionante viagem de balão de ar quente que o deixará completamente rendido.",
+              "price": 180.0
+            }
+          ],
+          "story_short": "Gustykite oferece aulas de kitesurf seguras e divertidas para todos os níveis.",
+          "story_full": "Gustykite é uma escola de kitesurf localizada na Praia Azul, em Costa da Caparica, dedicada a ensinar o emocionante desporto do kitesurf. Com instrutores certificados e experientes, oferecemos aulas personalizadas que garantem segurança, progressão e diversão em cada sessão. Se é seu primeiro encontro com o vento ou se já tem experiência, a Gustykite tem o programa certo para você."
         }
       ]
     }
