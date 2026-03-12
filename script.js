@@ -619,24 +619,26 @@ document.addEventListener('DOMContentLoaded', () => {
         items.forEach(item => {
         const thumb = (item.images && item.images.length > 0) ? item.images[0] : 'favcon.png';
         const card = document.createElement('div');
-        
-        // ATENÇÃO: Aqui usamos "item" pois é o nome definido no forEach acima
+        card.className = 'search-result-card'; // opcional para estilo
+
         card.innerHTML = `
-            <div class="card-image">
-        <div class="like-badge" id="like-btn-${item.slug}" onclick="toggleLike(event, '${item.slug}')">
-            <i class="fas fa-heart"></i>
-            <span class="like-count" id="like-count-${item.slug}">0</span>
-        </div>
-        <img src="${item.image || 'favcon.png'}" alt="${item.name || item.title}">
-    </div>
-    <div class="card-content">
-        <h3>${item.name || item.title}</h3>
-        <p>${item.description || ''}</p>
-        <span class="badge">${item.categoryTitle || item.badge || ''}</span>
-    </div>
+            <a href="partner.html?slug=${item.slug}" style="text-decoration:none;color:inherit;">
+              <div class="card-image">
+                <div class="like-badge" id="like-btn-${item.slug}" onclick="toggleLike(event, '${item.slug}')">
+                  <i class="fas fa-heart"></i>
+                  <span class="like-count" id="like-count-${item.slug}">0</span>
+                </div>
+                <img src="${thumb}" alt="${item.name || item.title}">
+              </div>
+              <div class="card-content">
+                <h3>${item.name || item.title}</h3>
+                <p>${item.description || ''}</p>
+                <span class="badge">${item.categoryTitle || item.badge || ''}</span>
+              </div>
+            </a>
         `;
         resultsGrid.appendChild(card);
-        
+
         // Carrega o número de curtidas para este item da busca
         fetchInitialLikes(item.slug);
         });
