@@ -830,6 +830,42 @@
           "story_full": "Acreditamos que mais do que voar num balão de ar quente, realizamos sonhos. Voamos por Portugal e em particular pelo Alentejo. A experiência de ver de cima a paisagem alentejana é inspiradora, sensorial e transformacional, deixando memórias que não se soltam com facilidade. A FlyDreams Alentejo é também a concretização de um sonho e tem como principal objetivo realizar os sonhos de quem nos procura.Somos obcecados pelo detalhe, em fazer bem, em contagiar todos os que conosco interagem com a nossa cultura que se apoia numa atitude positiva. A nossa missão é oferecer momentos inesquecíveis e despertar emoções únicas aos passageiros que connosco voarem, primando sempre pelo maior grau de qualidade e segurança de todos. As experiências que desenhamos são centradas na satisfação total dos nossos clientes."
         }
       ]
+    },
+    {
+      "slug": "quad",
+      "title": "Aventura Off-Road",
+      "badge": "Aventura",
+      "description": "Sinta a adrenalina dos passeios off-road! Explore trilhos desafiadores e paisagens deslumbrantes com guias experientes. Aventura para todos os níveis, com descontos exclusivos.",
+      "partners": [
+        {
+          "slug": "rodas-ao-vento",
+          "name": "Rodas ao Vento",
+          "location": "Lisboa – Portugal",
+          "price_original": "€120",
+          "price_discount": "€108",
+          "savings": "Economize €12",
+          "discount_label": "10% OFF",
+          "discount_percent": 10,
+          "code": "",
+          "official_url": "https://rodasaovento.pt/",
+          "email": "geral@rodasaovento.pt",
+          "phone": "+351 960 460 851",
+          "instagram": "https://www.instagram.com/rodas_ao_vento/",
+          "images": [
+            "https://images.pexels.com/photos/1135197/pexels-photo-1135197.jpeg"
+          ],
+          "icon": "fas fa-motorcycle",
+          "offers": [
+            {
+              "title": "Serra Escupida",
+              "text": "Tour de 120 minutos que combina 85% off-road e 15% asfalto, levando-te por pedreiras, trilhos de serra, moinhos de vento e miradouros panorâmicos. Um percurso dinâmico com subidas, descidas e terrenos irregulares, ideal para quem procura a experiência mais completa e exigente.",
+              "price": 120.0
+            }
+          ],
+          "story_short": "Rodas ao Vento oferece passeios off-road emocionantes.",
+          "story_full": "Na Rodas ao Vento, acreditamos que a melhor forma de viver a natureza é senti-la de perto, com emoção, liberdade e espírito de aventura. Somos uma empresa dedicada à animação turística, especializada em experiências off-road que combinam adrenalina, paisagens únicas e momentos inesquecíveis. A nossa missão é proporcionar atividades seguras, divertidas e acessíveis a todos, desde iniciantes até aos mais experientes. Organizamos passeios de buggy e moto 4 por trilhos cuidadosamente selecionados, permitindo descobrir a beleza natural da região de uma forma diferente e emocionante. Mais do que passeios, criamos experiências. Trabalhamos com grupos de amigos, famílias, turistas e empresas, desenvolvendo também eventos personalizados, como ações de team building e celebrações especiais, sempre adaptadas às necessidades de cada cliente. Contamos com uma equipa dedicada e profissional, focada em garantir segurança qualidade e um atendimento próximo e personalizado. Na Rodas ao Vento, cada detalhe é pensado para que cada aventura se transforme numa memória única. Seja para explorar, desafiar-se ou simplesmente divertir-se, estamos aqui para o levar mais longe — sempre com o vento a favor."
+        }
+      ]
     }
   ]
 }
