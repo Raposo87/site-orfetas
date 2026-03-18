@@ -146,7 +146,6 @@
       card.innerHTML = `
         <div class="card-image">
           <img src="${images[0]}" alt="${p.name}">
-          ${p.discount_label ? `<div class="discount-badge">${p.discount_label}</div>` : ''}
           <div class="like-badge" id="like-btn-${p.slug}" onclick="toggleLike(event, '${p.slug}')">
             <i class="fas fa-heart"></i>
             <span class="like-count" id="like-count-${p.slug}">0</span>

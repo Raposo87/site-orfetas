@@ -835,7 +835,7 @@
       "slug": "quad",
       "title": "Aventura Off-Road",
       "badge": "Aventura",
-      "description": "Sinta a adrenalina dos passeios off-road! Explore trilhos desafiadores e paisagens deslumbrantes com guias experientes. Aventura para todos os níveis, com descontos exclusivos.",
+      "description": "Sinta a adrenalina dos passeios off-road! Explore trilhos desafiadores e paisagens deslumbrantes com guias experientes. Com descontos exclusivos.",
       "partners": [
         {
           "slug": "rodas-ao-vento",
@@ -852,7 +852,10 @@
           "phone": "+351 960 460 851",
           "instagram": "https://www.instagram.com/rodas_ao_vento/",
           "images": [
-            "https://images.pexels.com/photos/1135197/pexels-photo-1135197.jpeg"
+            "https://rodasaovento.pt/wp-content/uploads/2025/10/20-3-300x300.png",
+            "https://rodasaovento.pt/wp-content/uploads/2025/10/3-2-300x300.png,",
+            "https://rodasaovento.pt/wp-content/uploads/2025/10/21-2-300x300.png",
+            "https://rodasaovento.pt/wp-content/uploads/2025/10/Design-sem-nome-9-1-300x300.png"
           ],
           "icon": "fas fa-motorcycle",
           "offers": [
