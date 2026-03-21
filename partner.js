@@ -434,6 +434,7 @@
 
     function openReviewModal() {
       document.getElementById('review-modal').style.display = 'flex';
+      document.getElementById('review-name').value = '';
       document.getElementById('review-comment').value = '';
       document.getElementById('review-email').value = '';
       document.getElementById('char-count').textContent = '0/300';
@@ -474,11 +475,17 @@
       event.preventDefault();
 
       const rating = document.querySelectorAll('#rating-stars .fas.fa-star').length;
+      const name = document.getElementById('review-name').value.trim();
       const comment = document.getElementById('review-comment').value.trim();
       const email = document.getElementById('review-email').value.trim();
 
       if (rating === 0) {
         alert('Por favor, selecione uma avaliação em estrelas.');
+        return;
+      }
+
+      if (!name || name.length < 2) {
+        alert('Por favor, insira seu nome (mínimo 2 caracteres).');
         return;
       }
 
@@ -507,7 +514,7 @@
             rating: rating,
             comment: comment,
             email: email,
-            user: email.split('@')[0] // Nome = parte antes do @
+            user: name // Agora usa o nome fornecido pelo usuário
           })
         });
 
