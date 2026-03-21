@@ -880,21 +880,22 @@
         {
           "slug": "dj-namonster",
           "name": "DJ Namonster",
-          "location": "Lisboa e Grande Lisboa",
+          "location": "Costa da Caparica",
           "price_original": "€150",
           "price_discount": "€127,50",
           "savings": "Economize €22,50",
           "discount_label": "25% OFF",
           "discount_percent": 25,
           "code": "DJ25",
-          "official_url": "https://www.instagram.com/djnamonster/",
+          "official_url": "https://djnamonster.pt/",
           "email": "djnamonster@gmail.com",
-          "phone": "+351 912 345 678",
-          "instagram": "https://www.instagram.com/djnamonster/",
+          "phone": "+351 913 950 542",
+          "instagram": "https://www.instagram.com/namonsterbeats/",
           "images": [
-            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1768422153/dj-placeholder-1.jpg",
-            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1768422155/dj-placeholder-2.jpg",
-            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1768422153/dj-placeholder-3.jpg"
+            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1745915798/img-fundo_d9fbap.jpg",
+            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1745915827/img-fundo1_qj1fj1.jpg",
+            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1750837880/DJ_Namonster_Namor_Cayres_-_DJ_profissional_em_Portugal_para_festas_casamentos_e_eventos._Contrate_agora_stkomr.jpg",
+            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1750838347/DJ_Namonster_Namor_Cayres_-_DJ_profissional_em_Portugal_para_festas_casamentos_e_eventos._Contrate_agora_g3e2zm.jpg"
           ],
           "icon": "fas fa-music",
           "offers": [
@@ -902,25 +903,10 @@
               "title": "DJ para Casamento (4 horas)",
               "text": "Pacote completo para casamento: DJ profissional, equipamento de som de alta qualidade, iluminação LED, microfone para discursos, playlist personalizada baseada nas suas preferências musicais. Inclui setup e desmontagem.",
               "price": 150.0
-            },
-            {
-              "title": "DJ para Festa de Aniversário (3 horas)",
-              "text": "Animação completa para sua festa: DJ residente, sistema de som potente, efeitos de luz, pedidos musicais ao vivo, interação com os convidados. Perfeito para aniversários, formaturas e celebrações.",
-              "price": 120.0
-            },
-            {
-              "title": "DJ para Evento Corporativo (2 horas)",
-              "text": "Serviço profissional para eventos empresariais: DJ experiente, música ambiente adequada ao público corporativo, sistema de som discreto mas potente, possibilidade de intervenções temáticas.",
-              "price": 100.0
-            },
-            {
-              "title": "DJ para Bar/Bat Mitzvá (3 horas)",
-              "text": "Especializado em eventos judaicos: DJ com experiência em cerimônias tradicionais, mistura de músicas judaicas e pop modernas, respeito pelas tradições culturais, animação familiar.",
-              "price": 130.0
             }
           ],
           "story_short": "DJ profissional especializado em eventos e entretenimento.",
-          "story_full": "DJ Namonster é um DJ profissional com mais de 10 anos de experiência em eventos diversos. Especializado em casamentos, festas de aniversário, eventos corporativos e cerimônias judaicas, ele sabe como criar a atmosfera perfeita para cada ocasião.\n\nCom um vasto repertório musical que vai desde clássicos atemporais até os hits mais atuais, Namonster adapta-se ao gosto de cada cliente, garantindo que todos os convidados se divirtam. Seu equipamento de última geração inclui sistema de som de alta qualidade, iluminação LED e efeitos especiais que elevam qualquer evento a outro nível.\n\nAlém da música, Namonster oferece um serviço completo que inclui preparação prévia com os noivos/clientes, criação de playlists personalizadas e interação constante durante o evento para garantir que tudo corra na perfeição."
+          "story_full": "DJ Namonster, Namor Cayres, é DJ e beatmaker com experiência internacional. Começou sua carreira nos EUA, tocando em San Clemente, no Sul da Califórnia, em pequenas festas da High School onde estudava. Investiu em equipamentos, aprendeu a produzir seus próprios beats e desenvolveu um estilo único. Hoje, atua em Portugal como DJ para eventos, casamentos e festas privadas, além de ser DJ residente em bares e clubes. Formado em Produção Musical pelo Saddleback College, na Califórnia, traz sua experiência internacional para criar ambientes musicais envolventes."
         }
       ]
     }
