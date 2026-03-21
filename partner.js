@@ -412,9 +412,11 @@
           i < review.rating ? '<i class="fas fa-star"></i>' : '<i class="far fa-star"></i>'
         ).join('');
 
+        const reviewUser = review.user || review.name || review.username || review.author || 'Usuário Anônimo';
+
         reviewCard.innerHTML = `
           <div class="review-header">
-            <span class="review-user">${review.user || 'Usuário Anônimo'}</span>
+            <span class="review-user">${reviewUser}</span>
             <div class="review-rating">${stars}</div>
           </div>
           <p class="review-comment">${review.comment}</p>

@@ -23,12 +23,14 @@
       "bikeTour": "Bike Tour",
       "restaurants": "Restaurants",
       "aquaticTour": "Aquatic Tour",
+      "eventsEntertainment": "Events & Entertainment",
       "save": "Save",
       "seeSchools": "See schools on sale",
       "seeStudios": "See studios on sale",
       "seeTour": "See tours on sale",
       "seeBrands": "See brands on sale",
       "seeTherapies": "See therapies on sale",
+      "seeEvents": "See events on sale",
       "seeRestaurants": "See restaurants on sale"
     },
     "howItWorks": {
@@ -152,12 +154,14 @@
       "bikeTour": "Passeio de Bicicleta",
       "restaurants": "Restaurantes",
       "aquaticTour": "Passeio Aquático",
+      "eventsEntertainment": "Eventos e Entretenimentos",
       "save": "Poupe",
       "seeSchools": "Ver escolas com desconto",
       "seeStudios": "Ver estúdios com desconto",
       "seeTour": "Ver passeios com desconto",
       "seeBrands": "Ver marcas com desconto",
       "seeTherapies": "Ver terapias com desconto",
+      "seeEvents": "Ver eventos com desconto",
       "seeRestaurants": "Ver restaurantes com desconto"
     },
     "howItWorks": {
