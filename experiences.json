@@ -869,6 +869,60 @@
           "story_full": "Na Rodas ao Vento, acreditamos que a melhor forma de viver a natureza é senti-la de perto, com emoção, liberdade e espírito de aventura. Somos uma empresa dedicada à animação turística, especializada em experiências off-road que combinam adrenalina, paisagens únicas e momentos inesquecíveis. A nossa missão é proporcionar atividades seguras, divertidas e acessíveis a todos, desde iniciantes até aos mais experientes. Organizamos passeios de buggy e moto 4 por trilhos cuidadosamente selecionados, permitindo descobrir a beleza natural da região de uma forma diferente e emocionante. Mais do que passeios, criamos experiências. Trabalhamos com grupos de amigos, famílias, turistas e empresas, desenvolvendo também eventos personalizados, como ações de team building e celebrações especiais, sempre adaptadas às necessidades de cada cliente. Contamos com uma equipa dedicada e profissional, focada em garantir segurança qualidade e um atendimento próximo e personalizado. Na Rodas ao Vento, cada detalhe é pensado para que cada aventura se transforme numa memória única. Seja para explorar, desafiar-se ou simplesmente divertir-se, estamos aqui para o levar mais longe — sempre com o vento a favor."
         }
       ]
+    },
+
+    {
+      "slug": "eventos-entretenimento",
+      "title": "Eventos e Entretenimentos",
+      "badge": "Diversão",
+      "description": "Transforme seu evento em uma experiência inesquecível! DJs profissionais, animação e entretenimento para festas, casamentos e celebrações especiais.",
+      "partners": [
+        {
+          "slug": "dj-namonster",
+          "name": "DJ Namonster",
+          "location": "Lisboa e Grande Lisboa",
+          "price_original": "€150",
+          "price_discount": "€127,50",
+          "savings": "Economize €22,50",
+          "discount_label": "25% OFF",
+          "discount_percent": 25,
+          "code": "DJ25",
+          "official_url": "https://www.instagram.com/djnamonster/",
+          "email": "djnamonster@gmail.com",
+          "phone": "+351 912 345 678",
+          "instagram": "https://www.instagram.com/djnamonster/",
+          "images": [
+            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1768422153/dj-placeholder-1.jpg",
+            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1768422155/dj-placeholder-2.jpg",
+            "https://res.cloudinary.com/dqn2v9mtu/image/upload/v1768422153/dj-placeholder-3.jpg"
+          ],
+          "icon": "fas fa-music",
+          "offers": [
+            {
+              "title": "DJ para Casamento (4 horas)",
+              "text": "Pacote completo para casamento: DJ profissional, equipamento de som de alta qualidade, iluminação LED, microfone para discursos, playlist personalizada baseada nas suas preferências musicais. Inclui setup e desmontagem.",
+              "price": 150.0
+            },
+            {
+              "title": "DJ para Festa de Aniversário (3 horas)",
+              "text": "Animação completa para sua festa: DJ residente, sistema de som potente, efeitos de luz, pedidos musicais ao vivo, interação com os convidados. Perfeito para aniversários, formaturas e celebrações.",
+              "price": 120.0
+            },
+            {
+              "title": "DJ para Evento Corporativo (2 horas)",
+              "text": "Serviço profissional para eventos empresariais: DJ experiente, música ambiente adequada ao público corporativo, sistema de som discreto mas potente, possibilidade de intervenções temáticas.",
+              "price": 100.0
+            },
+            {
+              "title": "DJ para Bar/Bat Mitzvá (3 horas)",
+              "text": "Especializado em eventos judaicos: DJ com experiência em cerimônias tradicionais, mistura de músicas judaicas e pop modernas, respeito pelas tradições culturais, animação familiar.",
+              "price": 130.0
+            }
+          ],
+          "story_short": "DJ profissional especializado em eventos e entretenimento.",
+          "story_full": "DJ Namonster é um DJ profissional com mais de 10 anos de experiência em eventos diversos. Especializado em casamentos, festas de aniversário, eventos corporativos e cerimônias judaicas, ele sabe como criar a atmosfera perfeita para cada ocasião.\n\nCom um vasto repertório musical que vai desde clássicos atemporais até os hits mais atuais, Namonster adapta-se ao gosto de cada cliente, garantindo que todos os convidados se divirtam. Seu equipamento de última geração inclui sistema de som de alta qualidade, iluminação LED e efeitos especiais que elevam qualquer evento a outro nível.\n\nAlém da música, Namonster oferece um serviço completo que inclui preparação prévia com os noivos/clientes, criação de playlists personalizadas e interação constante durante o evento para garantir que tudo corra na perfeição."
+        }
+      ]
     }
   ]
 }
