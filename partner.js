@@ -373,6 +373,177 @@
       }
     }
 
+    // === AVALIAÇÕES ===
+    let reviews = [];
+    let visibleReviews = 5;
+
+    // Carregar reviews do backend
+    async function loadReviews() {
+      try {
+        const response = await fetch(`${window.VOUCHERHUB_API}/api/partners/${slug}/reviews`);
+        if (response.ok) {
+          reviews = await response.json();
+        } else {
+          reviews = [];
+        }
+      } catch (error) {
+        console.error('Erro ao carregar reviews:', error);
+        reviews = [];
+      }
+      renderReviews();
+    }
+
+    function renderReviews() {
+      const container = document.getElementById('reviews-container');
+      container.innerHTML = '';
+
+      if (reviews.length === 0) {
+        container.innerHTML = '<p>Ainda não há avaliações para este parceiro.</p>';
+        return;
+      }
+
+      const reviewsToShow = reviews.slice(0, visibleReviews);
+
+      reviewsToShow.forEach(review => {
+        const reviewCard = document.createElement('div');
+        reviewCard.className = 'review-card';
+
+        const stars = Array.from({length: 5}, (_, i) =>
+          i < review.rating ? '<i class="fas fa-star"></i>' : '<i class="far fa-star"></i>'
+        ).join('');
+
+        reviewCard.innerHTML = `
+          <div class="review-header">
+            <span class="review-user">${review.user || 'Usuário Anônimo'}</span>
+            <div class="review-rating">${stars}</div>
+          </div>
+          <p class="review-comment">${review.comment}</p>
+          <small class="review-date">${new Date(review.createdAt || review.date).toLocaleDateString('pt-BR')}</small>
+        `;
+
+        container.appendChild(reviewCard);
+      });
+
+      const loadMoreBtn = document.getElementById('load-more-reviews');
+      if (reviews.length > visibleReviews) {
+        loadMoreBtn.style.display = 'block';
+      } else {
+        loadMoreBtn.style.display = 'none';
+      }
+    }
+
+    function openReviewModal() {
+      document.getElementById('review-modal').style.display = 'flex';
+      document.getElementById('review-comment').value = '';
+      document.getElementById('review-email').value = '';
+      document.getElementById('char-count').textContent = '0/300';
+      resetStars();
+    }
+
+    function closeReviewModal() {
+      document.getElementById('review-modal').style.display = 'none';
+    }
+
+    function resetStars() {
+      const stars = document.querySelectorAll('#rating-stars i');
+      stars.forEach(star => {
+        star.className = 'far fa-star';
+      });
+    }
+
+    function handleStarClick(event) {
+      const rating = parseInt(event.target.dataset.rating);
+      const stars = document.querySelectorAll('#rating-stars i');
+
+      stars.forEach((star, index) => {
+        if (index < rating) {
+          star.className = 'fas fa-star';
+        } else {
+          star.className = 'far fa-star';
+        }
+      });
+    }
+
+    function updateCharCount() {
+      const textarea = document.getElementById('review-comment');
+      const count = document.getElementById('char-count');
+      count.textContent = `${textarea.value.length}/300`;
+    }
+
+    async function submitReview(event) {
+      event.preventDefault();
+
+      const rating = document.querySelectorAll('#rating-stars .fas.fa-star').length;
+      const comment = document.getElementById('review-comment').value.trim();
+      const email = document.getElementById('review-email').value.trim();
+
+      if (rating === 0) {
+        alert('Por favor, selecione uma avaliação em estrelas.');
+        return;
+      }
+
+      if (!email || !email.includes('@') || !email.includes('.')) {
+        alert('Por favor, insira um email válido.');
+        return;
+      }
+
+      if (comment.length === 0) {
+        alert('Por favor, escreva um comentário.');
+        return;
+      }
+
+      if (comment.length > 300) {
+        alert('Comentário deve ter no máximo 300 caracteres.');
+        return;
+      }
+
+      try {
+        const response = await fetch(`${window.VOUCHERHUB_API}/api/partners/${slug}/reviews`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            rating: rating,
+            comment: comment,
+            email: email,
+            user: email.split('@')[0] // Nome = parte antes do @
+          })
+        });
+
+        if (response.ok) {
+          const newReview = await response.json();
+          reviews.unshift(newReview); // Adiciona no início
+          renderReviews();
+          closeReviewModal();
+          alert('Avaliação enviada com sucesso!');
+        } else {
+          const error = await response.json();
+          alert(`Erro: ${error.message || 'Erro ao enviar avaliação'}`);
+        }
+      } catch (error) {
+        console.error('Erro ao enviar review:', error);
+        alert('Erro ao enviar avaliação. Tente novamente.');
+      }
+    }
+
+    // Event listeners
+    document.getElementById('leave-review-btn').addEventListener('click', openReviewModal);
+    document.getElementById('cancel-review').addEventListener('click', closeReviewModal);
+    document.getElementById('review-modal').addEventListener('click', (e) => {
+      if (e.target.id === 'review-modal') closeReviewModal();
+    });
+    document.getElementById('rating-stars').addEventListener('click', handleStarClick);
+    document.getElementById('review-comment').addEventListener('input', updateCharCount);
+    document.getElementById('review-form').addEventListener('submit', submitReview);
+    document.getElementById('load-more-btn').addEventListener('click', () => {
+      visibleReviews += 5;
+      renderReviews();
+    });
+
+    // Carregar reviews iniciais
+    loadReviews();
+
   } catch (err) {
     console.error("Erro JS:", err);
   }
