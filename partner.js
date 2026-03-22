@@ -414,13 +414,27 @@
 
         const reviewUser = review.user || review.name || review.username || review.author || 'Usuário Anônimo';
 
+        // Formatar data com fallback seguro
+        let formattedDate = '';
+        const dateValue = review.createdAt || review.date || review.createddate;
+        if (dateValue) {
+          try {
+            const dateObj = new Date(dateValue);
+            if (!isNaN(dateObj)) {
+              formattedDate = dateObj.toLocaleDateString('pt-PT');
+            }
+          } catch (e) {
+            formattedDate = '';
+          }
+        }
+
         reviewCard.innerHTML = `
           <div class="review-header">
             <span class="review-user">${reviewUser}</span>
             <div class="review-rating">${stars}</div>
           </div>
           <p class="review-comment">${review.comment}</p>
-          <small class="review-date">${new Date(review.createdAt || review.date).toLocaleDateString('pt-BR')}</small>
+          <small class="review-date">${formattedDate || 'Data não disponível'}</small>
         `;
 
         container.appendChild(reviewCard);
