@@ -1,3 +1,134 @@
+/* Blog module */
+.blog-page,
+.post-page {
+  padding-top: 120px;
+  padding-bottom: 48px;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.blog-card {
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.blog-card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.blog-card-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.blog-card-body {
+  padding: 14px;
+}
+
+.blog-card-body h2 {
+  color: var(--primary-blue);
+  margin-bottom: 8px;
+}
+
+.blog-card-meta {
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.post-article {
+  max-width: 820px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-md);
+  padding: 24px;
+}
+
+.post-header h1 {
+  color: var(--primary-blue);
+}
+
+.post-cover {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin: 16px 0;
+}
+
+.post-content {
+  font-size: 1.08rem;
+  line-height: 1.85;
+  color: #1f2937;
+}
+
+.post-excerpt {
+  color: #475569;
+}
+
+.recommended-card {
+  max-width: 820px;
+  margin: 20px auto 0;
+  background: #fff8ed;
+  border: 1px solid rgba(251, 146, 60, 0.4);
+  border-radius: 14px;
+  padding: 18px;
+}
+
+.recommended-card h3 {
+  color: var(--secondary-orange);
+}
+
+.recommended-card-inner {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.recommended-card-inner img {
+  width: 150px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.recommended-discount {
+  color: var(--secondary-orange);
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .post-article {
+    padding: 18px;
+  }
+
+  .post-content {
+    font-size: 1rem;
+    line-height: 1.9;
+    letter-spacing: 0.01em;
+  }
+
+  .recommended-card-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .recommended-card-inner img {
+    width: 100%;
+    height: auto;
+  }
+}
 /* ===== VARIÁVEIS CSS ===== */
 :root {
   /* Cores Principais */

@@ -15,6 +15,9 @@
         button:hover { background: #1557b0; }
         .status-ok { color: green; font-weight: bold; }
         .status-error { color: red; font-weight: bold; }
+        textarea { width: 100%; min-height: 100px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+        .blog-table-actions { display: flex; gap: 8px; }
     </style>
 </head>
 <body>
@@ -43,6 +46,42 @@
         <h2>💰 Auditoria de Repasses</h2>
         <button onclick="checkTransfers()">Verificar Falhas de Pagamento</button>
         <div id="transferResult" style="margin-top: 15px;"></div>
+    </div>
+
+    <div class="card">
+        <h2>📝 Gestão do Blog</h2>
+        <div style="background:#f8f9fa;padding:15px;margin-bottom:15px;">
+            <h4>Novo Artigo</h4>
+            <div class="grid-2">
+                <input type="text" id="blog-slug" placeholder="slug-do-post">
+                <input type="text" id="blog-author" placeholder="Autor">
+                <input type="text" id="blog-title-pt" placeholder="Título (PT)">
+                <input type="text" id="blog-title-en" placeholder="Title (EN)">
+            </div>
+            <div class="grid-2">
+                <input type="text" id="blog-excerpt-pt" placeholder="Resumo (PT)">
+                <input type="text" id="blog-excerpt-en" placeholder="Excerpt (EN)">
+                <input type="url" id="blog-image-url" placeholder="URL da imagem (Cloudinary)">
+                <select id="blog-related-partner">
+                    <option value="">Sem experiência recomendada</option>
+                </select>
+            </div>
+            <label>Conteúdo (PT)</label>
+            <textarea id="blog-content-pt"></textarea>
+            <label>Content (EN)</label>
+            <textarea id="blog-content-en"></textarea>
+            <div style="margin-top:10px;">
+                <input type="password" id="admin-key" placeholder="Admin API Key">
+                <button onclick="createBlogPost()">Publicar artigo</button>
+            </div>
+        </div>
+
+        <table id="blogTable">
+            <thead>
+                <tr><th>ID</th><th>Slug</th><th>Título</th><th>Autor</th><th>Criado</th><th>Ação</th></tr>
+            </thead>
+            <tbody></tbody>
+        </table>
     </div>
 </div>
 
@@ -101,7 +140,102 @@
         }
     }
 
+    async function loadPartnersForSelect() {
+        try {
+            const res = await fetch("experiences.json", { cache: "no-store" });
+            const data = await res.json();
+            const select = document.getElementById("blog-related-partner");
+            const partners = (data.modes || []).flatMap(mode => mode.partners || []);
+            partners.forEach(partner => {
+                const option = document.createElement("option");
+                option.value = partner.slug;
+                option.textContent = `${partner.name} (${partner.slug})`;
+                select.appendChild(option);
+            });
+        } catch (err) {
+            console.error("Erro ao carregar partners do experiences.json:", err);
+        }
+    }
+
+    async function loadBlogPosts() {
+        try {
+            const res = await fetch(`https://voucherhub-backend-production.up.railway.app/api/blog`);
+            const data = await res.json();
+            const tbody = document.querySelector("#blogTable tbody");
+            tbody.innerHTML = (Array.isArray(data) ? data : []).map(post => `
+                <tr>
+                    <td>${post.id}</td>
+                    <td>${post.slug}</td>
+                    <td>${post.title_pt || ""}</td>
+                    <td>${post.author || ""}</td>
+                    <td>${new Date(post.created_at).toLocaleString()}</td>
+                    <td class="blog-table-actions">
+                        <button onclick="deleteBlogPost(${post.id})">Eliminar</button>
+                    </td>
+                </tr>
+            `).join("");
+        } catch (err) {
+            console.error("Erro ao carregar posts do blog:", err);
+        }
+    }
+
+    async function createBlogPost() {
+        const adminKey = document.getElementById("admin-key").value.trim();
+        if (!adminKey) return alert("Informe a Admin API Key");
+
+        const body = {
+            slug: document.getElementById("blog-slug").value.trim(),
+            author: document.getElementById("blog-author").value.trim(),
+            title_pt: document.getElementById("blog-title-pt").value.trim(),
+            title_en: document.getElementById("blog-title-en").value.trim(),
+            excerpt_pt: document.getElementById("blog-excerpt-pt").value.trim(),
+            excerpt_en: document.getElementById("blog-excerpt-en").value.trim(),
+            content_pt: document.getElementById("blog-content-pt").value.trim(),
+            content_en: document.getElementById("blog-content-en").value.trim(),
+            image_url: document.getElementById("blog-image-url").value.trim(),
+            related_partner_slug: document.getElementById("blog-related-partner").value || null
+        };
+
+        const res = await fetch(`https://voucherhub-backend-production.up.railway.app/api/admin/blog`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "x-admin-key": adminKey
+            },
+            body: JSON.stringify(body)
+        });
+
+        if (!res.ok) {
+            const err = await res.json().catch(() => ({}));
+            alert(err.error || "Erro ao publicar artigo");
+            return;
+        }
+
+        alert("Artigo publicado com sucesso!");
+        loadBlogPosts();
+    }
+
+    async function deleteBlogPost(id) {
+        const adminKey = document.getElementById("admin-key").value.trim();
+        if (!adminKey) return alert("Informe a Admin API Key");
+        if (!confirm(`Eliminar artigo #${id}?`)) return;
+
+        const res = await fetch(`https://voucherhub-backend-production.up.railway.app/api/admin/blog/${id}`, {
+            method: "DELETE",
+            headers: { "x-admin-key": adminKey }
+        });
+
+        if (!res.ok) {
+            const err = await res.json().catch(() => ({}));
+            alert(err.error || "Erro ao eliminar artigo");
+            return;
+        }
+        loadBlogPosts();
+    }
+
     loadStocks();
+    loadPartnersForSelect();
+    loadBlogPosts();
 </script>
 </body>
 </html>
