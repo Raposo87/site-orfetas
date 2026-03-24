@@ -1,6 +1,20 @@
 const BACKEND_URL =
   window.VOUCHERHUB_API || "https://voucherhub-backend-production.up.railway.app";
 
+let cachedBlogPosts = [];
+
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function readMoreLabel() {
+  return window.i18n?.t ? window.i18n.t("blog.readMore") : "Ler Artigo";
+}
+
 function waitForI18n() {
   return new Promise((resolve) => {
     const tick = () => {
@@ -40,11 +54,13 @@ function renderList(posts) {
   if (!listEl) return;
 
   if (!posts.length) {
-    emptyEl.style.display = "block";
+    if (emptyEl) emptyEl.style.display = "block";
+    listEl.innerHTML = "";
     return;
   }
 
-  emptyEl.style.display = "none";
+  if (emptyEl) emptyEl.style.display = "none";
+  const cta = escapeHtml(readMoreLabel());
   listEl.innerHTML = posts
     .map((post) => {
       const title = pickLocalized(post, "title");
@@ -52,14 +68,22 @@ function renderList(posts) {
       const createdAt = new Date(post.created_at).toLocaleDateString(
         getLang() === "en" ? "en-US" : "pt-PT"
       );
+      const href = `post.html?slug=${encodeURIComponent(post.slug)}`;
+      const safeTitle = escapeHtml(title);
+      const safeExcerpt = escapeHtml(excerpt || "");
+      const safeAuthor = escapeHtml(post.author || "VoucherHub");
       return `
         <article class="blog-card">
-          <a href="post.html?slug=${encodeURIComponent(post.slug)}" class="blog-card-link">
-            <img src="${post.image_url || "logo.png"}" alt="${title}" class="blog-card-image" />
+          <a href="${href}" class="blog-card-link" aria-label="${safeTitle}">
+            <img src="${post.image_url || "logo.png"}" alt="${safeTitle}" class="blog-card-image" loading="lazy" />
             <div class="blog-card-body">
-              <p class="blog-card-meta">${createdAt} • ${post.author || "VoucherHub"}</p>
-              <h2>${title}</h2>
-              <p>${excerpt || ""}</p>
+              <p class="blog-card-meta">${createdAt} • ${safeAuthor}</p>
+              <h2>${safeTitle}</h2>
+              ${safeExcerpt ? `<p class="blog-card-excerpt">${safeExcerpt}</p>` : ""}
+              <span class="blog-card-cta">
+                <span class="blog-card-cta-text">${cta}</span>
+                <span class="blog-card-cta-arrow" aria-hidden="true">→</span>
+              </span>
             </div>
           </a>
         </article>
@@ -146,10 +170,21 @@ function renderPost(post) {
   `;
 }
 
+function wireBlogListLanguageSwitch() {
+  if (!window.i18n || document.body.dataset.page !== "blog-list") return;
+  const originalSwitchLanguage = window.i18n.switchLanguage.bind(window.i18n);
+  window.i18n.switchLanguage = function (lang) {
+    originalSwitchLanguage(lang);
+    renderList(cachedBlogPosts);
+  };
+}
+
 async function initBlogListPage() {
   const res = await fetch(`${BACKEND_URL}/api/blog`);
   const posts = await res.json();
-  renderList(Array.isArray(posts) ? posts : []);
+  cachedBlogPosts = Array.isArray(posts) ? posts : [];
+  renderList(cachedBlogPosts);
+  wireBlogListLanguageSwitch();
 }
 
 async function initPostPage() {

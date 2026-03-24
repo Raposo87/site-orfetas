@@ -10,6 +10,10 @@
     />
     <link rel="stylesheet" href="style.css" />
     <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
@@ -23,18 +27,28 @@
         </a>
         <div class="nav-badge">
           <i class="fas fa-newspaper"></i>
-          <span>Blog VoucherHub</span>
+          <span data-i18n="blog.navBadge">Blog VoucherHub</span>
         </div>
       </div>
     </nav>
 
+    <section class="blog-hero" aria-labelledby="blog-hero-heading">
+      <div class="blog-hero-glow" aria-hidden="true"></div>
+      <div class="container blog-hero-inner">
+        <h1 id="blog-hero-heading" data-i18n="blog.heroTitle">
+          Dicas & Experiências VoucherHub
+        </h1>
+        <p class="blog-hero-subtitle" data-i18n="blog.heroSubtitle">
+          Descubra os segredos de Lisboa e região: experiências únicas e inesquecíveis. Clique nos artigos abaixo para ler o guia completo.
+        </p>
+      </div>
+    </section>
+
     <main class="blog-page container">
-      <header class="section-header">
-        <h1 id="blog-page-title">Blog VoucherHub</h1>
-        <p id="blog-page-subtitle">Conteudos para aproveitar melhor suas experiencias.</p>
-      </header>
-      <section id="blog-list" class="blog-grid"></section>
-      <p id="blog-empty-state" style="display: none">Nenhum artigo publicado ainda.</p>
+      <section id="blog-list" class="blog-grid" aria-label="Artigos"></section>
+      <p id="blog-empty-state" class="blog-empty-state" data-i18n="blog.emptyState" style="display: none">
+        Nenhum artigo publicado ainda.
+      </p>
     </main>
 
     <footer class="footer">

@@ -78,6 +78,13 @@
       "notFound": "Not found",
       "nonExistent": "Non-existent category."
     },
+    "blog": {
+      "navBadge": "VoucherHub Blog",
+      "heroTitle": "VoucherHub Tips & Experiences",
+      "heroSubtitle": "Discover the secrets of Lisbon and the surrounding region: unique and unforgettable experiences. Click on the articles below to read the complete guide.",
+      "readMore": "Read More",
+      "emptyState": "No articles published yet."
+    },
     "success": {
       "heading": "Purchase completed successfully!",
       "message": "Thank you for your purchase. Your voucher has been processed and will be sent to your email shortly. Please check your inbox (and your spam folder).",
@@ -208,6 +215,13 @@
       "offersPlural": "ofertas",
       "notFound": "Não encontrado",
       "nonExistent": "Categoria inexistente."
+    },
+    "blog": {
+      "navBadge": "Blog VoucherHub",
+      "heroTitle": "Dicas & Experiências VoucherHub",
+      "heroSubtitle": "Descubra os segredos de Lisboa e região: experiências únicas e inesquecíveis. Clique nos artigos abaixo para ler o guia completo.",
+      "readMore": "Ler Artigo",
+      "emptyState": "Nenhum artigo publicado ainda."
     },
     "success": {
       "heading": "Compra Realizada com Sucesso!",
