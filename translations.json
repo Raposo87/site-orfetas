@@ -84,7 +84,14 @@
       "heroTitle": "VoucherHub Tips & Experiences",
       "heroSubtitle": "Discover the secrets of Lisbon and the surrounding region: unique and unforgettable experiences. Click on the articles below to read the complete guide.",
       "readMore": "Read More",
-      "emptyState": "No articles published yet."
+      "emptyState": "No articles published yet.",
+      "shareHeadingBlog": "Share the blog",
+      "shareHeadingPost": "Share this article",
+      "shareNative": "Share",
+      "shareWhatsApp": "Share on WhatsApp",
+      "shareFacebook": "Share on Facebook",
+      "copyLink": "Copy link",
+      "linkCopied": "Link copied to the clipboard!"
     },
     "success": {
       "heading": "Purchase completed successfully!",
@@ -223,7 +230,14 @@
       "heroTitle": "Dicas & Experiências VoucherHub",
       "heroSubtitle": "Descubra os segredos de Lisboa e região: experiências únicas e inesquecíveis. Clique nos artigos abaixo para ler o guia completo.",
       "readMore": "Ler Artigo",
-      "emptyState": "Nenhum artigo publicado ainda."
+      "emptyState": "Nenhum artigo publicado ainda.",
+      "shareHeadingBlog": "Partilhar o blog",
+      "shareHeadingPost": "Partilhar este artigo",
+      "shareNative": "Partilhar",
+      "shareWhatsApp": "Partilhar no WhatsApp",
+      "shareFacebook": "Partilhar no Facebook",
+      "copyLink": "Copiar link",
+      "linkCopied": "Link copiado para a área de transferência!"
     },
     "success": {
       "heading": "Compra Realizada com Sucesso!",

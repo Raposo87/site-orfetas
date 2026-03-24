@@ -168,6 +168,86 @@
   padding: 2rem 1rem;
 }
 
+/* Partilha social (blog + artigo) */
+.share-host {
+  max-width: 920px;
+  margin: 0 auto 1.5rem;
+}
+
+.share-container {
+  padding: 1rem 1.125rem;
+  border-radius: var(--radius-md);
+  background: var(--gray-50, #f9fafb);
+  border: 1px solid var(--gray-200);
+}
+
+.share-container-label {
+  margin: 0 0 0.75rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--gray-800);
+  letter-spacing: 0.01em;
+}
+
+.share-container-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.share-btn {
+  min-width: 48px;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 14px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--primary-blue);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+
+.share-btn:hover {
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--primary-blue-dark);
+}
+
+.share-btn:focus-visible {
+  outline: 2px solid var(--primary-blue);
+  outline-offset: 2px;
+}
+
+.share-btn i {
+  font-size: 1.35rem;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.share-btn-native:not([hidden]) {
+  display: inline-flex;
+}
+
+.share-container--article-top {
+  margin: 1.25rem 0 1.5rem;
+}
+
+.share-container--article-bottom {
+  margin: 2rem 0 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--gray-200);
+}
+
+.post-share-outside {
+  max-width: 820px;
+  margin: 0 auto 1.25rem;
+}
+
 .post-article {
   max-width: 820px;
   margin: 0 auto;
