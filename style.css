@@ -182,7 +182,7 @@
 }
 
 .share-container-label {
-  margin: 0 0 0.75rem;
+  margin: -11px 0px -0.25rem;
   font-size: 0.9375rem;
   font-weight: 600;
   color: var(--gray-800);
