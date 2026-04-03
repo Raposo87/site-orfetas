@@ -767,6 +767,11 @@
           "icon": "fas fa-ship",
           "offers": [
             {
+              "title": "Sunset Wine Experience Tejo – Max 6 pessoas",
+              "description": "Quatro vinhos portugueses selecionados, explicado por um enólogo, harmonizados com tábua, farta de queijos e enchidos, amêndoas, azeitonas e pão com azeite e manteiga aromatizada - tudo enquanto navegamos pelo circuito histórico do Tejo. <br> Não é apenas uma prova: é uma experiência guiada de enoturismo, conhecimento e paisagem, com o pôr do sol a chegar durante a navegação. <br> Duração: 2H30<br>Inicio  às15:30.",
+              "price": 75.0
+            },
+            {
               "title": "Passeio Privado – Até 10 pessoas",
               "description": "Duração: 2h30<br>Inclui: bebida de boas-vindas, snacks e ambiente descontraído.<br>Perfeito para aniversários, despedidas de solteiro ou eventos de equipa.",
               "price": 349.99
