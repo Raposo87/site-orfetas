@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoucherHub - Gestão de Afiliados</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .admin-container { padding: 40px 20px; max-width: 1000px; margin: 0 auto; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .stat-card { background: #f4f4f4; padding: 20px; border-radius: 10px; text-align: center; border: 1px solid #ddd; }
+        .affiliate-form { background: #fff; padding: 20px; border-radius: 10px; border: 1px solid #eee; margin-bottom: 30px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        .btn-pay { background: #28a745; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
+        .qr-link { color: #007bff; font-family: monospace; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <h1>🤝 Gestão de Afiliados</h1>
+        
+        <div class="affiliate-form">
+            <h3>Cadastrar Novo Afiliado (Hostel, Hotel, Influencer...)</h3>
+            <form id="form-afiliado">
+                <input type="text" id="name" placeholder="Nome do Parceiro" required>
+                <input type="email" id="email" placeholder="Email para Notificações" required>
+                <input type="text" id="slug" placeholder="slug-unico (ex: hostel-alfama)" required>
+                <input type="number" id="rate" placeholder="% de Comissão (ex: 20)" step="1" required>
+                <button type="submit" class="btn-primary">Criar Link de Afiliado</button>
+            </form>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h2 id="total-afiliados">0</h2>
+                <p>Afiliados Ativos</p>
+            </div>
+            <div class="stat-card">
+                <h2 id="total-pendente">€ 0.00</h2>
+                <p>Total a Pagar (Geral)</p>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Link / QR Code</th>
+                    <th>Comissão</th>
+                    <th>Saldo Acumulado</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="lista-afiliados">
+                </tbody>
+        </table>
+    </div>
+
+    <script>
+        const API_URL = 'https://voucherhub-backend-production.up.railway.app/api';
+
+        // Carregar Afiliados
+        async function loadAffiliates() {
+            const res = await fetch(`${API_URL}/admin/affiliates`);
+            const data = await res.json();
+            const lista = document.getElementById('lista-afiliados');
+            lista.innerHTML = '';
+
+            data.forEach(af => {
+                lista.innerHTML += `
+                    <tr>
+                        <td><strong>${af.name}</strong><br><small>${af.email}</small></td>
+                        <td class="qr-link">voucherhub.pt/?ref=${af.slug}</td>
+                        <td>${af.commission_rate * 100}%</td>
+                        <td>€ ${(af.total_earned_cents / 100).toFixed(2)}</td>
+                        <td>
+                            <button class="btn-pay" onclick="resetBalance('${af.slug}')">Confirmar Pagamento</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        // Criar Novo
+        document.getElementById('form-afiliado').onsubmit = async (e) => {
+            e.preventDefault();
+            const payload = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                slug: document.getElementById('slug').value,
+                rate: document.getElementById('rate').value / 100
+            };
+
+            await fetch(`${API_URL}/admin/affiliates`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            
+            alert('Afiliado criado com sucesso!');
+            loadAffiliates();
+            e.target.reset();
+        };
+
+        async function resetBalance(slug) {
+            if(confirm('Você confirma que já pagou este afiliado manualmente e deseja zerar o saldo no sistema?')) {
+                await fetch(`${API_URL}/admin/affiliates/reset/${slug}`, { method: 'POST' });
+                loadAffiliates();
+            }
+        }
+
+        loadAffiliates();
+    </script>
+</body>
+</html>

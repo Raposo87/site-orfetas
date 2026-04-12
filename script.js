@@ -1,3 +1,12 @@
+// ===== CAPTURA DO CÓDIGO DE AFILIADO =====
+// Captura o afiliado da URL e guarda por 24 horas
+const urlParams = new URLSearchParams(window.location.search);
+const ref = urlParams.get('ref');
+if (ref) {
+    localStorage.setItem('vh_affiliate', ref);
+    console.log('Afiliado rastreado:', ref);
+}
+
 // ===== UTILITÁRIOS GLOBAIS =====
 const Utils = {
   debounce(func, wait) {

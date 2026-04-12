@@ -124,7 +124,8 @@
             productName: offerName,
             amountCents: Math.round(price * 100),
             originalPriceCents: Math.round(originalPrice * 100),
-            sponsorCode: sponsorCode 
+            sponsorCode: sponsorCode,
+            affiliateSlug: localStorage.getItem('vh_affiliate') || ""
           })
         });
 

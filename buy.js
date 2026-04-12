@@ -63,7 +63,10 @@ document.addEventListener("DOMContentLoaded", () => {
         currency: "eur",
 
         // NOVO (envia o código especial para o backend)
-        sponsorCode: sponsorCodeClean
+        sponsorCode: sponsorCodeClean,
+
+        // NOVO (envia o código de afiliado se existir)
+        affiliateSlug: localStorage.getItem('vh_affiliate') || ""
       };
 
       console.log("PAYLOAD ENVIADO:", payload); // debug opcional
