@@ -522,12 +522,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     const response = await fetch('experiences.json');
                     const data = await response.json();
                     
+                    // Captura vibes selecionados
+                    const selectedVibes = Array.from(document.querySelectorAll('.vibe-checkbox:checked')).map(cb => cb.value);
+                    
                     // ... (Mantenha toda a sua lógica de filtrar allPartners igual) ...
                     let allPartners = [];
                     data.modes.forEach(mode => {
                         if (mode.partners) {
                             mode.partners.forEach(p => {
-                                allPartners.push({ ...p, categoryTitle: mode.title });
+                                allPartners.push({ ...p, categoryTitle: mode.title, categoryVibes: mode.vibes || [] });
                             });
                         }
                     });
@@ -543,12 +546,18 @@ document.addEventListener('DOMContentLoaded', () => {
                       if (term === "bike" || term === "bicicleta") searchTerms = ["bike", "bicicleta", "ciclismo"];
                       if (term === "passeio" || term === "passeios") searchTerms = ["passeio", "tour", "veleiro", "barco"];
 
-                      return searchTerms.some(t => 
+                      // Filtro por texto
+                      const matchesText = term.length < 2 || searchTerms.some(t => 
                           partnerName.includes(t) || 
                           partnerLoc.includes(t) || 
                           categoryName.includes(t) || // <-- AGORA ELE PROCURA EM "Aulas de Surf"
                           experiencesTitles.some(title => title.includes(t))
                       );
+
+                      // Filtro por vibes
+                      const matchesVibes = selectedVibes.length === 0 || selectedVibes.some(vibe => p.categoryVibes.includes(vibe));
+
+                      return matchesText && matchesVibes;
                   });
 
                     renderSearchResults(filtered);
@@ -570,6 +579,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 300);
         });
     }
+
+    // Listener para checkboxes de vibes
+    document.querySelectorAll('.vibe-checkbox').forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            const term = searchInput ? searchInput.value.toLowerCase().trim() : '';
+            if (term.length >= 2) {
+                // Simula o input event para refazer a busca com filtros
+                searchInput.dispatchEvent(new Event('input'));
+            }
+        });
+    });
 
     // FUNÇÃO NOVA PARA CAPTURA DE DADOS
     async function enviarDadosParaAnalise(termo, totalResultados) {

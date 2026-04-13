@@ -270,6 +270,27 @@ Responsável pela base global da interface:
    - categoria em `experience.html?slug=...`
    - parceiro em `partner.html?slug=...`
 
+## Sistema de Busca e Filtros
+
+O sistema de busca global na homepage permite filtrar experiências por:
+
+- **Texto**: Nome do parceiro, localização, categoria ou títulos de ofertas.
+- **Vibes/Ocasiões**: Checkboxes para filtrar por "Aventura Radical", "Ideal para Casais", "Para Grupos de Amigos", "Família", "Relaxamento".
+
+### Como adicionar vibes a uma categoria
+
+1. Abra `experiences.json`.
+2. Em cada `mode`, adicione um campo `"vibes"` com array de strings.
+3. Exemplo:
+   ```json
+   {
+     "slug": "surf",
+     "title": "Aulas de Surf",
+     "vibes": ["Aventura Radical", "Para Grupos de Amigos", "Família"]
+   }
+   ```
+4. Os filtros são aplicados automaticamente na busca.
+
 ### Exemplo mínimo de categoria
 
 ```json
@@ -336,8 +357,8 @@ Arquivos relevantes para produção:
 ## Pendências técnicas percebidas no código
 
 - há endpoints do backend hardcoded em mais de um arquivo
-- parte do fluxo de compra está duplicada entre `buy.js` e `partner.js`
 - o README antigo mencionava arquivos e comportamentos que já não refletem o estado atual
+- sistema de busca e filtros aprimorado com vibes/ocasiões (ex: "Aventura Radical", "Ideal para Casais")
 
 ## Manutenção recomendada
 
@@ -345,6 +366,7 @@ Arquivos relevantes para produção:
 - padronizar os campos de `offers` entre `text` e `description`
 - revisar SEO canônico de páginas dinâmicas
 - adicionar uma validação automatizada de `experiences.json` no processo de deploy
+- expandir vibes para mais categorias conforme feedback dos usuários
 
 ---
 

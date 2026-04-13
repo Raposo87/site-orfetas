@@ -330,7 +330,6 @@ function renderPost(post) {
     </header>
     ${buildShareContainerHTML("blog.shareHeadingPost", "Partilhar este artigo", "share-container--article-top")}
     <section class="post-content">${normalizeText(content)}</section>
-    ${buildShareContainerHTML("blog.shareHeadingPost", "Partilhar este artigo", "share-container--article-bottom")}
   `;
 
   window.i18n?.translatePage?.();

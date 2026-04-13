@@ -5,6 +5,7 @@
       "title": "Aulas de Surf",
       "badge": "Esportes Aquáticos",
       "description": "Conquiste as ondas! Aprenda com instrutores certificados, sinta a adrenalina e ganhe descontos exclusivos nas suas aulas de surf.",
+      "vibes": ["Aventura Radical", "Para Grupos de Amigos", "Família"],
       "partners": [
         {
           "slug": "surf-wave-lisbon",
@@ -96,6 +97,7 @@
       "title": "Aulas de Kitesurf",
       "badge": "Esportes Aquáticos",
       "description": "Sinta a adrenalina do vento e das ondas! Aprenda kitesurf com instrutores certificados. Domine o vento, divirta-se no mar e aproveite descontos exclusivos no checkout.",
+      "vibes": ["Aventura Radical", "Para Grupos de Amigos"],
       "partners": [
         {
           "slug": "gustykite",
@@ -233,6 +235,7 @@
       "title": "Estúdios de Yoga",
       "badge": "Bem-Estar",
       "description": "Aulas de yoga em ambientes acolhedores com instrutores certificados. Conecte corpo, mente e espírito.",
+      "vibes": ["Relaxamento", "Ideal para Casais", "Família"],
       "partners": [
         {
           "slug": "yoga-kula",
@@ -650,6 +653,7 @@
       "title": "Bike Tour",
       "badge": "Cultura e História",
       "description": "Pedaleie por Lisboa e capture momentos únicos! Tours de bicicleta com documentário fotográfico profissional incluído. Explore a cidade de um jeito diferente com guias locais apaixonados.",
+      "vibes": ["Ideal para Casais", "Para Grupos de Amigos", "Família"],
       "partners": [
         {
           "slug": "loopitour",
