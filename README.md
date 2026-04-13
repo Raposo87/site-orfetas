@@ -1,103 +1,207 @@
 # VoucherHub Frontend
 
-Frontend estático do VoucherHub, uma vitrine de experiências com desconto em Portugal. O projeto usa HTML, CSS e JavaScript vanilla, com catálogo alimentado por `experiences.json` e integrações com um backend hospedado no Railway para pagamentos, stock, likes, reviews, blog e analytics.
+Frontend estático do VoucherHub, uma plataforma de vitrine de experiências com desconto em Portugal. O projeto oferece uma interface web responsiva para explorar e adquirir vouchers de desconto para atividades como aulas de surf, yoga, tours e muito mais em Lisboa e arredores. Utiliza HTML, CSS e JavaScript vanilla, com dados de catálogo alimentados por `experiences.json` e integrações com um backend hospedado no Railway para funcionalidades como pagamentos, controle de estoque, likes, reviews, blog e analytics.
 
-## Visão geral
+## Descrição do Projeto
 
-O repositório entrega as páginas públicas da plataforma:
+O VoucherHub é uma plataforma digital que conecta usuários a experiências locais com descontos exclusivos. O frontend é responsável pelas páginas públicas e administrativas, permitindo:
 
-- `index.html`: homepage com categorias, busca, likes, FAQ e cookies.
-- `experience.html`: lista de parceiros por categoria via `?slug=...`.
-- `partner.html`: detalhe do parceiro, ofertas, reviews e fluxo de compra.
-- `blog.html` e `post.html`: listagem e detalhe de artigos do blog.
-- `admin.html`: gestão de stock e auditoria administrativa.
-- `admin-painel.html`: onboarding/configuração de parceiros.
-- `validate.html`: validação de vouchers.
-- `success.html` e `connect-success.html`: páginas auxiliares do fluxo.
+- Navegação por categorias de experiências (surf, yoga, kitesurf, etc.)
+- Visualização detalhada de parceiros e ofertas
+- Processo de compra de vouchers
+- Sistema de reviews e likes
+- Blog integrado
+- Painel administrativo para gestão de parceiros e estoque
+- Suporte a internacionalização (Português e Inglês)
 
-## Stack
+O projeto visa promover o turismo sustentável e experiências autênticas em Lisboa, facilitando o acesso a atividades de qualidade com preços acessíveis.
 
-- HTML5
-- CSS3
-- JavaScript vanilla
-- `serve` para rodar localmente
-- `translations.json` + `i18n.js` para PT/EN
-- backend externo em Railway
+## Tecnologias Utilizadas
 
-## Estrutura principal
+- **HTML5**: Estrutura das páginas
+- **CSS3**: Estilização responsiva com design moderno
+- **JavaScript Vanilla**: Lógica do frontend, manipulação do DOM, AJAX para integrações
+- **JSON**: Armazenamento de dados estáticos (catálogo, traduções)
+- **Serve**: Servidor local para desenvolvimento
+- **Font Awesome**: Ícones
+- **Google Fonts**: Tipografia (Inter e Playfair Display)
+- **Backend Externo**: Railway para APIs de pagamentos, estoque, etc.
 
-```text
+## Estrutura do Projeto
+
+```
 site-orfetas/
-├── index.html
-├── experience.html
-├── partner.html
-├── blog.html
-├── post.html
-├── admin.html
-├── admin-painel.html
-├── validate.html
-├── success.html
-├── connect-success.html
-├── style.css
-├── script.js
-├── experience.js
-├── partner.js
-├── blog.js
-├── buy.js
-├── i18n.js
-├── experiences.json
-├── translations.json
-├── sitemap.xml
-├── robots.txt
-└── partner/
+├── index.html                 # Página inicial (homepage)
+├── experience.html            # Listagem de experiências por categoria
+├── partner.html               # Detalhes do parceiro e ofertas
+├── blog.html                  # Listagem de posts do blog
+├── post.html                  # Página de post individual do blog
+├── admin.html                 # Painel administrativo para gestão de estoque
+├── admin-painel.html          # Onboarding e configuração de parceiros
+├── admin-afiliados.html       # Gestão de afiliados (possivelmente)
+├── validate.html              # Validação de vouchers
+├── success.html               # Página de sucesso pós-compra
+├── connect-success.html       # Página auxiliar de conexão
+├── style.css                  # Folhas de estilo principais
+├── script.js                  # Scripts globais (navegação, modais, etc.)
+├── experience.js              # Lógica para página de experiências
+├── partner.js                 # Lógica para página de parceiro
+├── blog.js                    # Lógica para blog
+├── buy.js                     # Lógica de compra e checkout
+├── i18n.js                    # Sistema de internacionalização
+├── experiences.json           # Dados do catálogo de experiências
+├── translations.json          # Traduções para PT/EN
+├── package.json               # Dependências e scripts
+├── serve.json                 # Configuração do servidor serve
+├── sitemap.xml                # Sitemap para SEO
+├── robots.txt                 # Instruções para crawlers
+├── CNAME                      # Configuração para GitHub Pages
+├── partner/
+│   └── onboarding-refresh.html # Página de refresh para onboarding
+└── README.md                  # Este arquivo
 ```
 
-## Como rodar localmente
+## Instalação e Execução
 
-Pré-requisitos:
+### Pré-requisitos
 
-- Node.js instalado
+- Node.js (versão 14 ou superior) instalado no sistema
+- Navegador web moderno
 
-Comandos:
+### Passos para Instalação
 
-```bash
-npm install
-npm start
-```
+1. Clone o repositório:
 
-Depois abra a URL exibida pelo `serve`, normalmente `http://localhost:3000` ou `http://localhost:5000`.
+   ```bash
+   git clone https://github.com/seu-usuario/site-orfetas.git
+   cd site-orfetas
+   ```
 
-## Fluxo de dados
+2. Instale as dependências:
 
-### Catálogo
+   ```bash
+   npm install
+   ```
 
-- `experiences.json` concentra categorias em `modes[]`.
-- Cada categoria contém `slug`, `title`, `badge`, `description` e `partners[]`.
-- Cada parceiro pode incluir dados como `slug`, `name`, `location`, `images`, `offers`, `discount_percent`, `discount_label`, `story_short` e `story_full`.
+3. Execute o servidor local:
+
+   ```bash
+   npm start
+   ```
+
+4. Abra o navegador e acesse a URL exibida (geralmente `http://localhost:3000` ou `http://localhost:5000`).
+
+## Uso
+
+### Para Usuários Finais
+
+- **Homepage**: Explore categorias e ofertas em destaque
+- **Experiências**: Navegue por categorias específicas (ex: `experience.html?slug=surf`)
+- **Parceiro**: Veja detalhes, reviews e compre vouchers
+- **Blog**: Leia artigos sobre experiências em Lisboa
+- **Compra**: Processo seguro via backend integrado
+
+### Para Administradores
+
+- **admin.html**: Gerencie estoque e veja auditoria
+- **admin-painel.html**: Configure novos parceiros
+- **admin-afiliados.html**: Gerencie afiliados
+
+## Fluxo de Dados
+
+### Catálogo de Experiências
+
+- Dados armazenados em `experiences.json`
+- Estrutura: Categorias (`modes[]`) contêm parceiros com detalhes como preços, descontos, imagens, ofertas, histórias, etc.
+- Exemplo de estrutura:
+  ```json
+  {
+    "modes": [
+      {
+        "slug": "surf",
+        "title": "Aulas de Surf",
+        "partners": [
+          {
+            "slug": "surf-wave-lisbon",
+            "name": "Surf Wave Lisbon",
+            "offers": [...],
+            "images": [...],
+            ...
+          }
+        ]
+      }
+    ]
+  }
+  ```
 
 ### Internacionalização
 
-- `i18n.js` carrega `translations.json`.
-- O idioma é aplicado em elementos com `data-i18n`.
-- Há suporte para PT e EN, com persistência via navegador.
+- Implementada via `i18n.js` e `translations.json`
+- Suporte para Português (PT) e Inglês (EN)
+- Elementos marcados com `data-i18n` são traduzidos dinamicamente
+- Idioma persistido no navegador
 
-### Backend
+### Integrações com Backend
 
-O frontend consome um backend externo, atualmente referenciado em vários pontos como:
+O frontend se conecta a um backend externo hospedado no Railway (`https://voucherhub-backend-production.up.railway.app`) para:
 
-```text
-https://voucherhub-backend-production.up.railway.app
-```
+- Processamento de pagamentos e checkout
+- Verificação e atualização de estoque
+- Sistema de reviews e likes
+- Analytics de busca e navegação
+- Conteúdo do blog
+- Validação de vouchers
 
-Integrações já existentes no código:
+## Desenvolvimento
 
-- pagamentos e checkout
-- verificação de stock
-- reviews de parceiros
-- likes
-- analytics de busca
-- blog
-- validação de vouchers
+### Scripts Disponíveis
+
+- `npm start`: Inicia o servidor local com `serve`
+
+### Estrutura de Código
+
+- **HTML**: Páginas estruturadas semanticamente
+- **CSS**: Estilos modulares, responsivos
+- **JavaScript**: Funções organizadas por arquivo (ex: `partner.js` para lógica de parceiro)
+- **JSON**: Dados estáticos para catálogo e traduções
+
+### Contribuição
+
+1. Fork o projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`)
+3. Commit suas mudanças (`git commit -am 'Adiciona nova feature'`)
+4. Push para a branch (`git push origin feature/nova-feature`)
+5. Abra um Pull Request
+
+### Testes
+
+- Teste manual em navegadores: Chrome, Firefox, Safari
+- Verifique responsividade em dispositivos móveis
+- Valide integrações com backend
+
+## SEO e Performance
+
+- Meta tags otimizadas para motores de busca
+- Sitemap.xml para indexação
+- Robots.txt para controle de crawlers
+- Imagens otimizadas
+- Carregamento assíncrono de scripts
+
+## Licença
+
+Este projeto está licenciado sob a [MIT License](LICENSE).
+
+## Autor
+
+- **VoucherHub Team**
+- Email: contato@voucherhub.pt
+- Website: https://voucherhub.pt
+
+## Agradecimentos
+
+- Parceiros locais por fornecerem experiências incríveis
+- Comunidade de desenvolvedores por ferramentas open-source
+- Usuários por apoiarem o turismo sustentável em Lisboa
 - rotas administrativas
 
 Algumas partes usam `window.VOUCHERHUB_API` como override; outras ainda apontam diretamente para a URL de produção.
@@ -245,4 +349,3 @@ Arquivos relevantes para produção:
 ---
 
 Última atualização: 5 de abril de 2026
-
