@@ -250,6 +250,11 @@ async function renderRecommendedExperience(post) {
 
     if (!partner) return;
 
+    let offer = null;
+    if (partner.offers && partner.offers.length > 0) {
+      offer = partner.offers[0];
+    }
+
     const offLabel = partner.discount_label || `${partner.discount_percent || ""}% OFF`;
     const callout =
       getLang() === "en"
@@ -265,9 +270,12 @@ async function renderRecommendedExperience(post) {
           <h4>${partner.name}</h4>
           <p>${partner.location || ""}</p>
           <p class="recommended-discount">${callout}</p>
-          <a class="btn btn-official btn-sm" href="partner.html?slug=${encodeURIComponent(partner.slug)}">
-            ${getLang() === "en" ? "See Experience" : "Ver Experiência"}
-          </a>
+          <button class="btn-buy-offer" 
+            data-slug="${partner.slug}" 
+            data-price="${offer ? offer.price : ''}" 
+            data-offer-name="${offer ? offer.title : ''}">
+            Comprar
+          </button>
         </div>
       </div>
     `;

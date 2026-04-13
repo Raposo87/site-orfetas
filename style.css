@@ -2030,6 +2030,22 @@ a:focus {
 }
 
 
+
+/* Estilos do Modal Global de Compra */
+.modal-backdrop {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+    display: flex; align-items: center; justify-content: center; z-index: 9999;
+}
+.modal-content {
+    background: white; padding: 25px; border-radius: 12px;
+    width: 90%; max-width: 400px; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+.modal-close-btn {
+    position: absolute; right: 15px; top: 10px; font-size: 24px; cursor: pointer; color: #999;
+}
+
+
+
 /* Container da linha (título + botão) */
 .accordion-header-row {
   display: flex;

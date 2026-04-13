@@ -714,4 +714,98 @@ document.addEventListener('DOMContentLoaded', () => {
     categorySlugList.forEach(slug => {
         fetchInitialLikes(slug);
     });
+
+    // Centraliza o handler de todos os botões de compra do frontend
+    document.body.addEventListener('click', (event) => {
+        const btn = event.target.closest('.btn-buy-offer');
+        if (!btn || btn.id === 'confirm-pay-btn') return;
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        const offerData = {
+            partnerSlug: btn.dataset.slug,
+            offerName: btn.dataset.offerName,
+            price: parseFloat(btn.dataset.price),
+            originalPrice: parseFloat(btn.dataset.originalPrice || btn.dataset.price)
+        };
+
+        if (!offerData.partnerSlug || Number.isNaN(offerData.price)) return;
+        window.openBuyModal(offerData);
+    });
 });
+
+// 1. Definição Global da API
+window.VOUCHERHUB_API = "https://voucherhub-backend-production.up.railway.app";
+
+// 2. Função Global de Checkout (O NOVO PADRÃO)
+window.openBuyModal = function(offerData) {
+    const { partnerSlug, offerName, price, originalPrice } = offerData;
+
+    // Remove modal anterior se existir
+    const existingModal = document.getElementById('buy-modal');
+    if (existingModal) existingModal.remove();
+
+    const modalHtml = `
+      <div id="buy-modal" class="modal-backdrop">
+        <div class="modal-content">
+          <span class="modal-close-btn" onclick="this.parentElement.parentElement.remove()">&times;</span>
+          <h3>Comprar: ${offerName}</h3>
+          <p>Preço: <b style="color:#00AA00">€${price}</b></p>
+          <input type="email" id="buy-email" placeholder="Seu e-mail para receber o voucher" style="width:100%; padding:10px; margin:10px 0; border:1px solid #ddd; border-radius:5px;">
+          <input type="text" id="buy-sponsor" placeholder="Sponsor Code (Opcional)" style="width:100%; padding:10px; margin-bottom:10px; border:1px solid #ddd; border-radius:5px;">
+          <div id="buy-error" style="color:red; font-size:0.9em; margin-bottom:10px;"></div>
+          <button id="confirm-pay-btn" class="btn-buy-offer" style="width:100%; background:#1a73e8; color:white; border:none; padding:12px; border-radius:5px; font-weight:bold; cursor:pointer;">
+            Pagar com Stripe
+          </button>
+        </div>
+      </div>
+    `;
+
+    document.body.insertAdjacentHTML('beforeend', modalHtml);
+
+    document.getElementById('confirm-pay-btn').addEventListener('click', async () => {
+        const btn = document.getElementById('confirm-pay-btn');
+        const email = document.getElementById('buy-email').value.trim();
+        const sponsor = document.getElementById('buy-sponsor').value.trim();
+        const errorEl = document.getElementById('buy-error');
+
+        if (!email.includes('@')) {
+            errorEl.textContent = "Por favor, insira um e-mail válido.";
+            return;
+        }
+
+        try {
+            btn.disabled = true;
+            btn.innerText = "Processando...";
+            
+            const payload = {
+                email: email,
+                partnerSlug: partnerSlug,
+                productName: offerName,
+                amountCents: Math.round(price * 100),
+                originalPriceCents: Math.round(originalPrice * 100),
+                currency: "eur",
+                sponsorCode: sponsor.toUpperCase(),
+                affiliateSlug: localStorage.getItem('vh_affiliate') || ""
+            };
+
+            const response = await fetch(`${window.VOUCHERHUB_API}/api/payments/create-checkout-session`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            });
+
+            const data = await response.json();
+            if (data.url) {
+                window.location.href = data.url;
+            } else {
+                throw new Error(data.error || "Erro no checkout");
+            }
+        } catch (err) {
+            errorEl.textContent = err.message;
+            btn.disabled = false;
+            btn.innerText = "Pagar com Stripe";
+        }
+    });
+};
