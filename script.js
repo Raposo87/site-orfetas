@@ -773,7 +773,7 @@ window.openBuyModal = function(offerData) {
           <h3>Comprar: ${offerName}</h3>
           <p>Preço: <b style="color:#00AA00">€${price}</b></p>
           <input type="email" id="buy-email" placeholder="Seu e-mail para receber o voucher" style="width:100%; padding:10px; margin:10px 0; border:1px solid #ddd; border-radius:5px;">
-          <input type="text" id="buy-sponsor" placeholder="Sponsor Code (Opcional)" style="width:100%; padding:10px; margin-bottom:10px; border:1px solid #ddd; border-radius:5px;">
+          <input type="text" id="buy-sponsor" placeholder="Código Desconto (Opcional)" style="width:100%; padding:10px; margin-bottom:10px; border:1px solid #ddd; border-radius:5px;">
           <div id="buy-error" style="color:red; font-size:0.9em; margin-bottom:10px;"></div>
           <button id="confirm-pay-btn" class="btn-buy-offer" style="width:100%; background:#1a73e8; color:white; border:none; padding:12px; border-radius:5px; font-weight:bold; cursor:pointer;">
             Pagar com Stripe
@@ -829,3 +829,121 @@ window.openBuyModal = function(offerData) {
         }
     });
 };
+
+// ===== TOAST DE COMPRA RECENTE =====
+
+let recentPurchases = [];
+let currentPurchaseIndex = 0;
+let toastTimeout;
+let nextToastTimeout;
+
+async function fetchRecentPurchases() {
+    try {
+        console.log('Buscando compras recentes...');
+        const response = await fetch(`${window.VOUCHERHUB_API}/api/analytics/recent-purchases`);
+        if (response.ok) {
+            recentPurchases = await response.json();
+            console.log('Compras recentes carregadas:', recentPurchases.length, 'itens');
+            // Embaralhar para rotacionar
+            recentPurchases.sort(() => Math.random() - 0.5);
+        } else {
+            console.error('Erro na resposta da API:', response.status);
+        }
+    } catch (error) {
+        console.error('Erro ao buscar compras recentes:', error);
+    }
+
+    // Fallback: se não houver dados, usar dados mock de compras antigas
+    if (recentPurchases.length === 0) {
+        console.log('Usando dados fallback de compras antigas');
+        recentPurchases = [
+            { offer_title: 'Surf em Cascais', count: 2, last_purchase: '2024-01-15T10:30:00Z' },
+            { offer_title: 'Yoga no Parque', count: 1, last_purchase: '2024-01-10T14:20:00Z' },
+            { offer_title: 'Tour de Lisboa', count: 3, last_purchase: '2024-01-08T16:45:00Z' },
+            { offer_title: 'Aulas de Guitarra', count: 1, last_purchase: '2024-01-05T11:15:00Z' },
+            { offer_title: 'Massagem Relaxante', count: 2, last_purchase: '2024-01-03T09:00:00Z' }
+        ];
+        // Embaralhar
+        recentPurchases.sort(() => Math.random() - 0.5);
+    }
+}
+
+function formatMessage(item) {
+    const fakeTime = generateFakeRecentTime();
+    const count = item.count > 1 ? item.count : 1; // Garantir pelo menos 1
+    return `Alguém em Lisboa comprou ${count} voucher${count > 1 ? 'es' : ''} de ${item.offer_title} ${fakeTime}`;
+}
+
+function generateFakeRecentTime() {
+    const minutes = Math.floor(Math.random() * 59) + 2; // 2-60 min
+    if (minutes < 60) {
+        return `há ${minutes} min`;
+    } else {
+        return 'há 1 hora';
+    }
+}
+
+function showToast(message) {
+    console.log('Mostrando toast:', message);
+    const toast = document.getElementById('purchase-toast');
+    const messageEl = document.getElementById('toast-message');
+    
+    if (toastTimeout) {
+        clearTimeout(toastTimeout);
+    }
+    if (nextToastTimeout) {
+        clearTimeout(nextToastTimeout);
+    }
+    
+    messageEl.textContent = message;
+    toast.classList.add('show');
+
+    const displayDuration = 6000; // 6 segundos visível
+    toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+        console.log('Toast ocultado');
+        scheduleNextToast();
+    }, displayDuration);
+}
+
+function scheduleNextToast() {
+    if (nextToastTimeout) {
+        clearTimeout(nextToastTimeout);
+    }
+
+    const delay = Math.floor(Math.random() * (180000 - 120000 + 1)) + 120000; // 2-3 min
+    console.log('Próximo toast em', Math.round(delay / 1000), 'segundos');
+    nextToastTimeout = setTimeout(() => {
+        showNextPurchase();
+    }, delay);
+}
+
+function showNextPurchase() {
+    if (recentPurchases.length === 0) {
+        console.log('Nenhuma compra recente para mostrar');
+        return;
+    }
+
+    const item = recentPurchases[currentPurchaseIndex];
+    const message = formatMessage(item);
+    showToast(message);
+    currentPurchaseIndex = (currentPurchaseIndex + 1) % recentPurchases.length;
+}
+
+function initPurchaseToast() {
+    console.log('Inicializando toast de compras recentes');
+    fetchRecentPurchases().then(() => {
+        if (recentPurchases.length > 0) {
+            const initialDelay = 10000; // 10 segundos
+            console.log('Primeiro toast em', initialDelay / 1000, 'segundos');
+            nextToastTimeout = setTimeout(() => {
+                showNextPurchase();
+            }, initialDelay);
+        }
+    });
+}
+
+// Inicializar quando DOM carregar
+document.addEventListener('DOMContentLoaded', () => {
+    initPurchaseToast();
+});
