@@ -928,10 +928,22 @@ function showNextPurchase() {
     const message = formatMessage(item);
     showToast(message);
     currentPurchaseIndex = (currentPurchaseIndex + 1) % recentPurchases.length;
+
+    // Marcar que o toast foi mostrado nesta sessão
+    localStorage.setItem('purchaseToastShown', 'true');
 }
+
 
 function initPurchaseToast() {
     console.log('Inicializando toast de compras recentes');
+
+    // Verificar se o toast já foi mostrado nesta sessão
+    const toastShown = localStorage.getItem('purchaseToastShown');
+    if (toastShown === 'true') {
+        console.log('Toast já foi mostrado nesta sessão, pulando');
+        return;
+    }
+
     fetchRecentPurchases().then(() => {
         if (recentPurchases.length > 0) {
             const initialDelay = 10000; // 10 segundos
