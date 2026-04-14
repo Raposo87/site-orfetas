@@ -758,9 +758,24 @@ document.addEventListener('DOMContentLoaded', () => {
 // 1. Definição Global da API
 window.VOUCHERHUB_API = "https://voucherhub-backend-production.up.railway.app";
 
+function emitCheckoutUiEvent(eventName, detail) {
+  const event = new CustomEvent(eventName, { detail });
+  window.dispatchEvent(event);
+  document.dispatchEvent(event);
+}
+
 // 2. Função Global de Checkout (O NOVO PADRÃO)
 window.openBuyModal = function(offerData) {
     const { partnerSlug, offerName, price, originalPrice } = offerData;
+  const normalizedPrice = Number.parseFloat(String(price).replace(',', '.'));
+  const normalizedOriginalPrice = Number.parseFloat(
+    String(originalPrice ?? price).replace(',', '.')
+  );
+
+  if (!Number.isFinite(normalizedPrice)) {
+    console.error('Preco invalido para checkout:', price);
+    return;
+  }
 
     // Remove modal anterior se existir
     const existingModal = document.getElementById('buy-modal');
@@ -770,25 +785,39 @@ window.openBuyModal = function(offerData) {
       <div id="buy-modal" class="modal-backdrop">
         <div class="modal-content">
           <span class="modal-close-btn" onclick="this.parentElement.parentElement.remove()">&times;</span>
-          <h3>Comprar: ${offerName}</h3>
-          <p>Preço: <b style="color:#00AA00">€${price}</b></p>
-          <input type="email" id="buy-email" placeholder="Seu e-mail para receber o voucher" style="width:100%; padding:10px; margin:10px 0; border:1px solid #ddd; border-radius:5px;">
-          <input type="text" id="buy-sponsor" placeholder="Código Desconto (Opcional)" style="width:100%; padding:10px; margin-bottom:10px; border:1px solid #ddd; border-radius:5px;">
-          <div id="buy-error" style="color:red; font-size:0.9em; margin-bottom:10px;"></div>
-          <button id="confirm-pay-btn" class="btn-buy-offer" style="width:100%; background:#1a73e8; color:white; border:none; padding:12px; border-radius:5px; font-weight:bold; cursor:pointer;">
-            Pagar com Stripe
-          </button>
+          <h3 class="buy-modal-title">Comprar: ${offerName}</h3>
+          <p class="buy-modal-price">Preco: <strong>EUR ${normalizedPrice.toFixed(2)}</strong></p>
+
+          <input type="email" id="buy-email" class="buy-modal-input" placeholder="Seu e-mail para receber o voucher">
+          <input type="text" id="buy-sponsor" class="buy-modal-input" placeholder="Codigo Desconto (Opcional)">
+          <div id="buy-error" class="buy-modal-error"></div>
+
+          <button id="confirm-pay-btn" class="buy-modal-pay-btn">Pagar</button>
         </div>
       </div>
     `;
 
     document.body.insertAdjacentHTML('beforeend', modalHtml);
 
+  emitCheckoutUiEvent('voucherhub:buy-modal-open', {
+    partnerSlug,
+    offerName,
+    price: normalizedPrice
+  });
+
     document.getElementById('confirm-pay-btn').addEventListener('click', async () => {
         const btn = document.getElementById('confirm-pay-btn');
         const email = document.getElementById('buy-email').value.trim();
         const sponsor = document.getElementById('buy-sponsor').value.trim();
         const errorEl = document.getElementById('buy-error');
+
+    emitCheckoutUiEvent('voucherhub:buy-pay-click', {
+      partnerSlug,
+      offerName,
+      price: normalizedPrice,
+      hasSponsorCode: sponsor.length > 0,
+      hasEmail: email.length > 0
+    });
 
         if (!email.includes('@')) {
             errorEl.textContent = "Por favor, insira um e-mail válido.";
@@ -797,14 +826,14 @@ window.openBuyModal = function(offerData) {
 
         try {
             btn.disabled = true;
-            btn.innerText = "Processando...";
+          btn.innerText = "A processar...";
             
             const payload = {
                 email: email,
                 partnerSlug: partnerSlug,
                 productName: offerName,
-                amountCents: Math.round(price * 100),
-                originalPriceCents: Math.round(originalPrice * 100),
+              amountCents: Math.round(normalizedPrice * 100),
+              originalPriceCents: Math.round((Number.isFinite(normalizedOriginalPrice) ? normalizedOriginalPrice : normalizedPrice) * 100),
                 currency: "eur",
                 sponsorCode: sponsor.toUpperCase(),
                 affiliateSlug: localStorage.getItem('vh_affiliate') || ""
@@ -825,7 +854,7 @@ window.openBuyModal = function(offerData) {
         } catch (err) {
             errorEl.textContent = err.message;
             btn.disabled = false;
-            btn.innerText = "Pagar com Stripe";
+          btn.innerText = "Pagar";
         }
     });
 };

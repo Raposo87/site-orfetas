@@ -209,7 +209,7 @@
                window.openBuyModal({
                    partnerSlug: slug,
                    offerName: title,
-                   price: finalPrice.toFixed(2),
+                   price: finalPrice,
                    originalPrice: originalPrice
                });
             });
