@@ -202,13 +202,26 @@
                 <td>${item.offer_title}</td>
                 <td><input type="number" id="input-${item.id}" value="${item.stock_limit}"></td>
                 <td>
-                    <button onclick="updateStock(${JSON.stringify(item.partner_slug)}, ${JSON.stringify(item.offer_title)}, ${item.id})">Atualizar</button>
-                    <button class="btn-delete" onclick="deleteStock(${JSON.stringify(item.partner_slug)}, ${JSON.stringify(item.offer_title)})">Apagar</button>
+                    <button data-slug="${item.partner_slug}" data-title="${item.offer_title}" data-id="${item.id}" onclick="handleUpdateClick(this)">Atualizar</button>
+                    <button class="btn-delete" data-slug="${item.partner_slug}" data-title="${item.offer_title}" onclick="handleDeleteClick(this)">Apagar</button>
                 </td>
             </tr>
         `,
           )
           .join("");
+      }
+
+      function handleUpdateClick(btn) {
+        const slug = btn.getAttribute("data-slug");
+        const title = btn.getAttribute("data-title");
+        const id = btn.getAttribute("data-id");
+        updateStock(slug, title, id);
+      }
+
+      function handleDeleteClick(btn) {
+        const slug = btn.getAttribute("data-slug");
+        const title = btn.getAttribute("data-title");
+        deleteStock(slug, title);
       }
 
       async function saveStock() {
