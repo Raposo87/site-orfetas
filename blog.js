@@ -255,11 +255,27 @@ async function renderRecommendedExperience(post) {
       offer = partner.offers[0];
     }
 
+    const discountPct = Number(partner.discount_percent || 15);
+    const rawPrice = offer && offer.price ? Number.parseFloat(String(offer.price).replace(",", ".")) : null;
+    const hasPrice = Number.isFinite(rawPrice) && rawPrice > 0;
+    const finalPrice = hasPrice ? rawPrice * (1 - discountPct / 100) : null;
+
     const offLabel = partner.discount_label || `${partner.discount_percent || ""}% OFF`;
     const callout =
       getLang() === "en"
         ? `Enjoy ${offLabel} on this activity`
         : `Aproveite ${offLabel} nesta atividade`;
+
+    const priceHtml = hasPrice
+      ? `
+          <div class="offer-price-wrapper">
+            <span class="offer-price-old">EUR ${rawPrice.toFixed(2)}</span>
+            <span class="offer-price-final">EUR ${finalPrice.toFixed(2)}</span>
+          </div>
+        `
+      : `<span class="offer-price-final">${getLang() === "en" ? "On request" : "Sob consulta"}</span>`;
+
+    const safeOfferTitle = escapeHtml(offer ? offer.title : "");
 
     wrapper.style.display = "block";
     wrapper.innerHTML = `
@@ -270,10 +286,12 @@ async function renderRecommendedExperience(post) {
           <h4>${partner.name}</h4>
           <p>${partner.location || ""}</p>
           <p class="recommended-discount">${callout}</p>
+          ${priceHtml}
           <button class="btn-buy-offer" 
             data-slug="${partner.slug}" 
-            data-price="${offer ? offer.price : ''}" 
-            data-offer-name="${offer ? offer.title : ''}">
+            data-price="${hasPrice ? finalPrice.toFixed(2) : ""}" 
+            data-original-price="${hasPrice ? rawPrice.toFixed(2) : ""}"
+            data-offer-name="${safeOfferTitle}">
             Comprar
           </button>
         </div>
