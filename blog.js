@@ -16,6 +16,9 @@ function getShareActionsMarkup() {
       <button type="button" class="share-btn share-btn-native" data-share-native hidden>
         <i class="fas fa-share-from-square" aria-hidden="true"></i>
       </button>
+      <button type="button" class="share-btn share-btn-instagram" data-share-instagram>
+        <i class="fab fa-instagram" aria-hidden="true"></i>
+      </button>
       <a class="share-btn share-btn-whatsapp" data-share-whatsapp href="#" target="_blank" rel="noopener noreferrer">
         <i class="fab fa-whatsapp" aria-hidden="true"></i>
       </a>
@@ -90,6 +93,7 @@ function setupShareButtons(container, { title, url }) {
   const wa = actions.querySelector("[data-share-whatsapp]");
   const fb = actions.querySelector("[data-share-facebook]");
   const nativeBtn = actions.querySelector("[data-share-native]");
+  const instagramBtn = actions.querySelector("[data-share-instagram]");
   const copyBtn = actions.querySelector("[data-share-copy]");
 
   wa.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(textCombined)}`;
@@ -98,12 +102,45 @@ function setupShareButtons(container, { title, url }) {
   const tr = (key, fbv) => (window.i18n?.t(key) ? window.i18n.t(key) : fbv);
   nativeBtn.setAttribute("aria-label", tr("blog.shareNative", "Share"));
   nativeBtn.title = tr("blog.shareNative", "Share");
+  instagramBtn.setAttribute("aria-label", tr("blog.shareInstagram", "Instagram"));
+  instagramBtn.title = tr("blog.shareInstagram", "Instagram");
   wa.setAttribute("aria-label", tr("blog.shareWhatsApp", "WhatsApp"));
   wa.title = tr("blog.shareWhatsApp", "WhatsApp");
   fb.setAttribute("aria-label", tr("blog.shareFacebook", "Facebook"));
   fb.title = tr("blog.shareFacebook", "Facebook");
   copyBtn.setAttribute("aria-label", tr("blog.copyLink", "Copy link"));
   copyBtn.title = tr("blog.copyLink", "Copy link");
+
+  instagramBtn.addEventListener("click", async (e) => {
+    e.preventDefault();
+
+    // Em mobile, a API nativa pode listar o Instagram (incluindo Stories)
+    if (typeof navigator.share === "function") {
+      try {
+        await navigator.share({
+          title: shareTitle,
+          text: shareTitle,
+          url: shareUrl,
+        });
+        return;
+      } catch (err) {
+        if (err && err.name === "AbortError") return;
+      }
+    }
+
+    const copied = await copyTextToClipboard(shareUrl);
+    if (copied) {
+      showShareToast(
+        tr(
+          "blog.instagramFallback",
+          "Link copiado. No Instagram, crie um Story e adicione o sticker de link.",
+        ),
+        "success",
+      );
+    } else {
+      showShareToast(tr("toast.error", "Error"), "error");
+    }
+  });
 
   if (typeof navigator.share === "function") {
     nativeBtn.hidden = false;
