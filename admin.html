@@ -86,11 +86,25 @@
 </div>
 
 <script>
+    let adminKey = "";
+
+function getAdminKey() {
+  if (!adminKey) {
+    adminKey = prompt("Admin key:");
+  }
+  return adminKey;
+}
+
+
     const API_BASE = 'https://voucherhub-backend-production.up.railway.app/api/admin';
 
     // FUNÇÕES DE STOCK
     async function loadStocks() {
-        const res = await fetch(`${API_BASE}/stock-list`);
+        const res = await fetch(`${API_BASE}/stock-list`, {
+  headers: {
+    'x-admin-key': getAdminKey()
+  }
+});
         const data = await res.json();
         const tbody = document.querySelector('#stockTable tbody');
         tbody.innerHTML = data.map(item => `
@@ -111,7 +125,10 @@
         };
         await fetch(`${API_BASE}/update-stock`, {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+                'Content-Type': 'application/json',
+                'x-admin-key': getAdminKey()
+            },
             body: JSON.stringify(body)
         });
         alert("Criado!"); loadStocks();
@@ -122,6 +139,7 @@
         await fetch(`${API_BASE}/update-stock`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
+            'x-admin-key': getAdminKey(),
             body: JSON.stringify({ partner_slug: slug, offer_title: title, stock_limit: val })
         });
         alert("Atualizado!");
@@ -129,7 +147,11 @@
 
     // FUNÇÃO DE AUDITORIA (Conecta com a sua rota existente)
     async function checkTransfers() {
-        const res = await fetch(`${API_BASE}/audit-transfers`);
+        const res = await fetch(`${API_BASE}/audit-transfers`, {
+  headers: {
+    'x-admin-key': getAdminKey()
+  }
+});
         const data = await res.json();
         const div = document.getElementById('transferResult');
         if (data.vouchers) {

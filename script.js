@@ -786,10 +786,10 @@ window.openBuyModal = function(offerData) {
         <div class="modal-content">
           <span class="modal-close-btn" onclick="this.parentElement.parentElement.remove()">&times;</span>
           <h3 class="buy-modal-title">Comprar: ${offerName}</h3>
-          <p class="buy-modal-price">Preco: <strong>EUR ${normalizedPrice.toFixed(2)}</strong></p>
+          <p class="buy-modal-price">Preço: <strong>EUR ${normalizedPrice.toFixed(2)}</strong></p>
 
           <input type="email" id="buy-email" class="buy-modal-input" placeholder="Seu e-mail para receber o voucher">
-          <input type="text" id="buy-sponsor" class="buy-modal-input" placeholder="Codigo Desconto (Opcional)">
+          <input type="text" id="buy-sponsor" class="buy-modal-input" placeholder="Código Desconto (Opcional)">
           <div id="buy-error" class="buy-modal-error"></div>
 
           <button id="confirm-pay-btn" class="buy-modal-pay-btn">Pagar</button>
