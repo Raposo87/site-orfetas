@@ -45,7 +45,7 @@
       "safetyNote": "Your safety is our priority. All payments are processed by secure platforms. Keep your voucher safe."
     },
     "footer": {
-      "description": "Exclusive vouchers for the best experiences in Lisbon — enjoy the best, you deserve it!",
+      "description": "Exclusive vouchers for the best experiences in Lisbon!",
       "experiences": "Experiences",
       "waterSports": "Water Sports",
       "adventure": "Adventure",
@@ -191,7 +191,7 @@
       "safetyNote": "A sua segurança é a nossa prioridade. Todos os pagamentos são processados por plataformas seguras. Mantenha o seu voucher protegido."
     },
     "footer": {
-      "description": "Vouchers exclusivos para as melhores experiências em Lisboa — aproveite, porque merece!",
+      "description": "Vouchers exclusivos para as melhores experiências em Lisbo!",
       "experiences": "Experiências",
       "waterSports": "Desportos Aquáticos",
       "adventure": "Aventura",
@@ -285,7 +285,7 @@
     "valueSection": {
       "title": "Experiências selecionadas com <span class='highlight-orange'>vantagens exclusivas</span>",
       "p1": "O <strong>VoucherHub</strong> seleciona experiências de qualidade em Lisboa e negoceia diretamente com parceiros locais para oferecer <strong>condições especiais</strong> e <strong>preços reduzidos</strong>.",
-      "p2": "Aqui encontra aulas de surf, estúdios de yoga, passeios turísticos, experiências de bem-estar e aventura — sempre com <strong>descontos reais</strong> e sem custos escondidos.",
+      "p2": "Aqui encontra aulas de surf, estúdios de yoga, passeios turísticos, experiências de bem-estar e aventura, sempre com <strong>descontos reais</strong> e sem custos escondidos.",
       "p3": "O processo é simples: escolha a experiência, receba o voucher por email e apresente-o diretamente no parceiro. Assim, pode aproveitar mais e <strong>pagar menos</strong>, com total confiança.",
       "p4": "Alguns parceiros podem ter restrições de datas para vouchers com desconto <strong>(especialmente aos fins de semana e feriados)</strong>."
     }
