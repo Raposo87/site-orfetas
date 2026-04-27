@@ -988,3 +988,127 @@ function initPurchaseToast() {
 document.addEventListener('DOMContentLoaded', () => {
     initPurchaseToast();
 });
+
+function initGoogleReviewsCarousel() {
+  const carousel = document.querySelector('.google-reviews-carousel');
+  if (!carousel) return;
+
+  const track = carousel.querySelector('.google-reviews-track');
+  const slides = Array.from(carousel.querySelectorAll('.google-review-slide'));
+  const prevBtn = carousel.querySelector('.reviews-prev');
+  const nextBtn = carousel.querySelector('.reviews-next');
+  const dotsHost = document.querySelector('.google-reviews-dots');
+
+  if (!track || slides.length === 0 || !dotsHost) return;
+
+  let current = 0;
+  let timer = null;
+  let resizeTimer = null;
+  const autoMs = 4800;
+  let visibleCount = 3;
+  let maxIndex = 0;
+  let dots = [];
+
+  function getVisibleCount() {
+    if (window.innerWidth <= 768) return 1;
+    if (window.innerWidth <= 1100) return 2;
+    return 3;
+  }
+
+  function rebuildDots() {
+    const totalPositions = maxIndex + 1;
+    dotsHost.innerHTML = Array.from({ length: totalPositions }, (_, idx) => (
+      `<button type="button" aria-label="Ir para avaliação ${idx + 1}" data-index="${idx}"></button>`
+    )).join('');
+
+    dots = Array.from(dotsHost.querySelectorAll('button'));
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const idx = Number(dot.dataset.index || 0);
+        go(idx);
+        startAuto();
+      });
+    });
+  }
+
+  function refreshMetrics() {
+    visibleCount = getVisibleCount();
+    maxIndex = Math.max(0, slides.length - visibleCount);
+    if (current > maxIndex) current = maxIndex;
+    rebuildDots();
+  }
+
+  function paint() {
+    const shiftPerCard = 100 / visibleCount;
+    track.style.transform = `translateX(-${current * shiftPerCard}%)`;
+    dots.forEach((dot, idx) => dot.classList.toggle('active', idx === current));
+
+    const isSingle = maxIndex === 0;
+    if (prevBtn) prevBtn.disabled = isSingle;
+    if (nextBtn) nextBtn.disabled = isSingle;
+  }
+
+  function go(index) {
+    if (maxIndex === 0) {
+      current = 0;
+      paint();
+      return;
+    }
+
+    if (index < 0) current = maxIndex;
+    else if (index > maxIndex) current = 0;
+    else current = index;
+
+    paint();
+  }
+
+  function next() {
+    go(current + 1);
+  }
+
+  function stopAuto() {
+    if (!timer) return;
+    clearInterval(timer);
+    timer = null;
+  }
+
+  function startAuto() {
+    if (maxIndex === 0) return;
+    stopAuto();
+    timer = setInterval(next, autoMs);
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      go(current - 1);
+      startAuto();
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      next();
+      startAuto();
+    });
+  }
+
+  carousel.addEventListener('mouseenter', stopAuto);
+  carousel.addEventListener('mouseleave', startAuto);
+
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      refreshMetrics();
+      paint();
+      startAuto();
+    }, 120);
+  });
+
+  refreshMetrics();
+  paint();
+  startAuto();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initGoogleReviewsCarousel();
+});

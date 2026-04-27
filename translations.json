@@ -1,7 +1,9 @@
 {
   "en": {
     "nav": {
-      "badge": "Limited-Time Deals"
+      "badge": "Limited-Time Deals",
+      "blogTitle": "Blog",
+      "blogSubtitle": "Things to do in Lisbon?"
     },
     "hero": {
       "badge": "Exclusive Vouchers",
@@ -142,12 +144,18 @@
       "p2": "Here you'll find surf lessons, yoga studios, sightseeing tours, wellness and adventure experiences — always with <strong>real discounts</strong> and no hidden costs.",
       "p3": "The process is simple: choose the experience, receive the voucher by email and present it directly to the partner. That way you can enjoy more and <strong>pay less</strong>, with full confidence.",
       "p4": "Some partners may have date restrictions for discounted vouchers <strong>(especially on weekends and holidays)</strong>."
+    },
+    "googleReviews": {
+      "title": "What People Say On <span class='highlight-orange'>Google</span>",
+      "subtitle": "Real screenshots of Google reviews from customers who bought on VoucherHub."
     }
   },
 
   "pt": {
     "nav": {
-      "badge": "Ofertas por Tempo Limitado"
+      "badge": "Ofertas por Tempo Limitado",
+      "blogTitle": "Blog",
+      "blogSubtitle": "O que fazer em Lisboa?"
     },
     "hero": {
       "badge": "Vouchers Exclusivos",
@@ -288,6 +296,10 @@
       "p2": "Aqui encontra aulas de surf, estúdios de yoga, passeios turísticos, experiências de bem-estar e aventura, sempre com <strong>descontos reais</strong> e sem custos escondidos.",
       "p3": "O processo é simples: escolha a experiência, receba o voucher por email e apresente-o diretamente no parceiro. Assim, pode aproveitar mais e <strong>pagar menos</strong>, com total confiança.",
       "p4": "Alguns parceiros podem ter restrições de datas para vouchers com desconto <strong>(especialmente aos fins de semana e feriados)</strong>."
+    },
+    "googleReviews": {
+      "title": "O Que Dizem No <span class='highlight-orange'>Google</span>",
+      "subtitle": "Prints reais de avaliações de clientes que compraram no VoucherHub."
     }
   }
 }
