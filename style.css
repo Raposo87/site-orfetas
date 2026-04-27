@@ -2822,11 +2822,11 @@ a:focus {
     }
 
     .google-review-slide img {
-      height: 320px;
+      height: 250px;
     }
   }
 
-@media (max-width: 1100px) {
+@media (min-width: 769px) and (max-width: 1100px) {
   .google-review-slide {
     min-width: 50%;
     flex: 0 0 50%;
