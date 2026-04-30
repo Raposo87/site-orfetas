@@ -1,92 +1,336 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>VoucherHub - Painel Admin</title>
     <style>
-        body { font-family: sans-serif; max-width: 500px; margin: 50px auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9; }
-        h2 { color: #333; text-align: center; }
-        label { font-size: 12px; color: #666; font-weight: bold; }
-        input, button { width: 100%; padding: 12px; margin: 8px 0 20px 0; display: block; box-sizing: border-box; border-radius: 4px; border: 1px solid #ddd; }
-        button { background: #6772e5; color: white; border: none; cursor: pointer; font-weight: bold; font-size: 16px; margin-top: 10px; }
-        button:hover { background: #5469d4; }
-        .result { margin-top: 20px; padding: 15px; background: #e7f3ff; border: 1px solid #b2d7ff; border-radius: 4px; display: none; word-break: break-all; }
+      body {
+        font-family: sans-serif;
+        max-width: 560px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+      }
+      h2 {
+        color: #333;
+        text-align: center;
+      }
+      .subtitle {
+        text-align: center;
+        color: #666;
+        margin-top: -4px;
+        margin-bottom: 20px;
+      }
+      label {
+        font-size: 12px;
+        color: #666;
+        font-weight: bold;
+      }
+      input,
+      button {
+        width: 100%;
+        padding: 12px;
+        margin: 8px 0 20px 0;
+        display: block;
+        box-sizing: border-box;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+      }
+      button {
+        background: #6772e5;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 16px;
+        margin-top: 10px;
+      }
+      button:hover {
+        background: #5469d4;
+      }
+      .result {
+        margin-top: 20px;
+        padding: 15px;
+        background: #e7f3ff;
+        border: 1px solid #b2d7ff;
+        border-radius: 4px;
+        display: none;
+        word-break: break-all;
+      }
+      .notice {
+        padding: 12px;
+        border-radius: 6px;
+        margin-bottom: 16px;
+        display: none;
+      }
+      .notice.error {
+        display: block;
+        background: #fee2e2;
+        color: #991b1b;
+        border: 1px solid #fecaca;
+      }
+      .notice.success {
+        display: block;
+        background: #dcfce7;
+        color: #166534;
+        border: 1px solid #bbf7d0;
+      }
+      .hidden {
+        display: none;
+      }
+      .actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 8px;
+      }
+      .actions button {
+        margin: 0;
+      }
+      .btn-secondary {
+        background: #e2e8f0;
+        color: #0f172a;
+      }
+      .btn-secondary:hover {
+        background: #cbd5e1;
+      }
+      .btn-danger {
+        background: #dc2626;
+      }
+      .btn-danger:hover {
+        background: #b91c1c;
+      }
     </style>
-
-</head>
-<body>
+  </head>
+  <body>
     <h2>🚀 Gerador de Parceiros</h2>
-    
-    <form id="adminForm">
-        <label>NOME DO PARCEIRO</label>
-        <input type="text" id="name" placeholder="Ex: Surf Wave Lisbon" required>
-        
-        <label>SLUG (Único, sem espaços)</label>
-        <input type="text" id="slug" placeholder="Ex: surf-wave-lisbon" required>
-        
-        <label>EMAIL DO PARCEIRO</label>
-        <input type="email" id="email" placeholder="email@parceiro.com" required>
-        
-        <label>LOCALIZAÇÃO</label>
-        <input type="text" id="location" placeholder="Ex: Costa da Caparica">
-        
-        <label>PREÇO ORIGINAL (Cêntimos: 3000 = 30€)</label>
-        <input type="number" id="price" placeholder="3000">
+    <p class="subtitle">Acesso permitido apenas para perfis owner e admin.</p>
+    <div id="notice" class="notice"></div>
 
-        <button type="submit" id="btn">Criar Parceiro e Gerar Link</button>
+    <div id="sessionBox" class="hidden">
+      <p><b>Logado como:</b> <span id="sessionUser">-</span></p>
+      <div class="actions">
+        <button type="button" class="btn-secondary" id="refreshSessionBtn">
+          Atualizar sessão
+        </button>
+        <button type="button" class="btn-secondary" id="openUsersBtn">
+          Abrir gestão de usuários
+        </button>
+        <button type="button" class="btn-danger" id="logoutBtn">Sair</button>
+      </div>
+    </div>
+
+    <form id="adminForm" class="hidden">
+      <label>NOME DO PARCEIRO</label>
+      <input
+        type="text"
+        id="name"
+        placeholder="Ex: Surf Wave Lisbon"
+        required
+      />
+
+      <label>SLUG (Único, sem espaços)</label>
+      <input
+        type="text"
+        id="slug"
+        placeholder="Ex: surf-wave-lisbon"
+        required
+      />
+
+      <label>EMAIL DO PARCEIRO</label>
+      <input
+        type="email"
+        id="email"
+        placeholder="email@parceiro.com"
+        required
+      />
+
+      <label>LOCALIZAÇÃO</label>
+      <input type="text" id="location" placeholder="Ex: Costa da Caparica" />
+
+      <label>PREÇO ORIGINAL (Cêntimos: 3000 = 30€)</label>
+      <input type="number" id="price" placeholder="3000" />
+
+      <button type="submit" id="btn">Criar Parceiro e Gerar Link</button>
     </form>
 
     <div id="result" class="result"></div>
 
     <script>
-        document.getElementById('adminForm').onsubmit = async (e) => {
-            e.preventDefault();
-            
-            const btn = document.getElementById('btn');
-            const resDiv = document.getElementById('result');
-            
-            btn.innerText = "⏳ Processando...";
-            btn.disabled = true;
-            resDiv.style.display = 'none';
+      const AUTH_API =
+        "https://voucherhub-backend-production.up.railway.app/api/auth";
+      const ADMIN_API =
+        "https://voucherhub-backend-production.up.railway.app/api/admin";
+      const TOKEN_STORAGE_KEY = "voucherhub_admin_token";
 
-            const data = {
-                name: document.getElementById('name').value,
-                slug: document.getElementById('slug').value,
-                email: document.getElementById('email').value,
-                location: document.getElementById('location').value,
-                price_cents: document.getElementById('price').value
-            };
+      const notice = document.getElementById("notice");
+      const sessionBox = document.getElementById("sessionBox");
+      const sessionUser = document.getElementById("sessionUser");
+      const adminForm = document.getElementById("adminForm");
 
-            try {
-                // LEMBRE-SE: Use a URL do seu backend na Railway aqui
-                const response = await fetch('https://voucherhub-backend-production.up.railway.app/api/admin/setup-partner', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
-                });
-                
-                const res = await response.json();
-                
-                if (res.success) {
-                    resDiv.style.display = 'block';
-                    resDiv.innerHTML = `
+      function getToken() {
+        return localStorage.getItem(TOKEN_STORAGE_KEY);
+      }
+
+      function clearToken() {
+        localStorage.removeItem(TOKEN_STORAGE_KEY);
+      }
+
+      function showNotice(message, type) {
+        notice.textContent = message;
+        notice.className = `notice ${type}`;
+      }
+
+      function clearNotice() {
+        notice.textContent = "";
+        notice.className = "notice";
+      }
+
+      async function validateSession() {
+        const token = getToken();
+        if (!token) {
+          adminForm.classList.add("hidden");
+          sessionBox.classList.add("hidden");
+          showNotice(
+            "Você precisa fazer login em admin-usuarios.html antes de cadastrar parceiros.",
+            "error",
+          );
+          return false;
+        }
+
+        try {
+          const response = await fetch(`${AUTH_API}/me`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          const data = await response.json();
+          if (!response.ok) {
+            throw new Error(data.error || "Sessão inválida");
+          }
+
+          const role = (data.user?.role || "").toLowerCase();
+          if (role !== "owner" && role !== "admin") {
+            adminForm.classList.add("hidden");
+            sessionBox.classList.remove("hidden");
+            sessionUser.textContent = `${data.user?.name || data.user?.email || "-"} (${role || "sem perfil"})`;
+            showNotice(
+              "Seu perfil não tem permissão para cadastrar parceiros.",
+              "error",
+            );
+            return false;
+          }
+
+          clearNotice();
+          sessionBox.classList.remove("hidden");
+          sessionUser.textContent = `${data.user?.name || data.user?.email || "-"} (${role})`;
+          adminForm.classList.remove("hidden");
+          return true;
+        } catch (err) {
+          adminForm.classList.add("hidden");
+          sessionBox.classList.add("hidden");
+          showNotice(
+            "Sessão expirada ou inválida. Faça login novamente em admin-usuarios.html.",
+            "error",
+          );
+          return false;
+        }
+      }
+
+      document.getElementById("adminForm").onsubmit = async (e) => {
+        e.preventDefault();
+
+        const allowed = await validateSession();
+        if (!allowed) return;
+
+        const btn = document.getElementById("btn");
+        const resDiv = document.getElementById("result");
+
+        btn.innerText = "⏳ Processando...";
+        btn.disabled = true;
+        resDiv.style.display = "none";
+
+        const data = {
+          name: document.getElementById("name").value,
+          slug: document.getElementById("slug").value,
+          email: document.getElementById("email").value,
+          location: document.getElementById("location").value,
+          price_cents: document.getElementById("price").value,
+        };
+
+        try {
+          const response = await fetch(`${ADMIN_API}/setup-partner`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${getToken()}`,
+            },
+            body: JSON.stringify(data),
+          });
+
+          const res = await response.json();
+
+          if (res.success) {
+            clearNotice();
+            resDiv.style.display = "block";
+            resDiv.innerHTML = `
                         <p style="color:#2d5a27; font-weight:bold;">✅ Sucesso!</p>
                         <p><b>PIN Gerado:</b> <span style="font-size:18px; color:blue;">${res.pin_gerado}</span></p>
                         <p><b>Link Stripe:</b><br>
                            <a href="${res.onboarding_url}" target="_blank" style="color:#6772e5;">Abrir Cadastro Stripe</a>
                         </p>
                     `;
-                } else {
-                    alert("❌ Erro: " + (res.error || "Falha no servidor"));
-                }
-            } catch (err) {
-                alert("❌ Erro de conexão.");
-            } finally {
-                btn.innerText = "Criar Parceiro e Gerar Link";
-                btn.disabled = false;
+          } else {
+            if (response.status === 401 || response.status === 403) {
+              showNotice(
+                "Permissão negada. Verifique seu login/perfil em admin-usuarios.html.",
+                "error",
+              );
+            } else {
+              alert("❌ Erro: " + (res.error || "Falha no servidor"));
             }
-        };
+          }
+        } catch (err) {
+          alert("❌ Erro de conexão.");
+        } finally {
+          btn.innerText = "Criar Parceiro e Gerar Link";
+          btn.disabled = false;
+        }
+      };
+
+      document
+        .getElementById("refreshSessionBtn")
+        .addEventListener("click", async () => {
+          await validateSession();
+        });
+
+      document.getElementById("openUsersBtn").addEventListener("click", () => {
+        window.location.href = "admin-usuarios.html";
+      });
+
+      document.getElementById("logoutBtn").addEventListener("click", async () => {
+        const token = getToken();
+        try {
+          if (token) {
+            await fetch(`${AUTH_API}/logout`, {
+              method: "POST",
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            });
+          }
+        } catch (err) {
+          // Ignora falha de rede para não impedir saída local.
+        } finally {
+          clearToken();
+          window.location.href = "admin-usuarios.html";
+        }
+      });
+
+      validateSession();
     </script>
-</body>
+  </body>
 </html>

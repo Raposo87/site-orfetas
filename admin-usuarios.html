@@ -1,0 +1,727 @@
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VoucherHub - Usuários Admin</title>
+    <style>
+      :root {
+        --bg: #f4f6fb;
+        --panel: #ffffff;
+        --border: #d7deea;
+        --text: #1f2937;
+        --muted: #667085;
+        --primary: #1d4ed8;
+        --primary-dark: #1e40af;
+        --danger: #b42318;
+        --danger-bg: #fef3f2;
+        --success: #027a48;
+        --success-bg: #ecfdf3;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(180deg, #eef2ff 0%, var(--bg) 100%);
+        color: var(--text);
+      }
+
+      .page {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 32px 20px 60px;
+      }
+
+      .hero {
+        margin-bottom: 24px;
+      }
+
+      .hero h1 {
+        margin: 0 0 8px;
+        font-size: 32px;
+      }
+
+      .hero p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 340px 1fr;
+        gap: 20px;
+      }
+
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 20px;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+      }
+
+      .panel h2,
+      .panel h3 {
+        margin-top: 0;
+      }
+
+      .status-box {
+        display: none;
+        margin-bottom: 16px;
+        padding: 12px 14px;
+        border-radius: 10px;
+        font-size: 14px;
+      }
+
+      .status-box.error {
+        display: block;
+        background: var(--danger-bg);
+        color: var(--danger);
+        border: 1px solid #fecdca;
+      }
+
+      .status-box.success {
+        display: block;
+        background: var(--success-bg);
+        color: var(--success);
+        border: 1px solid #abefc6;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 12px;
+        font-weight: bold;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      input,
+      select,
+      button {
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        margin-bottom: 16px;
+        font-size: 15px;
+      }
+
+      input,
+      select {
+        background: #fff;
+      }
+
+      button {
+        border: none;
+        background: var(--primary);
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: var(--primary-dark);
+      }
+
+      button.secondary {
+        background: #e2e8f0;
+        color: #0f172a;
+      }
+
+      button.secondary:hover {
+        background: #cbd5e1;
+      }
+
+      button.danger {
+        background: #dc2626;
+      }
+
+      button.danger:hover {
+        background: #b91c1c;
+      }
+
+      .inline-actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .inline-actions button {
+        width: auto;
+        min-width: 150px;
+        margin-bottom: 0;
+      }
+
+      .muted {
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .identity-card {
+        display: grid;
+        gap: 10px;
+      }
+
+      .identity-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        border-bottom: 1px solid #edf2f7;
+        padding-bottom: 10px;
+      }
+
+      .identity-row span:last-child {
+        font-weight: bold;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 12px;
+      }
+
+      th,
+      td {
+        text-align: left;
+        padding: 12px 10px;
+        border-bottom: 1px solid #edf2f7;
+        vertical-align: top;
+      }
+
+      th {
+        font-size: 12px;
+        color: var(--muted);
+        text-transform: uppercase;
+      }
+
+      .table-actions {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .table-actions button {
+        width: auto;
+        margin-bottom: 0;
+        padding: 8px 10px;
+        font-size: 13px;
+      }
+
+      .pill {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: bold;
+      }
+
+      .pill.active {
+        background: #dcfce7;
+        color: #166534;
+      }
+
+      .pill.inactive {
+        background: #fee2e2;
+        color: #991b1b;
+      }
+
+      code {
+        background: #eff6ff;
+        color: #1d4ed8;
+        padding: 2px 6px;
+        border-radius: 6px;
+      }
+
+      @media (max-width: 900px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        .identity-row {
+          flex-direction: column;
+          gap: 4px;
+        }
+
+        table,
+        thead,
+        tbody,
+        th,
+        td,
+        tr {
+          display: block;
+        }
+
+        thead {
+          display: none;
+        }
+
+        tr {
+          border: 1px solid #edf2f7;
+          border-radius: 12px;
+          margin-bottom: 12px;
+          padding: 10px;
+        }
+
+        td {
+          border-bottom: none;
+          padding: 6px 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="hero">
+        <h1>Painel de Usuários Admin</h1>
+        <p>Login interno e gestão de acessos administrativos.</p>
+      </div>
+
+      <div id="global-status" class="status-box"></div>
+
+      <div class="grid">
+        <section class="panel">
+          <div id="login-view">
+            <h2>Entrar</h2>
+            <p class="muted">
+              Use um usuário já cadastrado nas rotas de autenticação do backend.
+            </p>
+            <form id="login-form">
+              <label for="login-email">Email</label>
+              <input
+                type="email"
+                id="login-email"
+                autocomplete="username"
+                required
+              />
+
+              <label for="login-password">Senha</label>
+              <input
+                type="password"
+                id="login-password"
+                autocomplete="current-password"
+                required
+              />
+
+              <button type="submit" id="login-btn">Fazer login</button>
+            </form>
+
+            <p class="muted">
+              Primeiro acesso: crie o owner via
+              <code>POST /api/auth/bootstrap-owner</code> usando a
+              <code>x-admin-key</code> no backend.
+            </p>
+          </div>
+
+          <div id="session-view" class="hidden">
+            <h2>Sessão atual</h2>
+            <div class="identity-card" id="identity-card"></div>
+            <div class="inline-actions" style="margin-top: 18px">
+              <button type="button" class="secondary" id="go-partners-btn">
+                Ir para cadastro de parceiros
+              </button>
+              <button type="button" class="secondary" id="refresh-session-btn">
+                Atualizar dados
+              </button>
+              <button type="button" class="secondary" id="logout-all-btn">
+                Encerrar outras sessões
+              </button>
+              <button type="button" class="danger" id="logout-btn">Sair</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div id="users-view" class="hidden">
+            <h2>Usuários</h2>
+            <p class="muted" id="users-note">
+              Gestão de acessos administrativos.
+            </p>
+
+            <form id="create-user-form">
+              <h3>Criar novo usuário</h3>
+              <label for="create-name">Nome</label>
+              <input type="text" id="create-name" required />
+
+              <label for="create-email">Email</label>
+              <input type="email" id="create-email" required />
+
+              <label for="create-password">Senha inicial</label>
+              <input
+                type="password"
+                id="create-password"
+                minlength="8"
+                required
+              />
+
+              <p class="muted">
+                Novos usuários criados aqui entram como perfil admin.
+              </p>
+
+              <button type="submit" id="create-user-btn">Criar usuário</button>
+            </form>
+
+            <div
+              class="inline-actions"
+              style="margin-top: 8px; margin-bottom: 8px"
+            >
+              <button type="button" class="secondary" id="refresh-users-btn">
+                Atualizar lista
+              </button>
+            </div>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Usuário</th>
+                  <th>Perfil</th>
+                  <th>Status</th>
+                  <th>Último login</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody id="users-table-body"></tbody>
+            </table>
+          </div>
+
+          <div id="locked-view">
+            <h2>Aguardando autenticação</h2>
+            <p class="muted">Faça login para acessar esta área.</p>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      const API_BASE =
+        "https://voucherhub-backend-production.up.railway.app/api/auth";
+      const TOKEN_STORAGE_KEY = "voucherhub_admin_token";
+
+      const globalStatus = document.getElementById("global-status");
+      const loginView = document.getElementById("login-view");
+      const sessionView = document.getElementById("session-view");
+      const usersView = document.getElementById("users-view");
+      const lockedView = document.getElementById("locked-view");
+      const identityCard = document.getElementById("identity-card");
+      const usersTableBody = document.getElementById("users-table-body");
+      const usersNote = document.getElementById("users-note");
+      const goPartnersBtn = document.getElementById("go-partners-btn");
+
+      let currentUser = null;
+
+      function isOwner() {
+        return currentUser?.role === "owner";
+      }
+
+      function getToken() {
+        return localStorage.getItem(TOKEN_STORAGE_KEY);
+      }
+
+      function setToken(token) {
+        localStorage.setItem(TOKEN_STORAGE_KEY, token);
+      }
+
+      function clearToken() {
+        localStorage.removeItem(TOKEN_STORAGE_KEY);
+      }
+
+      function showStatus(message, type) {
+        globalStatus.textContent = message;
+        globalStatus.className = `status-box ${type}`;
+      }
+
+      function clearStatus() {
+        globalStatus.textContent = "";
+        globalStatus.className = "status-box";
+      }
+
+      function formatDate(value) {
+        if (!value) return "Nunca";
+        const date = new Date(value);
+        if (Number.isNaN(date.getTime())) return "Inválido";
+        return date.toLocaleString("pt-PT");
+      }
+
+      async function apiFetch(path, options = {}) {
+        const token = getToken();
+        const headers = {
+          "Content-Type": "application/json",
+          ...(options.headers || {}),
+        };
+
+        if (token) {
+          headers.Authorization = `Bearer ${token}`;
+        }
+
+        const response = await fetch(`${API_BASE}${path}`, {
+          ...options,
+          headers,
+        });
+
+        let data = null;
+        try {
+          data = await response.json();
+        } catch (err) {
+          data = null;
+        }
+
+        if (!response.ok) {
+          const message = data?.error || data?.message || "Falha na requisição";
+          throw new Error(message);
+        }
+
+        return data;
+      }
+
+      function renderSession(user) {
+        currentUser = user;
+        identityCard.innerHTML = `
+          <div class="identity-row"><span>Nome</span><span>${user.name}</span></div>
+          <div class="identity-row"><span>Email</span><span>${user.email}</span></div>
+          <div class="identity-row"><span>Perfil</span><span>${user.role}</span></div>
+          <div class="identity-row"><span>Status</span><span>${user.is_active ? "Ativo" : "Inativo"}</span></div>
+          <div class="identity-row"><span>Último login</span><span>${formatDate(user.last_login_at)}</span></div>
+        `;
+
+        loginView.classList.add("hidden");
+        sessionView.classList.remove("hidden");
+        lockedView.classList.add("hidden");
+
+        const role = String(user.role || "").toLowerCase();
+        if (role === "owner") {
+          usersView.classList.remove("hidden");
+          goPartnersBtn.classList.remove("hidden");
+        } else {
+          usersView.classList.add("hidden");
+          goPartnersBtn.classList.add("hidden");
+        }
+
+        if (user.role === "owner") {
+          usersNote.textContent = "Área completa de gestão de usuários.";
+        } else if (usersNote) {
+          usersNote.textContent = "Gestão de acessos administrativos.";
+        }
+      }
+
+      function resetToLoggedOut() {
+        currentUser = null;
+        clearToken();
+        loginView.classList.remove("hidden");
+        sessionView.classList.add("hidden");
+        usersView.classList.add("hidden");
+        lockedView.classList.remove("hidden");
+        usersTableBody.innerHTML = "";
+      }
+
+      async function loadSession() {
+        const token = getToken();
+        if (!token) {
+          resetToLoggedOut();
+          return;
+        }
+
+        try {
+          const data = await apiFetch("/me", { method: "GET" });
+          const role = String(data.user?.role || "").toLowerCase();
+          if (role === "admin") {
+            window.location.replace("admin-painel.html");
+            return;
+          }
+          renderSession(data.user);
+          await loadUsers();
+        } catch (err) {
+          resetToLoggedOut();
+          showStatus(err.message, "error");
+        }
+      }
+
+      async function loadUsers() {
+        if (!getToken()) return;
+        if (!isOwner()) return;
+
+        try {
+          const data = await apiFetch("/users", { method: "GET" });
+          usersTableBody.innerHTML = "";
+
+          data.users.forEach((user) => {
+            const canDeactivate =
+              isOwner() &&
+              currentUser &&
+              currentUser.id !== user.id &&
+              user.is_active;
+            const row = document.createElement("tr");
+            row.innerHTML = `
+              <td>
+                <strong>${user.name}</strong><br />
+                <span class="muted">${user.email}</span>
+              </td>
+              <td>${user.role}</td>
+              <td><span class="pill ${user.is_active ? "active" : "inactive"}">${user.is_active ? "Ativo" : "Inativo"}</span></td>
+              <td>${formatDate(user.last_login_at)}</td>
+              <td>
+                <div class="table-actions">
+                  ${canDeactivate ? `<button class="danger" data-user-id="${user.id}">Desativar</button>` : ""}
+                </div>
+              </td>
+            `;
+            usersTableBody.appendChild(row);
+          });
+
+          document.querySelectorAll("[data-user-id]").forEach((button) => {
+            button.addEventListener("click", async () => {
+              const userId = button.getAttribute("data-user-id");
+              const confirmed = window.confirm("Confirma esta alteração?");
+              if (!confirmed) return;
+
+              try {
+                button.disabled = true;
+                await apiFetch(`/users/${userId}/deactivate`, {
+                  method: "PATCH",
+                });
+                showStatus("Alteração concluída com sucesso.", "success");
+                await loadUsers();
+              } catch (err) {
+                showStatus(err.message, "error");
+              } finally {
+                button.disabled = false;
+              }
+            });
+          });
+        } catch (err) {
+          showStatus(err.message, "error");
+        }
+      }
+
+      document
+        .getElementById("login-form")
+        .addEventListener("submit", async (event) => {
+          event.preventDefault();
+          clearStatus();
+
+          const button = document.getElementById("login-btn");
+          button.disabled = true;
+          button.textContent = "Entrando...";
+
+          try {
+            const payload = {
+              email: document.getElementById("login-email").value.trim(),
+              password: document.getElementById("login-password").value,
+            };
+
+            const data = await apiFetch("/login", {
+              method: "POST",
+              body: JSON.stringify(payload),
+            });
+
+            setToken(data.token);
+            showStatus("Login realizado com sucesso.", "success");
+            const role = String(data.user?.role || "").toLowerCase();
+            if (role === "admin") {
+              setTimeout(() => {
+                window.location.href = "admin-painel.html";
+              }, 700);
+              event.target.reset();
+              return;
+            }
+
+            renderSession(data.user);
+            await loadUsers();
+            event.target.reset();
+          } catch (err) {
+            showStatus(err.message, "error");
+          } finally {
+            button.disabled = false;
+            button.textContent = "Fazer login";
+          }
+        });
+
+      document
+        .getElementById("create-user-form")
+        .addEventListener("submit", async (event) => {
+          event.preventDefault();
+          clearStatus();
+
+          const button = document.getElementById("create-user-btn");
+          button.disabled = true;
+          button.textContent = "Criando...";
+
+          try {
+            const payload = {
+              name: document.getElementById("create-name").value.trim(),
+              email: document.getElementById("create-email").value.trim(),
+              password: document.getElementById("create-password").value,
+              role: "admin",
+            };
+
+            await apiFetch("/users", {
+              method: "POST",
+              body: JSON.stringify(payload),
+            });
+
+            showStatus("Usuário criado com sucesso.", "success");
+            event.target.reset();
+            await loadUsers();
+          } catch (err) {
+            showStatus(err.message, "error");
+          } finally {
+            button.disabled = false;
+            button.textContent = "Criar usuário";
+          }
+        });
+
+      document
+        .getElementById("refresh-session-btn")
+        .addEventListener("click", async () => {
+          clearStatus();
+          await loadSession();
+        });
+
+      document
+        .getElementById("refresh-users-btn")
+        .addEventListener("click", async () => {
+          clearStatus();
+          await loadUsers();
+        });
+
+      document
+        .getElementById("logout-btn")
+        .addEventListener("click", async () => {
+          try {
+            await apiFetch("/logout", { method: "POST" });
+          } catch (err) {
+            showStatus(err.message, "error");
+          } finally {
+            resetToLoggedOut();
+            showStatus("Sessão encerrada.", "success");
+          }
+        });
+
+      document
+        .getElementById("logout-all-btn")
+        .addEventListener("click", async () => {
+          clearStatus();
+          try {
+            await apiFetch("/logout-all", { method: "POST" });
+            showStatus("Outras sessões foram encerradas.", "success");
+          } catch (err) {
+            showStatus(err.message, "error");
+          }
+        });
+
+      goPartnersBtn.addEventListener("click", () => {
+        window.location.href = "admin-painel.html";
+      });
+
+      loadSession();
+    </script>
+  </body>
+</html>
