@@ -60,7 +60,7 @@
       }
       .offer-row {
         display: grid;
-        grid-template-columns: 1fr 1fr auto;
+        grid-template-columns: 1.2fr 1.8fr 0.8fr auto;
         gap: 8px;
         align-items: center;
         margin-bottom: 8px;
@@ -240,6 +240,19 @@
       const sessionBox = document.getElementById("sessionBox");
       const sessionUser = document.getElementById("sessionUser");
       const adminForm = document.getElementById("adminForm");
+      const fallbackModes = [
+        { slug: "surf", title: "Aulas de Surf", badge: "Esportes Aquáticos" },
+        { slug: "kitesurf", title: "Aulas de Kitesurf", badge: "Esportes Aquáticos" },
+        { slug: "moda", title: "Moda e Vestuário", badge: "Estilo de Vida" },
+        { slug: "tour", title: "Tour com Guia e Motorista", badge: "Cultura e História" },
+        { slug: "yoga", title: "Estúdios de Yoga", badge: "Bem-Estar" },
+        { slug: "wellness", title: "Saúde & Bem-estar", badge: "Terapias" },
+        { slug: "bike", title: "Bike Tour", badge: "Cultura e História" },
+        { slug: "tour-aquatico", title: "Tour Aquático", badge: "Ocean Adventures" },
+        { slug: "tour-aereas", title: "Experiências Aéreas", badge: "Voo e Aventura" },
+        { slug: "quad", title: "Aventura Off-Road", badge: "Aventura" },
+        { slug: "eventos-entretenimento", title: "Eventos e Entretenimentos", badge: "Diversão" },
+      ];
 
       function getToken() {
         return localStorage.getItem(TOKEN_STORAGE_KEY);
@@ -260,25 +273,41 @@
       }
 
       // Carregar categorias disponíveis no select
+      function populateModes(modes) {
+        const select = document.getElementById("mode_slug");
+        const seen = new Set();
+        for (const m of modes || []) {
+          if (!m?.slug || seen.has(m.slug)) continue;
+          seen.add(m.slug);
+          const opt = document.createElement("option");
+          opt.value = m.slug;
+          opt.textContent = m.title + (m.badge ? ` (${m.badge})` : "");
+          select.appendChild(opt);
+        }
+      }
+
       async function loadModes() {
         try {
           const res = await fetch(`${CATALOG_API}/modes`);
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
           const data = await res.json();
-          const select = document.getElementById("mode_slug");
-          for (const m of data.modes || []) {
-            const opt = document.createElement("option");
-            opt.value = m.slug;
-            opt.textContent = m.title + (m.badge ? ` (${m.badge})` : "");
-            select.appendChild(opt);
+          if (!Array.isArray(data.modes) || data.modes.length === 0) {
+            throw new Error("Sem categorias na API");
           }
+          populateModes(data.modes);
         } catch (e) {
           console.warn("Não foi possível carregar os modos do catálogo.", e);
+          populateModes(fallbackModes);
+          showNotice(
+            "As categorias foram carregadas pelo fallback local. Pode continuar o cadastro normalmente.",
+            "success",
+          );
         }
       }
 
       // Gestão de ofertas dinâmicas
       let offerCount = 0;
-      function addOfferRow(title = "", price = "") {
+      function addOfferRow(title = "", text = "", price = "") {
         offerCount++;
         const container = document.getElementById("offers-container");
         const row = document.createElement("div");
@@ -286,6 +315,7 @@
         row.dataset.offerId = offerCount;
         row.innerHTML = `
           <input type="text" placeholder="Título da oferta" value="${title}" class="offer-title" />
+          <input type="text" placeholder="Descrição da oferta" value="${text}" class="offer-text" />
           <input type="number" placeholder="Preço (€)" value="${price}" class="offer-price" step="0.01" min="0" />
           <button type="button" onclick="removeOffer(this)" style="background:#dc2626; width:auto; padding:10px 14px; margin:0;">✕</button>
         `;
@@ -306,8 +336,9 @@
         const offers = [];
         rows.forEach(row => {
           const title = row.querySelector(".offer-title").value.trim();
+          const text = row.querySelector(".offer-text").value.trim();
           const price = parseFloat(row.querySelector(".offer-price").value) || 0;
-          if (title) offers.push({ title, text: "", price });
+          if (title) offers.push({ title, text, price });
         });
         return offers;
       }
