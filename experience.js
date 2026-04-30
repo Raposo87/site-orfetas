@@ -24,22 +24,37 @@
 
   const API_BASE = 'https://voucherhub-backend-production.up.railway.app';
 
+  function mergeCatalogWithFallback(apiData, fallbackData) {
+    const mergedModes = [...(apiData.modes || [])];
+    const modesBySlug = new Map(mergedModes.map(mode => [mode.slug, mode]));
+
+    for (const fallbackMode of fallbackData.modes || []) {
+      const existingMode = modesBySlug.get(fallbackMode.slug);
+
+      if (!existingMode) {
+        mergedModes.push(fallbackMode);
+        continue;
+      }
+
+      const existingPartners = Array.isArray(existingMode.partners) ? existingMode.partners : [];
+      const fallbackPartners = Array.isArray(fallbackMode.partners) ? fallbackMode.partners : [];
+
+      if (existingPartners.length === 0 && fallbackPartners.length > 0) {
+        existingMode.partners = fallbackPartners;
+      }
+    }
+
+    return { modes: mergedModes };
+  }
+
   let data;
   try {
     const res = await fetch(`${API_BASE}/api/catalog`, { cache: 'no-store' });
     if (!res.ok) throw new Error('API indisponível');
     data = await res.json();
-    // Se o catálogo da API não tiver o modo pedido, tenta o JSON local como fallback
-    const modeInApi = data.modes && data.modes.find(m => m.slug === slug);
-    if (!modeInApi) {
-      const fallback = await fetch('experiences.json', { cache: 'no-store' });
-      const fallbackData = await fallback.json();
-      // Merge: adiciona modos do JSON local que não estão na API
-      const apiSlugs = new Set((data.modes || []).map(m => m.slug));
-      for (const m of fallbackData.modes || []) {
-        if (!apiSlugs.has(m.slug)) data.modes.push(m);
-      }
-    }
+    const fallback = await fetch('experiences.json', { cache: 'no-store' });
+    const fallbackData = await fallback.json();
+    data = mergeCatalogWithFallback(data, fallbackData);
   } catch (e) {
     console.warn('API do catálogo indisponível, usando experiences.json', e);
     try {

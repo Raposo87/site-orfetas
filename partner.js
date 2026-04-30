@@ -11,6 +11,29 @@
 
   const API_BASE = 'https://voucherhub-backend-production.up.railway.app';
 
+    function mergeCatalogWithFallback(apiData, fallbackData) {
+      const mergedModes = [...(apiData.modes || [])];
+      const modesBySlug = new Map(mergedModes.map(mode => [mode.slug, mode]));
+
+      for (const fallbackMode of fallbackData.modes || []) {
+        const existingMode = modesBySlug.get(fallbackMode.slug);
+
+        if (!existingMode) {
+          mergedModes.push(fallbackMode);
+          continue;
+        }
+
+        const existingPartners = Array.isArray(existingMode.partners) ? existingMode.partners : [];
+        const fallbackPartners = Array.isArray(fallbackMode.partners) ? fallbackMode.partners : [];
+
+        if (existingPartners.length === 0 && fallbackPartners.length > 0) {
+          existingMode.partners = fallbackPartners;
+        }
+      }
+
+      return { modes: mergedModes };
+    }
+
   try {
     let data;
     // Tenta buscar o catálogo da API; fallback para experiences.json
@@ -18,22 +41,12 @@
       const res = await fetch(`${API_BASE}/api/catalog`, { cache: 'no-store' });
       if (!res.ok) throw new Error('API indisponível');
       data = await res.json();
-      // Verifica se o parceiro existe na API; se não, faz merge com JSON local
-      let found = false;
-      for (const m of data.modes || []) {
-        if (m.partners && m.partners.find(p => p.slug === slug)) { found = true; break; }
-      }
-      if (!found) {
-        const fallback = await fetch('experiences.json');
+        const fallback = await fetch('experiences.json', { cache: 'no-store' });
         const fallbackData = await fallback.json();
-        const apiSlugs = new Set((data.modes || []).map(m => m.slug));
-        for (const m of fallbackData.modes || []) {
-          if (!apiSlugs.has(m.slug)) data.modes.push(m);
-        }
-      }
+        data = mergeCatalogWithFallback(data, fallbackData);
     } catch (apiErr) {
       console.warn('API do catálogo indisponível, usando experiences.json', apiErr);
-      const res = await fetch('experiences.json');
+        const res = await fetch('experiences.json', { cache: 'no-store' });
       data = await res.json();
     }
 
