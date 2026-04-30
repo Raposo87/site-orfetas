@@ -7,7 +7,7 @@
     <style>
       body {
         font-family: sans-serif;
-        max-width: 560px;
+        max-width: 680px;
         margin: 50px auto;
         padding: 20px;
         border: 1px solid #ccc;
@@ -30,6 +30,8 @@
         font-weight: bold;
       }
       input,
+      select,
+      textarea,
       button {
         width: 100%;
         padding: 12px;
@@ -39,6 +41,40 @@
         border-radius: 4px;
         border: 1px solid #ddd;
       }
+      textarea {
+        min-height: 80px;
+        resize: vertical;
+        font-family: inherit;
+        font-size: 14px;
+      }
+      .section-title {
+        font-size: 13px;
+        font-weight: bold;
+        color: #444;
+        background: #e8eaf6;
+        padding: 6px 10px;
+        border-radius: 4px;
+        margin: 24px 0 8px 0;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .offer-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr auto;
+        gap: 8px;
+        align-items: center;
+        margin-bottom: 8px;
+      }
+      .offer-row input { margin: 0; }
+      .offer-row button { margin: 0; width: auto; padding: 10px 14px; }
+      .btn-add-offer {
+        background: #16a34a;
+        font-size: 13px;
+        padding: 8px 16px;
+        width: auto;
+        margin-bottom: 20px;
+      }
+      .btn-add-offer:hover { background: #15803d; }
       button {
         background: #6772e5;
         color: white;
@@ -123,29 +159,19 @@
     </div>
 
     <form id="adminForm" class="hidden">
+      <p class="section-title">📋 Dados Operacionais</p>
+
       <label>NOME DO PARCEIRO</label>
-      <input
-        type="text"
-        id="name"
-        placeholder="Ex: Surf Wave Lisbon"
-        required
-      />
+      <input type="text" id="name" placeholder="Ex: Surf Wave Lisbon" required />
 
       <label>SLUG (Único, sem espaços)</label>
-      <input
-        type="text"
-        id="slug"
-        placeholder="Ex: surf-wave-lisbon"
-        required
-      />
+      <input type="text" id="slug" placeholder="Ex: surf-wave-lisbon" required />
 
       <label>EMAIL DO PARCEIRO</label>
-      <input
-        type="email"
-        id="email"
-        placeholder="email@parceiro.com"
-        required
-      />
+      <input type="email" id="email" placeholder="email@parceiro.com" required />
+
+      <label>TELEFONE</label>
+      <input type="text" id="phone" placeholder="+351 999 999 999" />
 
       <label>LOCALIZAÇÃO</label>
       <input type="text" id="location" placeholder="Ex: Costa da Caparica" />
@@ -153,7 +179,50 @@
       <label>PREÇO ORIGINAL (Cêntimos: 3000 = 30€)</label>
       <input type="number" id="price" placeholder="3000" />
 
-      <button type="submit" id="btn">Criar Parceiro e Gerar Link</button>
+      <p class="section-title">🌐 Catálogo Público</p>
+
+      <label>CATEGORIA / MODO</label>
+      <select id="mode_slug">
+        <option value="">— Selecione uma categoria —</option>
+      </select>
+
+      <label>DESCONTO (%)</label>
+      <input type="number" id="discount_percent" placeholder="Ex: 15" min="0" max="100" />
+
+      <label>LABEL DE DESCONTO</label>
+      <input type="text" id="discount_label" placeholder="Ex: 15% OFF" />
+
+      <label>CÓDIGO DO VOUCHER (opcional)</label>
+      <input type="text" id="voucher_code" placeholder="Ex: SURF15" />
+
+      <label>INSTAGRAM (URL completa)</label>
+      <input type="url" id="instagram" placeholder="https://www.instagram.com/..." />
+
+      <label>SITE OFICIAL (URL)</label>
+      <input type="url" id="official_url" placeholder="https://..." />
+
+      <label>ÍCONE (Font Awesome)</label>
+      <input type="text" id="icon" placeholder="fas fa-water" value="fas fa-tag" />
+
+      <label>HISTÓRIA CURTA (1-2 frases para o card)</label>
+      <textarea id="story_short" placeholder="Breve descrição do parceiro..."></textarea>
+
+      <label>HISTÓRIA COMPLETA (para a página do parceiro)</label>
+      <textarea id="story_full" style="min-height:120px;" placeholder="Descrição detalhada..."></textarea>
+
+      <label>IMAGENS (uma URL por linha)</label>
+      <textarea id="images_raw" placeholder="https://exemplo.com/foto1.jpg&#10;https://exemplo.com/foto2.jpg"></textarea>
+
+      <p class="section-title">🎁 Ofertas</p>
+      <div id="offers-container"></div>
+      <button type="button" class="btn-add-offer" id="addOfferBtn">+ Adicionar Oferta</button>
+
+      <label style="display:flex; align-items:center; gap:8px; margin-top:8px;">
+        <input type="checkbox" id="is_catalog_active" style="width:auto; margin:0;" />
+        <span>Exibir parceiro no catálogo público imediatamente</span>
+      </label>
+
+      <button type="submit" id="btn" style="margin-top:24px;">Criar Parceiro e Gerar Link Stripe</button>
     </form>
 
     <div id="result" class="result"></div>
@@ -163,6 +232,8 @@
         "https://voucherhub-backend-production.up.railway.app/api/auth";
       const ADMIN_API =
         "https://voucherhub-backend-production.up.railway.app/api/admin";
+      const CATALOG_API =
+        "https://voucherhub-backend-production.up.railway.app/api/catalog";
       const TOKEN_STORAGE_KEY = "voucherhub_admin_token";
 
       const notice = document.getElementById("notice");
@@ -186,6 +257,59 @@
       function clearNotice() {
         notice.textContent = "";
         notice.className = "notice";
+      }
+
+      // Carregar categorias disponíveis no select
+      async function loadModes() {
+        try {
+          const res = await fetch(`${CATALOG_API}/modes`);
+          const data = await res.json();
+          const select = document.getElementById("mode_slug");
+          for (const m of data.modes || []) {
+            const opt = document.createElement("option");
+            opt.value = m.slug;
+            opt.textContent = m.title + (m.badge ? ` (${m.badge})` : "");
+            select.appendChild(opt);
+          }
+        } catch (e) {
+          console.warn("Não foi possível carregar os modos do catálogo.", e);
+        }
+      }
+
+      // Gestão de ofertas dinâmicas
+      let offerCount = 0;
+      function addOfferRow(title = "", price = "") {
+        offerCount++;
+        const container = document.getElementById("offers-container");
+        const row = document.createElement("div");
+        row.className = "offer-row";
+        row.dataset.offerId = offerCount;
+        row.innerHTML = `
+          <input type="text" placeholder="Título da oferta" value="${title}" class="offer-title" />
+          <input type="number" placeholder="Preço (€)" value="${price}" class="offer-price" step="0.01" min="0" />
+          <button type="button" onclick="removeOffer(this)" style="background:#dc2626; width:auto; padding:10px 14px; margin:0;">✕</button>
+        `;
+        container.appendChild(row);
+      }
+
+      function removeOffer(btn) {
+        btn.closest(".offer-row").remove();
+      }
+
+      document.getElementById("addOfferBtn").addEventListener("click", () => addOfferRow());
+
+      // Adicionar uma oferta vazia por defeito
+      addOfferRow();
+
+      function getOffers() {
+        const rows = document.querySelectorAll(".offer-row");
+        const offers = [];
+        rows.forEach(row => {
+          const title = row.querySelector(".offer-title").value.trim();
+          const price = parseFloat(row.querySelector(".offer-price").value) || 0;
+          if (title) offers.push({ title, text: "", price });
+        });
+        return offers;
       }
 
       async function validateSession() {
@@ -253,12 +377,31 @@
         btn.disabled = true;
         resDiv.style.display = "none";
 
+        const imagesRaw = document.getElementById("images_raw").value.trim();
+        const images = imagesRaw
+          ? imagesRaw.split("\n").map(u => u.trim()).filter(Boolean)
+          : [];
+
         const data = {
           name: document.getElementById("name").value,
           slug: document.getElementById("slug").value,
           email: document.getElementById("email").value,
+          phone: document.getElementById("phone").value,
           location: document.getElementById("location").value,
           price_cents: document.getElementById("price").value,
+          // Catálogo
+          mode_slug: document.getElementById("mode_slug").value || null,
+          discount_percent: parseInt(document.getElementById("discount_percent").value) || 0,
+          discount_label: document.getElementById("discount_label").value,
+          voucher_code: document.getElementById("voucher_code").value,
+          instagram: document.getElementById("instagram").value,
+          official_url: document.getElementById("official_url").value,
+          icon: document.getElementById("icon").value || "fas fa-tag",
+          story_short: document.getElementById("story_short").value,
+          story_full: document.getElementById("story_full").value,
+          images,
+          offers: getOffers(),
+          is_catalog_active: document.getElementById("is_catalog_active").checked,
         };
 
         try {
@@ -277,12 +420,13 @@
             clearNotice();
             resDiv.style.display = "block";
             resDiv.innerHTML = `
-                        <p style="color:#2d5a27; font-weight:bold;">✅ Sucesso!</p>
-                        <p><b>PIN Gerado:</b> <span style="font-size:18px; color:blue;">${res.pin_gerado}</span></p>
-                        <p><b>Link Stripe:</b><br>
-                           <a href="${res.onboarding_url}" target="_blank" style="color:#6772e5;">Abrir Cadastro Stripe</a>
-                        </p>
-                    `;
+              <p style="color:#2d5a27; font-weight:bold;">✅ Sucesso!</p>
+              <p><b>PIN Gerado:</b> <span style="font-size:18px; color:blue;">${res.pin_gerado}</span></p>
+              <p><b>Link Stripe:</b><br>
+                 <a href="${res.onboarding_url}" target="_blank" style="color:#6772e5;">Abrir Cadastro Stripe</a>
+              </p>
+              ${res.catalog_active ? '<p style="color:#16a34a;">📣 Parceiro já visível no catálogo público.</p>' : '<p style="color:#92400e;">⚠️ Parceiro criado mas ainda não visível no catálogo (checkbox não marcada).</p>'}
+            `;
           } else {
             if (response.status === 401 || response.status === 403) {
               showNotice(
@@ -296,7 +440,7 @@
         } catch (err) {
           alert("❌ Erro de conexão.");
         } finally {
-          btn.innerText = "Criar Parceiro e Gerar Link";
+          btn.innerText = "Criar Parceiro e Gerar Link Stripe";
           btn.disabled = false;
         }
       };
@@ -311,26 +455,29 @@
         window.location.href = "admin-usuarios.html";
       });
 
-      document.getElementById("logoutBtn").addEventListener("click", async () => {
-        const token = getToken();
-        try {
-          if (token) {
-            await fetch(`${AUTH_API}/logout`, {
-              method: "POST",
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            });
+      document
+        .getElementById("logoutBtn")
+        .addEventListener("click", async () => {
+          const token = getToken();
+          try {
+            if (token) {
+              await fetch(`${AUTH_API}/logout`, {
+                method: "POST",
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              });
+            }
+          } catch (err) {
+            // Ignora falha de rede para não impedir saída local.
+          } finally {
+            clearToken();
+            window.location.href = "admin-usuarios.html";
           }
-        } catch (err) {
-          // Ignora falha de rede para não impedir saída local.
-        } finally {
-          clearToken();
-          window.location.href = "admin-usuarios.html";
-        }
-      });
+        });
 
       validateSession();
+      loadModes();
     </script>
   </body>
 </html>

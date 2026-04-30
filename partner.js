@@ -9,9 +9,33 @@
 
   
 
+  const API_BASE = 'https://voucherhub-backend-production.up.railway.app';
+
   try {
-    const res = await fetch('experiences.json');
-    const data = await res.json();
+    let data;
+    // Tenta buscar o catálogo da API; fallback para experiences.json
+    try {
+      const res = await fetch(`${API_BASE}/api/catalog`, { cache: 'no-store' });
+      if (!res.ok) throw new Error('API indisponível');
+      data = await res.json();
+      // Verifica se o parceiro existe na API; se não, faz merge com JSON local
+      let found = false;
+      for (const m of data.modes || []) {
+        if (m.partners && m.partners.find(p => p.slug === slug)) { found = true; break; }
+      }
+      if (!found) {
+        const fallback = await fetch('experiences.json');
+        const fallbackData = await fallback.json();
+        const apiSlugs = new Set((data.modes || []).map(m => m.slug));
+        for (const m of fallbackData.modes || []) {
+          if (!apiSlugs.has(m.slug)) data.modes.push(m);
+        }
+      }
+    } catch (apiErr) {
+      console.warn('API do catálogo indisponível, usando experiences.json', apiErr);
+      const res = await fetch('experiences.json');
+      data = await res.json();
+    }
 
     let partner = null;
     let mode = null;

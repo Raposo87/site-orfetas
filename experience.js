@@ -22,13 +22,33 @@
 
   await waitForI18n();
 
+  const API_BASE = 'https://voucherhub-backend-production.up.railway.app';
+
   let data;
   try {
-    const res = await fetch('experiences.json', { cache: 'no-store' });
+    const res = await fetch(`${API_BASE}/api/catalog`, { cache: 'no-store' });
+    if (!res.ok) throw new Error('API indisponível');
     data = await res.json();
+    // Se o catálogo da API não tiver o modo pedido, tenta o JSON local como fallback
+    const modeInApi = data.modes && data.modes.find(m => m.slug === slug);
+    if (!modeInApi) {
+      const fallback = await fetch('experiences.json', { cache: 'no-store' });
+      const fallbackData = await fallback.json();
+      // Merge: adiciona modos do JSON local que não estão na API
+      const apiSlugs = new Set((data.modes || []).map(m => m.slug));
+      for (const m of fallbackData.modes || []) {
+        if (!apiSlugs.has(m.slug)) data.modes.push(m);
+      }
+    }
   } catch (e) {
-    console.error('Erro ao carregar experiences.json', e);
-    data = { modes: [] };
+    console.warn('API do catálogo indisponível, usando experiences.json', e);
+    try {
+      const res = await fetch('experiences.json', { cache: 'no-store' });
+      data = await res.json();
+    } catch (e2) {
+      console.error('Erro ao carregar experiences.json', e2);
+      data = { modes: [] };
+    }
   }
 
   const mode = data.modes.find(m => m.slug === slug);
