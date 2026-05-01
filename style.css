@@ -2053,6 +2053,10 @@ a:focus {
   color: var(--gray-600);
   margin-bottom: 1.5rem;
   line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width: 100%;
 }
 
 .offer-footer {

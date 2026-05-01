@@ -348,15 +348,18 @@ class PerformanceManager {
   }
 
   preloadCriticalResources() {
-    const fontLinks = [
-      'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap',
-      'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap'
+    const hosts = [
+      'https://fonts.googleapis.com',
+      'https://fonts.gstatic.com'
     ];
-    fontLinks.forEach(href => {
+    hosts.forEach(href => {
+      if (document.querySelector(`link[rel="preconnect"][href="${href}"]`)) return;
       const link = document.createElement('link');
-      link.rel = 'preload';
-      link.as = 'style';
+      link.rel = 'preconnect';
       link.href = href;
+      if (href.includes('gstatic')) {
+        link.crossOrigin = 'anonymous';
+      }
       document.head.appendChild(link);
     });
   }
