@@ -65,8 +65,14 @@
         align-items: center;
         margin-bottom: 8px;
       }
-      .offer-row input { margin: 0; }
-      .offer-row button { margin: 0; width: auto; padding: 10px 14px; }
+      .offer-row input {
+        margin: 0;
+      }
+      .offer-row button {
+        margin: 0;
+        width: auto;
+        padding: 10px 14px;
+      }
       .btn-add-offer {
         background: #16a34a;
         font-size: 13px;
@@ -74,7 +80,9 @@
         width: auto;
         margin-bottom: 20px;
       }
-      .btn-add-offer:hover { background: #15803d; }
+      .btn-add-offer:hover {
+        background: #15803d;
+      }
       button {
         background: #6772e5;
         color: white;
@@ -162,13 +170,28 @@
       <p class="section-title">📋 Dados Operacionais</p>
 
       <label>NOME DO PARCEIRO</label>
-      <input type="text" id="name" placeholder="Ex: Surf Wave Lisbon" required />
+      <input
+        type="text"
+        id="name"
+        placeholder="Ex: Surf Wave Lisbon"
+        required
+      />
 
       <label>SLUG (Único, sem espaços)</label>
-      <input type="text" id="slug" placeholder="Ex: surf-wave-lisbon" required />
+      <input
+        type="text"
+        id="slug"
+        placeholder="Ex: surf-wave-lisbon"
+        required
+      />
 
       <label>EMAIL DO PARCEIRO</label>
-      <input type="email" id="email" placeholder="email@parceiro.com" required />
+      <input
+        type="email"
+        id="email"
+        placeholder="email@parceiro.com"
+        required
+      />
 
       <label>TELEFONE</label>
       <input type="text" id="phone" placeholder="+351 999 999 999" />
@@ -187,31 +210,55 @@
       </select>
 
       <label>DESCONTO (%)</label>
-      <input type="number" id="discount_percent" placeholder="Ex: 15" min="0" max="100" />
+      <input
+        type="number"
+        id="discount_percent"
+        placeholder="Ex: 15"
+        min="0"
+        max="100"
+      />
 
       <label>CÓDIGO DO VOUCHER (opcional)</label>
       <input type="text" id="voucher_code" placeholder="Ex: SURF15" />
 
       <label>INSTAGRAM (URL completa)</label>
-      <input type="url" id="instagram" placeholder="https://www.instagram.com/..." />
+      <input
+        type="url"
+        id="instagram"
+        placeholder="https://www.instagram.com/..."
+      />
 
       <label>SITE OFICIAL (URL)</label>
       <input type="url" id="official_url" placeholder="https://..." />
 
       <label>HISTÓRIA CURTA (1-2 frases para o card)</label>
-      <textarea id="story_short" placeholder="Breve descrição do parceiro..."></textarea>
+      <textarea
+        id="story_short"
+        placeholder="Breve descrição do parceiro..."
+      ></textarea>
 
       <label>HISTÓRIA COMPLETA (para a página do parceiro)</label>
-      <textarea id="story_full" style="min-height:120px;" placeholder="Descrição detalhada..."></textarea>
+      <textarea
+        id="story_full"
+        style="min-height: 120px"
+        placeholder="Descrição detalhada..."
+      ></textarea>
 
       <label>IMAGENS (uma URL por linha)</label>
-      <textarea id="images_raw" placeholder="https://exemplo.com/foto1.jpg&#10;https://exemplo.com/foto2.jpg"></textarea>
+      <textarea
+        id="images_raw"
+        placeholder="https://exemplo.com/foto1.jpg&#10;https://exemplo.com/foto2.jpg"
+      ></textarea>
 
       <p class="section-title">🎁 Ofertas</p>
       <div id="offers-container"></div>
-      <button type="button" class="btn-add-offer" id="addOfferBtn">+ Adicionar Oferta</button>
+      <button type="button" class="btn-add-offer" id="addOfferBtn">
+        + Adicionar Oferta
+      </button>
 
-      <button type="submit" id="btn" style="margin-top:24px;">Criar Parceiro e Gerar Link Stripe</button>
+      <button type="submit" id="btn" style="margin-top: 24px">
+        Criar Parceiro e Gerar Link Stripe
+      </button>
     </form>
 
     <div id="result" class="result"></div>
@@ -231,16 +278,36 @@
       const adminForm = document.getElementById("adminForm");
       const fallbackModes = [
         { slug: "surf", title: "Aulas de Surf", badge: "Esportes Aquáticos" },
-        { slug: "kitesurf", title: "Aulas de Kitesurf", badge: "Esportes Aquáticos" },
+        {
+          slug: "kitesurf",
+          title: "Aulas de Kitesurf",
+          badge: "Esportes Aquáticos",
+        },
         { slug: "moda", title: "Moda e Vestuário", badge: "Estilo de Vida" },
-        { slug: "tour", title: "Tour com Guia e Motorista", badge: "Cultura e História" },
+        {
+          slug: "tour",
+          title: "Tour com Guia e Motorista",
+          badge: "Cultura e História",
+        },
         { slug: "yoga", title: "Estúdios de Yoga", badge: "Bem-Estar" },
         { slug: "wellness", title: "Saúde & Bem-estar", badge: "Terapias" },
         { slug: "bike", title: "Bike Tour", badge: "Cultura e História" },
-        { slug: "tour-aquatico", title: "Tour Aquático", badge: "Ocean Adventures" },
-        { slug: "tour-aereas", title: "Experiências Aéreas", badge: "Voo e Aventura" },
+        {
+          slug: "tour-aquatico",
+          title: "Tour Aquático",
+          badge: "Ocean Adventures",
+        },
+        {
+          slug: "tour-aereas",
+          title: "Experiências Aéreas",
+          badge: "Voo e Aventura",
+        },
         { slug: "quad", title: "Aventura Off-Road", badge: "Aventura" },
-        { slug: "eventos-entretenimento", title: "Eventos e Entretenimentos", badge: "Diversão" },
+        {
+          slug: "eventos-entretenimento",
+          title: "Eventos e Entretenimentos",
+          badge: "Diversão",
+        },
       ];
 
       function getToken() {
@@ -315,7 +382,9 @@
         btn.closest(".offer-row").remove();
       }
 
-      document.getElementById("addOfferBtn").addEventListener("click", () => addOfferRow());
+      document
+        .getElementById("addOfferBtn")
+        .addEventListener("click", () => addOfferRow());
 
       // Adicionar uma oferta vazia por defeito
       addOfferRow();
@@ -323,10 +392,11 @@
       function getOffers() {
         const rows = document.querySelectorAll(".offer-row");
         const offers = [];
-        rows.forEach(row => {
+        rows.forEach((row) => {
           const title = row.querySelector(".offer-title").value.trim();
           const text = row.querySelector(".offer-text").value.trim();
-          const price = parseFloat(row.querySelector(".offer-price").value) || 0;
+          const price =
+            parseFloat(row.querySelector(".offer-price").value) || 0;
           if (title) offers.push({ title, text, price });
         });
         return offers;
@@ -399,7 +469,10 @@
 
         const imagesRaw = document.getElementById("images_raw").value.trim();
         const images = imagesRaw
-          ? imagesRaw.split("\n").map(u => u.trim()).filter(Boolean)
+          ? imagesRaw
+              .split("\n")
+              .map((u) => u.trim())
+              .filter(Boolean)
           : [];
 
         const data = {
@@ -411,7 +484,8 @@
           price_cents: document.getElementById("price").value,
           // Catálogo
           mode_slug: document.getElementById("mode_slug").value || null,
-          discount_percent: parseInt(document.getElementById("discount_percent").value) || 0,
+          discount_percent:
+            parseInt(document.getElementById("discount_percent").value) || 0,
           discount_label: null,
           voucher_code: document.getElementById("voucher_code").value,
           instagram: document.getElementById("instagram").value,
