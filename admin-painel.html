@@ -60,7 +60,7 @@
       }
       .offer-row {
         display: grid;
-        grid-template-columns: 1.2fr 1.8fr 0.8fr auto;
+        grid-template-columns: 1.2fr 1.8fr 0.8fr 0.7fr auto;
         gap: 8px;
         align-items: center;
         margin-bottom: 8px;
@@ -167,6 +167,16 @@
     </div>
 
     <form id="adminForm" class="hidden">
+      <p class="section-title">🔎 Editar Parceiro Existente</p>
+
+      <label>SELECIONE UM PARCEIRO JÁ CADASTRADO</label>
+      <select id="existing_partner_select">
+        <option value="">— Criar novo parceiro —</option>
+      </select>
+      <button type="button" class="btn-secondary" id="newPartnerBtn">
+        Limpar formulário para novo parceiro
+      </button>
+
       <p class="section-title">📋 Dados Operacionais</p>
 
       <label>NOME DO PARCEIRO</label>
@@ -276,6 +286,11 @@
       const sessionBox = document.getElementById("sessionBox");
       const sessionUser = document.getElementById("sessionUser");
       const adminForm = document.getElementById("adminForm");
+      const existingPartnerSelect = document.getElementById(
+        "existing_partner_select",
+      );
+      const newPartnerBtn = document.getElementById("newPartnerBtn");
+      let currentEditingSlug = "";
       const fallbackModes = [
         { slug: "surf", title: "Aulas de Surf", badge: "Esportes Aquáticos" },
         {
@@ -328,6 +343,87 @@
         notice.className = "notice";
       }
 
+      function setSubmitLabel() {
+        const submitBtn = document.getElementById("btn");
+        submitBtn.innerText = currentEditingSlug
+          ? "Salvar Alterações do Parceiro"
+          : "Criar Parceiro e Gerar Link Stripe";
+      }
+
+      function escapeAttr(value) {
+        return String(value ?? "")
+          .replace(/&/g, "&amp;")
+          .replace(/"/g, "&quot;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;");
+      }
+
+      function resetOffers(offers = []) {
+        const container = document.getElementById("offers-container");
+        container.innerHTML = "";
+
+        if (!Array.isArray(offers) || offers.length === 0) {
+          addOfferRow();
+          return;
+        }
+
+        offers.forEach((offer) => {
+          if (typeof offer === "string") {
+            addOfferRow(offer, "", "", "");
+            return;
+          }
+
+          const title = offer?.title || "";
+          const text = offer?.text || offer?.description || "";
+          const price =
+            offer?.price !== undefined && offer?.price !== null
+              ? String(offer.price)
+              : "";
+          const discount =
+            offer?.discount_percent !== undefined &&
+            offer?.discount_percent !== null
+              ? String(offer.discount_percent)
+              : "";
+
+          addOfferRow(title, text, price, discount);
+        });
+      }
+
+      function fillPartnerForm(partner) {
+        document.getElementById("name").value = partner.name || "";
+        document.getElementById("slug").value = partner.slug || "";
+        document.getElementById("slug").readOnly = true;
+        document.getElementById("email").value = partner.email || "";
+        document.getElementById("phone").value = partner.phone || "";
+        document.getElementById("location").value = partner.location || "";
+        document.getElementById("price").value = partner.price_original_cents || 0;
+        document.getElementById("mode_slug").value = partner.mode_slug || "";
+        document.getElementById("discount_percent").value =
+          partner.discount_percent || 0;
+        document.getElementById("voucher_code").value =
+          partner.voucher_code || "";
+        document.getElementById("instagram").value = partner.instagram || "";
+        document.getElementById("official_url").value =
+          partner.official_url || "";
+        document.getElementById("story_short").value =
+          partner.story_short || "";
+        document.getElementById("story_full").value = partner.story_full || "";
+        document.getElementById("images_raw").value = Array.isArray(partner.images)
+          ? partner.images.join("\n")
+          : "";
+
+        resetOffers(Array.isArray(partner.offers) ? partner.offers : []);
+      }
+
+      function clearForNewPartner() {
+        currentEditingSlug = "";
+        existingPartnerSelect.value = "";
+        adminForm.reset();
+        document.getElementById("slug").readOnly = false;
+        resetOffers([]);
+        setSubmitLabel();
+      }
+
       // Carregar categorias disponíveis no select
       function populateModes(modes) {
         const select = document.getElementById("mode_slug");
@@ -361,6 +457,54 @@
         }
       }
 
+      async function loadExistingPartners() {
+        const token = getToken();
+        if (!token) return;
+
+        try {
+          const res = await fetch(`${ADMIN_API}/partners`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+          const partners = await res.json();
+          existingPartnerSelect.innerHTML =
+            '<option value="">— Criar novo parceiro —</option>';
+
+          (partners || []).forEach((p) => {
+            const opt = document.createElement("option");
+            opt.value = p.slug;
+            opt.textContent = `${p.name} (${p.slug})`;
+            existingPartnerSelect.appendChild(opt);
+          });
+        } catch (err) {
+          console.warn("Não foi possível carregar parceiros existentes", err);
+        }
+      }
+
+      async function loadPartnerBySlug(slug) {
+        const token = getToken();
+        if (!token || !slug) return;
+
+        const res = await fetch(`${ADMIN_API}/partners/${encodeURIComponent(slug)}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!res.ok) {
+          throw new Error(`Falha ao carregar parceiro (${res.status})`);
+        }
+
+        const partner = await res.json();
+        currentEditingSlug = partner.slug || slug;
+        fillPartnerForm(partner);
+        setSubmitLabel();
+      }
+
       // Gestão de ofertas dinâmicas
       let offerCount = 0;
       function addOfferRow(title = "", text = "", price = "", discount = "") {
@@ -370,10 +514,10 @@
         row.className = "offer-row";
         row.dataset.offerId = offerCount;
         row.innerHTML = `
-          <input type="text" placeholder="Título da oferta" value="${title}" class="offer-title" />
-          <input type="text" placeholder="Descrição da oferta" value="${text}" class="offer-text" />
-          <input type="number" placeholder="Preço (€)" value="${price}" class="offer-price" step="0.01" min="0" />
-          <input type="number" placeholder="Desconto (%)" value="${discount}" class="offer-discount" step="0.01" min="0" max="100" />
+          <input type="text" placeholder="Título da oferta" value="${escapeAttr(title)}" class="offer-title" />
+          <input type="text" placeholder="Descrição da oferta" value="${escapeAttr(text)}" class="offer-text" />
+          <input type="number" placeholder="Preço (€)" value="${escapeAttr(price)}" class="offer-price" step="0.01" min="0" />
+          <input type="number" placeholder="Desconto (%)" value="${escapeAttr(discount)}" class="offer-discount" step="0.01" min="0" max="100" />
           <button type="button" onclick="removeOffer(this)" style="background:#dc2626; width:auto; padding:10px 14px; margin:0;">✕</button>
         `;
         container.appendChild(row);
@@ -477,6 +621,10 @@
         const btn = document.getElementById("btn");
         const resDiv = document.getElementById("result");
 
+        const labelBeforeSubmit = currentEditingSlug
+          ? "Salvar Alterações do Parceiro"
+          : "Criar Parceiro e Gerar Link Stripe";
+
         btn.innerText = "⏳ Processando...";
         btn.disabled = true;
         resDiv.style.display = "none";
@@ -535,6 +683,11 @@
               </p>
               <p style="color:#16a34a;">📣 Parceiro visível no catálogo público.</p>
             `;
+            currentEditingSlug = data.slug;
+            document.getElementById("slug").readOnly = true;
+            setSubmitLabel();
+            await loadExistingPartners();
+            existingPartnerSelect.value = data.slug;
           } else {
             if (response.status === 401 || response.status === 403) {
               showNotice(
@@ -548,10 +701,38 @@
         } catch (err) {
           alert("❌ Erro de conexão.");
         } finally {
-          btn.innerText = "Criar Parceiro e Gerar Link Stripe";
+          btn.innerText = labelBeforeSubmit;
           btn.disabled = false;
         }
       };
+
+      existingPartnerSelect.addEventListener("change", async (e) => {
+        const selectedSlug = e.target.value;
+
+        if (!selectedSlug) {
+          clearForNewPartner();
+          return;
+        }
+
+        try {
+          await loadPartnerBySlug(selectedSlug);
+          clearNotice();
+          showNotice(
+            "Parceiro carregado. Ajuste os campos e clique em salvar alterações.",
+            "success",
+          );
+        } catch (err) {
+          showNotice(
+            "Não foi possível carregar o parceiro selecionado.",
+            "error",
+          );
+        }
+      });
+
+      newPartnerBtn.addEventListener("click", () => {
+        clearForNewPartner();
+        clearNotice();
+      });
 
       document
         .getElementById("refreshSessionBtn")
@@ -586,6 +767,8 @@
 
       validateSession();
       loadModes();
+      loadExistingPartners();
+      setSubmitLabel();
     </script>
   </body>
 </html>
