@@ -468,7 +468,19 @@
             },
           });
 
-          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          if (!res.ok) {
+            if (res.status === 401 || res.status === 403) {
+              clearToken();
+              showNotice(
+                "Sua sessão expirou. Faça login novamente em admin-usuarios.html.",
+                "error",
+              );
+              adminForm.classList.add("hidden");
+              sessionBox.classList.add("hidden");
+              return;
+            }
+            throw new Error(`HTTP ${res.status}`);
+          }
 
           const partners = await res.json();
           existingPartnerSelect.innerHTML =
@@ -602,6 +614,7 @@
           adminForm.classList.remove("hidden");
           return true;
         } catch (err) {
+          clearToken();
           adminForm.classList.add("hidden");
           sessionBox.classList.add("hidden");
           showNotice(
@@ -737,7 +750,10 @@
       document
         .getElementById("refreshSessionBtn")
         .addEventListener("click", async () => {
-          await validateSession();
+          const allowed = await validateSession();
+          if (allowed) {
+            await loadExistingPartners();
+          }
         });
 
       document.getElementById("openUsersBtn").addEventListener("click", () => {
@@ -765,10 +781,16 @@
           }
         });
 
-      validateSession();
-      loadModes();
-      loadExistingPartners();
-      setSubmitLabel();
+      async function initAdminPanel() {
+        const allowed = await validateSession();
+        setSubmitLabel();
+        if (!allowed) return;
+
+        await loadModes();
+        await loadExistingPartners();
+      }
+
+      initAdminPanel();
     </script>
   </body>
 </html>
