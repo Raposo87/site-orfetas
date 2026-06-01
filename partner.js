@@ -68,7 +68,7 @@
     }
 
     // === 1. DEFINIR A PORCENTAGEM DE DESCONTO ===
-    const discountPct = partner.discount_percent || 15; 
+    const partnerDiscountPct = Number(partner.discount_percent || 15);
 
     // === PREENCHIMENTO BÁSICO (SEU CÓDIGO ORIGINAL MANTIDO) ===
     document.title = `${partner.name} – VoucherHub`;
@@ -89,12 +89,12 @@
     }
 
     // Label de Desconto
-    document.getElementById("partner-discount-label").textContent = partner.discount_label || `${discountPct}% OFF`;
+    document.getElementById("partner-discount-label").textContent = partner.discount_label || `${partnerDiscountPct}% OFF`;
 
     // Texto dinâmico de desconto nas ofertas
     const discountMessageEl = document.getElementById("discount-text-message");
     if (discountMessageEl) {
-      discountMessageEl.innerHTML = `Selecione a opção abaixo. O valor já inclui <b>${discountPct}% de desconto</b>.`;
+      discountMessageEl.innerHTML = `Selecione a opção abaixo. Cada oferta pode ter um desconto diferente.`;
     }
 
     // Contatos
@@ -194,7 +194,12 @@
           let title = typeof o === "string" ? o : o.title;
           let text = typeof o === "string" ? "" : (o.text || o.description || "");
           let originalPrice = o.price ? parseFloat(o.price) : 0;
-          let finalPrice = originalPrice * (1 - (discountPct / 100));
+          const offerDiscountRaw =
+            typeof o === "string" ? NaN : Number.parseFloat(String(o.discount_percent ?? "").replace(",", "."));
+          const effectiveDiscountPct = Number.isFinite(offerDiscountRaw)
+            ? Math.max(0, Math.min(100, offerDiscountRaw))
+            : partnerDiscountPct;
+          let finalPrice = originalPrice * (1 - (effectiveDiscountPct / 100));
 
           // --- 🛡️ VERIFICAÇÃO DE STOCK (BANCO + JSON) ---
           let isAvailable = true;
@@ -219,6 +224,7 @@
             ? `<div class="offer-price-wrapper">
                 <span class="offer-price-old">€${originalPrice.toFixed(2)}</span>
                 <span class="offer-price-final">€${finalPrice.toFixed(2)}</span>
+                <small class="offer-discount-note">-${effectiveDiscountPct}%</small>
                </div>`
             : `<span class="offer-price-final">Sob Consulta</span>`;
 
@@ -247,7 +253,8 @@
                    partnerSlug: slug,
                    offerName: title,
                    price: finalPrice,
-                   originalPrice: originalPrice
+                   originalPrice: originalPrice,
+                   discountPercent: effectiveDiscountPct
                });
             });
           }

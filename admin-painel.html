@@ -363,7 +363,7 @@
 
       // Gestão de ofertas dinâmicas
       let offerCount = 0;
-      function addOfferRow(title = "", text = "", price = "") {
+      function addOfferRow(title = "", text = "", price = "", discount = "") {
         offerCount++;
         const container = document.getElementById("offers-container");
         const row = document.createElement("div");
@@ -373,6 +373,7 @@
           <input type="text" placeholder="Título da oferta" value="${title}" class="offer-title" />
           <input type="text" placeholder="Descrição da oferta" value="${text}" class="offer-text" />
           <input type="number" placeholder="Preço (€)" value="${price}" class="offer-price" step="0.01" min="0" />
+          <input type="number" placeholder="Desconto (%)" value="${discount}" class="offer-discount" step="0.01" min="0" max="100" />
           <button type="button" onclick="removeOffer(this)" style="background:#dc2626; width:auto; padding:10px 14px; margin:0;">✕</button>
         `;
         container.appendChild(row);
@@ -397,7 +398,20 @@
           const text = row.querySelector(".offer-text").value.trim();
           const price =
             parseFloat(row.querySelector(".offer-price").value) || 0;
-          if (title) offers.push({ title, text, price });
+          const rawDiscount = row
+            .querySelector(".offer-discount")
+            .value.trim()
+            .replace(",", ".");
+          const parsedDiscount = Number.parseFloat(rawDiscount);
+
+          if (!title) return;
+
+          const offer = { title, text, price };
+          if (Number.isFinite(parsedDiscount)) {
+            offer.discount_percent = Math.max(0, Math.min(100, parsedDiscount));
+          }
+
+          offers.push(offer);
         });
         return offers;
       }

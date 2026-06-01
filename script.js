@@ -769,7 +769,7 @@ function emitCheckoutUiEvent(eventName, detail) {
 
 // 2. Função Global de Checkout (O NOVO PADRÃO)
 window.openBuyModal = function(offerData) {
-    const { partnerSlug, offerName, price, originalPrice } = offerData;
+  const { partnerSlug, offerName, price, originalPrice, discountPercent } = offerData;
   const normalizedPrice = Number.parseFloat(String(price).replace(',', '.'));
   const normalizedOriginalPrice = Number.parseFloat(
     String(originalPrice ?? price).replace(',', '.')
@@ -837,6 +837,9 @@ window.openBuyModal = function(offerData) {
                 productName: offerName,
               amountCents: Math.round(normalizedPrice * 100),
               originalPriceCents: Math.round((Number.isFinite(normalizedOriginalPrice) ? normalizedOriginalPrice : normalizedPrice) * 100),
+                offerDiscountPercent: Number.isFinite(Number(discountPercent))
+                  ? Number(discountPercent)
+                  : null,
                 currency: "eur",
                 sponsorCode: sponsor.toUpperCase(),
                 affiliateSlug: localStorage.getItem('vh_affiliate') || ""
