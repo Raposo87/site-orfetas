@@ -396,7 +396,8 @@
         document.getElementById("email").value = partner.email || "";
         document.getElementById("phone").value = partner.phone || "";
         document.getElementById("location").value = partner.location || "";
-        document.getElementById("price").value = partner.price_original_cents || 0;
+        document.getElementById("price").value =
+          partner.price_original_cents || 0;
         document.getElementById("mode_slug").value = partner.mode_slug || "";
         document.getElementById("discount_percent").value =
           partner.discount_percent || 0;
@@ -408,7 +409,9 @@
         document.getElementById("story_short").value =
           partner.story_short || "";
         document.getElementById("story_full").value = partner.story_full || "";
-        document.getElementById("images_raw").value = Array.isArray(partner.images)
+        document.getElementById("images_raw").value = Array.isArray(
+          partner.images,
+        )
           ? partner.images.join("\n")
           : "";
 
@@ -501,11 +504,14 @@
         const token = getToken();
         if (!token || !slug) return;
 
-        const res = await fetch(`${ADMIN_API}/partners/${encodeURIComponent(slug)}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
+        const res = await fetch(
+          `${ADMIN_API}/partners/${encodeURIComponent(slug)}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           },
-        });
+        );
 
         if (!res.ok) {
           throw new Error(`Falha ao carregar parceiro (${res.status})`);

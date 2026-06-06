@@ -7,6 +7,49 @@ if (ref) {
     console.log('Afiliado rastreado:', ref);
 }
 
+// ===== POSTHOG (BROWSER) =====
+// Para site estático, carregamos o SDK via CDN e inicializamos com chave pública.
+const VOUCHERHUB_POSTHOG_KEY = window.VOUCHERHUB_POSTHOG_KEY || 'phc_xtDBwmCFEUk7YQmt56PRHCtTxHq6T5on4NehP2NciLY5';
+const VOUCHERHUB_POSTHOG_HOST = window.VOUCHERHUB_POSTHOG_HOST || 'https://eu.i.posthog.com';
+
+function initPosthogBrowser() {
+  if (!VOUCHERHUB_POSTHOG_KEY || window.__vhPosthogInitStarted) return;
+  window.__vhPosthogInitStarted = true;
+
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = `${VOUCHERHUB_POSTHOG_HOST}/static/array.js`;
+  script.onload = () => {
+    try {
+      if (!window.posthog) return;
+      window.posthog.init(VOUCHERHUB_POSTHOG_KEY, {
+        api_host: VOUCHERHUB_POSTHOG_HOST,
+        capture_pageview: true,
+        autocapture: true,
+        persistence: 'localStorage+cookie',
+      });
+      window.__vhPosthogReady = true;
+    } catch (err) {
+      console.warn('Falha ao iniciar PostHog no browser:', err);
+    }
+  };
+  script.onerror = () => {
+    console.warn('Não foi possível carregar o SDK do PostHog.');
+  };
+  document.head.appendChild(script);
+}
+
+function trackPosthogEvent(eventName, properties = {}) {
+  try {
+    if (!window.__vhPosthogReady || !window.posthog) return;
+    window.posthog.capture(eventName, properties);
+  } catch (err) {
+    console.warn('Falha ao enviar evento para PostHog:', err);
+  }
+}
+
+initPosthogBrowser();
+
 // ===== UTILITÁRIOS GLOBAIS =====
 const Utils = {
   debounce(func, wait) {
@@ -765,6 +808,16 @@ function emitCheckoutUiEvent(eventName, detail) {
   const event = new CustomEvent(eventName, { detail });
   window.dispatchEvent(event);
   document.dispatchEvent(event);
+
+  const posthogEventMap = {
+    'voucherhub:buy-modal-open': 'buy_modal_opened',
+    'voucherhub:buy-pay-click': 'buy_pay_clicked',
+  };
+
+  const mappedName = posthogEventMap[eventName];
+  if (mappedName) {
+    trackPosthogEvent(mappedName, detail || {});
+  }
 }
 
 // 2. Função Global de Checkout (O NOVO PADRÃO)
@@ -853,6 +906,13 @@ window.openBuyModal = function(offerData) {
 
             const data = await response.json();
             if (data.url) {
+              trackPosthogEvent('checkout_session_created', {
+                partnerSlug,
+                offerName,
+                amountCents: Math.round(normalizedPrice * 100),
+                hasSponsorCode: sponsor.length > 0,
+                hasAffiliate: !!localStorage.getItem('vh_affiliate'),
+              });
                 window.location.href = data.url;
             } else {
                 throw new Error(data.error || "Erro no checkout");
