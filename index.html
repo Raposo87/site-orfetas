@@ -51,11 +51,14 @@
   <meta property="og:image" content="https://voucherhub.pt/og-image.jpg">
   <meta property="og:url" content="https://voucherhub.pt/">
   <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_PT">
+  <meta property="og:site_name" content="VoucherHub">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="VoucherHub – Descontos Exclusivos em Lisboa">
   <meta name="twitter:description" content="Promoções e códigos de desconto para experiências nas regiões de Lisboa e arredores. Promotions and discount codes for experiences in Lisbon and nearby regions.">
   <meta name="twitter:image" content="https://voucherhub.pt/og-image.jpg">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
   
@@ -90,11 +93,52 @@
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "VoucherHub",
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.8",
-    "reviewCount": "150"
-  }
+  "url": "https://voucherhub.pt/",
+  "logo": "https://voucherhub.pt/logo.png",
+  "sameAs": [
+    "https://www.instagram.com/voucherhub.pt"
+  ]
+}
+</script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Como funciona o VoucherHub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Escolhe a experiência, compra o voucher e recebes por email. Depois contactas diretamente o parceiro para agendar a data e hora."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "O VoucherHub faz reservas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Não. O VoucherHub não gere agendas nem faz reservas. O agendamento é feito diretamente entre cliente e parceiro."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quando recebo o voucher?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "O voucher é enviado automaticamente por email após confirmação do pagamento."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Qual é a validade dos vouchers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Os vouchers têm validade de 240 dias (8 meses), salvo indicação diferente na oferta."
+      }
+    }
+  ]
 }
 </script>
 
@@ -175,6 +219,13 @@
       <p data-i18n="hero.subtitle">
         Experiências autênticas em Lisboa e arredores com códigos promocionais exclusivos. Poupe já!
       </p>
+
+      <div class="hero-cta-group">
+        <a href="#modalidades" class="btn btn-official hero-cta-primary" data-i18n="hero.ctaPrimary">Ver experiências com desconto</a>
+        <a href="#como-funciona" class="btn btn-secondary hero-cta-secondary" data-i18n="hero.ctaSecondary">Como funciona</a>
+      </div>
+
+      <p class="hero-trust-copy" data-i18n="hero.trustCopy">Compra online segura. Recebe o voucher por email. Agenda diretamente com o parceiro.</p>
 
       <div class="hero-stats"></div>
     </div>
@@ -639,7 +690,7 @@
 
 
   <!-- How it works: passo a passo -->
-  <section class="how-it-works">
+  <section class="how-it-works" id="como-funciona">
   <div class="container">
     <div class="section-header">
       <h2 data-i18n="howItWorks.title">How <span class="highlight-orange">It Works?</span></h2>
@@ -690,6 +741,39 @@
     </div>
   </div>
 </section>
+
+  <section class="seo-content" id="experiencias-lisboa">
+    <div class="container seo-content-inner">
+      <div class="section-header">
+        <h2 data-i18n="seoContent.title">Vouchers de Experiência em Lisboa para Oferecer ou Viver</h2>
+        <p data-i18n="seoContent.subtitle">No VoucherHub encontra experiências em Lisboa para casal, família e amigos, com descontos reais e parceiros verificados.</p>
+      </div>
+
+      <div class="seo-columns">
+        <article class="seo-card">
+          <h3 data-i18n="seoContent.card1Title">O que é o VoucherHub</h3>
+          <p data-i18n="seoContent.card1Text">O VoucherHub é uma plataforma portuguesa de vouchers de experiências. O processo é simples: compra online, recebe o voucher por email e combina diretamente com o parceiro local.</p>
+        </article>
+        <article class="seo-card">
+          <h3 data-i18n="seoContent.card2Title">Como funcionam os vouchers</h3>
+          <p data-i18n="seoContent.card2Text">Depois da compra, o voucher fica no seu email com todos os dados necessários. Não há sistema de reservas no site: o contacto e o agendamento são feitos diretamente com o parceiro.</p>
+        </article>
+        <article class="seo-card">
+          <h3 data-i18n="seoContent.card3Title">Porque oferecer experiências</h3>
+          <p data-i18n="seoContent.card3Text">Se procura presentes originais, um voucher presente é uma escolha memorável. Pode oferecer experiências para casal, bem-estar, aventura ou gastronomia em Lisboa e arredores.</p>
+        </article>
+      </div>
+
+      <div class="seo-links">
+        <a href="experience.html?slug=surf" data-i18n="seoContent.linkSurf">Aulas de surf em Lisboa</a>
+        <a href="experience.html?slug=yoga" data-i18n="seoContent.linkYoga">Yoga em Lisboa</a>
+        <a href="experience.html?slug=wellness" data-i18n="seoContent.linkWellness">Experiências de bem-estar em Lisboa</a>
+        <a href="experience.html?slug=tour" data-i18n="seoContent.linkTour">Atividades e passeios em Lisboa</a>
+        <a href="experience.html?slug=eventos-entretenimento" data-i18n="seoContent.linkEvents">Eventos e entretenimento</a>
+        <a href="blog.html" data-i18n="seoContent.linkBlogGuide">Ver guia no blog: o que fazer em Lisboa</a>
+      </div>
+    </div>
+  </section>
 
   <!-- Footer: informações de contato, links e disclaimers -->
   <footer class="footer">

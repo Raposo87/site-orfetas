@@ -406,6 +406,21 @@ function wireBlogListLanguageSwitch() {
 }
 
 async function initBlogListPage() {
+  const blogUrl = new URL("blog.html", window.location.href).href;
+  document.title = "VoucherHub Blog | O Que Fazer em Lisboa";
+  ensureMeta("description", "Guias práticos com experiências em Lisboa, atividades para casal e ideias de presentes originais.");
+  ensureMeta("og:title", "VoucherHub Blog | O Que Fazer em Lisboa");
+  ensureMeta("og:description", "Descubra experiências para oferecer e atividades em Lisboa.");
+  ensureMeta("og:url", blogUrl);
+
+  let canonical = document.querySelector('link[rel="canonical"]');
+  if (!canonical) {
+    canonical = document.createElement("link");
+    canonical.rel = "canonical";
+    document.head.appendChild(canonical);
+  }
+  canonical.href = blogUrl;
+
   initBlogShareUI();
   const res = await fetch(`${BACKEND_URL}/api/blog`);
   const posts = await res.json();

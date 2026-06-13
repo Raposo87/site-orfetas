@@ -9,6 +9,9 @@
       "badge": "Exclusive Vouchers",
       "title": "Discover Lisbon with <span class='highlight'>Amazing Discounts</span>",
       "subtitle": "Authentic experiences in Lisbon and surrounding regions with exclusive promotional vouchers. Choose your adventure and save!",
+      "ctaPrimary": "See discounted experiences",
+      "ctaSecondary": "How it works",
+      "trustCopy": "Secure online purchase. Receive your voucher by email. Book directly with the partner.",
       "avgDiscount": "Average Discount",
       "happyCustomers": "Happy Customers"
     },
@@ -148,6 +151,22 @@
     "googleReviews": {
       "title": "What People Say On <span class='highlight-orange'>Google</span>",
       "subtitle": "Real screenshots of Google reviews from customers who bought on VoucherHub."
+    },
+    "seoContent": {
+      "title": "Experience Vouchers in Lisbon to Gift or Enjoy",
+      "subtitle": "On VoucherHub you will find experiences in Lisbon for couples, families, and friends, with real discounts and verified partners.",
+      "card1Title": "What is VoucherHub",
+      "card1Text": "VoucherHub is a Portuguese platform for experience vouchers. The process is simple: buy online, receive your voucher by email, and arrange directly with the local partner.",
+      "card2Title": "How vouchers work",
+      "card2Text": "After purchase, the voucher is sent to your email with all the details you need. There is no booking system on the website: contact and scheduling are handled directly with the partner.",
+      "card3Title": "Why gift experiences",
+      "card3Text": "If you are looking for original gifts, an experience voucher is a memorable choice. You can gift experiences for couples, wellness, adventure, or gastronomy in Lisbon and surrounding areas.",
+      "linkSurf": "Surf lessons in Lisbon",
+      "linkYoga": "Yoga in Lisbon",
+      "linkWellness": "Wellness experiences in Lisbon",
+      "linkTour": "Activities and tours in Lisbon",
+      "linkEvents": "Events and entertainment",
+      "linkBlogGuide": "See the blog guide: things to do in Lisbon"
     }
   },
 
@@ -161,6 +180,9 @@
       "badge": "Vouchers Exclusivos",
       "title": "Descubra Lisboa com <span class='highlight'>Descontos Incríveis</span>",
       "subtitle": "Experiências autênticas em Lisboa e arredores com vouchers promocionais exclusivos. Poupe já!",
+      "ctaPrimary": "Ver experiências com desconto",
+      "ctaSecondary": "Como funciona",
+      "trustCopy": "Compra online segura. Recebe o voucher por email. Agenda diretamente com o parceiro.",
       "avgDiscount": "Desconto Médio",
       "happyCustomers": "Clientes Satisfeitos"
     },
@@ -300,6 +322,22 @@
     "googleReviews": {
       "title": "O Que Dizem No <span class='highlight-orange'>Google</span>",
       "subtitle": "Prints reais de avaliações de clientes que compraram no VoucherHub."
+    },
+    "seoContent": {
+      "title": "Vouchers de Experiência em Lisboa para Oferecer ou Viver",
+      "subtitle": "No VoucherHub encontra experiências em Lisboa para casal, família e amigos, com descontos reais e parceiros verificados.",
+      "card1Title": "O que é o VoucherHub",
+      "card1Text": "O VoucherHub é uma plataforma portuguesa de vouchers de experiências. O processo é simples: compra online, recebe o voucher por email e combina diretamente com o parceiro local.",
+      "card2Title": "Como funcionam os vouchers",
+      "card2Text": "Depois da compra, o voucher fica no seu email com todos os dados necessários. Não há sistema de reservas no site: o contacto e o agendamento são feitos diretamente com o parceiro.",
+      "card3Title": "Porque oferecer experiências",
+      "card3Text": "Se procura presentes originais, um voucher presente é uma escolha memorável. Pode oferecer experiências para casal, bem-estar, aventura ou gastronomia em Lisboa e arredores.",
+      "linkSurf": "Aulas de surf em Lisboa",
+      "linkYoga": "Yoga em Lisboa",
+      "linkWellness": "Experiências de bem-estar em Lisboa",
+      "linkTour": "Atividades e passeios em Lisboa",
+      "linkEvents": "Eventos e entretenimento",
+      "linkBlogGuide": "Ver guia no blog: o que fazer em Lisboa"
     }
   }
 }

@@ -273,7 +273,7 @@
 
 .post-content {
   font-size: 1.08rem;
-  line-height: 0.85;
+  line-height: 1.8;
   color: #1f2937;
 }
 
@@ -675,6 +675,25 @@ body {
   opacity: 0.9;
   margin-bottom: var(--spacing-2xl);
   animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+.hero-cta-group {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.hero-cta-primary,
+.hero-cta-secondary {
+  min-width: 220px;
+}
+
+.hero-trust-copy {
+  margin-top: 0.9rem;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .hero-stats {
@@ -1173,6 +1192,60 @@ body {
 .how-it-works {
   padding: var(--spacing-3xl) 0;
   background: var(--gray-50);
+}
+
+.seo-content {
+  padding: var(--spacing-2xl) 0;
+  background: #ffffff;
+  border-top: 1px solid var(--gray-200);
+}
+
+.seo-content-inner {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.seo-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.seo-card {
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+}
+
+.seo-card h3 {
+  font-size: 1.05rem;
+  color: var(--gray-800);
+  margin-bottom: 0.5rem;
+}
+
+.seo-card p {
+  color: var(--gray-600);
+}
+
+.seo-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.seo-links a {
+  border: 1px solid var(--gray-300);
+  border-radius: 999px;
+  padding: 0.45rem 0.85rem;
+  text-decoration: none;
+  color: var(--primary-blue-dark);
+  background: #fff;
+}
+
+.seo-links a:hover {
+  border-color: var(--primary-blue);
+  background: #eff6ff;
 }
 
 .steps {

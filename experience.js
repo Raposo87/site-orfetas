@@ -123,8 +123,8 @@
     }
     tag.setAttribute('content', content);
   };
-  ensureMeta('description', `${mode.title} in Portugal with exclusive discount codes. ${mode.description}`);
-  ensureMeta('keywords', `${mode.title}, Portugal coupon codes, ${mode.badge} deals, Lisbon discounts, promo codes Portugal`);
+  ensureMeta('description', `${mode.title} em Lisboa com descontos exclusivos no VoucherHub. Compre online, receba por email e agende diretamente com o parceiro.`);
+  ensureMeta('keywords', `${mode.title}, experiências lisboa, voucher experiência lisboa, atividades lisboa, ofertas de experiências`);
 
   // Canonical
   let linkCanonical = document.querySelector('link[rel="canonical"]');
@@ -133,7 +133,7 @@
     linkCanonical.rel = 'canonical'; 
     document.head.appendChild(linkCanonical); 
   }
-  linkCanonical.href = `https://yourdomain.com/experience/${mode.slug}`;
+  linkCanonical.href = `https://voucherhub.pt/experience.html?slug=${encodeURIComponent(mode.slug)}`;
 
   // JSON-LD Offers
   const offers = mode.partners.map(p => ({
