@@ -87,7 +87,7 @@
     </style>
   </head>
   <body>
-    <div class="container">
+    <div class="container" id="admin-root" style="display: none">
       <h1>VoucherHub Admin 🛡️</h1>
 
       <div class="card">
@@ -176,14 +176,46 @@
       let adminKey = "";
 
       function getAdminKey() {
-        if (!adminKey) {
-          adminKey = prompt("Admin key:");
-        }
         return adminKey;
       }
 
       const API_BASE =
         "https://voucherhub-backend-production.up.railway.app/api/admin";
+
+      async function requestAndValidateAccess() {
+        const keyInput = document.getElementById("admin-key");
+        const candidate =
+          (keyInput && keyInput.value ? keyInput.value.trim() : "") ||
+          (prompt("Admin key:") || "").trim();
+
+        if (!candidate) {
+          return false;
+        }
+
+        adminKey = candidate;
+
+        try {
+          const probe = await fetch(`${API_BASE}/stock-list`, {
+            headers: {
+              "x-admin-key": adminKey,
+            },
+          });
+
+          if (!probe.ok) {
+            adminKey = "";
+            return false;
+          }
+
+          if (keyInput) {
+            keyInput.value = adminKey;
+          }
+
+          return true;
+        } catch (_err) {
+          adminKey = "";
+          return false;
+        }
+      }
 
       // FUNÇÕES DE STOCK
       async function loadStocks() {
@@ -194,7 +226,12 @@
         });
         const data = await res.json();
         const tbody = document.querySelector("#stockTable tbody");
-        tbody.innerHTML = data
+        if (!res.ok) {
+          tbody.innerHTML = `<tr><td colspan="4">${data.error || "Erro ao carregar stock"}</td></tr>`;
+          return;
+        }
+
+        tbody.innerHTML = (Array.isArray(data) ? data : [])
           .map(
             (item) => `
             <tr>
@@ -230,7 +267,7 @@
           offer_title: document.getElementById("title").value,
           stock_limit: document.getElementById("limit").value,
         };
-        await fetch(`${API_BASE}/update-stock`, {
+        const res = await fetch(`${API_BASE}/update-stock`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -238,13 +275,18 @@
           },
           body: JSON.stringify(body),
         });
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({}));
+          alert(err.error || "Erro ao salvar stock");
+          return;
+        }
         alert("Criado!");
         loadStocks();
       }
 
       async function updateStock(slug, title, id) {
         const val = document.getElementById(`input-${id}`).value;
-        await fetch(`${API_BASE}/update-stock`, {
+        const res = await fetch(`${API_BASE}/update-stock`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -256,6 +298,11 @@
             stock_limit: val,
           }),
         });
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({}));
+          alert(err.error || "Erro ao atualizar stock");
+          return;
+        }
         alert("Atualizado!");
       }
 
@@ -417,9 +464,25 @@
         loadBlogPosts();
       }
 
-      loadStocks();
-      loadPartnersForSelect();
-      loadBlogPosts();
+      async function initAdminPage() {
+        const allowed = await requestAndValidateAccess();
+        if (!allowed) {
+          alert("Acesso negado. Senha inválida.");
+          window.location.href = "admin-usuarios.html";
+          return;
+        }
+
+        const root = document.getElementById("admin-root");
+        if (root) {
+          root.style.display = "block";
+        }
+
+        loadStocks();
+        loadPartnersForSelect();
+        loadBlogPosts();
+      }
+
+      initAdminPage();
     </script>
   </body>
 </html>

@@ -129,13 +129,43 @@
     <script>
       const API_URL =
         "https://voucherhub-backend-production.up.railway.app/api";
+      const TOKEN_STORAGE_KEY = "voucherhub_admin_token";
+      let adminKey = "";
+
+      function getAdminKey() {
+        if (!adminKey) {
+          adminKey = prompt("Admin key:") || "";
+        }
+        return adminKey;
+      }
+
+      function getAuthHeaders() {
+        const token = localStorage.getItem(TOKEN_STORAGE_KEY);
+        if (token) {
+          return { Authorization: `Bearer ${token}` };
+        }
+        return { "x-admin-key": getAdminKey() };
+      }
 
       // Carregar Afiliados
       async function loadAffiliates() {
-        const res = await fetch(`${API_URL}/admin/affiliates`);
-        const data = await res.json();
+        const res = await fetch(`${API_URL}/admin/affiliates`, {
+          headers: getAuthHeaders(),
+        });
+        const data = await res.json().catch(() => ({}));
         const lista = document.getElementById("lista-afiliados");
         lista.innerHTML = "";
+
+        if (!res.ok) {
+          const message = data.error || "Erro ao carregar afiliados";
+          lista.innerHTML = `<tr><td colspan="6">${message}</td></tr>`;
+          return;
+        }
+
+        if (!Array.isArray(data)) {
+          lista.innerHTML = '<tr><td colspan="6">Resposta inválida da API</td></tr>';
+          return;
+        }
 
         data.forEach((af) => {
           lista.innerHTML += `
@@ -164,11 +194,20 @@
           rate: document.getElementById("rate").value / 100,
         };
 
-        await fetch(`${API_URL}/admin/affiliates`, {
+        const res = await fetch(`${API_URL}/admin/affiliates`, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            ...getAuthHeaders(),
+          },
           body: JSON.stringify(payload),
         });
+
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({}));
+          alert(err.error || "Erro ao criar afiliado");
+          return;
+        }
 
         alert("Afiliado criado com sucesso!");
         loadAffiliates();
@@ -181,9 +220,15 @@
             "Você confirma que já pagou este afiliado manualmente e deseja zerar o saldo no sistema?",
           )
         ) {
-          await fetch(`${API_URL}/admin/affiliates/reset/${slug}`, {
+          const res = await fetch(`${API_URL}/admin/affiliates/reset/${slug}`, {
             method: "POST",
+            headers: getAuthHeaders(),
           });
+          if (!res.ok) {
+            const err = await res.json().catch(() => ({}));
+            alert(err.error || "Erro ao zerar saldo");
+            return;
+          }
           loadAffiliates();
         }
       }
