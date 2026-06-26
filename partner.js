@@ -208,15 +208,9 @@
             const stockCheck = await fetch(`https://voucherhub-backend-production.up.railway.app/api/payments/check-stock?partnerSlug=${slug}&productName=${encodeURIComponent(title)}`);
             const stockData = await stockCheck.json();
             isAvailable = stockData.available;
-
-            // 2. Plano B: Se no JSON o limite for 0, bloqueia mesmo que o banco não saiba
-            if (o.stock_limit === 0) {
-              isAvailable = false;
-            }
           } catch (e) {
             console.error("Erro ao checar stock", e);
-            // Se o servidor cair, o JSON manda:
-            if (o.stock_limit === 0) isAvailable = false;
+            // Se o servidor cair, mantém o comportamento do card sem bloquear por um dado antigo do JSON.
           }
           // --- FIM DA VERIFICAÇÃO ---
 
