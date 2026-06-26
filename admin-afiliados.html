@@ -55,10 +55,42 @@
         font-family: monospace;
         font-size: 0.9em;
       }
+      .access-gate {
+        padding: 40px 20px;
+        max-width: 520px;
+        margin: 80px auto;
+        background: #fff;
+        border-radius: 12px;
+        border: 1px solid #ddd;
+      }
+      .access-gate-row {
+        display: flex;
+        gap: 8px;
+        margin-top: 12px;
+      }
+      .access-gate-row input {
+        flex: 1;
+      }
+      .access-msg {
+        min-height: 20px;
+        margin-top: 10px;
+        color: #c62828;
+        font-weight: 600;
+      }
     </style>
   </head>
   <body>
-    <div class="admin-container">
+    <div class="access-gate" id="access-gate">
+      <h2>Acesso Administrativo</h2>
+      <p>Informe a senha para abrir Gestão de Afiliados.</p>
+      <div class="access-gate-row">
+        <input type="password" id="access-key" placeholder="Admin API Key" />
+        <button type="button" id="unlock-btn">Entrar</button>
+      </div>
+      <div class="access-msg" id="access-msg"></div>
+    </div>
+
+    <div class="admin-container" id="afiliados-root" style="display: none">
       <h1>🤝 Gestão de Afiliados</h1>
 
       <div class="affiliate-form">
@@ -144,7 +176,78 @@
         if (token) {
           return { Authorization: `Bearer ${token}` };
         }
-        return { "x-admin-key": getAdminKey() };
+        if (adminKey) {
+          return { "x-admin-key": adminKey };
+        }
+        return {};
+      }
+
+      function setAccessMessage(message) {
+        const msg = document.getElementById("access-msg");
+        if (msg) {
+          msg.textContent = message || "";
+        }
+      }
+
+      async function probeAccess(headers) {
+        const res = await fetch(`${API_URL}/admin/affiliates`, { headers });
+        return res.ok;
+      }
+
+      async function unlockAffiliatesPage() {
+        const token = localStorage.getItem(TOKEN_STORAGE_KEY);
+
+        if (token) {
+          try {
+            const okByToken = await probeAccess({
+              Authorization: `Bearer ${token}`,
+            });
+            if (okByToken) {
+              showAffiliatesContent();
+              await loadAffiliates();
+              return;
+            }
+          } catch (_err) {
+            // fallback para chave manual
+          }
+        }
+
+        const accessInput = document.getElementById("access-key");
+        const candidate = String(accessInput?.value || "").trim();
+
+        if (!candidate) {
+          setAccessMessage("Informe a senha para continuar.");
+          return;
+        }
+
+        try {
+          const okByKey = await probeAccess({ "x-admin-key": candidate });
+          if (!okByKey) {
+            adminKey = "";
+            setAccessMessage("Senha inválida.");
+            return;
+          }
+
+          adminKey = candidate;
+          setAccessMessage("");
+          showAffiliatesContent();
+          await loadAffiliates();
+        } catch (_err) {
+          adminKey = "";
+          setAccessMessage("Não foi possível validar acesso agora.");
+        }
+      }
+
+      function showAffiliatesContent() {
+        const gate = document.getElementById("access-gate");
+        if (gate) {
+          gate.style.display = "none";
+        }
+
+        const root = document.getElementById("afiliados-root");
+        if (root) {
+          root.style.display = "block";
+        }
       }
 
       // Carregar Afiliados
@@ -163,7 +266,8 @@
         }
 
         if (!Array.isArray(data)) {
-          lista.innerHTML = '<tr><td colspan="6">Resposta inválida da API</td></tr>';
+          lista.innerHTML =
+            '<tr><td colspan="6">Resposta inválida da API</td></tr>';
           return;
         }
 
@@ -233,7 +337,20 @@
         }
       }
 
-      loadAffiliates();
+      const unlockBtn = document.getElementById("unlock-btn");
+      if (unlockBtn) {
+        unlockBtn.addEventListener("click", unlockAffiliatesPage);
+      }
+
+      const accessInput = document.getElementById("access-key");
+      if (accessInput) {
+        accessInput.addEventListener("keydown", (event) => {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            unlockAffiliatesPage();
+          }
+        });
+      }
     </script>
   </body>
 </html>

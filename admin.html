@@ -84,9 +84,44 @@
       .btn-delete:hover {
         background: #8e1d1d;
       }
+      .access-gate {
+        max-width: 520px;
+        margin: 80px auto;
+        background: #fff;
+        padding: 24px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+      }
+      .access-gate h2 {
+        margin-top: 0;
+      }
+      .access-gate-row {
+        display: flex;
+        gap: 8px;
+        margin-top: 12px;
+      }
+      .access-gate-row input {
+        flex: 1;
+      }
+      .access-msg {
+        min-height: 20px;
+        margin-top: 10px;
+        color: #c62828;
+        font-weight: 600;
+      }
     </style>
   </head>
   <body>
+    <div class="access-gate" id="access-gate">
+      <h2>Acesso Administrativo</h2>
+      <p>Informe a senha para liberar o painel.</p>
+      <div class="access-gate-row">
+        <input type="password" id="access-key" placeholder="Admin API Key" />
+        <button id="unlock-btn" type="button">Entrar</button>
+      </div>
+      <div class="access-msg" id="access-msg"></div>
+    </div>
+
     <div class="container" id="admin-root" style="display: none">
       <h1>VoucherHub Admin 🛡️</h1>
 
@@ -182,17 +217,22 @@
       const API_BASE =
         "https://voucherhub-backend-production.up.railway.app/api/admin";
 
-      async function requestAndValidateAccess() {
-        const keyInput = document.getElementById("admin-key");
-        const candidate =
-          (keyInput && keyInput.value ? keyInput.value.trim() : "") ||
-          (prompt("Admin key:") || "").trim();
+      function setAccessMessage(message) {
+        const msg = document.getElementById("access-msg");
+        if (msg) {
+          msg.textContent = message || "";
+        }
+      }
 
-        if (!candidate) {
+      async function requestAndValidateAccess(candidate) {
+        const keyInput = document.getElementById("admin-key");
+        const provided = String(candidate || "").trim();
+
+        if (!provided) {
           return false;
         }
 
-        adminKey = candidate;
+        adminKey = provided;
 
         try {
           const probe = await fetch(`${API_BASE}/stock-list`, {
@@ -215,6 +255,37 @@
           adminKey = "";
           return false;
         }
+      }
+
+      async function unlockAdminPage() {
+        const accessInput = document.getElementById("access-key");
+        const candidate = accessInput ? accessInput.value : "";
+
+        if (!String(candidate || "").trim()) {
+          setAccessMessage("Informe a senha para continuar.");
+          return;
+        }
+
+        setAccessMessage("");
+        const allowed = await requestAndValidateAccess(candidate);
+        if (!allowed) {
+          setAccessMessage("Senha inválida.");
+          return;
+        }
+
+        const gate = document.getElementById("access-gate");
+        if (gate) {
+          gate.style.display = "none";
+        }
+
+        const root = document.getElementById("admin-root");
+        if (root) {
+          root.style.display = "block";
+        }
+
+        loadStocks();
+        loadPartnersForSelect();
+        loadBlogPosts();
       }
 
       // FUNÇÕES DE STOCK
@@ -464,25 +535,20 @@
         loadBlogPosts();
       }
 
-      async function initAdminPage() {
-        const allowed = await requestAndValidateAccess();
-        if (!allowed) {
-          alert("Acesso negado. Senha inválida.");
-          window.location.href = "admin-usuarios.html";
-          return;
-        }
-
-        const root = document.getElementById("admin-root");
-        if (root) {
-          root.style.display = "block";
-        }
-
-        loadStocks();
-        loadPartnersForSelect();
-        loadBlogPosts();
+      const unlockBtn = document.getElementById("unlock-btn");
+      if (unlockBtn) {
+        unlockBtn.addEventListener("click", unlockAdminPage);
       }
 
-      initAdminPage();
+      const accessInput = document.getElementById("access-key");
+      if (accessInput) {
+        accessInput.addEventListener("keydown", (event) => {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            unlockAdminPage();
+          }
+        });
+      }
     </script>
   </body>
 </html>
