@@ -1,10 +1,53 @@
 // ===== CAPTURA DO CÓDIGO DE AFILIADO =====
 // Captura o afiliado da URL e guarda por 24 horas
+const AFFILIATE_STORAGE_KEY = 'vh_affiliate';
+const AFFILIATE_TRACKING_KEY = 'vh_affiliate_tracking';
+const AFFILIATE_TTL_MS = 8 * 60 * 60 * 1000;
+
+function getActiveAffiliateSlug() {
+  const rawTracking = localStorage.getItem(AFFILIATE_TRACKING_KEY);
+  if (!rawTracking) {
+    return '';
+  }
+
+  try {
+    const tracking = JSON.parse(rawTracking);
+    const slug = String(tracking.slug || '').trim();
+    const trackedAt = Number(tracking.trackedAt || 0);
+
+    if (!slug || !Number.isFinite(trackedAt)) {
+      localStorage.removeItem(AFFILIATE_TRACKING_KEY);
+      localStorage.removeItem(AFFILIATE_STORAGE_KEY);
+      return '';
+    }
+
+    if (Date.now() - trackedAt > AFFILIATE_TTL_MS) {
+      localStorage.removeItem(AFFILIATE_TRACKING_KEY);
+      localStorage.removeItem(AFFILIATE_STORAGE_KEY);
+      return '';
+    }
+
+    return slug;
+  } catch (_err) {
+    localStorage.removeItem(AFFILIATE_TRACKING_KEY);
+    localStorage.removeItem(AFFILIATE_STORAGE_KEY);
+    return '';
+  }
+}
+
 const urlParams = new URLSearchParams(window.location.search);
 const ref = urlParams.get('ref');
 if (ref) {
-    localStorage.setItem('vh_affiliate', ref);
+  const normalizedRef = String(ref).trim();
+  localStorage.setItem(AFFILIATE_STORAGE_KEY, normalizedRef);
+  localStorage.setItem(AFFILIATE_TRACKING_KEY, JSON.stringify({
+    slug: normalizedRef,
+    trackedAt: Date.now(),
+  }));
     console.log('Afiliado rastreado:', ref);
+} else {
+  // Limpa códigos antigos que passaram da janela de atribuição.
+  getActiveAffiliateSlug();
 }
 
 // ===== POSTHOG (BROWSER) =====
@@ -895,7 +938,7 @@ window.openBuyModal = function(offerData) {
                   : null,
                 currency: "eur",
                 sponsorCode: sponsor.toUpperCase(),
-                affiliateSlug: localStorage.getItem('vh_affiliate') || ""
+                affiliateSlug: getActiveAffiliateSlug()
             };
 
             const response = await fetch(`${window.VOUCHERHUB_API}/api/payments/create-checkout-session`, {
@@ -911,7 +954,7 @@ window.openBuyModal = function(offerData) {
                 offerName,
                 amountCents: Math.round(normalizedPrice * 100),
                 hasSponsorCode: sponsor.length > 0,
-                hasAffiliate: !!localStorage.getItem('vh_affiliate'),
+                hasAffiliate: !!getActiveAffiliateSlug(),
               });
                 window.location.href = data.url;
             } else {
