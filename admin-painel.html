@@ -260,6 +260,18 @@
         placeholder="https://exemplo.com/foto1.jpg&#10;https://exemplo.com/foto2.jpg"
       ></textarea>
 
+      <label>O QUE ESTÁ INCLUÍDO (um item por linha)</label>
+      <textarea
+        id="includes_raw"
+        placeholder="Item 1&#10;Item 2&#10;Item 3"
+      ></textarea>
+
+      <label>RECOMENDAÇÕES (um item por linha)</label>
+      <textarea
+        id="recommendations_raw"
+        placeholder="Recomendação 1&#10;Recomendação 2&#10;Recomendação 3"
+      ></textarea>
+
       <p class="section-title">🎁 Ofertas</p>
       <div id="offers-container"></div>
       <button type="button" class="btn-add-offer" id="addOfferBtn">
@@ -413,6 +425,16 @@
           partner.images,
         )
           ? partner.images.join("\n")
+          : "";
+        document.getElementById("includes_raw").value = Array.isArray(
+          partner.includes,
+        )
+          ? partner.includes.join("\n")
+          : "";
+        document.getElementById("recommendations_raw").value = Array.isArray(
+          partner.recommendations,
+        )
+          ? partner.recommendations.join("\n")
           : "";
 
         resetOffers(Array.isArray(partner.offers) ? partner.offers : []);
@@ -656,6 +678,26 @@
               .filter(Boolean)
           : [];
 
+        const includesRaw = document
+          .getElementById("includes_raw")
+          .value.trim();
+        const includes = includesRaw
+          ? includesRaw
+              .split("\n")
+              .map((u) => u.trim())
+              .filter(Boolean)
+          : [];
+
+        const recommendationsRaw = document
+          .getElementById("recommendations_raw")
+          .value.trim();
+        const recommendations = recommendationsRaw
+          ? recommendationsRaw
+              .split("\n")
+              .map((u) => u.trim())
+              .filter(Boolean)
+          : [];
+
         const data = {
           name: document.getElementById("name").value,
           slug: document.getElementById("slug").value,
@@ -675,6 +717,8 @@
           story_short: document.getElementById("story_short").value,
           story_full: document.getElementById("story_full").value,
           images,
+          includes,
+          recommendations,
           offers: getOffers(),
           is_catalog_active: true,
         };
