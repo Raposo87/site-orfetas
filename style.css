@@ -2166,6 +2166,49 @@ a:focus {
 }
 
 
+/* Recomendação do parceiro */
+.recommendations-list {
+  display: grid;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.recommendation-item {
+  position: relative;
+  padding: 1rem 1rem 1rem 2.75rem;
+  background: linear-gradient(135deg, #fffaf5, #ffffff);
+  border: 1px solid #fde7d2;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+}
+
+.recommendation-item i {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  color: var(--secondary-orange);
+  font-size: 1rem;
+}
+
+.recommendation-item h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  color: var(--primary-blue);
+}
+
+.recommendation-item p {
+  margin: 0;
+  line-height: 1.6;
+  color: var(--gray-700);
+}
+
+.recommendation-author {
+  display: block;
+  margin-top: 0.6rem;
+  font-weight: 600;
+  color: var(--gray-500);
+}
+
 /* Estilização para o QR Code e Botões de Compra */
 .buy-section {
   text-align: center;

@@ -1,7 +1,7 @@
 # VoucherHub — Frontend
 
-Site estático em HTML/CSS/JavaScript vanilla hospedado em `voucherhub.pt`.  
-Plataforma de vitrine de experiências com desconto em Portugal.
+Site estático em HTML/CSS/JavaScript vanilla para `voucherhub.pt`.
+Mostra catálogo de experiências, checkout Stripe, blog, validação de vouchers e painéis de gestão.
 
 ---
 
@@ -10,20 +10,21 @@ Plataforma de vitrine de experiências com desconto em Portugal.
 1. [Stack](#stack)
 2. [Arrancar Localmente](#arrancar-localmente)
 3. [Estrutura de Ficheiros](#estrutura-de-ficheiros)
-4. [Páginas](#páginas)
-5. [Páginas de Admin](#páginas-de-admin)
-6. [Fluxo do Catálogo](#fluxo-do-catálogo)
-7. [Sistema de i18n](#sistema-de-i18n)
+4. [API e Variáveis](#api-e-variáveis)
+5. [Páginas](#páginas)
+6. [Admin / Gestão](#admin--gestão)
+7. [Funcionalidades Principais](#funcionalidades-principais)
 8. [Deploy](#deploy)
 
 ---
 
 ## Stack
 
-- HTML5 + CSS3 + JavaScript Vanilla (sem framework)
-- Font Awesome 6.4 (ícones)
+- HTML5 + CSS3 + JavaScript Vanilla
+- Font Awesome 6.4 para ícones
 - Google Fonts (Inter)
-- Cloudinary (alojamento de imagens)
+- Cloudinary para alojamento de imagens
+- `serve` para servidor local estático
 - Backend: `https://voucherhub-backend-production.up.railway.app`
 
 ---
@@ -32,10 +33,12 @@ Plataforma de vitrine de experiências com desconto em Portugal.
 
 ```bash
 npm install
-npm start   # npx serve .  — servidor local na porta 3000
+npm start
 ```
 
-Ou abrir directamente o `index.html` num browser (algumas funcionalidades requerem servidor por causa de CORS).
+O comando `npm start` executa `npx serve .` e serve o site na porta `3000`.
+
+> Nota: Algumas funcionalidades dependem do backend e de CORS, por isso o host local é recomendado.
 
 ---
 
@@ -43,149 +46,140 @@ Ou abrir directamente o `index.html` num browser (algumas funcionalidades requer
 
 ```
 site-orfetas/
-├── index.html              # Página inicial — listagem de categorias
-├── experience.html         # Listagem de parceiros por categoria
-├── partner.html            # Página de detalhe de um parceiro
-├── blog.html               # Listagem de posts do blog
-├── post.html               # Post individual do blog
-├── validate.html           # Validação de voucher (uso pelo parceiro)
-├── success.html            # Página de sucesso após pagamento
-├── connect-success.html    # Página de sucesso do onboarding Stripe
-├── admin.html              # Dashboard admin (vouchers, stock, transferências)
-├── admin-painel.html       # Painel de registo de novos parceiros
-├── admin-afiliados.html    # Gestão de afiliados
+├── index.html
+├── experience.html
+├── partner.html
+├── blog.html
+├── post.html
+├── validate.html
+├── success.html
+├── connect-success.html
+├── admin.html
+├── admin-painel.html
+├── admin-afiliados.html
+├── admin-usuarios.html
 ├── partner/
-│   └── onboarding-refresh.html  # Página de refresh do onboarding Stripe
-├── script.js               # Lógica principal — carrossel, promos, analytics
-├── experience.js           # Renderização da página de categoria
-├── partner.js              # Renderização da página de parceiro + compra
-├── blog.js                 # Blog — listagem, detalhe, partilha
-├── i18n.js                 # Sistema de internacionalização PT/EN
-├── style.css               # Estilos globais de todo o site
-├── experiences.json        # Catálogo legado (fallback se API falhar)
-├── translations.json       # Traduções PT/EN para i18n
-├── sitemap.xml             # Sitemap para SEO
-├── robots.txt              # Directivas para crawlers
-├── CNAME                   # Domínio: voucherhub.pt
-├── serve.json              # Configuração do servidor estático (rewrites)
-└── package.json            # Dependência: serve
+│   └── onboarding-refresh.html
+├── script.js
+├── experience.js
+├── partner.js
+├── blog.js
+├── i18n.js
+├── style.css
+├── experiences.json
+├── translations.json
+├── sitemap.xml
+├── robots.txt
+├── CNAME
+├── serve.json
+└── package.json
 ```
+
+---
+
+## API e Variáveis
+
+O frontend não usa `.env`. O URL da API é definido diretamente em várias páginas ou via `window.VOUCHERHUB_API`.
+
+- API de produção: `https://voucherhub-backend-production.up.railway.app`
+- O site estático espera que a API backend esteja disponível nesse domínio.
 
 ---
 
 ## Páginas
 
-### `index.html` + `script.js`
-Página inicial. Mostra as categorias de experiências disponíveis, carrossel de destaques, toast de compras recentes e suporte a idioma PT/EN.
+### `index.html`
 
-**Funcionalidades:**
-- Carrossel automático de imagens
-- Toast de "X pessoas compraram recentemente" (via `/api/analytics/recent-purchases`)
-- Código promocional de afiliado na URL (`?ref=slug`)
-- Animações de scroll com IntersectionObserver
+Página inicial com as categorias de experiências, carrossel de destaques, toast de compras recentes, suporte PT/EN e rastreamento de afiliados.
 
-### `experience.html` + `experience.js`
-Lista os parceiros de uma categoria. Recebe o slug da categoria via `?slug=surf`.
+### `experience.html`
 
-**Funcionalidades:**
-- Carrega catálogo de `/api/catalog`
-- Merge com `experiences.json` como fallback
-- Filtro por vibes (tags de estilo de vida)
-- Cards de parceiro com desconto, preço original/final
-- Botão "Ver Oferta" → `partner.html?slug=...`
+Listagem de parceiros por categoria. Recebe o slug da categoria via `?slug=surf`.
 
-### `partner.html` + `partner.js`
-Página de detalhe de um parceiro. Recebe o slug via `?slug=azonda-surf-club`.
+- Carrega catálogo público de `/api/catalog`
+- Fallback local em `experiences.json` se a API falhar
+- Filtros por vibes e tags
+- Navegação para `partner.html?slug=...`
 
-**Funcionalidades:**
+### `partner.html`
+
+Detalhes do parceiro e compra.
+
 - Galeria de imagens
-- História do parceiro (curta + expandível)
-- Ofertas com preços e botão Comprar
-- Controlo de stock (botão "Esgotado" se sem stock)
-- Avaliações de clientes (reviews)
-- Campo de código promocional (afiliado / voucher especial)
-- Checkout Stripe via `/api/payments/create-checkout-session`
-- Partilha nativa / WhatsApp / Facebook / Instagram / cópia de link
+- Ofertas e preços com desconto
+- Verificação de stock via `/api/payments/check-stock`
+- Checkout Stripe com `/api/payments/create-checkout-session`
+- Avaliações e reviews (`/api/partners/:slug/reviews`)
+- Partilha social e cópia de link
+
+### `blog.html` / `post.html`
+
+Blog público com posts carregados da API.
+
+- `blog.html` lista artigos
+- `post.html` mostra post individual via `/api/blog/:slug`
 
 ### `validate.html`
-Página usada pelo parceiro para validar vouchers no momento do serviço.
 
-**Fluxo:**
-1. Parceiro introduz o código do voucher
-2. Se voucher válido, mostra detalhes
-3. Parceiro introduz o PIN (4 dígitos) para confirmar o uso
-4. Sistema transfere os fundos para a conta Stripe do parceiro
+Página de validação de vouchers usada pelos parceiros.
 
-### `blog.html` + `post.html` + `blog.js`
-Blog público com posts em PT e EN. Suporte a partilha em redes sociais.
+- Pesquisa de voucher por código
+- Confirmação com PIN do parceiro
+- Validação presencial e uso do voucher
 
 ### `success.html`
-Página de confirmação após pagamento bem-sucedido. Mostra os detalhes do voucher e envia email automaticamente (via webhook no backend).
+
+Confirmação exibida após pagamento bem-sucedido.
+
+### `connect-success.html`
+
+Página de sucesso do onboarding Stripe.
 
 ---
 
-## Páginas de Admin
+## Admin / Gestão
 
-Todas as páginas admin estão protegidas por autenticação Bearer (token guardado em `localStorage`).
+### `admin-painel.html`
 
-### `admin-painel.html` — Registo de Parceiros
-Formulário para criar novos parceiros. Requer role `owner` ou `admin`.
+Formulário de registo de parceiros e criação de contas Stripe Express.
 
-**Campos:**
-- **Dados Operacionais:** nome, slug, email, telefone, localização, preço original
-- **Catálogo Público:** categoria (dropdown carregado da API), desconto %, código voucher, Instagram, site oficial, história curta, história completa, imagens (URLs, uma por linha)
-- **Ofertas:** linhas dinâmicas com título, descrição, preço
+### `admin.html`
 
-**Ao submeter:**
-1. Cria conta Stripe Express para o parceiro
-2. Guarda todos os dados na BD
-3. Gera PIN de 4 dígitos automaticamente
-4. Devolve link de onboarding Stripe
+Painel de auditoria e gestão de vouchers, stock e repasses.
 
-**Nota:** Se a API de modos falhar, o dropdown usa uma lista local de 11 categorias como fallback.
+### `admin-afiliados.html`
 
-### `admin.html` — Dashboard Geral
-Gestão de vouchers, stock de ofertas e auditoria de transferências Stripe falhadas.
+Gestão de afiliados, com criação de links de referência e envio de email.
 
-### `admin-afiliados.html` — Gestão de Afiliados
-Criar e gerir afiliados com taxa de comissão configurável.
+### `admin-usuarios.html`
+
+Gestão de utilizadores admin e login.
+
+### `partner/onboarding-refresh.html`
+
+Página utilizada para refresh do onboarding Stripe.
 
 ---
 
-## Fluxo do Catálogo
+## Funcionalidades Principais
 
-```
-1. experience.js / partner.js carregam /api/catalog
-2. Merge com experiences.json (fallback para parceiros não migrados)
-3. Se API falhar completamente → usa só experiences.json
-```
-
-**Para um parceiro aparecer:**
-- `mode_slug` preenchido com slug válido (ex: `surf`)
-- `is_catalog_active = true` na BD
-- Criado via `admin-painel.html` → aparece imediatamente sem redeploy
-
----
-
-## Sistema de i18n
-
-`i18n.js` + `translations.json`
-
-- Idiomas suportados: PT (padrão) e EN
-- O idioma é guardado em `localStorage` (`voucherhub_lang`)
-- Sem detecção automática do browser — começa sempre em PT
-- Todos os textos estáticos têm atributo `data-i18n="chave.subchave"`
-- Selector de idioma (bandeiras PT/EN) é injectado dinamicamente no navbar
+- `i18n.js` + `translations.json` para suportar PT/EN
+- Idioma guardado em `localStorage`
+- Rastreamento de afiliados via query string `?ref=slug` e persistência local por 8 horas
+- Cookie banner com consentimento local
+- Integração com PostHog para analytics no browser
+- Merge do catálogo API com `experiences.json` como fallback local se a API falhar
+- Suporte a stock limitado com `offer_inventory`
+- Reviews de parceiros via API
+- Autenticação admin com token Bearer e suporte legado `x-admin-key`
 
 ---
 
 ## Deploy
 
-O site é servido estaticamente. O ficheiro `serve.json` configura rewrites:
+O site é servido estaticamente. O ficheiro `serve.json` aplica rewrites:
+
 - `/validate/**` → `validate.html`
 - `/**` → `index.html`
 
-O domínio `voucherhub.pt` está configurado via ficheiro `CNAME`.
-
-**API de produção:** `https://voucherhub-backend-production.up.railway.app`  
-A constante `window.VOUCHERHUB_API` é definida inline em cada página HTML antes dos scripts.
+O domínio `voucherhub.pt` é configurado no ficheiro `CNAME`.

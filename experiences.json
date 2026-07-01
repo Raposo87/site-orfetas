@@ -135,7 +135,14 @@
             }
           ],
           "story_short": "Gustykite oferece aulas de kitesurf seguras e divertidas para todos os níveis.",
-          "story_full": "Gustykite é uma escola de kitesurf localizada na Praia Azul, em Costa da Caparica, dedicada a ensinar o emocionante desporto do kitesurf. Com instrutores certificados e experientes, oferecemos aulas personalizadas que garantem segurança, progressão e diversão em cada sessão. Se é seu primeiro encontro com o vento ou se já tem experiência, a Gustykite tem o programa certo para você."
+          "story_full": "Gustykite é uma escola de kitesurf localizada na Praia Azul, em Costa da Caparica, dedicada a ensinar o emocionante desporto do kitesurf. Com instrutores certificados e experientes, oferecemos aulas personalizadas que garantem segurança, progressão e diversão em cada sessão. Se é seu primeiro encontro com o vento ou se já tem experiência, a Gustykite tem o programa certo para você.",
+          "recommendations": [
+            {
+              "title": "Ideal para quem quer começar com confiança",
+              "text": "Recomendamos esta experiência para quem procura uma primeira abordagem segura ao kitesurf, com instrução personalizada e apoio durante toda a aula.",
+              "author": "Equipe Gustykite"
+            }
+          ]
         }
       ]
     },
