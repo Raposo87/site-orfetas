@@ -2168,44 +2168,49 @@ a:focus {
 
 /* Recomendação do parceiro */
 .recommendations-list {
-  display: grid;
-  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
   margin-top: 0.5rem;
 }
 
 .recommendation-item {
   position: relative;
-  padding: 1rem 1rem 1rem 2.75rem;
-  background: linear-gradient(135deg, #fffaf5, #ffffff);
+  padding: 0.75rem 1rem 0.75rem 2.2rem;
+  background: #fffaf5;
   border: 1px solid #fde7d2;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+  font-size: 0.95rem;
 }
 
 .recommendation-item i {
   position: absolute;
-  left: 1rem;
-  top: 1rem;
+  left: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
   color: var(--secondary-orange);
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 .recommendation-item h3 {
-  margin: 0 0 0.35rem;
-  font-size: 1rem;
+  margin: 0 0 0.2rem;
+  font-size: 0.95rem;
   color: var(--primary-blue);
+  font-weight: 600;
 }
 
 .recommendation-item p {
   margin: 0;
-  line-height: 1.6;
+  line-height: 1.4;
   color: var(--gray-700);
 }
 
 .recommendation-author {
   display: block;
-  margin-top: 0.6rem;
-  font-weight: 600;
+  margin-top: 0.4rem;
+  font-weight: 500;
+  font-size: 0.85rem;
   color: var(--gray-500);
 }
 
