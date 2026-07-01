@@ -179,7 +179,7 @@
         .join("");
     }
 
-    // Renderiza a seção de recomendação
+    // Renderiza a seção de recomendação como um único bloco de texto
     const recommendationsSection = document.getElementById("recommendations-section");
     const recommendationsList = document.getElementById("recommendations-list");
     const recommendations = Array.isArray(partner.recommendations)
@@ -191,18 +191,16 @@
     if (recommendationsSection && recommendationsList) {
       if (recommendations.length > 0) {
         recommendationsSection.style.display = "block";
-        recommendationsList.innerHTML = recommendations
+        const recommendationsText = recommendations
           .map(item => {
             if (typeof item === "string") {
-              return `<div class="recommendation-item"><i class="fas fa-quote-left"></i><p>${item}</p></div>`;
+              return item;
             }
-
-            const title = item.title ? `<h3>${item.title}</h3>` : "";
-            const text = item.text || item.description || "";
-            const author = item.author ? `<span class="recommendation-author">— ${item.author}</span>` : "";
-            return `<div class="recommendation-item"><i class="fas fa-quote-left"></i>${title}<p>${text}</p>${author}</div>`;
+            const text = item.text || item.description || item.title || "";
+            return text;
           })
-          .join("");
+          .join("\n");
+        recommendationsList.textContent = recommendationsText;
       } else {
         recommendationsSection.style.display = "none";
       }
