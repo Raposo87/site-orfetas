@@ -211,6 +211,9 @@
 
       <div class="card" id="ai-seo-section">
         <h2>🤖 AI SEO Assistant</h2>
+        <div style="background: #fff3cd; padding: 12px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid #ffc107;">
+          <strong>⚠️ Atenção:</strong> Certifique-se de que <code>OPENAI_API_KEY</code> está configurada no arquivo <code>.env</code> do backend para que a geração de conteúdo funcione.
+        </div>
         <div class="ai-seo-card">
           <h4>Experiências disponíveis</h4>
           <select id="ai-experience-select" style="width: 100%; padding: 8px; margin-top: 8px"></select>
@@ -534,26 +537,48 @@
       async function loadAiExperiences() {
         try {
           const select = document.getElementById("ai-experience-select");
-          if (!select) return;
+          if (!select) {
+            console.warn('[AI SEO] Elemento ai-experience-select não encontrado');
+            return;
+          }
 
-          const res = await fetch(`${API_BASE.replace('/api/admin', '/api/ai-seo')}/experiences`, {
+          const aiSeoUrl = `${API_BASE.replace('/api/admin', '/api/ai-seo')}/experiences`;
+          console.log('[AI SEO] Carregando experiências de:', aiSeoUrl);
+          
+          const res = await fetch(aiSeoUrl, {
             headers: { 'x-admin-key': getAdminKey() },
           });
+          
           const experiences = await res.json();
+          console.log('[AI SEO] Experiências carregadas:', experiences);
+          
           if (!res.ok) {
-            select.innerHTML = '<option value="">Erro ao carregar experiências</option>';
+            const errorMsg = experiences?.error || 'Erro ao carregar experiências';
+            console.error('[AI SEO] Erro:', errorMsg);
+            select.innerHTML = `<option value="">❌ ${errorMsg}</option>`;
+            return;
+          }
+
+          if (!Array.isArray(experiences) || experiences.length === 0) {
+            select.innerHTML = '<option value="">Nenhuma experiência disponível</option>';
             return;
           }
 
           select.innerHTML = '<option value="">Selecione uma experiência</option>';
-          (Array.isArray(experiences) ? experiences : []).forEach((experience) => {
+          experiences.forEach((experience) => {
             const option = document.createElement('option');
             option.value = JSON.stringify(experience);
             option.textContent = `${experience.name} (${experience.slug})`;
             select.appendChild(option);
           });
+          
+          console.log('[AI SEO] ' + experiences.length + ' experiências carregadas com sucesso');
         } catch (err) {
-          console.error('Erro ao carregar experiências para IA:', err);
+          console.error('[AI SEO] Erro ao carregar experiências:', err);
+          const select = document.getElementById("ai-experience-select");
+          if (select) {
+            select.innerHTML = `<option value="">❌ Erro: ${err.message}</option>`;
+          }
         }
       }
 
@@ -565,41 +590,70 @@
           return;
         }
 
-        const experience = JSON.parse(experiencePayload);
-        const body = {
-          experienceSlug: experience.slug,
-          experienceName: experience.name,
-          category: experience.mode_slug || 'Experiência',
-          city: experience.location || 'Lisboa',
-          description: experience.story_short || '',
-          price: experience.price_original_cents ? `€${(experience.price_original_cents / 100).toFixed(2)}` : '',
-          duration: '',
-          audience: 'Público geral',
-          partner: experience.name,
-        };
+        try {
+          const experience = JSON.parse(experiencePayload);
+          const body = {
+            experienceSlug: experience.slug,
+            experienceName: experience.name,
+            category: experience.mode_slug || 'Experiência',
+            city: experience.location || 'Lisboa',
+            description: experience.story_short || '',
+            price: experience.price_original_cents ? `€${(experience.price_original_cents / 100).toFixed(2)}` : '',
+            duration: '',
+            audience: 'Público geral',
+            partner: experience.name,
+          };
 
-        const res = await fetch(`${API_BASE.replace('/api/admin', '/api/ai-seo')}/strategy`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'x-admin-key': getAdminKey() },
-          body: JSON.stringify(body),
-        });
-        const data = await res.json();
-        if (!res.ok) {
-          alert(data.error || 'Erro ao gerar estratégia');
-          return;
+          console.log('[AI SEO] Enviando estratégia para:', body);
+          
+          const aiSeoUrl = `${API_BASE.replace('/api/admin', '/api/ai-seo')}/strategy`;
+          console.log('[AI SEO] URL:', aiSeoUrl);
+
+          const res = await fetch(aiSeoUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'x-admin-key': getAdminKey() },
+            body: JSON.stringify(body),
+          });
+          
+          console.log('[AI SEO] Status:', res.status);
+          
+          const data = await res.json();
+          console.log('[AI SEO] Resposta:', data);
+          
+          if (!res.ok) {
+            const errorMsg = data.error || 'Erro ao gerar estratégia';
+            if (errorMsg.includes('OPENAI_API_KEY')) {
+              alert('❌ Erro: A chave da OpenAI não está configurada no backend.\n\nConfigure OPENAI_API_KEY no arquivo .env');
+            } else {
+              alert(`❌ ${errorMsg}`);
+            }
+            return;
+          }
+
+          aiExperienceData = experience;
+          renderTopics(data.topics || []);
+          alert('✅ Estratégia SEO gerada com sucesso! ' + (data.topics?.length || 0) + ' tópicos criados.');
+        } catch (error) {
+          console.error('[AI SEO] Erro ao gerar estratégia:', error);
+          alert('❌ Erro: ' + error.message);
         }
-
-        aiExperienceData = experience;
-        renderTopics(data.topics || []);
-        alert('Estratégia SEO gerada com sucesso.');
       }
 
       function renderTopics(topics) {
         const list = document.getElementById('ai-topics-list');
-        if (!list) return;
-        list.innerHTML = (topics || []).map((topic, index) => `
+        if (!list) {
+          console.warn('[AI SEO] Elemento ai-topics-list não encontrado');
+          return;
+        }
+        
+        if (!Array.isArray(topics) || topics.length === 0) {
+          list.innerHTML = '<p style="color: #999; padding: 12px;">Nenhum tópico gerado. Té certeza de que a chave da OpenAI está configurada?</p>';
+          return;
+        }
+        
+        list.innerHTML = topics.map((topic, index) => `
           <label class="topic-item">
-            <input type="checkbox" value="${index}" data-topic='${JSON.stringify(topic)}' />
+            <input type="checkbox" value="${index}" data-topic='${JSON.stringify(topic).replace(/'/g, "&apos;")}' />
             <span>
               <strong>${topic.title || 'Tema sem título'}</strong>
               <div class="topic-meta">${topic.keyword || ''} • ${topic.intent || ''} • ${topic.difficulty || ''}</div>
@@ -687,12 +741,12 @@
         }
 
         document.getElementById('blog-slug').value = aiDraftArticle.slug || '';
-        document.getElementById('blog-title-pt').value = aiDraftArticle.seoTitle || '';
-        document.getElementById('blog-title-en').value = aiDraftArticle.seoTitle || '';
-        document.getElementById('blog-excerpt-pt').value = aiDraftArticle.excerpt || '';
-        document.getElementById('blog-excerpt-en').value = aiDraftArticle.excerpt || '';
-        document.getElementById('blog-content-pt').value = aiDraftArticle.content || '';
-        document.getElementById('blog-content-en').value = aiDraftArticle.content || '';
+        document.getElementById('blog-title-pt').value = aiDraftArticle.seoTitle_pt || aiDraftArticle.seoTitle || '';
+        document.getElementById('blog-title-en').value = aiDraftArticle.seoTitle_en || aiDraftArticle.seoTitle || '';
+        document.getElementById('blog-excerpt-pt').value = aiDraftArticle.excerpt_pt || aiDraftArticle.excerpt || '';
+        document.getElementById('blog-excerpt-en').value = aiDraftArticle.excerpt_en || aiDraftArticle.excerpt || '';
+        document.getElementById('blog-content-pt').value = aiDraftArticle.content_pt || aiDraftArticle.content || '';
+        document.getElementById('blog-content-en').value = aiDraftArticle.content_en || aiDraftArticle.content || '';
         document.getElementById('blog-author').value = 'AI SEO Assistant';
         document.getElementById('blog-image-url').value = '';
         document.getElementById('blog-related-partner').value = aiExperienceData?.slug || '';
