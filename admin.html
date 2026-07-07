@@ -109,6 +109,54 @@
         color: #c62828;
         font-weight: 600;
       }
+      .ai-seo-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .ai-seo-card {
+        background: #f8f9fa;
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 12px;
+      }
+      .topic-list {
+        max-height: 320px;
+        overflow: auto;
+        border: 1px solid #eee;
+        padding: 8px;
+        border-radius: 8px;
+        background: #fff;
+      }
+      .topic-item {
+        display: flex;
+        gap: 8px;
+        align-items: flex-start;
+        margin-bottom: 8px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #f1f1f1;
+      }
+      .topic-item:last-child {
+        border-bottom: 0;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+      .topic-item strong {
+        display: block;
+      }
+      .topic-meta {
+        font-size: 12px;
+        color: #666;
+      }
+      .draft-preview {
+        white-space: pre-wrap;
+        background: #fff;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #eee;
+        max-height: 320px;
+        overflow: auto;
+      }
     </style>
   </head>
   <body>
@@ -125,7 +173,13 @@
     <div class="container" id="admin-root" style="display: none">
       <h1>VoucherHub Admin 🛡️</h1>
 
-      <div class="card">
+      <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px;">
+        <button type="button" onclick="document.getElementById('ai-seo-section').scrollIntoView({behavior:'smooth',block:'start'})">AI SEO Assistant</button>
+        <button type="button" onclick="document.getElementById('blog-section').scrollIntoView({behavior:'smooth',block:'start'})">Gestão do Blog</button>
+        <button type="button" onclick="document.getElementById('stock-section').scrollIntoView({behavior:'smooth',block:'start'})">Stock</button>
+      </div>
+
+      <div class="card" id="stock-section">
         <h2>📦 Gestão de Stock (Limites)</h2>
         <div style="background: #f8f9fa; padding: 15px; margin-bottom: 15px">
           <h4>Adicionar Novo Limite</h4>
@@ -155,7 +209,34 @@
         <div id="transferResult" style="margin-top: 15px"></div>
       </div>
 
-      <div class="card">
+      <div class="card" id="ai-seo-section">
+        <h2>🤖 AI SEO Assistant</h2>
+        <div class="ai-seo-card">
+          <h4>Experiências disponíveis</h4>
+          <select id="ai-experience-select" style="width: 100%; padding: 8px; margin-top: 8px"></select>
+          <button style="margin-top: 10px" onclick="generateSeoStrategy()">Gerar Estratégia SEO</button>
+        </div>
+
+        <div class="ai-seo-card">
+          <h4>Tópicos gerados</h4>
+          <div id="ai-topics-list" class="topic-list"></div>
+          <div style="margin-top: 10px">
+            <button onclick="generateSelectedArticles()">Gerar Artigos</button>
+            <button onclick="publishDraftArticle()">Publicar</button>
+          </div>
+        </div>
+
+        <div class="ai-seo-card">
+          <h4>Rascunho do artigo</h4>
+          <div id="ai-draft-output" class="draft-preview">Selecione um tópico e gere o artigo.</div>
+          <div style="margin-top: 10px">
+            <button onclick="improveSelectedArticle()">Melhorar Artigo</button>
+            <button onclick="openBlogDraftForm()" class="btn-delete">Preencher formulário do blog</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" id="blog-section">
         <h2>📝 Gestão do Blog</h2>
         <div style="background: #f8f9fa; padding: 15px; margin-bottom: 15px">
           <h4>Novo Artigo</h4>
@@ -209,6 +290,9 @@
 
     <script>
       let adminKey = "";
+      let aiExperienceData = null;
+      let aiDraftArticle = null;
+      let aiSelectedTopic = null;
 
       function getAdminKey() {
         return adminKey;
@@ -286,6 +370,7 @@
         loadStocks();
         loadPartnersForSelect();
         loadBlogPosts();
+        loadAiExperiences();
       }
 
       // FUNÇÕES DE STOCK
@@ -444,6 +529,190 @@
         } catch (err) {
           console.error("Erro ao carregar partners do experiences.json:", err);
         }
+      }
+
+      async function loadAiExperiences() {
+        try {
+          const select = document.getElementById("ai-experience-select");
+          if (!select) return;
+
+          const res = await fetch(`${API_BASE.replace('/api/admin', '/api/ai-seo')}/experiences`, {
+            headers: { 'x-admin-key': getAdminKey() },
+          });
+          const experiences = await res.json();
+          if (!res.ok) {
+            select.innerHTML = '<option value="">Erro ao carregar experiências</option>';
+            return;
+          }
+
+          select.innerHTML = '<option value="">Selecione uma experiência</option>';
+          (Array.isArray(experiences) ? experiences : []).forEach((experience) => {
+            const option = document.createElement('option');
+            option.value = JSON.stringify(experience);
+            option.textContent = `${experience.name} (${experience.slug})`;
+            select.appendChild(option);
+          });
+        } catch (err) {
+          console.error('Erro ao carregar experiências para IA:', err);
+        }
+      }
+
+      async function generateSeoStrategy() {
+        const select = document.getElementById('ai-experience-select');
+        const experiencePayload = select?.value;
+        if (!experiencePayload) {
+          alert('Selecione uma experiência para gerar a estratégia.');
+          return;
+        }
+
+        const experience = JSON.parse(experiencePayload);
+        const body = {
+          experienceSlug: experience.slug,
+          experienceName: experience.name,
+          category: experience.mode_slug || 'Experiência',
+          city: experience.location || 'Lisboa',
+          description: experience.story_short || '',
+          price: experience.price_original_cents ? `€${(experience.price_original_cents / 100).toFixed(2)}` : '',
+          duration: '',
+          audience: 'Público geral',
+          partner: experience.name,
+        };
+
+        const res = await fetch(`${API_BASE.replace('/api/admin', '/api/ai-seo')}/strategy`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'x-admin-key': getAdminKey() },
+          body: JSON.stringify(body),
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          alert(data.error || 'Erro ao gerar estratégia');
+          return;
+        }
+
+        aiExperienceData = experience;
+        renderTopics(data.topics || []);
+        alert('Estratégia SEO gerada com sucesso.');
+      }
+
+      function renderTopics(topics) {
+        const list = document.getElementById('ai-topics-list');
+        if (!list) return;
+        list.innerHTML = (topics || []).map((topic, index) => `
+          <label class="topic-item">
+            <input type="checkbox" value="${index}" data-topic='${JSON.stringify(topic)}' />
+            <span>
+              <strong>${topic.title || 'Tema sem título'}</strong>
+              <div class="topic-meta">${topic.keyword || ''} • ${topic.intent || ''} • ${topic.difficulty || ''}</div>
+              <div class="topic-meta">Prioridade ${topic.priority || index + 1} • ${topic.reason || ''}</div>
+            </span>
+          </label>
+        `).join('');
+      }
+
+      async function generateSelectedArticles() {
+        const checked = Array.from(document.querySelectorAll('#ai-topics-list input[type="checkbox"]:checked'));
+        if (!checked.length) {
+          alert('Selecione pelo menos um tópico.');
+          return;
+        }
+
+        const topicData = checked.map((item) => JSON.parse(item.getAttribute('data-topic')));
+        const generatedArticles = [];
+
+        for (const topic of topicData) {
+          const articleBody = {
+            topic: topic.title,
+            experience: aiExperienceData?.name || '',
+            category: aiExperienceData?.mode_slug || 'Experiência',
+            city: aiExperienceData?.location || 'Lisboa',
+            description: aiExperienceData?.story_short || '',
+            objective: 'Gerar conteúdo SEO útil e persuasivo para o blog.',
+          };
+
+          const res = await fetch(`${API_BASE.replace('/api/admin', '/api/ai-seo')}/articles`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'x-admin-key': getAdminKey() },
+            body: JSON.stringify(articleBody),
+          });
+          const data = await res.json();
+          if (!res.ok) {
+            alert(data.error || 'Erro ao gerar artigo');
+            return;
+          }
+          generatedArticles.push(data.article);
+        }
+
+        aiDraftArticle = generatedArticles[0] || null;
+        aiSelectedTopic = topicData[0] || null;
+        document.getElementById('ai-draft-output').textContent = JSON.stringify({
+          generatedArticles,
+          selectedTopic: aiSelectedTopic,
+        }, null, 2);
+        alert('Artigos gerados com sucesso.');
+      }
+
+      async function improveSelectedArticle() {
+        if (!aiDraftArticle) {
+          alert('Gere primeiro um artigo para melhorar.');
+          return;
+        }
+
+        const res = await fetch(`${API_BASE.replace('/api/admin', '/api/ai-seo')}/improve-article`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'x-admin-key': getAdminKey() },
+          body: JSON.stringify({
+            article: aiDraftArticle,
+            experience: aiExperienceData?.name || '',
+            category: aiExperienceData?.mode_slug || 'Experiência',
+            city: aiExperienceData?.location || 'Lisboa',
+            description: aiExperienceData?.story_short || '',
+            objective: 'Melhorar SEO, clareza, CTA e escaneabilidade.',
+          }),
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          alert(data.error || 'Erro ao melhorar artigo');
+          return;
+        }
+
+        aiDraftArticle = data.article;
+        document.getElementById('ai-draft-output').textContent = JSON.stringify(data.article, null, 2);
+        alert('Artigo melhorado com sucesso.');
+      }
+
+      function openBlogDraftForm() {
+        if (!aiDraftArticle) {
+          alert('Gere primeiro um artigo para preencher o formulário.');
+          return;
+        }
+
+        document.getElementById('blog-slug').value = aiDraftArticle.slug || '';
+        document.getElementById('blog-title-pt').value = aiDraftArticle.seoTitle || '';
+        document.getElementById('blog-title-en').value = aiDraftArticle.seoTitle || '';
+        document.getElementById('blog-excerpt-pt').value = aiDraftArticle.excerpt || '';
+        document.getElementById('blog-excerpt-en').value = aiDraftArticle.excerpt || '';
+        document.getElementById('blog-content-pt').value = aiDraftArticle.content || '';
+        document.getElementById('blog-content-en').value = aiDraftArticle.content || '';
+        document.getElementById('blog-author').value = 'AI SEO Assistant';
+        document.getElementById('blog-image-url').value = '';
+        document.getElementById('blog-related-partner').value = aiExperienceData?.slug || '';
+        document.getElementById('blog-content-pt').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+
+      function publishDraftArticle() {
+        if (!aiDraftArticle) {
+          alert('Gere primeiro um artigo para publicar.');
+          return;
+        }
+
+        openBlogDraftForm();
+        const adminKeyInput = document.getElementById('admin-key');
+        if (!adminKeyInput?.value.trim()) {
+          alert('Informe a Admin API Key antes de publicar.');
+          return;
+        }
+
+        createBlogPost();
       }
 
       async function loadBlogPosts() {
