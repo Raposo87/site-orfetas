@@ -274,7 +274,8 @@
                    offerName: title,
                    price: finalPrice,
                    originalPrice: originalPrice,
-                   discountPercent: effectiveDiscountPct
+                   discountPercent: effectiveDiscountPct,
+                   volumePricing: partner.volume_pricing || null,
                });
             });
           }

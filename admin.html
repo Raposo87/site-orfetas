@@ -173,10 +173,39 @@
     <div class="container" id="admin-root" style="display: none">
       <h1>VoucherHub Admin 🛡️</h1>
 
-      <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px;">
-        <button type="button" onclick="document.getElementById('ai-seo-section').scrollIntoView({behavior:'smooth',block:'start'})">AI SEO Assistant</button>
-        <button type="button" onclick="document.getElementById('blog-section').scrollIntoView({behavior:'smooth',block:'start'})">Gestão do Blog</button>
-        <button type="button" onclick="document.getElementById('stock-section').scrollIntoView({behavior:'smooth',block:'start'})">Stock</button>
+      <div
+        style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px"
+      >
+        <button
+          type="button"
+          onclick="
+            document
+              .getElementById('ai-seo-section')
+              .scrollIntoView({ behavior: 'smooth', block: 'start' })
+          "
+        >
+          AI SEO Assistant
+        </button>
+        <button
+          type="button"
+          onclick="
+            document
+              .getElementById('blog-section')
+              .scrollIntoView({ behavior: 'smooth', block: 'start' })
+          "
+        >
+          Gestão do Blog
+        </button>
+        <button
+          type="button"
+          onclick="
+            document
+              .getElementById('stock-section')
+              .scrollIntoView({ behavior: 'smooth', block: 'start' })
+          "
+        >
+          Stock
+        </button>
       </div>
 
       <div class="card" id="stock-section">
@@ -211,13 +240,28 @@
 
       <div class="card" id="ai-seo-section">
         <h2>🤖 AI SEO Assistant</h2>
-        <div style="background: #fff3cd; padding: 12px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid #ffc107;">
-          <strong>⚠️ Atenção:</strong> Certifique-se de que <code>OPENAI_API_KEY</code> está configurada no arquivo <code>.env</code> do backend para que a geração de conteúdo funcione.
+        <div
+          style="
+            background: #fff3cd;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #ffc107;
+          "
+        >
+          <strong>⚠️ Atenção:</strong> Certifique-se de que
+          <code>OPENAI_API_KEY</code> está configurada no arquivo
+          <code>.env</code> do backend para que a geração de conteúdo funcione.
         </div>
         <div class="ai-seo-card">
           <h4>Experiências disponíveis</h4>
-          <select id="ai-experience-select" style="width: 100%; padding: 8px; margin-top: 8px"></select>
-          <button style="margin-top: 10px" onclick="generateSeoStrategy()">Gerar Estratégia SEO</button>
+          <select
+            id="ai-experience-select"
+            style="width: 100%; padding: 8px; margin-top: 8px"
+          ></select>
+          <button style="margin-top: 10px" onclick="generateSeoStrategy()">
+            Gerar Estratégia SEO
+          </button>
         </div>
 
         <div class="ai-seo-card">
@@ -231,10 +275,14 @@
 
         <div class="ai-seo-card">
           <h4>Rascunho do artigo</h4>
-          <div id="ai-draft-output" class="draft-preview">Selecione um tópico e gere o artigo.</div>
+          <div id="ai-draft-output" class="draft-preview">
+            Selecione um tópico e gere o artigo.
+          </div>
           <div style="margin-top: 10px">
             <button onclick="improveSelectedArticle()">Melhorar Artigo</button>
-            <button onclick="openBlogDraftForm()" class="btn-delete">Preencher formulário do blog</button>
+            <button onclick="openBlogDraftForm()" class="btn-delete">
+              Preencher formulário do blog
+            </button>
           </div>
         </div>
       </div>
@@ -538,43 +586,52 @@
         try {
           const select = document.getElementById("ai-experience-select");
           if (!select) {
-            console.warn('[AI SEO] Elemento ai-experience-select não encontrado');
+            console.warn(
+              "[AI SEO] Elemento ai-experience-select não encontrado",
+            );
             return;
           }
 
-          const aiSeoUrl = `${API_BASE.replace('/api/admin', '/api/ai-seo')}/experiences`;
-          console.log('[AI SEO] Carregando experiências de:', aiSeoUrl);
-          
+          const aiSeoUrl = `${API_BASE.replace("/api/admin", "/api/ai-seo")}/experiences`;
+          console.log("[AI SEO] Carregando experiências de:", aiSeoUrl);
+
           const res = await fetch(aiSeoUrl, {
-            headers: { 'x-admin-key': getAdminKey() },
+            headers: { "x-admin-key": getAdminKey() },
           });
-          
+
           const experiences = await res.json();
-          console.log('[AI SEO] Experiências carregadas:', experiences);
-          
+          console.log("[AI SEO] Experiências carregadas:", experiences);
+
           if (!res.ok) {
-            const errorMsg = experiences?.error || 'Erro ao carregar experiências';
-            console.error('[AI SEO] Erro:', errorMsg);
+            const errorMsg =
+              experiences?.error || "Erro ao carregar experiências";
+            console.error("[AI SEO] Erro:", errorMsg);
             select.innerHTML = `<option value="">❌ ${errorMsg}</option>`;
             return;
           }
 
           if (!Array.isArray(experiences) || experiences.length === 0) {
-            select.innerHTML = '<option value="">Nenhuma experiência disponível</option>';
+            select.innerHTML =
+              '<option value="">Nenhuma experiência disponível</option>';
             return;
           }
 
-          select.innerHTML = '<option value="">Selecione uma experiência</option>';
+          select.innerHTML =
+            '<option value="">Selecione uma experiência</option>';
           experiences.forEach((experience) => {
-            const option = document.createElement('option');
+            const option = document.createElement("option");
             option.value = JSON.stringify(experience);
             option.textContent = `${experience.name} (${experience.slug})`;
             select.appendChild(option);
           });
-          
-          console.log('[AI SEO] ' + experiences.length + ' experiências carregadas com sucesso');
+
+          console.log(
+            "[AI SEO] " +
+              experiences.length +
+              " experiências carregadas com sucesso",
+          );
         } catch (err) {
-          console.error('[AI SEO] Erro ao carregar experiências:', err);
+          console.error("[AI SEO] Erro ao carregar experiências:", err);
           const select = document.getElementById("ai-experience-select");
           if (select) {
             select.innerHTML = `<option value="">❌ Erro: ${err.message}</option>`;
@@ -583,10 +640,10 @@
       }
 
       async function generateSeoStrategy() {
-        const select = document.getElementById('ai-experience-select');
+        const select = document.getElementById("ai-experience-select");
         const experiencePayload = select?.value;
         if (!experiencePayload) {
-          alert('Selecione uma experiência para gerar a estratégia.');
+          alert("Selecione uma experiência para gerar a estratégia.");
           return;
         }
 
@@ -595,35 +652,42 @@
           const body = {
             experienceSlug: experience.slug,
             experienceName: experience.name,
-            category: experience.mode_slug || 'Experiência',
-            city: experience.location || 'Lisboa',
-            description: experience.story_short || '',
-            price: experience.price_original_cents ? `€${(experience.price_original_cents / 100).toFixed(2)}` : '',
-            duration: '',
-            audience: 'Público geral',
+            category: experience.mode_slug || "Experiência",
+            city: experience.location || "Lisboa",
+            description: experience.story_short || "",
+            price: experience.price_original_cents
+              ? `€${(experience.price_original_cents / 100).toFixed(2)}`
+              : "",
+            duration: "",
+            audience: "Público geral",
             partner: experience.name,
           };
 
-          console.log('[AI SEO] Enviando estratégia para:', body);
-          
-          const aiSeoUrl = `${API_BASE.replace('/api/admin', '/api/ai-seo')}/strategy`;
-          console.log('[AI SEO] URL:', aiSeoUrl);
+          console.log("[AI SEO] Enviando estratégia para:", body);
+
+          const aiSeoUrl = `${API_BASE.replace("/api/admin", "/api/ai-seo")}/strategy`;
+          console.log("[AI SEO] URL:", aiSeoUrl);
 
           const res = await fetch(aiSeoUrl, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'x-admin-key': getAdminKey() },
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "x-admin-key": getAdminKey(),
+            },
             body: JSON.stringify(body),
           });
-          
-          console.log('[AI SEO] Status:', res.status);
-          
+
+          console.log("[AI SEO] Status:", res.status);
+
           const data = await res.json();
-          console.log('[AI SEO] Resposta:', data);
-          
+          console.log("[AI SEO] Resposta:", data);
+
           if (!res.ok) {
-            const errorMsg = data.error || 'Erro ao gerar estratégia';
-            if (errorMsg.includes('OPENAI_API_KEY')) {
-              alert('❌ Erro: A chave da OpenAI não está configurada no backend.\n\nConfigure OPENAI_API_KEY no arquivo .env');
+            const errorMsg = data.error || "Erro ao gerar estratégia";
+            if (errorMsg.includes("OPENAI_API_KEY")) {
+              alert(
+                "❌ Erro: A chave da OpenAI não está configurada no backend.\n\nConfigure OPENAI_API_KEY no arquivo .env",
+              );
             } else {
               alert(`❌ ${errorMsg}`);
             }
@@ -632,65 +696,86 @@
 
           aiExperienceData = experience;
           renderTopics(data.topics || []);
-          alert('✅ Estratégia SEO gerada com sucesso! ' + (data.topics?.length || 0) + ' tópicos criados.');
+          alert(
+            "✅ Estratégia SEO gerada com sucesso! " +
+              (data.topics?.length || 0) +
+              " tópicos criados.",
+          );
         } catch (error) {
-          console.error('[AI SEO] Erro ao gerar estratégia:', error);
-          alert('❌ Erro: ' + error.message);
+          console.error("[AI SEO] Erro ao gerar estratégia:", error);
+          alert("❌ Erro: " + error.message);
         }
       }
 
       function renderTopics(topics) {
-        const list = document.getElementById('ai-topics-list');
+        const list = document.getElementById("ai-topics-list");
         if (!list) {
-          console.warn('[AI SEO] Elemento ai-topics-list não encontrado');
+          console.warn("[AI SEO] Elemento ai-topics-list não encontrado");
           return;
         }
-        
+
         if (!Array.isArray(topics) || topics.length === 0) {
-          list.innerHTML = '<p style="color: #999; padding: 12px;">Nenhum tópico gerado. Té certeza de que a chave da OpenAI está configurada?</p>';
+          list.innerHTML =
+            '<p style="color: #999; padding: 12px;">Nenhum tópico gerado. Té certeza de que a chave da OpenAI está configurada?</p>';
           return;
         }
-        
-        list.innerHTML = topics.map((topic, index) => `
+
+        list.innerHTML = topics
+          .map(
+            (topic, index) => `
           <label class="topic-item">
             <input type="checkbox" value="${index}" data-topic='${JSON.stringify(topic).replace(/'/g, "&apos;")}' />
             <span>
-              <strong>${topic.title || 'Tema sem título'}</strong>
-              <div class="topic-meta">${topic.keyword || ''} • ${topic.intent || ''} • ${topic.difficulty || ''}</div>
-              <div class="topic-meta">Prioridade ${topic.priority || index + 1} • ${topic.reason || ''}</div>
+              <strong>${topic.title || "Tema sem título"}</strong>
+              <div class="topic-meta">${topic.keyword || ""} • ${topic.intent || ""} • ${topic.difficulty || ""}</div>
+              <div class="topic-meta">Prioridade ${topic.priority || index + 1} • ${topic.reason || ""}</div>
             </span>
           </label>
-        `).join('');
+        `,
+          )
+          .join("");
       }
 
       async function generateSelectedArticles() {
-        const checked = Array.from(document.querySelectorAll('#ai-topics-list input[type="checkbox"]:checked'));
+        const checked = Array.from(
+          document.querySelectorAll(
+            '#ai-topics-list input[type="checkbox"]:checked',
+          ),
+        );
         if (!checked.length) {
-          alert('Selecione pelo menos um tópico.');
+          alert("Selecione pelo menos um tópico.");
           return;
         }
 
-        const topicData = checked.map((item) => JSON.parse(item.getAttribute('data-topic')));
+        const topicData = checked.map((item) =>
+          JSON.parse(item.getAttribute("data-topic")),
+        );
         const generatedArticles = [];
 
         for (const topic of topicData) {
           const articleBody = {
             topic: topic.title,
-            experience: aiExperienceData?.name || '',
-            category: aiExperienceData?.mode_slug || 'Experiência',
-            city: aiExperienceData?.location || 'Lisboa',
-            description: aiExperienceData?.story_short || '',
-            objective: 'Gerar conteúdo SEO útil e persuasivo para o blog.',
+            experience: aiExperienceData?.name || "",
+            category: aiExperienceData?.mode_slug || "Experiência",
+            city: aiExperienceData?.location || "Lisboa",
+            description: aiExperienceData?.story_short || "",
+            objective: "Gerar conteúdo SEO útil e persuasivo para o blog.",
           };
 
-          const res = await fetch(`${API_BASE.replace('/api/admin', '/api/ai-seo')}/articles`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'x-admin-key': getAdminKey() },
-            body: JSON.stringify(articleBody),
-          });
+          const res = await fetch(
+            `${API_BASE.replace("/api/admin", "/api/ai-seo")}/articles`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "x-admin-key": getAdminKey(),
+              },
+              body: JSON.stringify(articleBody),
+            },
+          );
           const data = await res.json();
           if (!res.ok) {
-            alert(data.error || 'Erro ao gerar artigo');
+            alert(data.error || "Erro ao gerar artigo");
             return;
           }
           generatedArticles.push(data.article);
@@ -698,71 +783,94 @@
 
         aiDraftArticle = generatedArticles[0] || null;
         aiSelectedTopic = topicData[0] || null;
-        document.getElementById('ai-draft-output').textContent = JSON.stringify({
-          generatedArticles,
-          selectedTopic: aiSelectedTopic,
-        }, null, 2);
-        alert('Artigos gerados com sucesso.');
+        document.getElementById("ai-draft-output").textContent = JSON.stringify(
+          {
+            generatedArticles,
+            selectedTopic: aiSelectedTopic,
+          },
+          null,
+          2,
+        );
+        alert("Artigos gerados com sucesso.");
       }
 
       async function improveSelectedArticle() {
         if (!aiDraftArticle) {
-          alert('Gere primeiro um artigo para melhorar.');
+          alert("Gere primeiro um artigo para melhorar.");
           return;
         }
 
-        const res = await fetch(`${API_BASE.replace('/api/admin', '/api/ai-seo')}/improve-article`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'x-admin-key': getAdminKey() },
-          body: JSON.stringify({
-            article: aiDraftArticle,
-            experience: aiExperienceData?.name || '',
-            category: aiExperienceData?.mode_slug || 'Experiência',
-            city: aiExperienceData?.location || 'Lisboa',
-            description: aiExperienceData?.story_short || '',
-            objective: 'Melhorar SEO, clareza, CTA e escaneabilidade.',
-          }),
-        });
+        const res = await fetch(
+          `${API_BASE.replace("/api/admin", "/api/ai-seo")}/improve-article`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "x-admin-key": getAdminKey(),
+            },
+            body: JSON.stringify({
+              article: aiDraftArticle,
+              experience: aiExperienceData?.name || "",
+              category: aiExperienceData?.mode_slug || "Experiência",
+              city: aiExperienceData?.location || "Lisboa",
+              description: aiExperienceData?.story_short || "",
+              objective: "Melhorar SEO, clareza, CTA e escaneabilidade.",
+            }),
+          },
+        );
         const data = await res.json();
         if (!res.ok) {
-          alert(data.error || 'Erro ao melhorar artigo');
+          alert(data.error || "Erro ao melhorar artigo");
           return;
         }
 
         aiDraftArticle = data.article;
-        document.getElementById('ai-draft-output').textContent = JSON.stringify(data.article, null, 2);
-        alert('Artigo melhorado com sucesso.');
+        document.getElementById("ai-draft-output").textContent = JSON.stringify(
+          data.article,
+          null,
+          2,
+        );
+        alert("Artigo melhorado com sucesso.");
       }
 
       function openBlogDraftForm() {
         if (!aiDraftArticle) {
-          alert('Gere primeiro um artigo para preencher o formulário.');
+          alert("Gere primeiro um artigo para preencher o formulário.");
           return;
         }
 
-        document.getElementById('blog-slug').value = aiDraftArticle.slug || '';
-        document.getElementById('blog-title-pt').value = aiDraftArticle.seoTitle_pt || aiDraftArticle.seoTitle || '';
-        document.getElementById('blog-title-en').value = aiDraftArticle.seoTitle_en || aiDraftArticle.seoTitle || '';
-        document.getElementById('blog-excerpt-pt').value = aiDraftArticle.excerpt_pt || aiDraftArticle.excerpt || '';
-        document.getElementById('blog-excerpt-en').value = aiDraftArticle.excerpt_en || aiDraftArticle.excerpt || '';
-        document.getElementById('blog-content-pt').value = aiDraftArticle.content_pt || aiDraftArticle.content || '';
-        document.getElementById('blog-content-en').value = aiDraftArticle.content_en || aiDraftArticle.content || '';
-        document.getElementById('blog-author').value = 'AI SEO Assistant';
-        document.getElementById('blog-image-url').value = '';
-        document.getElementById('blog-related-partner').value = aiExperienceData?.slug || '';
-        document.getElementById('blog-content-pt').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        document.getElementById("blog-slug").value = aiDraftArticle.slug || "";
+        document.getElementById("blog-title-pt").value =
+          aiDraftArticle.seoTitle_pt || aiDraftArticle.seoTitle || "";
+        document.getElementById("blog-title-en").value =
+          aiDraftArticle.seoTitle_en || aiDraftArticle.seoTitle || "";
+        document.getElementById("blog-excerpt-pt").value =
+          aiDraftArticle.excerpt_pt || aiDraftArticle.excerpt || "";
+        document.getElementById("blog-excerpt-en").value =
+          aiDraftArticle.excerpt_en || aiDraftArticle.excerpt || "";
+        document.getElementById("blog-content-pt").value =
+          aiDraftArticle.content_pt || aiDraftArticle.content || "";
+        document.getElementById("blog-content-en").value =
+          aiDraftArticle.content_en || aiDraftArticle.content || "";
+        document.getElementById("blog-author").value = "AI SEO Assistant";
+        document.getElementById("blog-image-url").value = "";
+        document.getElementById("blog-related-partner").value =
+          aiExperienceData?.slug || "";
+        document
+          .getElementById("blog-content-pt")
+          .scrollIntoView({ behavior: "smooth", block: "center" });
       }
 
       function publishDraftArticle() {
         if (!aiDraftArticle) {
-          alert('Gere primeiro um artigo para publicar.');
+          alert("Gere primeiro um artigo para publicar.");
           return;
         }
 
         openBlogDraftForm();
-        const adminKeyInput = document.getElementById('admin-key');
+        const adminKeyInput = document.getElementById("admin-key");
         if (!adminKeyInput?.value.trim()) {
-          alert('Informe a Admin API Key antes de publicar.');
+          alert("Informe a Admin API Key antes de publicar.");
           return;
         }
 

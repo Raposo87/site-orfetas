@@ -2361,6 +2361,52 @@ a:focus {
   box-shadow: none;
 }
 
+/* Seletor de quantidade no modal de compra */
+#buy-modal .buy-modal-quantity-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+#buy-modal .buy-modal-label {
+  font-size: 14px;
+  color: #555;
+  font-weight: 600;
+}
+#buy-modal .buy-modal-qty-control {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+#buy-modal .buy-qty-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #667eea;
+  background: transparent;
+  color: #667eea;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: background 0.2s, color 0.2s;
+}
+#buy-modal .buy-qty-btn:hover {
+  background: #667eea;
+  color: #fff;
+}
+#buy-modal #buy-qty-display {
+  font-size: 20px;
+  font-weight: 700;
+  min-width: 24px;
+  text-align: center;
+  color: #333;
+}
 
 
 /* Container da linha (título + botão) */

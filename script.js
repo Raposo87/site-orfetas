@@ -863,9 +863,8 @@ function emitCheckoutUiEvent(eventName, detail) {
   }
 }
 
-// 2. Função Global de Checkout (O NOVO PADRÃO)
 window.openBuyModal = function(offerData) {
-  const { partnerSlug, offerName, price, originalPrice, discountPercent } = offerData;
+  const { partnerSlug, offerName, price, originalPrice, discountPercent, volumePricing } = offerData;
   const normalizedPrice = Number.parseFloat(String(price).replace(',', '.'));
   const normalizedOriginalPrice = Number.parseFloat(
     String(originalPrice ?? price).replace(',', '.')
@@ -874,6 +873,21 @@ window.openBuyModal = function(offerData) {
   if (!Number.isFinite(normalizedPrice)) {
     console.error('Preco invalido para checkout:', price);
     return;
+  }
+
+  // Calcula preço unitário com base na quantidade e volume_pricing
+  function getUnitPrice(qty) {
+    const rules = Array.isArray(volumePricing) ? volumePricing : [];
+    if (qty > 1 && rules.length > 0) {
+      const applicable = rules
+        .filter(r => Number.isInteger(r.min_qty) && r.min_qty <= qty)
+        .sort((a, b) => b.min_qty - a.min_qty)[0];
+      if (applicable) {
+        if (applicable.unit_price_cents) return applicable.unit_price_cents / 100;
+        if (applicable.discount_extra_pct) return normalizedPrice * (1 - applicable.discount_extra_pct / 100);
+      }
+    }
+    return normalizedPrice;
   }
 
     // Remove modal anterior se existir
@@ -885,7 +899,20 @@ window.openBuyModal = function(offerData) {
         <div class="modal-content">
           <span class="modal-close-btn" onclick="this.parentElement.parentElement.remove()">&times;</span>
           <h3 class="buy-modal-title">Comprar: ${offerName}</h3>
-          <p class="buy-modal-price">Preço: <strong>EUR ${normalizedPrice.toFixed(2)}</strong></p>
+
+          <div class="buy-modal-quantity-row">
+            <label for="buy-quantity" class="buy-modal-label">Quantidade:</label>
+            <div class="buy-modal-qty-control">
+              <button type="button" class="buy-qty-btn" id="buy-qty-minus">−</button>
+              <span id="buy-qty-display">1</span>
+              <button type="button" class="buy-qty-btn" id="buy-qty-plus">+</button>
+            </div>
+          </div>
+
+          <p class="buy-modal-price" id="buy-modal-price-display">
+            Preço: <strong>EUR ${normalizedPrice.toFixed(2)}</strong>
+          </p>
+          <p id="buy-modal-total-display" style="margin:0 0 12px 0;"></p>
 
           <input type="email" id="buy-email" class="buy-modal-input" placeholder="Seu e-mail para receber o voucher">
           <input type="text" id="buy-sponsor" class="buy-modal-input" placeholder="Código Desconto (Opcional)">
@@ -898,6 +925,30 @@ window.openBuyModal = function(offerData) {
 
     document.body.insertAdjacentHTML('beforeend', modalHtml);
 
+  // Controlo de quantidade
+  let currentQty = 1;
+  const qtyDisplay = document.getElementById('buy-qty-display');
+  const priceDisplay = document.getElementById('buy-modal-price-display');
+  const totalDisplay = document.getElementById('buy-modal-total-display');
+
+  function updatePriceDisplay() {
+    const unitPrice = getUnitPrice(currentQty);
+    const total = unitPrice * currentQty;
+    const hasVolumeDiscount = currentQty > 1 && unitPrice < normalizedPrice;
+    priceDisplay.innerHTML = `Preço unit.: <strong>EUR ${unitPrice.toFixed(2)}</strong>` +
+      (hasVolumeDiscount ? ` <span style="color:#27ae60;font-size:12px;">(desconto volume)</span>` : '');
+    totalDisplay.innerHTML = currentQty > 1
+      ? `<strong style="font-size:18px;color:#667eea;">Total: EUR ${total.toFixed(2)}</strong>`
+      : '';
+  }
+
+  document.getElementById('buy-qty-minus').addEventListener('click', () => {
+    if (currentQty > 1) { currentQty--; qtyDisplay.textContent = currentQty; updatePriceDisplay(); }
+  });
+  document.getElementById('buy-qty-plus').addEventListener('click', () => {
+    if (currentQty < 10) { currentQty++; qtyDisplay.textContent = currentQty; updatePriceDisplay(); }
+  });
+
   emitCheckoutUiEvent('voucherhub:buy-modal-open', {
     partnerSlug,
     offerName,
@@ -909,11 +960,14 @@ window.openBuyModal = function(offerData) {
         const email = document.getElementById('buy-email').value.trim();
         const sponsor = document.getElementById('buy-sponsor').value.trim();
         const errorEl = document.getElementById('buy-error');
+        const unitPrice = getUnitPrice(currentQty);
+        const totalPrice = unitPrice * currentQty;
 
     emitCheckoutUiEvent('voucherhub:buy-pay-click', {
       partnerSlug,
       offerName,
-      price: normalizedPrice,
+      price: unitPrice,
+      quantity: currentQty,
       hasSponsorCode: sponsor.length > 0,
       hasEmail: email.length > 0
     });
@@ -931,14 +985,15 @@ window.openBuyModal = function(offerData) {
                 email: email,
                 partnerSlug: partnerSlug,
                 productName: offerName,
-              amountCents: Math.round(normalizedPrice * 100),
+              amountCents: Math.round(unitPrice * 100),
               originalPriceCents: Math.round((Number.isFinite(normalizedOriginalPrice) ? normalizedOriginalPrice : normalizedPrice) * 100),
                 offerDiscountPercent: Number.isFinite(Number(discountPercent))
                   ? Number(discountPercent)
                   : null,
                 currency: "eur",
                 sponsorCode: sponsor.toUpperCase(),
-                affiliateSlug: getActiveAffiliateSlug()
+                affiliateSlug: getActiveAffiliateSlug(),
+                quantity: currentQty,
             };
 
             const response = await fetch(`${window.VOUCHERHUB_API}/api/payments/create-checkout-session`, {
@@ -952,7 +1007,8 @@ window.openBuyModal = function(offerData) {
               trackPosthogEvent('checkout_session_created', {
                 partnerSlug,
                 offerName,
-                amountCents: Math.round(normalizedPrice * 100),
+                amountCents: Math.round(totalPrice * 100),
+                quantity: currentQty,
                 hasSponsorCode: sponsor.length > 0,
                 hasAffiliate: !!getActiveAffiliateSlug(),
               });
