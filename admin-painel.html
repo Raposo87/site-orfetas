@@ -273,18 +273,27 @@
       ></textarea>
 
       <p class="section-title">🎁 Ofertas</p>
+      <p style="font-size:12px;color:#666;margin-top:-8px;margin-bottom:8px;">
+        Clique em ⚙️ na oferta para configurar volume pricing (descontos por quantidade).
+      </p>
       <div id="offers-container"></div>
       <button type="button" class="btn-add-offer" id="addOfferBtn">
         + Adicionar Oferta
       </button>
-      <p class="section-title">📊 Preço por Volume (Opcional)</p>
-      <p style="font-size:12px;color:#666;margin-top:-8px;margin-bottom:8px;">
-        Defina descontos automáticos por quantidade. Deixe vazio se não quiser.
-      </p>
-      <div id="volume-pricing-container"></div>
-      <button type="button" class="btn-add-offer" id="addVolumePricingBtn" style="background:#0369a1;">
-        + Adicionar Regra de Volume
-      </button>
+      <div id="volume-pricing-modal" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.5); z-index:9999; align-items:center; justify-content:center;">
+        <div style="background:white; border-radius:12px; padding:30px; max-width:600px; width:90%; max-height:80vh; overflow-y:auto; box-shadow:0 10px 40px rgba(0,0,0,0.3);">
+          <h3 id="volume-modal-title" style="margin-top:0; color:#333;">Configurar Desconto por Volume</h3>
+          <p style="font-size:12px; color:#666; margin-bottom:20px;">Configure regras de desconto para quando o cliente comprar múltiplas unidades desta oferta.</p>
+          <div id="volume-modal-rules" style="margin-bottom:20px;"></div>
+          <button type="button" class="btn-add-offer" onclick="addVolumePricingRowModal()" style="background:#0369a1; margin-bottom:15px;">
+            + Adicionar Regra
+          </button>
+          <div style="display:flex; gap:10px; justify-content:flex-end;">
+            <button type="button" onclick="closeVolumePricingModal()" style="background:#999; width:auto; padding:10px 20px; margin:0;">Cancelar</button>
+            <button type="button" onclick="saveVolumePricingModal()" style="background:#16a34a; width:auto; padding:10px 20px; margin:0;">Salvar</button>
+          </div>
+        </div>
+      </div>
       <button type="submit" id="btn" style="margin-top: 24px">
         Criar Parceiro e Gerar Link Stripe
       </button>
@@ -388,7 +397,7 @@
 
         offers.forEach((offer) => {
           if (typeof offer === "string") {
-            addOfferRow(offer, "", "", "");
+            addOfferRow(offer, "", "", "", null);
             return;
           }
 
@@ -403,8 +412,9 @@
             offer?.discount_percent !== null
               ? String(offer.discount_percent)
               : "";
+          const volumePricing = offer?.volume_pricing || null;
 
-          addOfferRow(title, text, price, discount);
+          addOfferRow(title, text, price, discount, volumePricing);
         });
       }
 
@@ -445,7 +455,6 @@
           : "";
 
         resetOffers(Array.isArray(partner.offers) ? partner.offers : []);
-        resetVolumePricing(Array.isArray(partner.volume_pricing) ? partner.volume_pricing : []);
       }
 
       function clearForNewPartner() {
@@ -454,7 +463,6 @@
         adminForm.reset();
         document.getElementById("slug").readOnly = false;
         resetOffers([]);
-        resetVolumePricing([]);
         setSubmitLabel();
       }
 
@@ -554,64 +562,127 @@
         setSubmitLabel();
       }
 
-      // Gestão de volume pricing
-      let volumeRuleCount = 0;
-      function addVolumePricingRow(min_qty = "", unit_price = "", discount_extra_pct = "") {
-        volumeRuleCount++;
-        const container = document.getElementById("volume-pricing-container");
+      // Gestão de volume pricing POR OFERTA (modal)
+      let currentEditingOfferRow = null;
+      let offerVolumePricingRules = [];
+
+      function openVolumePricingModal(offerRow) {
+        currentEditingOfferRow = offerRow;
+        const existingRules = offerRow.dataset.volumePricing ? JSON.parse(offerRow.dataset.volumePricing) : [];
+        offerVolumePricingRules = JSON.parse(JSON.stringify(existingRules)); // deep copy
+        
+        const offerTitle = offerRow.querySelector(".offer-title").value || "(sem título)";
+        document.getElementById("volume-modal-title").textContent = `Desconto por Volume: ${offerTitle}`;
+        
+        // Limpar e recarregar regras
+        const container = document.getElementById("volume-modal-rules");
+        container.innerHTML = "";
+        offerVolumePricingRules.forEach((rule, idx) => {
+          addVolumePricingRowModal(rule.min_qty, rule.unit_price_cents ? (rule.unit_price_cents / 100).toFixed(2) : "", rule.discount_extra_pct || "");
+        });
+        
+        if (offerVolumePricingRules.length === 0) {
+          addVolumePricingRowModal();
+        }
+        
+        document.getElementById("volume-pricing-modal").style.display = "flex";
+      }
+
+      function closeVolumePricingModal() {
+        document.getElementById("volume-pricing-modal").style.display = "none";
+        currentEditingOfferRow = null;
+        offerVolumePricingRules = [];
+      }
+
+      function addVolumePricingRowModal(min_qty = "", unit_price = "", discount_extra_pct = "") {
+        const container = document.getElementById("volume-modal-rules");
+        const ruleIdx = container.children.length;
         const row = document.createElement("div");
         row.className = "offer-row";
-        row.dataset.volumeRuleId = volumeRuleCount;
+        row.style.display = "grid";
+        row.style.gridTemplateColumns = "1fr 1fr 1fr auto";
+        row.style.gap = "8px";
+        row.style.marginBottom = "8px";
         row.innerHTML = `
-          <input type="number" placeholder="Qtd mínima (ex: 2)" value="${escapeAttr(min_qty)}" class="vol-min-qty" min="2" step="1" />
-          <input type="number" placeholder="Preço unit. em € (ex: 8.00)" value="${escapeAttr(unit_price)}" class="vol-unit-price" step="0.01" min="0" />
-          <input type="number" placeholder="OU desconto extra (%)" value="${escapeAttr(discount_extra_pct)}" class="vol-discount-pct" step="0.1" min="0" max="100" />
-          <button type="button" onclick="this.closest('.offer-row').remove()" style="background:#dc2626; width:auto; padding:10px 14px; margin:0;">✕</button>
+          <input type="number" placeholder="Qtd mínima (ex: 2)" value="${escapeAttr(min_qty)}" class="vol-min-qty" min="2" step="1" style="margin:0; padding:8px;" />
+          <input type="number" placeholder="Preço unit. €" value="${escapeAttr(unit_price)}" class="vol-unit-price" step="0.01" min="0" style="margin:0; padding:8px;" />
+          <input type="number" placeholder="OU desconto %" value="${escapeAttr(discount_extra_pct)}" class="vol-discount-pct" step="0.1" min="0" max="100" style="margin:0; padding:8px;" />
+          <button type="button" onclick="this.closest('.offer-row').remove()" style="background:#dc2626; width:auto; padding:8px 12px; margin:0; border:none; border-radius:4px; color:white; cursor:pointer;">✕</button>
         `;
         container.appendChild(row);
       }
 
-      document.getElementById("addVolumePricingBtn").addEventListener("click", () => addVolumePricingRow());
-
-      function getVolumePricing() {
-        const rows = document.querySelectorAll("#volume-pricing-container .offer-row");
+      function saveVolumePricingModal() {
+        const container = document.getElementById("volume-modal-rules");
+        const rows = container.querySelectorAll(".offer-row");
         const rules = [];
+        
         rows.forEach((row) => {
           const min_qty = parseInt(row.querySelector(".vol-min-qty").value);
           const unit_price = parseFloat(row.querySelector(".vol-unit-price").value);
           const discount_pct = parseFloat(row.querySelector(".vol-discount-pct").value);
+          
           if (!Number.isInteger(min_qty) || min_qty < 2) return;
+          
           const rule = { min_qty };
-          if (Number.isFinite(unit_price) && unit_price > 0) rule.unit_price_cents = Math.round(unit_price * 100);
-          else if (Number.isFinite(discount_pct) && discount_pct > 0) rule.discount_extra_pct = discount_pct;
-          else return;
+          if (Number.isFinite(unit_price) && unit_price > 0) {
+            rule.unit_price_cents = Math.round(unit_price * 100);
+          } else if (Number.isFinite(discount_pct) && discount_pct > 0) {
+            rule.discount_extra_pct = discount_pct;
+          } else {
+            return;
+          }
           rules.push(rule);
         });
-        return rules.length > 0 ? rules : null;
+        
+        // Salvar no data attribute da oferta
+        if (currentEditingOfferRow) {
+          currentEditingOfferRow.dataset.volumePricing = JSON.stringify(rules);
+          // Atualizar badge visualmente
+          updateOfferRowBadge(currentEditingOfferRow);
+        }
+        
+        closeVolumePricingModal();
       }
 
-      function resetVolumePricing(rules = []) {
-        document.getElementById("volume-pricing-container").innerHTML = "";
-        volumeRuleCount = 0;
-        if (Array.isArray(rules) && rules.length > 0) {
-          rules.forEach(r => addVolumePricingRow(r.min_qty || "", r.unit_price_cents ? (r.unit_price_cents / 100).toFixed(2) : "", r.discount_extra_pct || ""));
+      function updateOfferRowBadge(offerRow) {
+        const badge = offerRow.querySelector(".offer-volume-badge");
+        const rules = offerRow.dataset.volumePricing ? JSON.parse(offerRow.dataset.volumePricing) : [];
+        if (badge) {
+          if (rules.length > 0) {
+            badge.textContent = `💰 ${rules.length}R`;
+            badge.style.opacity = "1";
+          } else {
+            badge.style.opacity = "0.4";
+          }
         }
       }
 
       // Gestão de ofertas dinâmicas
       let offerCount = 0;
-      function addOfferRow(title = "", text = "", price = "", discount = "") {
+      function addOfferRow(title = "", text = "", price = "", discount = "", volumePricing = null) {
         offerCount++;
         const container = document.getElementById("offers-container");
         const row = document.createElement("div");
         row.className = "offer-row";
         row.dataset.offerId = offerCount;
+        row.dataset.volumePricing = volumePricing ? JSON.stringify(volumePricing) : "";
+        row.style.display = "grid";
+        row.style.gridTemplateColumns = "1fr 1.5fr 0.8fr 0.7fr 0.6fr auto";
+        row.style.gap = "8px";
+        row.style.alignItems = "center";
+        
+        const hasRules = volumePricing && volumePricing.length > 0;
+        const badgeOpacity = hasRules ? "1" : "0.4";
+        const badgeText = hasRules ? `💰 ${volumePricing.length}R` : "💰";
+        
         row.innerHTML = `
-          <input type="text" placeholder="Título da oferta" value="${escapeAttr(title)}" class="offer-title" />
-          <input type="text" placeholder="Descrição da oferta" value="${escapeAttr(text)}" class="offer-text" />
-          <input type="number" placeholder="Preço (€)" value="${escapeAttr(price)}" class="offer-price" step="0.01" min="0" />
-          <input type="number" placeholder="Desconto (%)" value="${escapeAttr(discount)}" class="offer-discount" step="0.01" min="0" max="100" />
-          <button type="button" onclick="removeOffer(this)" style="background:#dc2626; width:auto; padding:10px 14px; margin:0;">✕</button>
+          <input type="text" placeholder="Título" value="${escapeAttr(title)}" class="offer-title" style="margin:0; padding:10px;" />
+          <input type="text" placeholder="Descrição" value="${escapeAttr(text)}" class="offer-text" style="margin:0; padding:10px;" />
+          <input type="number" placeholder="Preço (€)" value="${escapeAttr(price)}" class="offer-price" step="0.01" min="0" style="margin:0; padding:10px;" />
+          <input type="number" placeholder="Desc. (%)" value="${escapeAttr(discount)}" class="offer-discount" step="0.01" min="0" max="100" style="margin:0; padding:10px;" />
+          <button type="button" onclick="openVolumePricingModal(this.closest('.offer-row'))" class="offer-volume-badge" style="background:none; border:2px solid #667eea; color:#667eea; padding:8px 12px; margin:0; border-radius:6px; cursor:pointer; font-weight:bold; width:auto; opacity:${badgeOpacity}; transition:all 0.2s;">${badgeText}</button>
+          <button type="button" onclick="removeOffer(this)" style="background:#dc2626; width:auto; padding:10px 12px; margin:0; border-radius:6px; color:white; border:none; cursor:pointer;">✕</button>
         `;
         container.appendChild(row);
       }
@@ -628,24 +699,33 @@
       addOfferRow();
 
       function getOffers() {
-        const rows = document.querySelectorAll(".offer-row");
+        const rows = document.querySelectorAll(".offer-row:not(#volume-modal-rules .offer-row)");
         const offers = [];
         rows.forEach((row) => {
-          const title = row.querySelector(".offer-title").value.trim();
-          const text = row.querySelector(".offer-text").value.trim();
-          const price =
-            parseFloat(row.querySelector(".offer-price").value) || 0;
-          const rawDiscount = row
-            .querySelector(".offer-discount")
-            .value.trim()
-            .replace(",", ".");
+          const title = row.querySelector(".offer-title")?.value.trim();
+          const text = row.querySelector(".offer-text")?.value.trim();
+          const price = parseFloat(row.querySelector(".offer-price")?.value) || 0;
+          const rawDiscount = row.querySelector(".offer-discount")?.value.trim().replace(",", ".");
           const parsedDiscount = Number.parseFloat(rawDiscount);
-
+          
           if (!title) return;
 
           const offer = { title, text, price };
           if (Number.isFinite(parsedDiscount)) {
             offer.discount_percent = Math.max(0, Math.min(100, parsedDiscount));
+          }
+          
+          // Incluir volume_pricing se existir
+          const volumePricingStr = row.dataset.volumePricing;
+          if (volumePricingStr) {
+            try {
+              const volumePricing = JSON.parse(volumePricingStr);
+              if (Array.isArray(volumePricing) && volumePricing.length > 0) {
+                offer.volume_pricing = volumePricing;
+              }
+            } catch (e) {
+              console.warn("Erro ao parsear volume_pricing:", e);
+            }
           }
 
           offers.push(offer);
@@ -773,7 +853,6 @@
           includes,
           recommendations,
           offers: getOffers(),
-          volume_pricing: getVolumePricing(),
           is_catalog_active: true,
         };
 
