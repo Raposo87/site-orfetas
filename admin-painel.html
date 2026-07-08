@@ -670,7 +670,7 @@
         row.style.display = "grid";
         row.style.gridTemplateColumns = "1fr 1.5fr 0.8fr 0.7fr 0.6fr auto";
         row.style.gap = "8px";
-        row.style.alignItems = "center";
+        row.style.alignItems = "start";
         
         const hasRules = volumePricing && volumePricing.length > 0;
         const badgeOpacity = hasRules ? "1" : "0.4";
@@ -678,7 +678,7 @@
         
         row.innerHTML = `
           <input type="text" placeholder="Título" value="${escapeAttr(title)}" class="offer-title" style="margin:0; padding:10px;" />
-          <input type="text" placeholder="Descrição" value="${escapeAttr(text)}" class="offer-text" style="margin:0; padding:10px;" />
+          <textarea placeholder="Descrição" class="offer-text" style="margin:0; padding:10px; resize:vertical; min-height:50px; font-family:inherit; font-size:14px;">${escapeAttr(text)}</textarea>
           <input type="number" placeholder="Preço (€)" value="${escapeAttr(price)}" class="offer-price" step="0.01" min="0" style="margin:0; padding:10px;" />
           <input type="number" placeholder="Desc. (%)" value="${escapeAttr(discount)}" class="offer-discount" step="0.01" min="0" max="100" style="margin:0; padding:10px;" />
           <button type="button" onclick="openVolumePricingModal(this.closest('.offer-row'))" class="offer-volume-badge" style="background:none; border:2px solid #667eea; color:#667eea; padding:8px 12px; margin:0; border-radius:6px; cursor:pointer; font-weight:bold; width:auto; opacity:${badgeOpacity}; transition:all 0.2s;">${badgeText}</button>
