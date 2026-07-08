@@ -275,7 +275,7 @@
                    price: finalPrice,
                    originalPrice: originalPrice,
                    discountPercent: effectiveDiscountPct,
-                   volumePricing: partner.volume_pricing || null,
+                   volumePricing: o.volume_pricing || null,
                });
             });
           }
