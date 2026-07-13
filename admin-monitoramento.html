@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VoucherHub - Monitorização do Sistema</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+      background: #f0f2f5;
+      color: #333;
+    }
+
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ===================== SIDEBAR ===================== */
+    .sidebar {
+      width: 250px;
+      background: #1e3a5f;
+      color: white;
+      padding: 24px;
+      border-right: 1px solid #0a1e35;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    .logo {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sidebar-menu {
+      list-style: none;
+    }
+
+    .sidebar-menu li {
+      margin-bottom: 8px;
+    }
+
+    .sidebar-menu a {
+      display: block;
+      padding: 10px 12px;
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+
+    .sidebar-menu a:hover,
+    .sidebar-menu a.active {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    .sidebar-menu a.active {
+      background: #3b82f6;
+      color: white;
+    }
+
+    .sidebar-footer {
+      margin-top: 32px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* ===================== MAIN CONTENT ===================== */
+    .main {
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .header {
+      background: white;
+      padding: 20px 32px;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      sticky: top;
+      z-index: 100;
+    }
+
+    .header-title h1 {
+      font-size: 24px;
+      color: #1f2937;
+    }
+
+    .header-title p {
+      font-size: 12px;
+      color: #9ca3af;
+      margin-top: 4px;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: #3b82f6;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #2563eb;
+    }
+
+    .btn-secondary {
+      background: #e5e7eb;
+      color: #374151;
+    }
+
+    .btn-secondary:hover {
+      background: #d1d5db;
+    }
+
+    .btn-danger {
+      background: #ef4444;
+      color: white;
+    }
+
+    .btn-danger:hover {
+      background: #dc2626;
+    }
+
+    .content {
+      padding: 32px;
+    }
+
+    /* ===================== TABS ===================== */
+    .tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 2px solid #e5e7eb;
+      margin-bottom: 24px;
+      overflow-x: auto;
+    }
+
+    .tab-button {
+      padding: 12px 16px;
+      border: none;
+      background: transparent;
+      color: #6b7280;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .tab-button:hover {
+      color: #1f2937;
+    }
+
+    .tab-button.active {
+      color: #3b82f6;
+      border-bottom-color: #3b82f6;
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.2s;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ===================== CARDS ===================== */
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #1f2937;
+    }
+
+    .status-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .status-online {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .status-warning {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .status-offline {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .status-online .status-dot {
+      background: #16a34a;
+    }
+
+    .status-warning .status-dot {
+      background: #f59e0b;
+    }
+
+    .status-offline .status-dot {
+      background: #ef4444;
+    }
+
+    /* ===================== GRID LAYOUT ===================== */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .grid-item {
+      background: white;
+      border-radius: 8px;
+      padding: 16px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .grid-item-value {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 4px;
+    }
+
+    .grid-item-label {
+      font-size: 12px;
+      color: #6b7280;
+      font-weight: 500;
+    }
+
+    .grid-item-status {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    /* ===================== TABLE ===================== */
+    .table-wrapper {
+      overflow-x: auto;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+    }
+
+    th {
+      background: #f3f4f6;
+      padding: 12px;
+      text-align: left;
+      font-size: 12px;
+      font-weight: 600;
+      color: #6b7280;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #e5e7eb;
+      font-size: 13px;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* ===================== FILTERS ===================== */
+    .filters {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .filter-input {
+      padding: 8px 12px;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      font-size: 13px;
+      background: white;
+    }
+
+    .filter-input:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    /* ===================== ALERTS ===================== */
+    .alert {
+      padding: 12px 16px;
+      border-radius: 6px;
+      margin-bottom: 12px;
+      font-size: 13px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .alert-icon {
+      flex-shrink: 0;
+      font-size: 18px;
+    }
+
+    .alert-content {
+      flex: 1;
+    }
+
+    .alert-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .alert-info {
+      background: #dbeafe;
+      color: #0c4a6e;
+      border-left: 3px solid #0284c7;
+    }
+
+    .alert-warning {
+      background: #fef3c7;
+      color: #78350f;
+      border-left: 3px solid #f59e0b;
+    }
+
+    .alert-error {
+      background: #fee2e2;
+      color: #7f1d1d;
+      border-left: 3px solid #ef4444;
+    }
+
+    .alert-success {
+      background: #dcfce7;
+      color: #166534;
+      border-left: 3px solid #16a34a;
+    }
+
+    /* ===================== LOADING ===================== */
+    .loading {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid #e5e7eb;
+      border-top-color: #3b82f6;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid #0a1e35;
+      }
+
+      .grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      .tabs {
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="logo">
+        🔍 Monitorização
+      </div>
+
+      <ul class="sidebar-menu">
+        <li>
+          <a href="#" data-tab="dashboard" class="tab-link active">
+            📊 Dashboard Geral
+          </a>
+        </li>
+        <li>
+          <a href="#" data-tab="logs" class="tab-link">
+            📋 Logs do Sistema
+          </a>
+        </li>
+        <li>
+          <a href="#" data-tab="orders" class="tab-link">
+            ⚠️ Compras com Problemas
+          </a>
+        </li>
+        <li>
+          <a href="#" data-tab="vouchers" class="tab-link">
+            🎟️ Monitorização Vouchers
+          </a>
+        </li>
+        <li>
+          <a href="#" data-tab="partners" class="tab-link">
+            🤝 Parceiros
+          </a>
+        </li>
+        <li>
+          <a href="#" data-tab="stripe" class="tab-link">
+            💳 Stripe
+          </a>
+        </li>
+        <li>
+          <a href="#" data-tab="database" class="tab-link">
+            🗄️ Banco de Dados
+          </a>
+        </li>
+        <li>
+          <a href="#" data-tab="api" class="tab-link">
+            🔌 API
+          </a>
+        </li>
+        <li>
+          <a href="#" data-tab="emails" class="tab-link">
+            📧 Emails
+          </a>
+        </li>
+        <li>
+          <a href="#" data-tab="uploads" class="tab-link">
+            ☁️ Cloudinary
+          </a>
+        </li>
+        <li>
+          <a href="#" data-tab="security" class="tab-link">
+            🔐 Segurança
+          </a>
+        </li>
+        <li>
+          <a href="#" data-tab="performance" class="tab-link">
+            ⚡ Performance
+          </a>
+        </li>
+        <li>
+          <a href="#" data-tab="audit" class="tab-link">
+            📝 Auditoria
+          </a>
+        </li>
+        <li>
+          <a href="#" data-tab="diagnostics" class="tab-link">
+            🔧 Diagnóstico
+          </a>
+        </li>
+        <li>
+          <a href="#" data-tab="alerts" class="tab-link">
+            🚨 Alertas
+          </a>
+        </li>
+        <li>
+          <a href="#" data-tab="notifications" class="tab-link">
+            🔔 Notificações
+          </a>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        Atualizado: <span id="last-update">--:--</span>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+      <!-- HEADER -->
+      <div class="header">
+        <div class="header-title">
+          <h1>🖥️ Monitorização do Sistema</h1>
+          <p>Central completa de saúde e performance da aplicação</p>
+        </div>
+        <div class="header-actions">
+          <button class="btn btn-secondary" onclick="location.href='/admin-painel.html'">
+            ← Voltar
+          </button>
+          <button class="btn btn-primary" id="refresh-btn" onclick="refreshDashboard()">
+            ↻ Atualizar Agora
+          </button>
+        </div>
+      </div>
+
+      <!-- CONTENT -->
+      <div class="content">
+        <!-- 1️⃣ DASHBOARD GERAL -->
+        <div class="tab-content active" id="dashboard">
+          <div id="dashboard-content">
+            <div class="loading"></div> Carregando...
+          </div>
+        </div>
+
+        <!-- 2️⃣ LOGS DO SISTEMA -->
+        <div class="tab-content" id="logs">
+          <div class="filters">
+            <input type="date" class="filter-input" id="logs-start-date" />
+            <input type="date" class="filter-input" id="logs-end-date" />
+            <select class="filter-input" id="logs-type">
+              <option value="">-- Todos os Tipos --</option>
+              <option value="PAYMENT">Pagamento</option>
+              <option value="VOUCHER">Voucher</option>
+              <option value="STRIPE">Stripe</option>
+              <option value="CRON">Cron Job</option>
+              <option value="ERROR">Erro</option>
+            </select>
+            <select class="filter-input" id="logs-level">
+              <option value="">-- Todos os Níveis --</option>
+              <option value="INFO">Info</option>
+              <option value="WARNING">Aviso</option>
+              <option value="ERROR">Erro</option>
+            </select>
+            <input type="text" class="filter-input" id="logs-search" placeholder="Pesquisar..." />
+            <button class="btn btn-primary" onclick="loadLogs()">🔍 Filtrar</button>
+          </div>
+          <div id="logs-content">
+            <div class="loading"></div> Carregando logs...
+          </div>
+        </div>
+
+        <!-- 3️⃣ COMPRAS COM PROBLEMAS -->
+        <div class="tab-content" id="orders">
+          <div id="orders-content">
+            <div class="loading"></div> Carregando...
+          </div>
+        </div>
+
+        <!-- 4️⃣ MONITORIZAÇÃO DE VOUCHERS -->
+        <div class="tab-content" id="vouchers">
+          <div id="vouchers-content">
+            <div class="loading"></div> Carregando...
+          </div>
+        </div>
+
+        <!-- 5️⃣ PARCEIROS -->
+        <div class="tab-content" id="partners">
+          <div id="partners-content">
+            <div class="loading"></div> Carregando...
+          </div>
+        </div>
+
+        <!-- 6️⃣ STRIPE -->
+        <div class="tab-content" id="stripe">
+          <div id="stripe-content">
+            <div class="loading"></div> Carregando...
+          </div>
+        </div>
+
+        <!-- 7️⃣ BANCO DE DADOS -->
+        <div class="tab-content" id="database">
+          <div id="database-content">
+            <div class="loading"></div> Carregando...
+          </div>
+        </div>
+
+        <!-- 8️⃣ API -->
+        <div class="tab-content" id="api">
+          <div id="api-content">
+            <div class="loading"></div> Carregando...
+          </div>
+        </div>
+
+        <!-- 9️⃣ EMAILS -->
+        <div class="tab-content" id="emails">
+          <div id="emails-content">
+            <div class="loading"></div> Carregando...
+          </div>
+        </div>
+
+        <!-- 🔟 CLOUDINARY -->
+        <div class="tab-content" id="uploads">
+          <div id="uploads-content">
+            <div class="loading"></div> Carregando...
+          </div>
+        </div>
+
+        <!-- 1️⃣1️⃣ SEGURANÇA -->
+        <div class="tab-content" id="security">
+          <div id="security-content">
+            <div class="loading"></div> Carregando...
+          </div>
+        </div>
+
+        <!-- 1️⃣2️⃣ PERFORMANCE -->
+        <div class="tab-content" id="performance">
+          <div id="performance-content">
+            <div class="loading"></div> Carregando...
+          </div>
+        </div>
+
+        <!-- 1️⃣3️⃣ AUDITORIA -->
+        <div class="tab-content" id="audit">
+          <div id="audit-content">
+            <div class="loading"></div> Carregando...
+          </div>
+        </div>
+
+        <!-- 1️⃣4️⃣ DIAGNÓSTICO -->
+        <div class="tab-content" id="diagnostics">
+          <div id="diagnostics-content">
+            <div class="loading"></div> Carregando...
+          </div>
+        </div>
+
+        <!-- 1️⃣5️⃣ ALERTAS -->
+        <div class="tab-content" id="alerts">
+          <div id="alerts-content">
+            <div class="loading"></div> Carregando...
+          </div>
+        </div>
+
+        <!-- 1️⃣6️⃣ NOTIFICAÇÕES -->
+        <div class="tab-content" id="notifications">
+          <div id="notifications-content">
+            <div class="loading"></div> Carregando...
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const API_URL = window.VOUCHERHUB_API || 'http://localhost:3000';
+    const getToken = () => localStorage.getItem('admin_token');
+    const getHeaders = () => ({
+      'Authorization': `Bearer ${getToken()}`,
+      'Content-Type': 'application/json'
+    });
+
+    // ==================== TAB NAVIGATION ====================
+    document.querySelectorAll('.tab-link').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const tabName = link.getAttribute('data-tab');
+        switchTab(tabName);
+      });
+    });
+
+    function switchTab(tabName) {
+      // Remove active state from all
+      document.querySelectorAll('.tab-link').forEach(l => l.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+      // Add active to selected
+      document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+      document.getElementById(tabName).classList.add('active');
+
+      // Load content
+      loadTabContent(tabName);
+    }
+
+    async function loadTabContent(tabName) {
+      try {
+        switch (tabName) {
+          case 'dashboard':
+            await loadDashboard();
+            break;
+          case 'logs':
+            await loadLogs();
+            break;
+          case 'orders':
+            await loadProblematicOrders();
+            break;
+          case 'vouchers':
+            await loadVoucherIssues();
+            break;
+          case 'partners':
+            await loadPartnerAlerts();
+            break;
+          default:
+            document.getElementById(tabName + '-content').innerHTML = '<p>Em desenvolvimento...</p>';
+        }
+      } catch (err) {
+        console.error(`Erro ao carregar ${tabName}:`, err);
+        document.getElementById(tabName + '-content').innerHTML = `<div class="alert alert-error"><strong>Erro</strong> ao carregar dados</div>`;
+      }
+    }
+
+    // ==================== DASHBOARD ====================
+    async function loadDashboard() {
+      try {
+        const res = await fetch(`${API_URL}/api/monitoring/health`, {
+          headers: getHeaders()
+        });
+        const data = await res.json();
+
+        if (!data.success) throw new Error(data.error);
+
+        const health = data.data;
+        let html = '<div class="grid">';
+
+        // API
+        html += renderHealthCard('API', health.api.status, health.api.responseTime + 'ms');
+        // Database
+        html += renderHealthCard('PostgreSQL', health.database.status, health.database.responseTime + 'ms');
+        // Stripe
+        html += renderHealthCard('Stripe API', health.stripe.status, health.stripe.responseTime + 'ms');
+        // Webhooks
+        html += renderHealthCard('Webhooks', health.stripeWebhooks.status, health.stripeWebhooks.totalEvents + ' eventos');
+        // Email
+        html += renderHealthCard('Email', health.email.status);
+        // Cloudinary
+        html += renderHealthCard('Cloudinary', health.cloudinary.status);
+
+        html += '</div>';
+
+        document.getElementById('dashboard-content').innerHTML = html;
+        updateLastUpdate();
+      } catch (err) {
+        document.getElementById('dashboard-content').innerHTML = `<div class="alert alert-error"><strong>Erro:</strong> ${err.message}</div>`;
+      }
+    }
+
+    function renderHealthCard(name, status, detail = '') {
+      const statusClass = status === 'online' || status === 'configured' ? 'status-online' : status === 'warning' ? 'status-warning' : 'status-offline';
+      const statusText = status === 'online' ? '🟢 Online' : status === 'offline' ? '🔴 Offline' : status === 'configured' ? '✓ Configurado' : '🟡 Aviso';
+
+      return `
+        <div class="grid-item">
+          <div class="grid-item-value">${name}</div>
+          <div class="grid-item-label">${detail}</div>
+          <div class="grid-item-status">
+            <span class="status-indicator ${statusClass}">
+              <span class="status-dot"></span>
+              ${statusText}
+            </span>
+          </div>
+        </div>
+      `;
+    }
+
+    // ==================== LOGS ====================
+    async function loadLogs() {
+      try {
+        const startDate = document.getElementById('logs-start-date').value || new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+        const endDate = document.getElementById('logs-end-date').value || new Date().toISOString().split('T')[0];
+        const type = document.getElementById('logs-type').value || '';
+        const level = document.getElementById('logs-level').value || '';
+        const search = document.getElementById('logs-search').value || '';
+
+        const params = new URLSearchParams({ startDate, endDate, type, level, search });
+        const res = await fetch(`${API_URL}/api/monitoring/logs?${params}`, {
+          headers: getHeaders()
+        });
+        const data = await res.json();
+
+        if (!data.success) throw new Error(data.error);
+
+        let html = `
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Data</th>
+                  <th>Tipo</th>
+                  <th>Nível</th>
+                  <th>Mensagem</th>
+                  <th>Ação</th>
+                </tr>
+              </thead>
+              <tbody>
+        `;
+
+        data.data.forEach(log => {
+          html += `
+            <tr>
+              <td>${new Date(log.created_at).toLocaleString('pt-PT')}</td>
+              <td><span class="badge">${log.type}</span></td>
+              <td><span class="status-indicator status-${log.level.toLowerCase()}">${log.level}</span></td>
+              <td>${log.message.substring(0, 100)}...</td>
+              <td><button class="btn btn-secondary" onclick="showLogDetails('${log.id}')">Ver</button></td>
+            </tr>
+          `;
+        });
+
+        html += `
+              </tbody>
+            </table>
+          </div>
+          <p style="margin-top: 12px; font-size: 12px; color: #6b7280;">
+            Total: ${data.pagination.total} registos (Página ${Math.floor(data.pagination.offset / data.pagination.limit) + 1} de ${data.pagination.pages})
+          </p>
+        `;
+
+        document.getElementById('logs-content').innerHTML = html;
+      } catch (err) {
+        document.getElementById('logs-content').innerHTML = `<div class="alert alert-error"><strong>Erro:</strong> ${err.message}</div>`;
+      }
+    }
+
+    // ==================== COMPRAS COM PROBLEMAS ====================
+    async function loadProblematicOrders() {
+      try {
+        const res = await fetch(`${API_URL}/api/monitoring/problematic-orders`, {
+          headers: getHeaders()
+        });
+        const data = await res.json();
+
+        if (!data.success) throw new Error(data.error);
+
+        if (data.data.length === 0) {
+          document.getElementById('orders-content').innerHTML = '<div class="alert alert-success"><strong>✓ Excelente!</strong> Nenhuma compra com problemas detectada.</div>';
+          return;
+        }
+
+        let html = `
+          <div class="alert alert-warning">
+            <strong>⚠️ ${data.total} problema(s) detectado(s)</strong>
+          </div>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Tipo de Problema</th>
+                  <th>ID/Código</th>
+                  <th>Valor</th>
+                  <th>Data</th>
+                  <th>Descrição</th>
+                </tr>
+              </thead>
+              <tbody>
+        `;
+
+        data.data.forEach(order => {
+          html += `
+            <tr>
+              <td><strong>${order.problem_type}</strong></td>
+              <td><code>${order.id || order.stripe_session_id}</code></td>
+              <td>€${(order.amount_cents / 100).toFixed(2)}</td>
+              <td>${new Date(order.created_at).toLocaleDateString('pt-PT')}</td>
+              <td>${order.description}</td>
+            </tr>
+          `;
+        });
+
+        html += '</tbody></table></div>';
+        document.getElementById('orders-content').innerHTML = html;
+      } catch (err) {
+        document.getElementById('orders-content').innerHTML = `<div class="alert alert-error"><strong>Erro:</strong> ${err.message}</div>`;
+      }
+    }
+
+    // ==================== VOUCHERS ====================
+    async function loadVoucherIssues() {
+      try {
+        const res = await fetch(`${API_URL}/api/monitoring/voucher-issues`, {
+          headers: getHeaders()
+        });
+        const data = await res.json();
+
+        if (!data.success) throw new Error(data.error);
+
+        if (data.data.length === 0) {
+          document.getElementById('vouchers-content').innerHTML = '<div class="alert alert-success"><strong>✓</strong> Nenhum problema com vouchers detectado.</div>';
+          return;
+        }
+
+        let html = `<div class="alert alert-warning"><strong>⚠️ ${data.total} problema(s) detectado(s)</strong></div>`;
+
+        data.data.forEach(issue => {
+          html += `
+            <div class="card">
+              <div class="card-title">${issue.issue_type}: ${issue.code}</div>
+              <p><strong>Quantidade:</strong> ${issue.count}</p>
+              <p><strong>Descrição:</strong> ${issue.description}</p>
+              <p><strong>IDs:</strong> <code>${issue.ids.join(', ')}</code></p>
+            </div>
+          `;
+        });
+
+        document.getElementById('vouchers-content').innerHTML = html;
+      } catch (err) {
+        document.getElementById('vouchers-content').innerHTML = `<div class="alert alert-error"><strong>Erro:</strong> ${err.message}</div>`;
+      }
+    }
+
+    // ==================== PARCEIROS ====================
+    async function loadPartnerAlerts() {
+      try {
+        const res = await fetch(`${API_URL}/api/monitoring/partner-alerts`, {
+          headers: getHeaders()
+        });
+        const data = await res.json();
+
+        if (!data.success) throw new Error(data.error);
+
+        if (data.data.length === 0) {
+          document.getElementById('partners-content').innerHTML = '<div class="alert alert-success"><strong>✓</strong> Todos os parceiros estão com dados completos!</div>';
+          return;
+        }
+
+        let html = `<div class="alert alert-warning"><strong>⚠️ ${data.total} parceiro(s) com alerta(s)</strong></div>`;
+
+        data.data.forEach(partner => {
+          const alerts = partner.alerts || [];
+          html += `
+            <div class="card">
+              <div class="card-title">${partner.name} (${partner.slug})</div>
+              <p><strong>Alertas:</strong> ${alerts.length > 0 ? alerts.join(', ') : 'Nenhum'}</p>
+            </div>
+          `;
+        });
+
+        document.getElementById('partners-content').innerHTML = html;
+      } catch (err) {
+        document.getElementById('partners-content').innerHTML = `<div class="alert alert-error"><strong>Erro:</strong> ${err.message}</div>`;
+      }
+    }
+
+    // ==================== UTILITIES ====================
+    function updateLastUpdate() {
+      const now = new Date().toLocaleTimeString('pt-PT');
+      document.getElementById('last-update').textContent = now;
+    }
+
+    function refreshDashboard() {
+      const btn = document.getElementById('refresh-btn');
+      btn.disabled = true;
+      btn.textContent = '↻ Atualizando...';
+
+      loadTabContent('dashboard').then(() => {
+        btn.disabled = false;
+        btn.textContent = '↻ Atualizar Agora';
+        updateLastUpdate();
+      });
+    }
+
+    // Check auth on load
+    if (!getToken()) {
+      window.location.href = '/admin.html';
+    }
+
+    // Auto-refresh every 5 minutes
+    setInterval(() => {
+      const activeTab = document.querySelector('.tab-link.active')?.getAttribute('data-tab');
+      if (activeTab) {
+        loadTabContent(activeTab);
+      }
+    }, 5 * 60 * 1000);
+
+    // Initial load
+    loadDashboard();
+    updateLastUpdate();
+  </script>
+</body>
+</html>
