@@ -704,7 +704,26 @@
   </div>
 
   <script>
-    const API_URL = window.VOUCHERHUB_API || 'http://localhost:3000';
+    // Detectar API URL - inteligente para dev e produção
+    let API_URL = window.VOUCHERHUB_API;
+    
+    if (!API_URL) {
+      const hostname = window.location.hostname;
+      const protocol = window.location.protocol;
+      
+      // Em localhost/127.0.0.1 (desenvolvimento): Backend em port 3000
+      if (hostname === 'localhost' || hostname === '127.0.0.1') {
+        API_URL = `http://${hostname}:3000`;
+      } else {
+        // Em produção: Backend na mesma origem
+        API_URL = `${protocol}//${hostname}`;
+      }
+    }
+    
+    console.log('🔗 API_URL:', API_URL);
+    console.log('📍 Current hostname:', window.location.hostname);
+    console.log('🌐 Current origin:', window.location.origin);
+    
     const TOKEN_STORAGE_KEY = 'voucherhub_admin_token';
     const getToken = () => localStorage.getItem(TOKEN_STORAGE_KEY);
     const getHeaders = () => ({
@@ -767,6 +786,11 @@
         const res = await fetch(`${API_URL}/api/monitoring/health`, {
           headers: getHeaders()
         });
+        
+        if (!res.ok) {
+          throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+        }
+        
         const data = await res.json();
 
         if (!data.success) throw new Error(data.error);
@@ -792,7 +816,13 @@
         document.getElementById('dashboard-content').innerHTML = html;
         updateLastUpdate();
       } catch (err) {
-        document.getElementById('dashboard-content').innerHTML = `<div class="alert alert-error"><strong>Erro:</strong> ${err.message}</div>`;
+        console.error('❌ Dashboard error:', err);
+        document.getElementById('dashboard-content').innerHTML = `
+          <div class="alert alert-error">
+            <strong>Erro ao carregar dashboard:</strong> ${err.message}<br>
+            <small style="color:#666;">API: ${API_URL}</small>
+          </div>
+        `;
       }
     }
 
@@ -827,6 +857,11 @@
         const res = await fetch(`${API_URL}/api/monitoring/logs?${params}`, {
           headers: getHeaders()
         });
+        
+        if (!res.ok) {
+          throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+        }
+        
         const data = await res.json();
 
         if (!data.success) throw new Error(data.error);
@@ -869,7 +904,13 @@
 
         document.getElementById('logs-content').innerHTML = html;
       } catch (err) {
-        document.getElementById('logs-content').innerHTML = `<div class="alert alert-error"><strong>Erro:</strong> ${err.message}</div>`;
+        console.error('❌ Logs error:', err);
+        document.getElementById('logs-content').innerHTML = `
+          <div class="alert alert-error">
+            <strong>Erro ao carregar logs:</strong> ${err.message}<br>
+            <small style="color:#666;">API: ${API_URL}</small>
+          </div>
+        `;
       }
     }
 
@@ -879,6 +920,11 @@
         const res = await fetch(`${API_URL}/api/monitoring/problematic-orders`, {
           headers: getHeaders()
         });
+        
+        if (!res.ok) {
+          throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+        }
+        
         const data = await res.json();
 
         if (!data.success) throw new Error(data.error);
@@ -921,7 +967,13 @@
         html += '</tbody></table></div>';
         document.getElementById('orders-content').innerHTML = html;
       } catch (err) {
-        document.getElementById('orders-content').innerHTML = `<div class="alert alert-error"><strong>Erro:</strong> ${err.message}</div>`;
+        console.error('❌ Problematic orders error:', err);
+        document.getElementById('orders-content').innerHTML = `
+          <div class="alert alert-error">
+            <strong>Erro ao carregar compras:</strong> ${err.message}<br>
+            <small style="color:#666;">API: ${API_URL}</small>
+          </div>
+        `;
       }
     }
 
@@ -931,6 +983,11 @@
         const res = await fetch(`${API_URL}/api/monitoring/voucher-issues`, {
           headers: getHeaders()
         });
+        
+        if (!res.ok) {
+          throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+        }
+        
         const data = await res.json();
 
         if (!data.success) throw new Error(data.error);
@@ -955,7 +1012,13 @@
 
         document.getElementById('vouchers-content').innerHTML = html;
       } catch (err) {
-        document.getElementById('vouchers-content').innerHTML = `<div class="alert alert-error"><strong>Erro:</strong> ${err.message}</div>`;
+        console.error('❌ Voucher issues error:', err);
+        document.getElementById('vouchers-content').innerHTML = `
+          <div class="alert alert-error">
+            <strong>Erro ao carregar vouchers:</strong> ${err.message}<br>
+            <small style="color:#666;">API: ${API_URL}</small>
+          </div>
+        `;
       }
     }
 
@@ -965,6 +1028,11 @@
         const res = await fetch(`${API_URL}/api/monitoring/partner-alerts`, {
           headers: getHeaders()
         });
+        
+        if (!res.ok) {
+          throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+        }
+        
         const data = await res.json();
 
         if (!data.success) throw new Error(data.error);
@@ -988,7 +1056,13 @@
 
         document.getElementById('partners-content').innerHTML = html;
       } catch (err) {
-        document.getElementById('partners-content').innerHTML = `<div class="alert alert-error"><strong>Erro:</strong> ${err.message}</div>`;
+        console.error('❌ Partner alerts error:', err);
+        document.getElementById('partners-content').innerHTML = `
+          <div class="alert alert-error">
+            <strong>Erro ao carregar parceiros:</strong> ${err.message}<br>
+            <small style="color:#666;">API: ${API_URL}</small>
+          </div>
+        `;
       }
     }
 
@@ -1012,7 +1086,11 @@
 
     // Check auth on load
     if (!getToken()) {
+      console.warn('⚠️ Sem token! Redirecionando para login...');
       window.location.href = '/admin.html';
+    } else {
+      console.log('✅ Token encontrado:', getToken().substring(0, 10) + '...');
+      console.log('✅ API_URL:', API_URL);
     }
 
     // Auto-refresh every 5 minutes
