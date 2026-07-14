@@ -724,14 +724,13 @@
 
       if (!API_URL) {
         const hostname = window.location.hostname;
-        const protocol = window.location.protocol;
 
         // Em localhost/127.0.0.1 (desenvolvimento): Backend em port 3000
         if (hostname === "localhost" || hostname === "127.0.0.1") {
           API_URL = `http://${hostname}:3000`;
         } else {
-          // Em produção: Backend na mesma origem
-          API_URL = `${protocol}//${hostname}`;
+          // Em produção, centraliza sempre no backend Railway.
+          API_URL = "https://voucherhub-backend-production.up.railway.app";
         }
       }
 
