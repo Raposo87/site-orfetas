@@ -31,7 +31,7 @@
     function generateSeoTitle(partner) {
       const customTitle = normalizeWhitespace(partner?.seo_title);
       if (customTitle) {
-        return customTitle;
+        return truncateAtWord(customTitle, 100);
       }
 
       const partnerName = normalizeWhitespace(partner?.name) || 'Parceiro';
@@ -40,13 +40,13 @@
         ? `${partnerName} em ${location} | VoucherHub`
         : `${partnerName} | VoucherHub`;
 
-      return truncateAtWord(title, 65);
+      return truncateAtWord(title, 100);
     }
 
     function generateSeoDescription(partner) {
       const customDescription = normalizeWhitespace(partner?.seo_description);
       if (customDescription) {
-        return truncateAtWord(customDescription, 160);
+        return truncateAtWord(customDescription, 300);
       }
 
       const partnerName = normalizeWhitespace(partner?.name) || 'parceiro';
@@ -68,7 +68,7 @@
         description = normalizeWhitespace(`${description}${cta}`);
       }
 
-      return truncateAtWord(description, 160);
+      return truncateAtWord(description, 300);
     }
 
     function applySeoMeta(partner) {

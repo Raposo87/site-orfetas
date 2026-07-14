@@ -161,6 +161,21 @@
       .seo-helper.error {
         color: #991b1b;
       }
+      .seo-ai-row {
+        display: flex;
+        justify-content: flex-end;
+        margin: -6px 0 14px 0;
+      }
+      .btn-seo-ai {
+        width: auto;
+        margin: 0;
+        padding: 8px 12px;
+        font-size: 13px;
+        background: #0369a1;
+      }
+      .btn-seo-ai:hover {
+        background: #075985;
+      }
     </style>
   </head>
   <body>
@@ -282,22 +297,27 @@
       <input
         type="text"
         id="seo_title"
-        maxlength="120"
+        maxlength="100"
         placeholder="Ex: Aulas de Surf em Lisboa | VoucherHub"
       />
       <div id="seo_title_helper" class="seo-helper">
-        Recomendado: cerca de 60 caracteres.
+        Recomendado: cerca de 60 caracteres. Máximo: 100.
       </div>
 
       <label>META DESCRIÇÃO SEO (não visível para visitantes)</label>
       <textarea
         id="seo_description"
         style="min-height: 90px"
-        maxlength="220"
-        placeholder="Resumo para motores de pesquisa. Ideal entre 150 e 160 caracteres."
+        maxlength="300"
+        placeholder="Resumo para motores de pesquisa. Ideal entre 150 e 160 caracteres (máx. 300)."
       ></textarea>
       <div id="seo_description_helper" class="seo-helper">
-        Recomendado: entre 150 e 160 caracteres.
+        Recomendado: entre 150 e 160 caracteres. Máximo: 300.
+      </div>
+      <div class="seo-ai-row">
+        <button type="button" id="generateSeoAiBtn" class="btn-seo-ai">
+          ✨ Gerar Título + Descrição com IA
+        </button>
       </div>
 
       <label>IMAGENS (uma URL por linha)</label>
@@ -419,6 +439,8 @@
         "https://voucherhub-backend-production.up.railway.app/api/admin";
       const CATALOG_API =
         "https://voucherhub-backend-production.up.railway.app/api/catalog";
+      const AI_SEO_API =
+        "https://voucherhub-backend-production.up.railway.app/api/ai-seo";
       const TOKEN_STORAGE_KEY = "voucherhub_admin_token";
 
       const notice = document.getElementById("notice");
@@ -431,6 +453,9 @@
       const newPartnerBtn = document.getElementById("newPartnerBtn");
       const seoTitleInput = document.getElementById("seo_title");
       const seoDescriptionInput = document.getElementById("seo_description");
+      const generateSeoAiBtn = document.getElementById("generateSeoAiBtn");
+      let seoTitleTouched = false;
+      let seoDescriptionTouched = false;
       let currentEditingSlug = "";
       const fallbackModes = [
         { slug: "surf", title: "Aulas de Surf", badge: "Esportes Aquáticos" },
@@ -498,6 +523,151 @@
         helper.textContent = text;
       }
 
+      function normalizeWhitespace(text) {
+        return String(text || "")
+          .replace(/\s+/g, " ")
+          .trim();
+      }
+
+      function truncateAtWord(text, maxLen) {
+        const clean = normalizeWhitespace(text);
+        if (clean.length <= maxLen) return clean;
+        const cut = clean.slice(0, maxLen + 1);
+        const lastSpace = cut.lastIndexOf(" ");
+        const result =
+          lastSpace > 0 ? cut.slice(0, lastSpace) : clean.slice(0, maxLen);
+        return result.trim();
+      }
+
+      function generateFallbackSeoTitle() {
+        const name = normalizeWhitespace(
+          document.getElementById("name")?.value,
+        );
+        const location = normalizeWhitespace(
+          document.getElementById("location")?.value,
+        );
+        if (!name) return "";
+        const candidate = location
+          ? `${name} em ${location} | VoucherHub`
+          : `${name} | VoucherHub`;
+        return truncateAtWord(candidate, 100);
+      }
+
+      function generateFallbackSeoDescription() {
+        const name = normalizeWhitespace(
+          document.getElementById("name")?.value,
+        );
+        const location = normalizeWhitespace(
+          document.getElementById("location")?.value,
+        );
+        const storyShort = normalizeWhitespace(
+          document.getElementById("story_short")?.value,
+        );
+        const storyFull = normalizeWhitespace(
+          document.getElementById("story_full")?.value,
+        );
+
+        const intro = location
+          ? `${name || "Este parceiro"} em ${location} na VoucherHub.`
+          : `${name || "Este parceiro"} na VoucherHub.`;
+        const content = storyShort || storyFull;
+        const cta =
+          " Reserve online e aproveite ofertas exclusivas com confirmação rápida.";
+
+        let description = normalizeWhitespace(`${intro} ${content}`);
+        if (!content) {
+          description = `${intro} Experiências selecionadas para tirar o melhor partido da sua visita.`;
+        }
+        if (description.length < 150) {
+          description = normalizeWhitespace(`${description}${cta}`);
+        }
+        return truncateAtWord(description, 300);
+      }
+
+      async function generateSeoWithAi() {
+        const token = getToken();
+        if (!token) {
+          showNotice(
+            "Sessão inválida. Faça login novamente para usar a geração por IA.",
+            "error",
+          );
+          return;
+        }
+
+        const partnerName = document.getElementById("name").value.trim();
+        if (!partnerName) {
+          showNotice(
+            "Preencha pelo menos o nome do parceiro antes de gerar SEO com IA.",
+            "error",
+          );
+          return;
+        }
+
+        const labelBefore = generateSeoAiBtn.textContent;
+        generateSeoAiBtn.disabled = true;
+        generateSeoAiBtn.textContent = "⏳ Gerando com IA...";
+
+        try {
+          const response = await fetch(`${AI_SEO_API}/partner-meta`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+              name: partnerName,
+              location: document.getElementById("location").value.trim(),
+              category:
+                document.getElementById("mode_slug")?.selectedOptions?.[0]
+                  ?.textContent || "",
+              story_short: document.getElementById("story_short").value.trim(),
+              story_full: document.getElementById("story_full").value.trim(),
+              brand: "VoucherHub",
+            }),
+          });
+
+          const payload = await response.json();
+          if (!response.ok || !payload?.success) {
+            throw new Error(payload?.error || `HTTP ${response.status}`);
+          }
+
+          seoTitleInput.value = (payload.seo_title || "").slice(0, 100);
+          seoDescriptionInput.value = (payload.seo_description || "").slice(
+            0,
+            300,
+          );
+          seoTitleTouched = true;
+          seoDescriptionTouched = true;
+          refreshSeoCounters();
+          showNotice(
+            "SEO preenchido com IA. Revise e ajuste antes de guardar.",
+            "success",
+          );
+        } catch (err) {
+          console.error("Erro ao gerar SEO com IA:", err);
+          showNotice(
+            "Não foi possível gerar SEO com IA neste momento.",
+            "error",
+          );
+        } finally {
+          generateSeoAiBtn.disabled = false;
+          generateSeoAiBtn.textContent = labelBefore;
+        }
+      }
+
+      function autoFillSeoFields({ force = false } = {}) {
+        if (force || (!seoTitleTouched && !seoTitleInput.value.trim())) {
+          seoTitleInput.value = generateFallbackSeoTitle();
+        }
+        if (
+          force ||
+          (!seoDescriptionTouched && !seoDescriptionInput.value.trim())
+        ) {
+          seoDescriptionInput.value = generateFallbackSeoDescription();
+        }
+        refreshSeoCounters();
+      }
+
       function refreshSeoCounters() {
         const titleLen = (seoTitleInput?.value || "").trim().length;
         const descLen = (seoDescriptionInput?.value || "").trim().length;
@@ -511,20 +681,20 @@
         } else if (titleLen >= 50 && titleLen <= 65) {
           setSeoHelperState(
             "seo_title_helper",
-            `${titleLen} caracteres. Boa faixa para SEO (cerca de 60).`,
+            `${titleLen}/100 caracteres. Boa faixa para SEO (cerca de 60).`,
             "ok",
           );
-        } else if (titleLen > 65) {
+        } else if (titleLen <= 100) {
           setSeoHelperState(
             "seo_title_helper",
-            `${titleLen} caracteres. Pode ser cortado nos resultados de pesquisa.`,
-            "error",
+            `${titleLen}/100 caracteres. Acima do ideal para SERP, mas dentro do limite.`,
+            "warn",
           );
         } else {
           setSeoHelperState(
             "seo_title_helper",
-            `${titleLen} caracteres. Pode beneficiar de mais contexto até perto de 60.`,
-            "warn",
+            `${titleLen}/100 caracteres. Ultrapassa o máximo permitido.`,
+            "error",
           );
         }
 
@@ -537,20 +707,20 @@
         } else if (descLen >= 150 && descLen <= 160) {
           setSeoHelperState(
             "seo_description_helper",
-            `${descLen} caracteres. Excelente para meta descrição.`,
+            `${descLen}/300 caracteres. Excelente para meta descrição.`,
             "ok",
           );
-        } else if (descLen > 160) {
+        } else if (descLen <= 300) {
           setSeoHelperState(
             "seo_description_helper",
-            `${descLen} caracteres. Pode ser truncada pelo Google.`,
-            "error",
+            `${descLen}/300 caracteres. Acima do ideal para SERP, mas dentro do limite.`,
+            "warn",
           );
         } else {
           setSeoHelperState(
             "seo_description_helper",
-            `${descLen} caracteres. Ideal entre 150 e 160 para melhor CTR.`,
-            "warn",
+            `${descLen}/300 caracteres. Ultrapassa o máximo permitido.`,
+            "error",
           );
         }
       }
@@ -635,6 +805,11 @@
           : "";
 
         resetOffers(Array.isArray(partner.offers) ? partner.offers : []);
+        seoTitleTouched = Boolean(partner.seo_title);
+        seoDescriptionTouched = Boolean(partner.seo_description);
+        if (!partner.seo_title || !partner.seo_description) {
+          autoFillSeoFields();
+        }
         refreshSeoCounters();
       }
 
@@ -643,9 +818,11 @@
         existingPartnerSelect.value = "";
         adminForm.reset();
         document.getElementById("slug").readOnly = false;
+        seoTitleTouched = false;
+        seoDescriptionTouched = false;
         resetOffers([]);
         setSubmitLabel();
-        refreshSeoCounters();
+        autoFillSeoFields();
       }
 
       // Carregar categorias disponíveis no select
@@ -1194,6 +1371,21 @@
 
       seoTitleInput.addEventListener("input", refreshSeoCounters);
       seoDescriptionInput.addEventListener("input", refreshSeoCounters);
+
+      seoTitleInput.addEventListener("input", () => {
+        seoTitleTouched = true;
+      });
+      seoDescriptionInput.addEventListener("input", () => {
+        seoDescriptionTouched = true;
+      });
+
+      ["name", "location", "story_short", "story_full"].forEach((id) => {
+        const field = document.getElementById(id);
+        if (!field) return;
+        field.addEventListener("input", () => autoFillSeoFields());
+      });
+
+      generateSeoAiBtn.addEventListener("click", generateSeoWithAi);
 
       initAdminPanel();
     </script>
