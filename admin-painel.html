@@ -146,6 +146,21 @@
       .btn-danger:hover {
         background: #b91c1c;
       }
+      .seo-helper {
+        margin-top: -14px;
+        margin-bottom: 14px;
+        font-size: 12px;
+        color: #475569;
+      }
+      .seo-helper.ok {
+        color: #166534;
+      }
+      .seo-helper.warn {
+        color: #9a3412;
+      }
+      .seo-helper.error {
+        color: #991b1b;
+      }
     </style>
   </head>
   <body>
@@ -260,6 +275,30 @@
         style="min-height: 120px"
         placeholder="Descrição detalhada..."
       ></textarea>
+
+      <p class="section-title">🔎 SEO</p>
+
+      <label>TÍTULO SEO (não visível para visitantes)</label>
+      <input
+        type="text"
+        id="seo_title"
+        maxlength="120"
+        placeholder="Ex: Aulas de Surf em Lisboa | VoucherHub"
+      />
+      <div id="seo_title_helper" class="seo-helper">
+        Recomendado: cerca de 60 caracteres.
+      </div>
+
+      <label>META DESCRIÇÃO SEO (não visível para visitantes)</label>
+      <textarea
+        id="seo_description"
+        style="min-height: 90px"
+        maxlength="220"
+        placeholder="Resumo para motores de pesquisa. Ideal entre 150 e 160 caracteres."
+      ></textarea>
+      <div id="seo_description_helper" class="seo-helper">
+        Recomendado: entre 150 e 160 caracteres.
+      </div>
 
       <label>IMAGENS (uma URL por linha)</label>
       <textarea
@@ -390,6 +429,8 @@
         "existing_partner_select",
       );
       const newPartnerBtn = document.getElementById("newPartnerBtn");
+      const seoTitleInput = document.getElementById("seo_title");
+      const seoDescriptionInput = document.getElementById("seo_description");
       let currentEditingSlug = "";
       const fallbackModes = [
         { slug: "surf", title: "Aulas de Surf", badge: "Esportes Aquáticos" },
@@ -448,6 +489,70 @@
         submitBtn.innerText = currentEditingSlug
           ? "Salvar Alterações do Parceiro"
           : "Criar Parceiro e Gerar Link Stripe";
+      }
+
+      function setSeoHelperState(helperId, text, stateClass) {
+        const helper = document.getElementById(helperId);
+        if (!helper) return;
+        helper.className = `seo-helper ${stateClass}`;
+        helper.textContent = text;
+      }
+
+      function refreshSeoCounters() {
+        const titleLen = (seoTitleInput?.value || "").trim().length;
+        const descLen = (seoDescriptionInput?.value || "").trim().length;
+
+        if (titleLen === 0) {
+          setSeoHelperState(
+            "seo_title_helper",
+            "Vazio: será gerado automaticamente com nome e descrição do parceiro.",
+            "warn",
+          );
+        } else if (titleLen >= 50 && titleLen <= 65) {
+          setSeoHelperState(
+            "seo_title_helper",
+            `${titleLen} caracteres. Boa faixa para SEO (cerca de 60).`,
+            "ok",
+          );
+        } else if (titleLen > 65) {
+          setSeoHelperState(
+            "seo_title_helper",
+            `${titleLen} caracteres. Pode ser cortado nos resultados de pesquisa.`,
+            "error",
+          );
+        } else {
+          setSeoHelperState(
+            "seo_title_helper",
+            `${titleLen} caracteres. Pode beneficiar de mais contexto até perto de 60.`,
+            "warn",
+          );
+        }
+
+        if (descLen === 0) {
+          setSeoHelperState(
+            "seo_description_helper",
+            "Vazio: será gerada automaticamente com nome e descrição do parceiro.",
+            "warn",
+          );
+        } else if (descLen >= 150 && descLen <= 160) {
+          setSeoHelperState(
+            "seo_description_helper",
+            `${descLen} caracteres. Excelente para meta descrição.`,
+            "ok",
+          );
+        } else if (descLen > 160) {
+          setSeoHelperState(
+            "seo_description_helper",
+            `${descLen} caracteres. Pode ser truncada pelo Google.`,
+            "error",
+          );
+        } else {
+          setSeoHelperState(
+            "seo_description_helper",
+            `${descLen} caracteres. Ideal entre 150 e 160 para melhor CTR.`,
+            "warn",
+          );
+        }
       }
 
       function escapeAttr(value) {
@@ -510,6 +615,9 @@
         document.getElementById("story_short").value =
           partner.story_short || "";
         document.getElementById("story_full").value = partner.story_full || "";
+        document.getElementById("seo_title").value = partner.seo_title || "";
+        document.getElementById("seo_description").value =
+          partner.seo_description || "";
         document.getElementById("images_raw").value = Array.isArray(
           partner.images,
         )
@@ -527,6 +635,7 @@
           : "";
 
         resetOffers(Array.isArray(partner.offers) ? partner.offers : []);
+        refreshSeoCounters();
       }
 
       function clearForNewPartner() {
@@ -536,6 +645,7 @@
         document.getElementById("slug").readOnly = false;
         resetOffers([]);
         setSubmitLabel();
+        refreshSeoCounters();
       }
 
       // Carregar categorias disponíveis no select
@@ -955,6 +1065,8 @@
           icon: "fas fa-tag",
           story_short: document.getElementById("story_short").value,
           story_full: document.getElementById("story_full").value,
+          seo_title: seoTitleInput.value.trim() || null,
+          seo_description: seoDescriptionInput.value.trim() || null,
           images,
           includes,
           recommendations,
@@ -1077,7 +1189,11 @@
 
         await loadModes();
         await loadExistingPartners();
+        refreshSeoCounters();
       }
+
+      seoTitleInput.addEventListener("input", refreshSeoCounters);
+      seoDescriptionInput.addEventListener("input", refreshSeoCounters);
 
       initAdminPanel();
     </script>

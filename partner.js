@@ -11,6 +11,85 @@
 
   const API_BASE = 'https://voucherhub-backend-production.up.railway.app';
 
+    function normalizeWhitespace(text) {
+      return String(text || '').replace(/\s+/g, ' ').trim();
+    }
+
+    function stripHtml(text) {
+      return String(text || '').replace(/<[^>]*>/g, ' ');
+    }
+
+    function truncateAtWord(text, maxLen) {
+      const clean = normalizeWhitespace(text);
+      if (clean.length <= maxLen) return clean;
+      const cut = clean.slice(0, maxLen + 1);
+      const lastSpace = cut.lastIndexOf(' ');
+      const result = lastSpace > 0 ? cut.slice(0, lastSpace) : clean.slice(0, maxLen);
+      return result.trim();
+    }
+
+    function generateSeoTitle(partner) {
+      const customTitle = normalizeWhitespace(partner?.seo_title);
+      if (customTitle) {
+        return customTitle;
+      }
+
+      const partnerName = normalizeWhitespace(partner?.name) || 'Parceiro';
+      const location = normalizeWhitespace(partner?.location);
+      const title = location
+        ? `${partnerName} em ${location} | VoucherHub`
+        : `${partnerName} | VoucherHub`;
+
+      return truncateAtWord(title, 65);
+    }
+
+    function generateSeoDescription(partner) {
+      const customDescription = normalizeWhitespace(partner?.seo_description);
+      if (customDescription) {
+        return truncateAtWord(customDescription, 160);
+      }
+
+      const partnerName = normalizeWhitespace(partner?.name) || 'parceiro';
+      const location = normalizeWhitespace(partner?.location);
+      const storyShort = normalizeWhitespace(stripHtml(partner?.story_short));
+      const storyFull = normalizeWhitespace(stripHtml(partner?.story_full));
+      const primaryStory = storyShort || storyFull;
+      const intro = location
+        ? `${partnerName} em ${location} na VoucherHub.`
+        : `${partnerName} na VoucherHub.`;
+      const cta = ' Reserve online e aproveite ofertas exclusivas com confirmação rápida.';
+
+      let description = normalizeWhitespace(`${intro} ${primaryStory}`);
+      if (!description) {
+        description = `${intro} Experiências selecionadas para tirar o melhor partido da sua visita.`;
+      }
+
+      if (description.length < 150) {
+        description = normalizeWhitespace(`${description}${cta}`);
+      }
+
+      return truncateAtWord(description, 160);
+    }
+
+    function applySeoMeta(partner) {
+      const seoTitle = generateSeoTitle(partner);
+      const seoDescription = generateSeoDescription(partner);
+
+      document.title = seoTitle;
+      const titleEl = document.getElementById('partner-title');
+      if (titleEl) {
+        titleEl.textContent = seoTitle;
+      }
+
+      let descriptionMeta = document.querySelector('meta[name="description"]');
+      if (!descriptionMeta) {
+        descriptionMeta = document.createElement('meta');
+        descriptionMeta.setAttribute('name', 'description');
+        document.head.appendChild(descriptionMeta);
+      }
+      descriptionMeta.setAttribute('content', seoDescription);
+    }
+
     function mergeCatalogWithFallback(apiData, fallbackData) {
       const mergedModes = [...(apiData.modes || [])];
       const modesBySlug = new Map(mergedModes.map(mode => [mode.slug, mode]));
@@ -71,8 +150,7 @@
     const partnerDiscountPct = Number(partner.discount_percent || 15);
 
     // === PREENCHIMENTO BÁSICO (SEU CÓDIGO ORIGINAL MANTIDO) ===
-    document.title = `${partner.name} – VoucherHub`;
-    if(document.getElementById("partner-title")) document.getElementById("partner-title").textContent = partner.name;
+    applySeoMeta(partner);
     document.getElementById("partner-name").textContent = partner.name;
     document.getElementById("partner-category").textContent = mode.title || "Experiência";
     if(document.getElementById("partner-icon")) document.getElementById("partner-icon").className = partner.icon || "fas fa-tag";
