@@ -25,6 +25,46 @@
         min-height: 100vh;
       }
 
+      .access-gate {
+        max-width: 560px;
+        margin: 80px auto;
+        background: #fff;
+        padding: 24px;
+        border-radius: 12px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+      }
+
+      .access-gate h2 {
+        margin-bottom: 8px;
+        color: #1f2937;
+      }
+
+      .access-gate p {
+        font-size: 14px;
+        color: #4b5563;
+        margin-bottom: 14px;
+      }
+
+      .access-gate-row {
+        display: flex;
+        gap: 8px;
+      }
+
+      .access-gate-row input {
+        flex: 1;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        padding: 10px 12px;
+      }
+
+      .access-msg {
+        min-height: 20px;
+        margin-top: 10px;
+        font-size: 13px;
+        color: #b91c1c;
+        font-weight: 600;
+      }
+
       /* ===================== SIDEBAR ===================== */
       .sidebar {
         width: 250px;
@@ -97,7 +137,8 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        sticky: top;
+        position: sticky;
+        top: 0;
         z-index: 100;
       }
 
@@ -456,7 +497,27 @@
     </style>
   </head>
   <body>
-    <div class="container">
+    <div class="access-gate" id="monitoring-access-gate">
+      <h2>Acesso ao Monitoramento</h2>
+      <p>Este painel exige sessão individual ativa e Monitoring Key.</p>
+      <div class="access-gate-row">
+        <input
+          type="password"
+          id="monitoring-key"
+          placeholder="Monitoring Key"
+        />
+        <button
+          id="monitoring-unlock-btn"
+          class="btn btn-primary"
+          type="button"
+        >
+          Entrar
+        </button>
+      </div>
+      <div class="access-msg" id="monitoring-access-msg"></div>
+    </div>
+
+    <div class="container" id="monitoring-root" style="display: none">
       <!-- SIDEBAR -->
       <aside class="sidebar">
         <div class="logo">🔍 Monitorização</div>
@@ -739,11 +800,94 @@
       console.log("🌐 Current origin:", window.location.origin);
 
       const TOKEN_STORAGE_KEY = "voucherhub_admin_token";
+      const MONITORING_KEY_STORAGE_KEY = "voucherhub_monitoring_key";
       const getToken = () => localStorage.getItem(TOKEN_STORAGE_KEY);
+      const getMonitoringKey = () =>
+        localStorage.getItem(MONITORING_KEY_STORAGE_KEY);
+      const setMonitoringKey = (value) =>
+        localStorage.setItem(
+          MONITORING_KEY_STORAGE_KEY,
+          String(value || "").trim(),
+        );
       const getHeaders = () => ({
         Authorization: `Bearer ${getToken()}`,
+        "x-admin-key": getMonitoringKey(),
         "Content-Type": "application/json",
       });
+
+      let monitoringUnlocked = false;
+      let monitorRefreshInterval = null;
+
+      function setAccessMessage(message) {
+        const msgEl = document.getElementById("monitoring-access-msg");
+        if (msgEl) msgEl.textContent = message;
+      }
+
+      function showMonitoringGate() {
+        const gate = document.getElementById("monitoring-access-gate");
+        const root = document.getElementById("monitoring-root");
+        if (gate) gate.style.display = "block";
+        if (root) root.style.display = "none";
+      }
+
+      function openMonitoringRoot() {
+        const gate = document.getElementById("monitoring-access-gate");
+        const root = document.getElementById("monitoring-root");
+        if (gate) gate.style.display = "none";
+        if (root) root.style.display = "flex";
+      }
+
+      async function validateMonitoringAccess() {
+        const res = await fetch(`${API_URL}/api/monitoring/health`, {
+          headers: getHeaders(),
+        });
+
+        if (!res.ok) {
+          const payload = await res.json().catch(() => ({}));
+          throw new Error(payload.error || `HTTP ${res.status}`);
+        }
+
+        return res.json();
+      }
+
+      async function unlockMonitoringWithKey() {
+        const keyInput = document.getElementById("monitoring-key");
+        const keyValue = String(keyInput?.value || "").trim();
+
+        if (!keyValue) {
+          setAccessMessage("Informe a Monitoring Key para continuar.");
+          return;
+        }
+
+        setAccessMessage("");
+        setMonitoringKey(keyValue);
+
+        try {
+          await validateMonitoringAccess();
+          monitoringUnlocked = true;
+          openMonitoringRoot();
+          loadDashboard();
+          updateLastUpdate();
+          if (!monitorRefreshInterval) {
+            monitorRefreshInterval = setInterval(
+              () => {
+                if (!monitoringUnlocked) return;
+                const activeTab = document
+                  .querySelector(".tab-link.active")
+                  ?.getAttribute("data-tab");
+                if (activeTab) {
+                  loadTabContent(activeTab);
+                }
+              },
+              5 * 60 * 1000,
+            );
+          }
+        } catch (err) {
+          monitoringUnlocked = false;
+          localStorage.removeItem(MONITORING_KEY_STORAGE_KEY);
+          setAccessMessage(`Acesso negado: ${err.message}`);
+        }
+      }
 
       // ==================== TAB NAVIGATION ====================
       document.querySelectorAll(".tab-link").forEach((link) => {
@@ -791,9 +935,42 @@
             case "partners":
               await loadPartnerAlerts();
               break;
+            case "stripe":
+              await loadStripeTab();
+              break;
+            case "database":
+              await loadDatabaseTab();
+              break;
+            case "api":
+              await loadApiTab();
+              break;
+            case "emails":
+              await loadEmailsTab();
+              break;
+            case "uploads":
+              await loadUploadsTab();
+              break;
+            case "security":
+              await loadSecurityTab();
+              break;
+            case "performance":
+              await loadPerformanceTab();
+              break;
+            case "audit":
+              await loadAuditTab();
+              break;
+            case "diagnostics":
+              await loadDiagnosticsTab();
+              break;
+            case "alerts":
+              await loadAlertsTab();
+              break;
+            case "notifications":
+              await loadNotificationsTab();
+              break;
             default:
               document.getElementById(tabName + "-content").innerHTML =
-                "<p>Em desenvolvimento...</p>";
+                "<p>Módulo não encontrado.</p>";
           }
         } catch (err) {
           console.error(`Erro ao carregar ${tabName}:`, err);
@@ -1134,6 +1311,423 @@
         }
       }
 
+      async function fetchMonitoringJson(path) {
+        const res = await fetch(`${API_URL}${path}`, {
+          headers: getHeaders(),
+        });
+
+        if (!res.ok) {
+          throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+        }
+
+        const data = await res.json();
+        if (!data.success) {
+          throw new Error(data.error || "Falha ao obter dados");
+        }
+
+        return data;
+      }
+
+      function formatDateTime(value) {
+        if (!value) return "-";
+        try {
+          return new Date(value).toLocaleString("pt-PT");
+        } catch (_err) {
+          return "-";
+        }
+      }
+
+      function buildSimpleTable(headers, rows) {
+        return `
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>${headers.map((h) => `<th>${h}</th>`).join("")}</tr>
+              </thead>
+              <tbody>
+                ${rows.join("")}
+              </tbody>
+            </table>
+          </div>
+        `;
+      }
+
+      async function loadStripeTab() {
+        const [healthRes, stripeLogsRes] = await Promise.all([
+          fetchMonitoringJson("/api/monitoring/health"),
+          fetchMonitoringJson("/api/monitoring/logs?type=STRIPE&limit=20"),
+        ]);
+
+        const stripeHealth = healthRes.data?.stripe || {};
+        const webhookHealth = healthRes.data?.stripeWebhooks || {};
+        const rows = (stripeLogsRes.data || []).slice(0, 20).map(
+          (log) => `
+            <tr>
+              <td>${formatDateTime(log.created_at)}</td>
+              <td>${log.level}</td>
+              <td>${log.message || "-"}</td>
+            </tr>
+          `,
+        );
+
+        const html = `
+          <div class="grid">
+            ${renderHealthCard("Stripe API", stripeHealth.status || "offline", `${stripeHealth.responseTime || "-"}ms`)}
+            ${renderHealthCard("Stripe Webhooks", webhookHealth.status || "offline", `${webhookHealth.totalEvents || 0} eventos`)}
+          </div>
+          <div class="card">
+            <div class="card-title">Últimos eventos/logs Stripe</div>
+            ${rows.length ? buildSimpleTable(["Data", "Nível", "Mensagem"], rows) : "<p>Sem logs Stripe recentes.</p>"}
+          </div>
+        `;
+
+        document.getElementById("stripe-content").innerHTML = html;
+      }
+
+      async function loadDatabaseTab() {
+        const [healthRes, metricsRes] = await Promise.all([
+          fetchMonitoringJson("/api/monitoring/health"),
+          fetchMonitoringJson("/api/monitoring/metrics"),
+        ]);
+
+        const dbHealth = healthRes.data?.database || {};
+        const metrics = metricsRes.data || {};
+
+        document.getElementById("database-content").innerHTML = `
+          <div class="grid">
+            ${renderHealthCard("PostgreSQL", dbHealth.status || "offline", `${dbHealth.responseTime || "-"}ms`)}
+            <div class="grid-item">
+              <div class="grid-item-value">${metrics.activePartners || 0}</div>
+              <div class="grid-item-label">Parceiros ativos</div>
+            </div>
+            <div class="grid-item">
+              <div class="grid-item-value">${metrics.vouchersCreated24h || 0}</div>
+              <div class="grid-item-label">Vouchers criados (24h)</div>
+            </div>
+          </div>
+          <div class="card">
+            <p><strong>Última verificação:</strong> ${formatDateTime(healthRes.checkedAt)}</p>
+          </div>
+        `;
+      }
+
+      async function loadApiTab() {
+        const [healthRes, metricsRes] = await Promise.all([
+          fetchMonitoringJson("/api/monitoring/health"),
+          fetchMonitoringJson("/api/monitoring/metrics"),
+        ]);
+
+        const apiHealth = healthRes.data?.api || {};
+        const metrics = metricsRes.data || {};
+
+        document.getElementById("api-content").innerHTML = `
+          <div class="grid">
+            ${renderHealthCard("API Core", apiHealth.status || "offline", `${healthRes.data?.responseTime || "-"}ms`)}
+            <div class="grid-item">
+              <div class="grid-item-value">${metrics.errors24h || 0}</div>
+              <div class="grid-item-label">Erros nas últimas 24h</div>
+            </div>
+            <div class="grid-item">
+              <div class="grid-item-value">${metrics.payments24h?.count || 0}</div>
+              <div class="grid-item-label">Pagamentos completados (24h)</div>
+            </div>
+          </div>
+        `;
+      }
+
+      async function loadEmailsTab() {
+        const [healthRes, logsRes] = await Promise.all([
+          fetchMonitoringJson("/api/monitoring/health"),
+          fetchMonitoringJson("/api/monitoring/logs?search=email&limit=20"),
+        ]);
+
+        const emailHealth = healthRes.data?.email || {};
+        const rows = (logsRes.data || []).slice(0, 20).map(
+          (log) => `
+            <tr>
+              <td>${formatDateTime(log.created_at)}</td>
+              <td>${log.level}</td>
+              <td>${log.service || "-"}</td>
+              <td>${log.message || "-"}</td>
+            </tr>
+          `,
+        );
+
+        document.getElementById("emails-content").innerHTML = `
+          <div class="grid">
+            ${renderHealthCard("Serviço de Email", emailHealth.status || "offline")}
+          </div>
+          <div class="card">
+            <div class="card-title">Atividade de Email (logs)</div>
+            ${rows.length ? buildSimpleTable(["Data", "Nível", "Serviço", "Mensagem"], rows) : "<p>Sem logs de email recentes.</p>"}
+          </div>
+        `;
+      }
+
+      async function loadUploadsTab() {
+        const [healthRes, logsRes] = await Promise.all([
+          fetchMonitoringJson("/api/monitoring/health"),
+          fetchMonitoringJson(
+            "/api/monitoring/logs?search=cloudinary&limit=20",
+          ),
+        ]);
+
+        const cloudinaryHealth = healthRes.data?.cloudinary || {};
+        const rows = (logsRes.data || []).slice(0, 20).map(
+          (log) => `
+            <tr>
+              <td>${formatDateTime(log.created_at)}</td>
+              <td>${log.level}</td>
+              <td>${log.message || "-"}</td>
+            </tr>
+          `,
+        );
+
+        document.getElementById("uploads-content").innerHTML = `
+          <div class="grid">
+            ${renderHealthCard("Cloudinary", cloudinaryHealth.status || "offline")}
+          </div>
+          <div class="card">
+            <div class="card-title">Atividade Cloudinary (logs)</div>
+            ${rows.length ? buildSimpleTable(["Data", "Nível", "Mensagem"], rows) : "<p>Sem logs Cloudinary recentes.</p>"}
+          </div>
+        `;
+      }
+
+      async function loadSecurityTab() {
+        const logsRes = await fetchMonitoringJson(
+          "/api/monitoring/logs?level=ERROR&search=auth&limit=30",
+        );
+
+        const rows = (logsRes.data || []).slice(0, 30).map(
+          (log) => `
+            <tr>
+              <td>${formatDateTime(log.created_at)}</td>
+              <td>${log.type || "-"}</td>
+              <td>${log.message || "-"}</td>
+            </tr>
+          `,
+        );
+
+        document.getElementById("security-content").innerHTML = `
+          <div class="card">
+            <div class="card-title">Eventos de Segurança (erros de auth)</div>
+            ${rows.length ? buildSimpleTable(["Data", "Tipo", "Mensagem"], rows) : "<p>Sem eventos críticos recentes de autenticação.</p>"}
+          </div>
+        `;
+      }
+
+      async function loadPerformanceTab() {
+        const [healthRes, metricsRes] = await Promise.all([
+          fetchMonitoringJson("/api/monitoring/health"),
+          fetchMonitoringJson("/api/monitoring/metrics"),
+        ]);
+
+        const metrics = metricsRes.data || {};
+        const responseTime = healthRes.data?.responseTime || 0;
+
+        document.getElementById("performance-content").innerHTML = `
+          <div class="grid">
+            <div class="grid-item">
+              <div class="grid-item-value">${responseTime}ms</div>
+              <div class="grid-item-label">Tempo resposta monitorização</div>
+            </div>
+            <div class="grid-item">
+              <div class="grid-item-value">€${((metrics.payments24h?.total || 0) / 100).toFixed(2)}</div>
+              <div class="grid-item-label">Receita (24h)</div>
+            </div>
+            <div class="grid-item">
+              <div class="grid-item-value">${metrics.errors24h || 0}</div>
+              <div class="grid-item-label">Erros (24h)</div>
+            </div>
+          </div>
+        `;
+      }
+
+      async function loadAuditTab() {
+        const auditRes = await fetchMonitoringJson(
+          "/api/monitoring/audit-logs?limit=50",
+        );
+        const rows = (auditRes.data || []).slice(0, 50).map(
+          (entry) => `
+            <tr>
+              <td>${formatDateTime(entry.created_at)}</td>
+              <td>${entry.admin_id || "-"}</td>
+              <td>${entry.action || "-"}</td>
+              <td>${entry.resource || "-"}</td>
+              <td>${entry.resource_id || "-"}</td>
+            </tr>
+          `,
+        );
+
+        document.getElementById("audit-content").innerHTML = `
+          <div class="card">
+            <div class="card-title">Logs de Auditoria Administrativa</div>
+            ${rows.length ? buildSimpleTable(["Data", "Admin", "Ação", "Recurso", "ID Recurso"], rows) : "<p>Sem logs de auditoria no período.</p>"}
+          </div>
+        `;
+      }
+
+      async function loadDiagnosticsTab() {
+        const [healthRes, metricsRes] = await Promise.all([
+          fetchMonitoringJson("/api/monitoring/health"),
+          fetchMonitoringJson("/api/monitoring/metrics"),
+        ]);
+
+        const checks = [
+          {
+            name: "API",
+            status: healthRes.data?.api?.status || "offline",
+            detail: `Uptime ${Math.round((healthRes.data?.api?.uptime || 0) / 60)} min`,
+          },
+          {
+            name: "PostgreSQL",
+            status: healthRes.data?.database?.status || "offline",
+            detail: `${healthRes.data?.database?.responseTime || "-"}ms`,
+          },
+          {
+            name: "Stripe",
+            status: healthRes.data?.stripe?.status || "offline",
+            detail: `${healthRes.data?.stripe?.responseTime || "-"}ms`,
+          },
+          {
+            name: "Erros 24h",
+            status:
+              (metricsRes.data?.errors24h || 0) > 0 ? "warning" : "online",
+            detail: `${metricsRes.data?.errors24h || 0} erro(s)`,
+          },
+        ];
+
+        document.getElementById("diagnostics-content").innerHTML = `
+          <div class="grid">
+            ${checks.map((c) => renderHealthCard(c.name, c.status, c.detail)).join("")}
+          </div>
+        `;
+      }
+
+      async function loadAlertsTab() {
+        const [ordersRes, vouchersRes, partnersRes, metricsRes] =
+          await Promise.all([
+            fetchMonitoringJson("/api/monitoring/problematic-orders"),
+            fetchMonitoringJson("/api/monitoring/voucher-issues"),
+            fetchMonitoringJson("/api/monitoring/partner-alerts"),
+            fetchMonitoringJson("/api/monitoring/metrics"),
+          ]);
+
+        const cards = [
+          {
+            title: "Compras com problemas",
+            value: ordersRes.total || 0,
+          },
+          {
+            title: "Problemas de vouchers",
+            value: vouchersRes.total || 0,
+          },
+          {
+            title: "Alertas de parceiros",
+            value: partnersRes.total || 0,
+          },
+          {
+            title: "Erros de sistema (24h)",
+            value: metricsRes.data?.errors24h || 0,
+          },
+        ];
+
+        const severe = cards.filter((c) => c.value > 0).length;
+
+        document.getElementById("alerts-content").innerHTML = `
+          <div class="alert ${severe > 0 ? "alert-warning" : "alert-success"}">
+            <strong>${severe > 0 ? "⚠️ Alertas ativos detectados" : "✓ Sem alertas críticos"}</strong>
+          </div>
+          <div class="grid">
+            ${cards
+              .map(
+                (c) => `
+                <div class="grid-item">
+                  <div class="grid-item-value">${c.value}</div>
+                  <div class="grid-item-label">${c.title}</div>
+                </div>
+              `,
+              )
+              .join("")}
+          </div>
+        `;
+      }
+
+      async function loadNotificationsTab() {
+        const [logsRes, alertsRes] = await Promise.all([
+          fetchMonitoringJson("/api/monitoring/logs?level=ERROR&limit=10"),
+          fetchMonitoringJson("/api/monitoring/problematic-orders"),
+        ]);
+
+        const recentErrorLogs = logsRes.data || [];
+        const notifications = [];
+
+        recentErrorLogs.forEach((log) => {
+          notifications.push({
+            level: "Erro",
+            text: log.message || "Erro sem descrição",
+            at: formatDateTime(log.created_at),
+          });
+        });
+
+        if ((alertsRes.total || 0) > 0) {
+          notifications.unshift({
+            level: "Alerta",
+            text: `${alertsRes.total} compra(s) com problema detectada(s).`,
+            at: formatDateTime(new Date()),
+          });
+        }
+
+        const rows = notifications.slice(0, 20).map(
+          (n) => `
+            <tr>
+              <td>${n.at}</td>
+              <td>${n.level}</td>
+              <td>${n.text}</td>
+            </tr>
+          `,
+        );
+
+        document.getElementById("notifications-content").innerHTML = `
+          <div class="card">
+            <div class="card-title">Notificações recentes</div>
+            ${rows.length ? buildSimpleTable(["Data", "Nível", "Mensagem"], rows) : "<p>Sem notificações recentes.</p>"}
+          </div>
+        `;
+      }
+
+      async function showLogDetails(logId) {
+        try {
+          const data = await fetchMonitoringJson(
+            `/api/monitoring/logs?limit=1&search=${encodeURIComponent(logId)}`,
+          );
+          const log = (data.data || []).find(
+            (item) => String(item.id) === String(logId),
+          );
+
+          if (!log) {
+            window.alert("Detalhes do log não encontrados.");
+            return;
+          }
+
+          window.alert(
+            [
+              `ID: ${log.id || "-"}`,
+              `Data: ${formatDateTime(log.created_at)}`,
+              `Nível: ${log.level || "-"}`,
+              `Tipo: ${log.type || "-"}`,
+              `Origem: ${log.origin || "-"}`,
+              "",
+              `Mensagem: ${log.message || "-"}`,
+            ].join("\n"),
+          );
+        } catch (err) {
+          console.error("❌ Erro ao abrir detalhe do log:", err);
+          window.alert("Não foi possível carregar os detalhes do log.");
+        }
+      }
+
       // ==================== UTILITIES ====================
       function updateLastUpdate() {
         const now = new Date().toLocaleTimeString("pt-PT");
@@ -1141,6 +1735,7 @@
       }
 
       function refreshDashboard() {
+        if (!monitoringUnlocked) return;
         const btn = document.getElementById("refresh-btn");
         btn.disabled = true;
         btn.textContent = "↻ Atualizando...";
@@ -1155,31 +1750,40 @@
       // Check auth on load
       if (!getToken()) {
         console.warn("⚠️ Sem token! Redirecionando para login...");
-        window.location.href = "/admin.html";
+        window.location.href = "admin-usuarios.html";
       } else {
         console.log(
           "✅ Token encontrado:",
           getToken().substring(0, 10) + "...",
         );
         console.log("✅ API_URL:", API_URL);
+
+        const savedMonitoringKey = getMonitoringKey();
+        const keyInput = document.getElementById("monitoring-key");
+        if (keyInput && savedMonitoringKey) {
+          keyInput.value = savedMonitoringKey;
+        }
+
+        const unlockBtn = document.getElementById("monitoring-unlock-btn");
+        if (unlockBtn) {
+          unlockBtn.addEventListener("click", unlockMonitoringWithKey);
+        }
+
+        if (keyInput) {
+          keyInput.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+              event.preventDefault();
+              unlockMonitoringWithKey();
+            }
+          });
+        }
+
+        if (savedMonitoringKey) {
+          unlockMonitoringWithKey();
+        } else {
+          showMonitoringGate();
+        }
       }
-
-      // Auto-refresh every 5 minutes
-      setInterval(
-        () => {
-          const activeTab = document
-            .querySelector(".tab-link.active")
-            ?.getAttribute("data-tab");
-          if (activeTab) {
-            loadTabContent(activeTab);
-          }
-        },
-        5 * 60 * 1000,
-      );
-
-      // Initial load
-      loadDashboard();
-      updateLastUpdate();
     </script>
   </body>
 </html>

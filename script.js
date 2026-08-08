@@ -580,6 +580,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ===== BUSCA GLOBAL =====
 document.addEventListener('DOMContentLoaded', () => {
+  const normalizeSearchText = (value) => String(value || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .trim();
+
     const searchInput = document.getElementById('global-search-input');
     const resultsOverlay = document.getElementById('global-search-results');
     const resultsGrid = document.getElementById('results-grid');
@@ -598,7 +604,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         searchInput.addEventListener('input', (e) => {
             clearTimeout(searchTimer);
-            const term = e.target.value.toLowerCase().trim();
+          const term = normalizeSearchText(e.target.value);
 
             if (term.length < 2) {
                 resultsOverlay.style.display = 'none';
@@ -625,18 +631,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
 
                     const filtered = allPartners.filter(p => {
-                      const partnerName = (p.name || "").toLowerCase();
-                      const partnerLoc = (p.location || "").toLowerCase();
+                      const partnerName = normalizeSearchText(p.name);
+                      const partnerLoc = normalizeSearchText(p.location);
                       // Captura o título da categoria (Ex: "Aulas de Surf")
-                      const categoryName = (p.categoryTitle || "").toLowerCase(); 
-                      const experiencesTitles = (p.experiences || []).map(exp => (exp.title || "").toLowerCase());
+                      const categoryName = normalizeSearchText(p.categoryTitle);
+                      const experiencesTitles = (p.experiences || []).map(exp => normalizeSearchText(exp.title));
+
+                      const isCouplesSearch = ["casal", "casais"].includes(term);
                       
                       let searchTerms = [term];
                       if (term === "bike" || term === "bicicleta") searchTerms = ["bike", "bicicleta", "ciclismo"];
                       if (term === "passeio" || term === "passeios") searchTerms = ["passeio", "tour", "veleiro", "barco"];
 
                       // Filtro por texto
-                      const matchesText = term.length < 2 || searchTerms.some(t => 
+                        const matchesText = isCouplesSearch || term.length < 2 || searchTerms.some(t => 
                           partnerName.includes(t) || 
                           partnerLoc.includes(t) || 
                           categoryName.includes(t) || // <-- AGORA ELE PROCURA EM "Aulas de Surf"
